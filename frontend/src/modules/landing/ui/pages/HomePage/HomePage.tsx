@@ -37,8 +37,6 @@ type TeamMember = {
   name: string;
   role: string;
   image: string;
-  telegram?: string;
-  telegramLabel?: string;
 };
 
 const teamMembers: readonly TeamMember[] = [
@@ -46,29 +44,21 @@ const teamMembers: readonly TeamMember[] = [
     name: 'Asadullo Ganiev',
     role: 'Product Owner',
     image: '/assets/team/asadullo-ganiev.png',
-    telegram: 'https://t.me/asadullo_ganiev',
-    telegramLabel: '@asadullo_ganiev',
   },
   {
     name: 'Dilshodbek Khujaev',
     role: 'Content Maker',
     image: '/assets/team/dilshodbek-khujaev.png',
-    telegram: 'https://t.me/khujaev_d',
-    telegramLabel: '@khujaev_d',
   },
   {
     name: 'Dilyorbek Valijanov',
     role: 'Developer',
     image: '/assets/team/dilyorbek-valijanov.png',
-    telegram: 'https://t.me/drdilyor',
-    telegramLabel: '@drdilyor',
   },
   {
     name: 'Ulugbek Abdimanabov',
     role: 'Content Creator & Coordinator',
     image: '/assets/team/ulugbek-abdimanabov.png',
-    telegram: 'https://t.me/Ulugbek_AF',
-    telegramLabel: '@Ulugbek_AF',
   },
   {
     name: 'Davlatbek Mirakilov',
@@ -607,35 +597,6 @@ export default function HomePage() {
                 <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
                   {member.role}
                 </Typography>
-                {member.telegram && member.telegramLabel && (
-                  <Box
-                    component="a"
-                    href={member.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name}ning Telegram sahifasi`}
-                    sx={{
-                      gap: 0.75,
-                      mt: 1.5,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      color: 'text.secondary',
-                      fontSize: '0.875rem',
-                      fontWeight: 500,
-                      textDecoration: 'none',
-                      '&:hover': { color: 'primary.main' },
-                      '&:focus-visible': {
-                        color: 'primary.main',
-                        outline: '2px solid',
-                        outlineColor: 'primary.main',
-                        outlineOffset: 3,
-                      },
-                    }}
-                  >
-                    <UiIcon icon="mingcute:telegram-line" width={18} />
-                    {member.telegramLabel}
-                  </Box>
-                )}
               </Box>
             ))}
           </Box>

@@ -32,4 +32,5 @@ test('landing team contains six members in a three-column desktop grid', () => {
     assert.match(homePage, new RegExp(name));
   }
   assert.match(homePage, /md: 'repeat\(3, minmax\(0, 1fr\)\)'/);
+  assert.doesNotMatch(homePage, /t\.me\/|telegram/i);
 });
