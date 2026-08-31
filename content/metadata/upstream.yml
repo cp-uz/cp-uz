@@ -1,0 +1,7 @@
+repository: https://github.com/cp-algorithms/cp-algorithms
+website: https://cp-algorithms.com/
+commit: 85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681
+navigation_file: src/navigation.md
+article_count: 163
+license: CC-BY-SA-4.0
+generated_at: '2026-08-21'

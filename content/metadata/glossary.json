@@ -1,0 +1,1530 @@
+[
+  {
+    "aliases": [
+      "CP"
+    ],
+    "note": "Algoritm va ma’lumotlar tuzilmalaridan foydalanib, qat’iy vaqt hamda xotira cheklovlarida masalalar yechiladigan intellektual sport yo‘nalishi.",
+    "source": "Competitive Programming",
+    "uzbek": "Sport dasturlash"
+  },
+  {
+    "aliases": [
+      "Algo"
+    ],
+    "note": "Masalani yechishga olib boradigan aniq, tartibli va chekli qadamlar ketma-ketligi.",
+    "source": "Algorithm",
+    "uzbek": "Algoritm"
+  },
+  {
+    "aliases": [
+      "Constraints",
+      "Limitlar"
+    ],
+    "note": "Kirish qiymatlari va yechim sarflashi mumkin bo‘lgan resurslar chegarasini bildiradigan shart.",
+    "source": "Problem Constraint",
+    "uzbek": "Masala cheklovi"
+  },
+  {
+    "aliases": [
+      "Input length",
+      "Kirish o‘lchami"
+    ],
+    "note": "Algoritm qabul qiladigan ma’lumot miqdorini ifodalovchi asosiy o‘lchov.",
+    "source": "Input Size",
+    "uzbek": "Kirish hajmi"
+  },
+  {
+    "aliases": [
+      "Algorithm correctness",
+      "Korrektlik"
+    ],
+    "note": "Algoritmning ruxsat etilgan har bir kirish uchun talab qilingan javobni berish xossasi.",
+    "source": "Correctness",
+    "uzbek": "To‘g‘rilik"
+  },
+  {
+    "aliases": [
+      "Dalil",
+      "Proof of correctness"
+    ],
+    "note": "Algoritm yoki matematik da’voning to‘g‘riligini mantiqiy dalillar bilan asoslash.",
+    "source": "Proof",
+    "uzbek": "Isbot"
+  },
+  {
+    "aliases": [
+      "Loop invariant",
+      "Sikl invarianti"
+    ],
+    "note": "Algoritmning belgilangan bosqichlarida o‘zgarmay saqlanib, to‘g‘rilikni asoslashga yordam beradigan xossa.",
+    "source": "Invariant",
+    "uzbek": "Invariant"
+  },
+  {
+    "aliases": [
+      "Pseudo-code"
+    ],
+    "note": "Dasturlash tili sintaksisiga bog‘lanmasdan algoritm qadamlarini ifodalovchi yozuv.",
+    "source": "Pseudocode",
+    "uzbek": "Psevdokod"
+  },
+  {
+    "aliases": [
+      "Algorithmic complexity",
+      "Resurs murakkabligi"
+    ],
+    "note": "Algoritm sarflaydigan vaqt yoki xotiraning kirish hajmiga bog‘liq o‘sishini baholovchi mezon.",
+    "source": "Complexity",
+    "uzbek": "Murakkablik"
+  },
+  {
+    "aliases": [
+      "Running time",
+      "Vaqt sarfi"
+    ],
+    "note": "Algoritm bajaradigan asosiy amallar sonining kirish hajmiga bog‘liq o‘sish tartibi.",
+    "source": "Time Complexity",
+    "uzbek": "Vaqt murakkabligi"
+  },
+  {
+    "aliases": [
+      "Memory complexity",
+      "Xotira sarfi"
+    ],
+    "note": "Algoritm ishlatadigan xotira miqdorining kirish hajmiga bog‘liq o‘sish tartibi.",
+    "source": "Space Complexity",
+    "uzbek": "Xotira murakkabligi"
+  },
+  {
+    "aliases": [
+      "Asymptotics",
+      "Asimptotika"
+    ],
+    "note": "Kirish hajmi juda kattalashganda resurs sarfining yetakchi o‘sish tezligini ifodalovchi baho.",
+    "source": "Asymptotic Complexity",
+    "uzbek": "Asimptotik murakkablik"
+  },
+  {
+    "aliases": [
+      "O notation",
+      "Big-Oh"
+    ],
+    "note": "Funksiya o‘sishiga doimiy ko‘paytuvchilargacha bo‘lgan asimptotik yuqori chegara beradigan belgi.",
+    "source": "Big O Notation",
+    "uzbek": "Big O belgisi"
+  },
+  {
+    "aliases": [
+      "Omega notation",
+      "Big-Ω"
+    ],
+    "note": "Funksiya o‘sishiga doimiy ko‘paytuvchilargacha bo‘lgan asimptotik quyi chegara beradigan belgi.",
+    "source": "Big Omega Notation",
+    "uzbek": "Big Omega belgisi"
+  },
+  {
+    "aliases": [
+      "Theta notation",
+      "Big-Θ"
+    ],
+    "note": "Funksiya o‘sishiga bir vaqtda mos asimptotik yuqori va quyi chegara beradigan belgi.",
+    "source": "Big Theta Notation",
+    "uzbek": "Big Theta belgisi"
+  },
+  {
+    "aliases": [
+      "Worst-case",
+      "Eng og‘ir holat"
+    ],
+    "note": "Bir xil hajmdagi barcha kirishlar orasida algoritm eng ko‘p resurs sarflaydigan holat.",
+    "source": "Worst Case",
+    "uzbek": "Eng yomon holat"
+  },
+  {
+    "aliases": [
+      "Expected runtime",
+      "Kutilgan vaqt"
+    ],
+    "note": "Algoritmning tasodifiy tanlovlari yoki aniq ko‘rsatilgan kirish taqsimoti bo‘yicha ishlash vaqti matematik kutilmasi.",
+    "source": "Expected Time",
+    "uzbek": "Kutilgan ishlash vaqti"
+  },
+  {
+    "aliases": [
+      "Amortised analysis",
+      "Amortizatsiyalangan tahlil"
+    ],
+    "note": "Ehtimollikka tayanmasdan, amallar ketma-ketligining jami xarajatini amallar soniga taqsimlab baholash usuli.",
+    "source": "Amortized Analysis",
+    "uzbek": "Amortizatsion tahlil"
+  },
+  {
+    "aliases": [
+      "DS",
+      "Ma’lumot tuzilmasi"
+    ],
+    "note": "Ma’lumotlarni saqlash, tartiblash va ular ustida samarali amallar bajarishga mo‘ljallangan tuzilma.",
+    "source": "Data Structure",
+    "uzbek": "Ma’lumotlar tuzilmasi"
+  },
+  {
+    "aliases": [
+      "Static array"
+    ],
+    "note": "Elementlari indeks orqali olinadigan va odatda xotirada ketma-ket joylashadigan ma’lumotlar tuzilmasi.",
+    "source": "Array",
+    "uzbek": "Massiv"
+  },
+  {
+    "aliases": [
+      "Resizable array",
+      "Dinamik vektor"
+    ],
+    "note": "Sig‘imi zaruratga qarab avtomatik kengayadigan va indeks orqali tez murojaatni saqlaydigan massiv.",
+    "source": "Dynamic Array",
+    "uzbek": "Dinamik massiv"
+  },
+  {
+    "aliases": [
+      "Singly linked list",
+      "Zanjirli ro‘yxat"
+    ],
+    "note": "Har bir elementi keyingi yoki qo‘shni elementlarga havola saqlaydigan chiziqli tuzilma.",
+    "source": "Linked List",
+    "uzbek": "Bog‘langan ro‘yxat"
+  },
+  {
+    "aliases": [
+      "LIFO"
+    ],
+    "note": "Elementlar oxirgi kirgan birinchi chiqadi tamoyili bo‘yicha olinadigan tuzilma.",
+    "source": "Stack",
+    "uzbek": "Stek"
+  },
+  {
+    "aliases": [
+      "FIFO",
+      "Queue data structure"
+    ],
+    "note": "Elementlar birinchi kirgan birinchi chiqadi tamoyili bo‘yicha olinadigan tuzilma.",
+    "source": "Queue",
+    "uzbek": "Navbat"
+  },
+  {
+    "aliases": [
+      "Double-ended queue",
+      "Dek"
+    ],
+    "note": "Elementlarni ikkala uchidan ham qo‘shish va olib tashlash mumkin bo‘lgan navbat.",
+    "source": "Deque",
+    "uzbek": "Ikki tomonlama navbat"
+  },
+  {
+    "aliases": [
+      "priority_queue",
+      "Prioritetli navbat"
+    ],
+    "note": "Har safar ustuvorligi eng yuqori yoki eng past elementni tez qaytaradigan tuzilma.",
+    "source": "Priority Queue",
+    "uzbek": "Ustuvor navbat"
+  },
+  {
+    "aliases": [
+      "Binary heap",
+      "Piramida"
+    ],
+    "note": "Ota va farzand qiymatlari orasidagi tartib xossasini saqlaydigan daraxtsimon tuzilma.",
+    "source": "Heap",
+    "uzbek": "Uyum"
+  },
+  {
+    "aliases": [
+      "Min-heap",
+      "Minimum piramida"
+    ],
+    "note": "Har bir ota qiymati farzandlaridan katta bo‘lmaydigan va minimumni ildizda saqlaydigan uyum.",
+    "source": "Min Heap",
+    "uzbek": "Minimum uyum"
+  },
+  {
+    "aliases": [
+      "Max-heap",
+      "Maksimum piramida"
+    ],
+    "note": "Har bir ota qiymati farzandlaridan kichik bo‘lmaydigan va maksimumni ildizda saqlaydigan uyum.",
+    "source": "Max Heap",
+    "uzbek": "Maksimum uyum"
+  },
+  {
+    "aliases": [
+      "Takrorsiz to‘plam"
+    ],
+    "note": "Har bir qiymat ko‘pi bilan bir marta saqlanadigan ma’lumotlar tuzilmasi.",
+    "source": "Set",
+    "uzbek": "To‘plam"
+  },
+  {
+    "aliases": [
+      "Bag",
+      "Takrorli to‘plam"
+    ],
+    "note": "Bir xil qiymatni bir necha marta saqlashga ruxsat beradigan to‘plam.",
+    "source": "Multiset",
+    "uzbek": "Multito‘plam"
+  },
+  {
+    "aliases": [
+      "Dictionary",
+      "Associative array",
+      "Lug‘at tuzilmasi"
+    ],
+    "note": "Har bir noyob kalitni unga mos qiymat bilan bog‘laydigan assotsiativ tuzilma.",
+    "source": "Map",
+    "uzbek": "Kalit–qiymat xaritasi"
+  },
+  {
+    "aliases": [
+      "Hash map",
+      "Unordered map"
+    ],
+    "note": "Kalit xeshini jadval indeksiga akslantirib, qidirish va yangilashni o‘rtacha O(1) vaqtda bajaradigan tuzilma.",
+    "source": "Hash Table",
+    "uzbek": "Xesh jadvali"
+  },
+  {
+    "aliases": [
+      "Collision in hashing",
+      "Xesh to‘qnashuvi"
+    ],
+    "note": "Turli kalitlar bir xil xesh qiymati yoki jadval katagiga tushib qoladigan holat.",
+    "source": "Hash Collision",
+    "uzbek": "Xesh kolliziyasi"
+  },
+  {
+    "aliases": [
+      "DSU",
+      "Union-Find"
+    ],
+    "note": "Elementlarni kesishmaydigan guruhlarda saqlab, vakilni topish va guruhlarni birlashtirishni tez bajaradigan tuzilma.",
+    "source": "Disjoint Set Union",
+    "uzbek": "Kesishmaydigan to‘plamlar birlashmasi"
+  },
+  {
+    "aliases": [
+      "Free tree",
+      "Daraxt graf"
+    ],
+    "note": "Bog‘langan va siklsiz graf bo‘lib, n ta tugun uchun n−1 ta qirraga ega.",
+    "source": "Tree",
+    "uzbek": "Daraxt"
+  },
+  {
+    "aliases": [
+      "Ildizlangan daraxt"
+    ],
+    "note": "Bitta tuguni ildiz sifatida tanlanib, ota-farzand munosabatlari belgilangan daraxt.",
+    "source": "Rooted Tree",
+    "uzbek": "Ildizli daraxt"
+  },
+  {
+    "aliases": [
+      "Binary rooted tree"
+    ],
+    "note": "Har bir tuguni ko‘pi bilan ikkita farzandga ega bo‘lgan ildizli daraxt.",
+    "source": "Binary Tree",
+    "uzbek": "Ikkilik daraxt"
+  },
+  {
+    "aliases": [
+      "BST"
+    ],
+    "note": "Har bir tugunda chap ost-daraxt kalitlari kichikroq, o‘ng ost-daraxt kalitlari kattaroq bo‘ladigan ikkilik daraxt.",
+    "source": "Binary Search Tree",
+    "uzbek": "Ikkilik qidiruv daraxti"
+  },
+  {
+    "aliases": [
+      "BIT",
+      "Binary Indexed Tree"
+    ],
+    "note": "Prefiks agregatlarini yangilash va hisoblashni O(log n) vaqtda bajaradigan indekslangan daraxt.",
+    "source": "Fenwick Tree",
+    "uzbek": "Fenwick daraxti"
+  },
+  {
+    "aliases": [
+      "Kesma daraxti",
+      "SegmentTree"
+    ],
+    "note": "Massiv oraliqlari bo‘yicha so‘rov va yangilashlarni odatda O(log n) vaqtda bajaradigan daraxt.",
+    "source": "Segment Tree",
+    "uzbek": "Segment daraxti"
+  },
+  {
+    "aliases": [
+      "Lazy update",
+      "Kechiktirilgan yangilash"
+    ],
+    "note": "Segment daraxtidagi oraliq yangilanishlarini zarur bo‘lguncha farzand tugunlarga uzatmay saqlash usuli.",
+    "source": "Lazy Propagation",
+    "uzbek": "Kechiktirib tarqatish"
+  },
+  {
+    "aliases": [
+      "RMQ table",
+      "Sparse-table"
+    ],
+    "note": "O‘zgarmas massivdagi idempotent oraliq so‘rovlarini oldindan hisoblash orqali O(1) vaqtda bajaradigan tuzilma.",
+    "source": "Sparse Table",
+    "uzbek": "Siyrak jadval"
+  },
+  {
+    "aliases": [
+      "Prefix tree"
+    ],
+    "note": "Satrlarni belgilar bo‘yicha shoxlanib saqlaydigan va umumiy prefikslarni birlashtiradigan daraxt.",
+    "source": "Trie",
+    "uzbek": "Prefiks daraxti"
+  },
+  {
+    "aliases": [
+      "Graph structure"
+    ],
+    "note": "Tugunlar va ularni bog‘lovchi qirralardan iborat munosabatlar modeli.",
+    "source": "Graph",
+    "uzbek": "Graf"
+  },
+  {
+    "aliases": [
+      "Node",
+      "Cho‘qqi"
+    ],
+    "note": "Grafdagi alohida obyekt yoki holatni ifodalovchi asosiy element.",
+    "source": "Vertex",
+    "uzbek": "Tugun"
+  },
+  {
+    "aliases": [
+      "Arc",
+      "Yoy"
+    ],
+    "note": "Grafdagi ikki tugun orasidagi bog‘lanishni ifodalovchi element.",
+    "source": "Edge",
+    "uzbek": "Qirra"
+  },
+  {
+    "aliases": [
+      "Digraph"
+    ],
+    "note": "Har bir qirrasi boshlanish va tugash yo‘nalishiga ega bo‘lgan graf.",
+    "source": "Directed Graph",
+    "uzbek": "Yo‘naltirilgan graf"
+  },
+  {
+    "aliases": [
+      "Unoriented graph"
+    ],
+    "note": "Qirralari ikki tomonda ham bir xil bog‘lanishni ifodalaydigan graf.",
+    "source": "Undirected Graph",
+    "uzbek": "Yo‘naltirilmagan graf"
+  },
+  {
+    "aliases": [
+      "Edge-weighted graph",
+      "Og‘irlikli graf"
+    ],
+    "note": "Qirra yoki tugunlariga sonli vazn biriktirilgan graf.",
+    "source": "Weighted Graph",
+    "uzbek": "Vaznli graf"
+  },
+  {
+    "aliases": [
+      "Vertex degree",
+      "Tugun darajasi"
+    ],
+    "note": "Yo‘naltirilmagan grafda tugunga tutash qirralar soni.",
+    "source": "Degree",
+    "uzbek": "Daraja"
+  },
+  {
+    "aliases": [
+      "Indegree",
+      "Kiruvchi daraja"
+    ],
+    "note": "Yo‘naltirilgan grafda tugunga kiradigan qirralar soni.",
+    "source": "In-Degree",
+    "uzbek": "Kirish darajasi"
+  },
+  {
+    "aliases": [
+      "Outdegree",
+      "Chiquvchi daraja"
+    ],
+    "note": "Yo‘naltirilgan grafda tugundan chiqadigan qirralar soni.",
+    "source": "Out-Degree",
+    "uzbek": "Chiqish darajasi"
+  },
+  {
+    "aliases": [
+      "Graph walk",
+      "Marshrut"
+    ],
+    "note": "Grafda ketma-ket qirralar orqali o‘tiladigan va tugun hamda qirralar takrorlanishi mumkin bo‘lgan marshrut.",
+    "source": "Walk",
+    "uzbek": "Yurish"
+  },
+  {
+    "aliases": [
+      "Graph path",
+      "Oddiy yo‘l"
+    ],
+    "note": "Ketma-ket qirralar bilan bog‘langan va tugunlari takrorlanmaydigan graf marshruti.",
+    "source": "Path",
+    "uzbek": "Yo‘l"
+  },
+  {
+    "aliases": [
+      "Graph cycle",
+      "Yopiq yo‘l"
+    ],
+    "note": "Faqat boshlanish va tugash tuguni bir xil bo‘lgan yopiq yo‘l.",
+    "source": "Cycle",
+    "uzbek": "Sikl"
+  },
+  {
+    "aliases": [
+      "DAG"
+    ],
+    "note": "Hech qanday yo‘naltirilgan siklga ega bo‘lmagan yo‘naltirilgan graf.",
+    "source": "Directed Acyclic Graph",
+    "uzbek": "Yo‘naltirilgan siklsiz graf"
+  },
+  {
+    "aliases": [
+      "Ulangan graf"
+    ],
+    "note": "Istalgan ikki tuguni orasida yo‘l mavjud bo‘lgan yo‘naltirilmagan graf.",
+    "source": "Connected Graph",
+    "uzbek": "Bog‘langan graf"
+  },
+  {
+    "aliases": [
+      "CC",
+      "Connectivity component"
+    ],
+    "note": "Yo‘naltirilmagan grafning o‘zaro yo‘l bilan bog‘langan maksimal tugunlar to‘plami.",
+    "source": "Connected Component",
+    "uzbek": "Bog‘langan komponent"
+  },
+  {
+    "aliases": [
+      "BFS",
+      "Breadth-first traversal"
+    ],
+    "note": "Grafni boshlang‘ich tugundan masofa qatlamlari bo‘yicha ko‘rib chiqadigan qidiruv algoritmi.",
+    "source": "Breadth-First Search",
+    "uzbek": "Kenglik bo‘yicha qidiruv"
+  },
+  {
+    "aliases": [
+      "DFS",
+      "Depth-first traversal"
+    ],
+    "note": "Grafda bir yo‘nalish bo‘ylab imkon qadar chuqur yurib, so‘ng ortga qaytadigan qidiruv algoritmi.",
+    "source": "Depth-First Search",
+    "uzbek": "Chuqurlik bo‘yicha qidiruv"
+  },
+  {
+    "aliases": [
+      "Topological ordering",
+      "Topologik tartiblash"
+    ],
+    "note": "Yo‘naltirilgan siklsiz graf tugunlarini har bir qirra boshi qirra oxiridan oldin keladigan chiziqli tartibga joylaydi.",
+    "source": "Topological Sort",
+    "uzbek": "Topologik saralash"
+  },
+  {
+    "aliases": [
+      "Minimal yo‘l"
+    ],
+    "note": "Ikki tugun orasida qirralar soni yoki vaznlar yig‘indisi eng kichik bo‘lgan yo‘l.",
+    "source": "Shortest Path",
+    "uzbek": "Eng qisqa yo‘l"
+  },
+  {
+    "aliases": [
+      "Edge relaxation",
+      "Masofani yaxshilash"
+    ],
+    "note": "Yangi qirra orqali topilgan yo‘l yaxshiroq bo‘lsa, saqlangan masofani yangilash amali.",
+    "source": "Relaxation",
+    "uzbek": "Relaksatsiya"
+  },
+  {
+    "aliases": [
+      "Dijkstra"
+    ],
+    "note": "Manfiy bo‘lmagan qirra vaznli grafda bitta manbadan eng qisqa yo‘llarni topadigan algoritm.",
+    "source": "Dijkstra's Algorithm",
+    "uzbek": "Dijkstra algoritmi"
+  },
+  {
+    "aliases": [
+      "Bellman Ford",
+      "Ford–Bellman algoritmi"
+    ],
+    "note": "Manfiy vaznli qirralarga ruxsat berib, bitta manbadan eng qisqa yo‘llarni va erishiladigan manfiy siklni aniqlaydigan algoritm.",
+    "source": "Bellman-Ford Algorithm",
+    "uzbek": "Bellman–Ford algoritmi"
+  },
+  {
+    "aliases": [
+      "Floyd algorithm"
+    ],
+    "note": "Barcha tugun juftlari orasidagi eng qisqa yo‘llarni O(n³) vaqtda topadigan dinamik dasturlash algoritmi.",
+    "source": "Floyd-Warshall Algorithm",
+    "uzbek": "Floyd–Warshall algoritmi"
+  },
+  {
+    "aliases": [
+      "Qamrovchi daraxt"
+    ],
+    "note": "Bog‘langan grafning barcha tugunlarini qamrab oladigan siklsiz bog‘langan qismgraf.",
+    "source": "Spanning Tree",
+    "uzbek": "Ostov daraxt"
+  },
+  {
+    "aliases": [
+      "MST",
+      "Minimum ostov daraxt",
+      "Minimal qamrovchi daraxt"
+    ],
+    "note": "Vaznli bog‘langan grafdagi jami qirra vazni eng kichik bo‘lgan ostov daraxt.",
+    "source": "Minimum Spanning Tree",
+    "uzbek": "Minimal ostov daraxt"
+  },
+  {
+    "aliases": [
+      "Kruskal"
+    ],
+    "note": "Qirralarni vazni bo‘yicha ko‘rib chiqib, DSU yordamida sikl hosil qilmaydiganlarini tanlash orqali minimal ostov daraxt quradi.",
+    "source": "Kruskal's Algorithm",
+    "uzbek": "Kruskal algoritmi"
+  },
+  {
+    "aliases": [
+      "Prim"
+    ],
+    "note": "Qurilgan daraxtni tashqaridagi tugun bilan bog‘laydigan eng arzon qirrani ketma-ket qo‘shib minimal ostov daraxt quradi.",
+    "source": "Prim's Algorithm",
+    "uzbek": "Prim algoritmi"
+  },
+  {
+    "aliases": [
+      "SCC",
+      "Strong component"
+    ],
+    "note": "Yo‘naltirilgan grafda har bir tugunidan boshqa har bir tuguniga yetish mumkin bo‘lgan maksimal qismgraf.",
+    "source": "Strongly Connected Component",
+    "uzbek": "Kuchli bog‘langan komponent"
+  },
+  {
+    "aliases": [
+      "Cut edge",
+      "Ko‘prik"
+    ],
+    "note": "Olib tashlanganda yo‘naltirilmagan grafdagi bog‘langan komponentlar sonini oshiradigan qirra.",
+    "source": "Bridge",
+    "uzbek": "Ko‘prik qirra"
+  },
+  {
+    "aliases": [
+      "Cut vertex",
+      "Artikulyatsiya nuqtasi"
+    ],
+    "note": "O‘zi va unga tutash qirralar olib tashlanganda bog‘langan komponentlar sonini oshiradigan tugun.",
+    "source": "Articulation Point",
+    "uzbek": "Ajratuvchi tugun"
+  },
+  {
+    "aliases": [
+      "LCA",
+      "Eng quyi umumiy ajdod"
+    ],
+    "note": "Ildizli daraxtdagi ikki tugunning ikkalasiga ham ajdod bo‘lgan eng chuqur tugun.",
+    "source": "Lowest Common Ancestor",
+    "uzbek": "Eng yaqin umumiy ajdod"
+  },
+  {
+    "aliases": [
+      "Bigraph",
+      "Ikki rangli graf"
+    ],
+    "note": "Tugunlarini har bir qirra turli bo‘laklardagi tugunlarni bog‘laydigan ikki to‘plamga ajratish mumkin bo‘lgan graf.",
+    "source": "Bipartite Graph",
+    "uzbek": "Ikki bo‘lakli graf"
+  },
+  {
+    "aliases": [
+      "Moslik"
+    ],
+    "note": "Hech ikkisi umumiy tugunga ega bo‘lmagan qirralar to‘plami.",
+    "source": "Matching",
+    "uzbek": "Juftlashtirish"
+  },
+  {
+    "aliases": [
+      "Maximum matching"
+    ],
+    "note": "Ikki bo‘lakli grafda qirralari soni mumkin qadar katta bo‘lgan juftlashtirish.",
+    "source": "Maximum Bipartite Matching",
+    "uzbek": "Ikki bo‘lakli grafdagi eng katta juftlashtirish"
+  },
+  {
+    "aliases": [
+      "Oqimli tarmoq"
+    ],
+    "note": "Manba, qabul qiluvchi va sig‘imli yo‘naltirilgan qirralarga ega graf.",
+    "source": "Flow Network",
+    "uzbek": "Oqim tarmog‘i"
+  },
+  {
+    "aliases": [
+      "Max flow",
+      "Eng katta oqim"
+    ],
+    "note": "Sig‘im va oqim saqlanishi shartlarida manbadan qabul qiluvchiga yuboriladigan eng katta oqim.",
+    "source": "Maximum Flow",
+    "uzbek": "Maksimal oqim"
+  },
+  {
+    "aliases": [
+      "Min cut",
+      "Eng kichik kesim"
+    ],
+    "note": "Manbani qabul qiluvchidan ajratadigan va kesib o‘tilgan sig‘imlar yig‘indisi eng kichik bo‘lgan kesim.",
+    "source": "Minimum Cut",
+    "uzbek": "Minimal kesim"
+  },
+  {
+    "aliases": [
+      "Residual network",
+      "Qoldiq tarmoq"
+    ],
+    "note": "Joriy oqimdan keyin qirralarda qolgan yoki qaytarilishi mumkin bo‘lgan sig‘imlarni ifodalovchi graf.",
+    "source": "Residual Graph",
+    "uzbek": "Qoldiq graf"
+  },
+  {
+    "aliases": [
+      "Euler path",
+      "Euler trail"
+    ],
+    "note": "Grafning har bir qirrasidan aynan bir marta o‘tadigan yurish.",
+    "source": "Eulerian Path",
+    "uzbek": "Eyler yo‘li"
+  },
+  {
+    "aliases": [
+      "Hamilton path"
+    ],
+    "note": "Grafning har bir tugunidan aynan bir marta o‘tadigan yo‘l.",
+    "source": "Hamiltonian Path",
+    "uzbek": "Gamilton yo‘li"
+  },
+  {
+    "aliases": [
+      "Sort",
+      "Tartiblash"
+    ],
+    "note": "Elementlarni belgilangan taqqoslash tartibida joylashtirish jarayoni.",
+    "source": "Sorting",
+    "uzbek": "Saralash"
+  },
+  {
+    "aliases": [
+      "Stable sorting",
+      "Turg‘un saralash"
+    ],
+    "note": "Teng kalitli elementlarning dastlabki o‘zaro tartibini saqlaydigan saralash.",
+    "source": "Stable Sort",
+    "uzbek": "Barqaror saralash"
+  },
+  {
+    "aliases": [
+      "Mergesort",
+      "Merge sorting"
+    ],
+    "note": "Massivni bo‘lib, qismlarni saralab va tartibli birlashtirib ishlaydigan algoritm.",
+    "source": "Merge Sort",
+    "uzbek": "Birlashtirib saralash"
+  },
+  {
+    "aliases": [
+      "Quicksort",
+      "Quick sorting"
+    ],
+    "note": "Tayanch element bo‘yicha qismlarga ajratib, ularni rekursiv saralaydigan algoritm.",
+    "source": "Quick Sort",
+    "uzbek": "Tez saralash"
+  },
+  {
+    "aliases": [
+      "Count sort",
+      "Sanoq saralash"
+    ],
+    "note": "Cheklangan oraliqdagi butun kalitlar takrorlanishini sanash orqali taqqoslashsiz saralaydigan algoritm.",
+    "source": "Counting Sort",
+    "uzbek": "Sanash orqali saralash"
+  },
+  {
+    "aliases": [
+      "Bisection search"
+    ],
+    "note": "Tartiblangan soha yoki monoton predikatda qidiruv oralig‘ini har qadamda ikki baravar qisqartiradigan algoritm.",
+    "source": "Binary Search",
+    "uzbek": "Ikkilik qidiruv"
+  },
+  {
+    "aliases": [
+      "Trisection search"
+    ],
+    "note": "Unimodal funksiyaning ekstremumini topish uchun oraliqni uch qism yordamida qisqartiradigan usul.",
+    "source": "Ternary Search",
+    "uzbek": "Uchlik qidiruv"
+  },
+  {
+    "aliases": [
+      "Two-pointer technique"
+    ],
+    "note": "Ketma-ketlikdagi ikki indeksni muvofiqlashtirib siljitish orqali qidiruvni tezlashtiradigan usul.",
+    "source": "Two Pointers",
+    "uzbek": "Ikki ko‘rsatkich usuli"
+  },
+  {
+    "aliases": [
+      "Sliding-window technique",
+      "Harakatlanuvchi oyna"
+    ],
+    "note": "Uzluksiz oraliq chegaralarini siljitib, uning qiymatini boshidan hisoblamasdan yangilash usuli.",
+    "source": "Sliding Window",
+    "uzbek": "Sirpanuvchi oyna"
+  },
+  {
+    "aliases": [
+      "Cumulative sum",
+      "Prefsum"
+    ],
+    "note": "Har bir pozitsiyagacha bo‘lgan yig‘indilarni saqlab, oraliq yig‘indisini tez hisoblash usuli.",
+    "source": "Prefix Sum",
+    "uzbek": "Prefiks yig‘indisi"
+  },
+  {
+    "aliases": [
+      "Imos method",
+      "Diff array"
+    ],
+    "note": "Qo‘shni qiymatlar farqini saqlab, oraliq yangilashlarni tez bajarishga yordam beradigan massiv.",
+    "source": "Difference Array",
+    "uzbek": "Ayirmalar massivi"
+  },
+  {
+    "aliases": [
+      "Recursive call",
+      "Rekursiv chaqiruv"
+    ],
+    "note": "Funksiyaning bazaviy holatga yaqinlashuvchi kichikroq masala uchun o‘zini qayta chaqirish usuli.",
+    "source": "Recursion",
+    "uzbek": "Rekursiya"
+  },
+  {
+    "aliases": [
+      "DP",
+      "Dinamika"
+    ],
+    "note": "Takrorlanuvchi qismmasalalar natijalarini holatlar orqali saqlab, hisoblarni qayta ishlatadigan yondashuv.",
+    "source": "Dynamic Programming",
+    "uzbek": "Dinamik dasturlash"
+  },
+  {
+    "aliases": [
+      "DP state",
+      "Holat parametrlari"
+    ],
+    "note": "Dinamik dasturlashda qismmasalani bir qiymatli aniqlash uchun yetarli parametrlar to‘plami.",
+    "source": "State",
+    "uzbek": "Holat"
+  },
+  {
+    "aliases": [
+      "State transition",
+      "Holatlar o‘tishi"
+    ],
+    "note": "Bir yoki bir nechta oldingi holat javobidan yangi holat javobini hisoblash qoidasi.",
+    "source": "Transition",
+    "uzbek": "O‘tish"
+  },
+  {
+    "aliases": [
+      "Natijalarni xotiralash",
+      "Top-down cache"
+    ],
+    "note": "Rekursiv hisoblangan natijalarni xotirada saqlab, bir qismmasalani takror hisoblamaslik usuli.",
+    "source": "Memoization",
+    "uzbek": "Memoizatsiya"
+  },
+  {
+    "aliases": [
+      "Greedy method",
+      "Ochko‘z usul"
+    ],
+    "note": "Har qadamda mahalliy eng yaxshi tanlovni qilib, isbotlanadigan hollarda global optimal yechim quradigan algoritm.",
+    "source": "Greedy Algorithm",
+    "uzbek": "Ochko‘z algoritm"
+  },
+  {
+    "aliases": [
+      "D&C",
+      "Divide-and-conquer"
+    ],
+    "note": "Masalani kichik mustaqil qismlarga ajratib, ularni yechib va natijalarni birlashtiradigan yondashuv.",
+    "source": "Divide and Conquer",
+    "uzbek": "Bo‘lib yechish"
+  },
+  {
+    "aliases": [
+      "Backtrack",
+      "Qaytishli qidiruv"
+    ],
+    "note": "Qisman yechimni qurib, yaroqsiz tarmoq aniqlanganda oldingi tanlovga qaytadigan qidiruv.",
+    "source": "Backtracking",
+    "uzbek": "Ortga qaytish"
+  },
+  {
+    "aliases": [
+      "MITM",
+      "Ikki yarmli qidiruv"
+    ],
+    "note": "Kirishni ikki qismga bo‘lib, har ikki tomon natijalarini birlashtirish orqali eksponensial qidiruvni kamaytiradigan usul.",
+    "source": "Meet in the Middle",
+    "uzbek": "O‘rtada uchrashish"
+  },
+  {
+    "aliases": [
+      "Rank compression",
+      "Indekslarni siqish"
+    ],
+    "note": "Qiymatlar tartibini saqlagan holda ularni ixcham ketma-ket indekslarga almashtirish usuli.",
+    "source": "Coordinate Compression",
+    "uzbek": "Koordinatalarni siqish"
+  },
+  {
+    "aliases": [
+      "Scanline"
+    ],
+    "note": "Geometrik yoki oraliq hodisalarni bir koordinata bo‘yicha tartibda ko‘rib chiqadigan algoritmik usul.",
+    "source": "Sweep Line",
+    "uzbek": "Supuruvchi chiziq"
+  },
+  {
+    "aliases": [
+      "Offline processing",
+      "Oldindan ma’lum so‘rovlar"
+    ],
+    "note": "Barcha so‘rovlar oldindan ma’lum bo‘lgani uchun ularni qulay tartibda qayta ishlaydigan algoritm.",
+    "source": "Offline Algorithm",
+    "uzbek": "Oflayn algoritm"
+  },
+  {
+    "aliases": [
+      "Online processing",
+      "Ketma-ket so‘rovlar"
+    ],
+    "note": "Kirish yoki so‘rovlarni kelish tartibida, kelajak ma’lumotini bilmasdan qayta ishlaydigan algoritm.",
+    "source": "Online Algorithm",
+    "uzbek": "Onlayn algoritm"
+  },
+  {
+    "aliases": [
+      "Bit mask"
+    ],
+    "note": "Kichik to‘plam yoki mantiqiy holatlarni bitta butun sonning bitlari bilan ifodalash usuli.",
+    "source": "Bitmask",
+    "uzbek": "Bit niqobi"
+  },
+  {
+    "aliases": [
+      "Sub-mask"
+    ],
+    "note": "Berilgan bit niqobida yoqilgan bitlarning ixtiyoriy qismidan tuzilgan niqob.",
+    "source": "Submask",
+    "uzbek": "Qism niqob"
+  },
+  {
+    "aliases": [
+      "Factor",
+      "Bo‘luvchi son"
+    ],
+    "note": "Berilgan sonni qoldiqsiz bo‘ladigan butun son.",
+    "source": "Divisor",
+    "uzbek": "Bo‘luvchi"
+  },
+  {
+    "aliases": [
+      "Karrali"
+    ],
+    "note": "Berilgan sonning biror butun songa ko‘paytmasi sifatida yoziladigan son.",
+    "source": "Multiple",
+    "uzbek": "Karrali son"
+  },
+  {
+    "aliases": [
+      "Prime",
+      "Tub"
+    ],
+    "note": "Birdan katta bo‘lib, faqat birga va o‘ziga musbat bo‘linadigan butun son.",
+    "source": "Prime Number",
+    "uzbek": "Tub son"
+  },
+  {
+    "aliases": [
+      "Composite",
+      "Tarkibli son"
+    ],
+    "note": "Birdan katta va ikkitadan ko‘p musbat bo‘luvchiga ega butun son.",
+    "source": "Composite Number",
+    "uzbek": "Murakkab son"
+  },
+  {
+    "aliases": [
+      "GCD"
+    ],
+    "note": "Ikki yoki undan ortiq sonning barchasini qoldiqsiz bo‘ladigan eng katta musbat son.",
+    "source": "Greatest Common Divisor",
+    "uzbek": "Eng katta umumiy bo‘luvchi (EKUB)"
+  },
+  {
+    "aliases": [
+      "LCM"
+    ],
+    "note": "Ikki yoki undan ortiq sonning barchasiga bo‘linadigan eng kichik musbat son.",
+    "source": "Least Common Multiple",
+    "uzbek": "Eng kichik umumiy karrali (EKUK)"
+  },
+  {
+    "aliases": [
+      "Euclid algorithm",
+      "EKUB algoritmi"
+    ],
+    "note": "Qoldiqli bo‘lishni takrorlash orqali ikki sonning eng katta umumiy bo‘luvchisini topadigan algoritm.",
+    "source": "Euclidean Algorithm",
+    "uzbek": "Evklid algoritmi"
+  },
+  {
+    "aliases": [
+      "Prime sieve",
+      "Eratosthenes sieve"
+    ],
+    "note": "Belgilangan chegaragacha tub sonlarni ularning karralilarini belgilash orqali topadigan algoritm.",
+    "source": "Sieve of Eratosthenes",
+    "uzbek": "Eratosfen elagi"
+  },
+  {
+    "aliases": [
+      "Factorisation",
+      "Tub faktorizatsiya"
+    ],
+    "note": "Musbat butun sonni tub sonlar darajalari ko‘paytmasi ko‘rinishida yozish.",
+    "source": "Prime Factorization",
+    "uzbek": "Tub ko‘paytuvchilarga ajratish"
+  },
+  {
+    "aliases": [
+      "Mod arithmetic",
+      "Qoldiqlar arifmetikasi"
+    ],
+    "note": "Sonlarni belgilangan modul bo‘yicha qoldiq sinflari orqali hisoblash tizimi.",
+    "source": "Modular Arithmetic",
+    "uzbek": "Modul arifmetikasi"
+  },
+  {
+    "aliases": [
+      "Modular congruence",
+      "Kongruensiya",
+      "Taqqoslama"
+    ],
+    "note": "Ikki sonning ayirmasi modulga bo‘linsa, ular shu modul bo‘yicha teng qoldiqli ekanini bildiradigan munosabat.",
+    "source": "Congruence",
+    "uzbek": "Modul bo‘yicha taqqoslama"
+  },
+  {
+    "aliases": [
+      "Modular reciprocal",
+      "Multiplikativ teskari element"
+    ],
+    "note": "a·x qoldig‘i modul bo‘yicha birga teng bo‘ladigan x bo‘lib, u a va modul o‘zaro tub bo‘lganda mavjud.",
+    "source": "Modular Inverse",
+    "uzbek": "Modul bo‘yicha teskari element"
+  },
+  {
+    "aliases": [
+      "Binpow",
+      "Fast power",
+      "Exponentiation by squaring"
+    ],
+    "note": "Daraja ko‘rsatkichini bitlar bo‘yicha ajratib, darajani O(log n) ko‘paytirishda hisoblash usuli.",
+    "source": "Binary Exponentiation",
+    "uzbek": "Ikkilik darajaga oshirish"
+  },
+  {
+    "aliases": [
+      "Euler phi",
+      "Totient",
+      "φ-funksiya"
+    ],
+    "note": "Birdan n gacha bo‘lgan va n bilan o‘zaro tub musbat sonlar miqdorini beradigan funksiya.",
+    "source": "Euler's Totient Function",
+    "uzbek": "Eylerning phi-funksiyasi"
+  },
+  {
+    "aliases": [
+      "CRT",
+      "Chinese remainder"
+    ],
+    "note": "Juft-jufti bilan o‘zaro tub modullar bo‘yicha taqqoslamalar sistemasining yechimini modullar ko‘paytmasigacha yagona tiklaydigan teorema.",
+    "source": "Chinese Remainder Theorem",
+    "uzbek": "Xitoy qoldiqlari teoremasi"
+  },
+  {
+    "aliases": [
+      "Diophantine",
+      "Butun yechimli tenglama"
+    ],
+    "note": "Faqat butun sonli yechimlari izlanadigan ko‘phadli tenglama.",
+    "source": "Diophantine Equation",
+    "uzbek": "Diofant tenglamasi"
+  },
+  {
+    "aliases": [
+      "n factorial",
+      "Faktorial son"
+    ],
+    "note": "n dan birgacha bo‘lgan musbat butun sonlar ko‘paytmasi bo‘lib, nol faktorial birga teng.",
+    "source": "Factorial",
+    "uzbek": "Faktorial"
+  },
+  {
+    "aliases": [
+      "Ordered arrangement",
+      "O‘rin almashtirish"
+    ],
+    "note": "Elementlarning tartibi ahamiyatli bo‘lgan joylashuvi.",
+    "source": "Permutation",
+    "uzbek": "Permutatsiya"
+  },
+  {
+    "aliases": [
+      "Unordered selection",
+      "Tanlanma"
+    ],
+    "note": "Elementlarning tartibi ahamiyatsiz bo‘lgan tanlovi.",
+    "source": "Combination",
+    "uzbek": "Kombinatsiya"
+  },
+  {
+    "aliases": [
+      "nCk",
+      "Choose function"
+    ],
+    "note": "n elementdan k tasini tartibsiz tanlash usullari sonini beradigan qiymat.",
+    "source": "Binomial Coefficient",
+    "uzbek": "Binomial koeffitsiyent"
+  },
+  {
+    "aliases": [
+      "Pascal triangle",
+      "Binomial triangle"
+    ],
+    "note": "Har bir ichki soni yuqoridagi ikki qo‘shni son yig‘indisiga teng bo‘lgan binomial koeffitsiyentlar jadvali.",
+    "source": "Pascal's Triangle",
+    "uzbek": "Paskal uchburchagi"
+  },
+  {
+    "aliases": [
+      "PIE",
+      "Qo‘shish–ayirish prinsipi"
+    ],
+    "note": "To‘plamlar birlashmasi hajmini kesishmalarni navbat bilan qo‘shib va ayirib hisoblaydigan prinsip.",
+    "source": "Inclusion-Exclusion Principle",
+    "uzbek": "Kiritish–chiqarish prinsipi"
+  },
+  {
+    "aliases": [
+      "Pigeonhole",
+      "Qutilar prinsipi"
+    ],
+    "note": "Obyektlar qutilardan ko‘p bo‘lsa, kamida bitta qutida birdan ortiq obyekt bo‘lishini kafolatlaydigan prinsip.",
+    "source": "Pigeonhole Principle",
+    "uzbek": "Dirixle prinsipi"
+  },
+  {
+    "aliases": [
+      "Matrix table"
+    ],
+    "note": "Son yoki boshqa qiymatlar satr va ustunlarda joylashtirilgan to‘g‘ri to‘rtburchak jadval.",
+    "source": "Matrix",
+    "uzbek": "Matritsa"
+  },
+  {
+    "aliases": [
+      "Matrix determinant",
+      "Aniqlovchi"
+    ],
+    "note": "Kvadrat matritsaning teskarilanuvchanligi va chiziqli o‘zgarish masshtabini ifodalovchi skalyar qiymat.",
+    "source": "Determinant",
+    "uzbek": "Determinant"
+  },
+  {
+    "aliases": [
+      "Chance",
+      "Hodisa ehtimoli"
+    ],
+    "note": "Tasodifiy hodisa yuz berish darajasini noldan birgacha bo‘lgan qiymat orqali ifodalovchi o‘lchov.",
+    "source": "Probability",
+    "uzbek": "Ehtimollik"
+  },
+  {
+    "aliases": [
+      "Expectation"
+    ],
+    "note": "Tasodifiy miqdor qiymatlarining ehtimolliklari bilan og‘irlangan o‘rtachasi.",
+    "source": "Expected Value",
+    "uzbek": "Matematik kutilma"
+  },
+  {
+    "aliases": [
+      "Text string",
+      "Matn satri"
+    ],
+    "note": "Belgilardan tuzilgan tartibli ketma-ketlik.",
+    "source": "String",
+    "uzbek": "Satr"
+  },
+  {
+    "aliases": [
+      "Char"
+    ],
+    "note": "Satr alifbosidagi bitta atomar qiymat.",
+    "source": "Character",
+    "uzbek": "Belgi"
+  },
+  {
+    "aliases": [
+      "Character set",
+      "Belgilar to‘plami"
+    ],
+    "note": "Satrlar tuzilishi mumkin bo‘lgan ruxsat etilgan belgilar to‘plami.",
+    "source": "Alphabet",
+    "uzbek": "Alifbo"
+  },
+  {
+    "aliases": [
+      "Substr",
+      "Ostsatr"
+    ],
+    "note": "Satrning uzluksiz pozitsiyalaridan olingan qismi.",
+    "source": "Substring",
+    "uzbek": "Qism satr"
+  },
+  {
+    "aliases": [
+      "Qismketma-ketlik"
+    ],
+    "note": "Asl tartibni saqlab, ayrim elementlarni tashlab yuborish orqali olinadigan ketma-ketlik.",
+    "source": "Subsequence",
+    "uzbek": "Qism ketma-ketlik"
+  },
+  {
+    "aliases": [
+      "Initial segment",
+      "Bosh qism"
+    ],
+    "note": "Satr yoki ketma-ketlikning birinchi elementdan boshlanadigan uzluksiz qismi.",
+    "source": "Prefix",
+    "uzbek": "Prefiks"
+  },
+  {
+    "aliases": [
+      "Terminal segment",
+      "Oxirgi qism"
+    ],
+    "note": "Satr yoki ketma-ketlikning oxirgi elementida tugaydigan uzluksiz qismi.",
+    "source": "Suffix",
+    "uzbek": "Suffiks"
+  },
+  {
+    "aliases": [
+      "Dictionary order",
+      "Lug‘aviy tartib"
+    ],
+    "note": "Ketma-ketliklarni birinchi farqli element bo‘yicha lug‘at tartibida solishtirish qoidasi.",
+    "source": "Lexicographic Order",
+    "uzbek": "Leksikografik tartib"
+  },
+  {
+    "aliases": [
+      "Pattern matching",
+      "Satr qidiruvi"
+    ],
+    "note": "Berilgan andozaning matndagi barcha uchrashuvlarini topish masalasi.",
+    "source": "String Matching",
+    "uzbek": "Satrda andoza qidirish"
+  },
+  {
+    "aliases": [
+      "Rolling hash",
+      "Polynomial hash"
+    ],
+    "note": "Satrni tez solishtiriladigan sonli qiymatga akslantirib, kolliziya ehtimolini hisobga oladigan usul.",
+    "source": "String Hashing",
+    "uzbek": "Satrni xeshlash"
+  },
+  {
+    "aliases": [
+      "Pi function",
+      "π-function"
+    ],
+    "note": "Har bir prefiks uchun uning o‘ziga teng bo‘lmagan eng uzun prefiks-suffiks uzunligini beradigan funksiya.",
+    "source": "Prefix Function",
+    "uzbek": "Prefiks funksiyasi"
+  },
+  {
+    "aliases": [
+      "Z array",
+      "Z-function array"
+    ],
+    "note": "Har bir pozitsiyadan boshlangan suffiks bilan butun satrning eng uzun umumiy prefiksi uzunligini beradigan massiv.",
+    "source": "Z-Function",
+    "uzbek": "Z-funksiya"
+  },
+  {
+    "aliases": [
+      "KMP"
+    ],
+    "note": "Prefiks funksiyasidan foydalanib andozani matnda O(n+m) vaqtda qidiradigan algoritm.",
+    "source": "Knuth-Morris-Pratt Algorithm",
+    "uzbek": "Knuth–Morris–Pratt algoritmi"
+  },
+  {
+    "aliases": [
+      "AC automaton"
+    ],
+    "note": "Trie va muvaffaqiyatsizlik havolalari yordamida ko‘p andozani matnda bir vaqtda qidiradigan algoritm.",
+    "source": "Aho-Corasick Algorithm",
+    "uzbek": "Aho–Corasick algoritmi"
+  },
+  {
+    "aliases": [
+      "SA"
+    ],
+    "note": "Satr barcha suffikslarining boshlanish indekslarini leksikografik tartibda saqlaydigan massiv.",
+    "source": "Suffix Array",
+    "uzbek": "Suffikslar massivi"
+  },
+  {
+    "aliases": [
+      "Compressed suffix trie",
+      "Suffikslar daraxti"
+    ],
+    "note": "Satrning barcha suffikslarini siqilgan trie ko‘rinishida saqlaydigan daraxt.",
+    "source": "Suffix Tree",
+    "uzbek": "Suffiks daraxti"
+  },
+  {
+    "aliases": [
+      "SAM",
+      "DAWG"
+    ],
+    "note": "Satrning barcha qism satrlarini tanib, ekvivalent tugash holatlarini birlashtiradigan minimal deterministik avtomat.",
+    "source": "Suffix Automaton",
+    "uzbek": "Suffiks avtomati"
+  },
+  {
+    "aliases": [
+      "Palindromic string"
+    ],
+    "note": "Chapdan o‘ngga va o‘ngdan chapga bir xil o‘qiladigan satr yoki ketma-ketlik.",
+    "source": "Palindrome",
+    "uzbek": "Palindrom"
+  },
+  {
+    "aliases": [
+      "Coordinate point"
+    ],
+    "note": "Fazodagi joylashuvni koordinatalar bilan ifodalovchi geometrik obyekt.",
+    "source": "Point",
+    "uzbek": "Nuqta"
+  },
+  {
+    "aliases": [
+      "Yo‘nalgan kesma"
+    ],
+    "note": "Yo‘nalish va uzunlikka ega bo‘lgan yoki koordinatalar ayirmasi bilan ifodalangan kattalik.",
+    "source": "Vector",
+    "uzbek": "Vektor"
+  },
+  {
+    "aliases": [
+      "Infinite line",
+      "Chiziq"
+    ],
+    "note": "Ikki tomonga cheksiz davom etadigan bir o‘lchamli geometrik obyekt.",
+    "source": "Line",
+    "uzbek": "To‘g‘ri chiziq"
+  },
+  {
+    "aliases": [
+      "Segment",
+      "Chiziq kesmasi"
+    ],
+    "note": "Ikki uch nuqta orasidagi to‘g‘ri chiziqning chegaralangan qismi.",
+    "source": "Line Segment",
+    "uzbek": "Kesma"
+  },
+  {
+    "aliases": [
+      "Half-line",
+      "Yarim chiziq"
+    ],
+    "note": "Bitta boshlanish nuqtasidan bir yo‘nalishda cheksiz davom etadigan chiziq qismi.",
+    "source": "Ray",
+    "uzbek": "Nur"
+  },
+  {
+    "aliases": [
+      "Circumference",
+      "Doira chegarasi"
+    ],
+    "note": "Tekislikdagi berilgan markazdan bir xil masofada joylashgan nuqtalar to‘plami.",
+    "source": "Circle",
+    "uzbek": "Aylana"
+  },
+  {
+    "aliases": [
+      "Polygonal shape"
+    ],
+    "note": "Ketma-ket kesmalar yopiq chegara hosil qiladigan tekis geometrik shakl.",
+    "source": "Polygon",
+    "uzbek": "Ko‘pburchak"
+  },
+  {
+    "aliases": [
+      "Maydon"
+    ],
+    "note": "Tekis shakl egallagan soha miqdorini ifodalovchi o‘lchov.",
+    "source": "Area",
+    "uzbek": "Yuza"
+  },
+  {
+    "aliases": [
+      "Turn test",
+      "Burilish yo‘nalishi"
+    ],
+    "note": "Uch nuqtaning soat yo‘nalishida, unga qarshi yoki bir chiziqda joylashganini bildiruvchi belgi.",
+    "source": "Orientation",
+    "uzbek": "Uch nuqtaning yo‘nalishi"
+  },
+  {
+    "aliases": [
+      "Vector product",
+      "Tashqi ko‘paytma"
+    ],
+    "note": "Ikki vektor uchun tekislikda yo‘nalgan yuza qiymatini, fazoda esa ularga perpendikulyar vektorni beradigan ko‘paytma.",
+    "source": "Cross Product",
+    "uzbek": "Vektor ko‘paytma"
+  },
+  {
+    "aliases": [
+      "Scalar product",
+      "Nuqtaviy ko‘paytma"
+    ],
+    "note": "Ikki vektor uzunliklari bilan ular orasidagi burchak kosinusi ko‘paytmasiga teng skalyar qiymat.",
+    "source": "Dot Product",
+    "uzbek": "Skalyar ko‘paytma"
+  },
+  {
+    "aliases": [
+      "Geometric intersection",
+      "Kesishish"
+    ],
+    "note": "Ikki geometrik obyektga bir vaqtda tegishli bo‘lgan nuqtalar to‘plami.",
+    "source": "Intersection",
+    "uzbek": "Kesishma"
+  },
+  {
+    "aliases": [
+      "Convex envelope",
+      "Qavariq qamrov"
+    ],
+    "note": "Berilgan nuqtalarning barchasini o‘z ichiga oladigan eng kichik qavariq to‘plam.",
+    "source": "Convex Hull",
+    "uzbek": "Qavariq qobiq"
+  },
+  {
+    "aliases": [
+      "PIP",
+      "Nuqta ko‘pburchak ichida"
+    ],
+    "note": "Nuqta ko‘pburchak ichida, tashqarisida yoki chegarasida ekanini aniqlash masalasi.",
+    "source": "Point in Polygon",
+    "uzbek": "Nuqtaning ko‘pburchakka tegishliligi"
+  },
+  {
+    "aliases": [
+      "L1 distance",
+      "Taksi masofasi"
+    ],
+    "note": "Koordinatalar bo‘yicha mutlaq farqlar yig‘indisi sifatida o‘lchanadigan masofa.",
+    "source": "Manhattan Distance",
+    "uzbek": "Manhattan masofasi"
+  },
+  {
+    "aliases": [
+      "Online judge",
+      "Avtomatik tekshiruvchi",
+      "Hakam tizimi"
+    ],
+    "note": "Yechim kodini testlarda ishga tushirib, vaqt va xotira cheklovlari hamda chiqishning to‘g‘riligiga ko‘ra natija beradigan avtomatik tizim.",
+    "source": "Judge",
+    "uzbek": "Tekshiruvchi tizim"
+  },
+  {
+    "aliases": [
+      "NT"
+    ],
+    "note": "Butun sonlarning bo‘linuvchanlik, tub sonlar, qoldiqlar va Diofant tenglamalari kabi xossalarini o‘rganadigan matematika sohasi.",
+    "source": "Number Theory",
+    "uzbek": "Sonlar nazariyasi"
+  },
+  {
+    "aliases": [
+      "Exclusive OR",
+      "XOR amali",
+      "Bitwise XOR",
+      "Istisno qiluvchi YOKI"
+    ],
+    "note": "Ikki bit turlicha bo‘lganda bir, bir xil bo‘lganda nol qaytaradigan bitli mantiqiy amal.",
+    "source": "XOR",
+    "uzbek": "Istisnoli YOKI amali"
+  },
+  {
+    "aliases": [
+      "Yen algorithm",
+      "K shortest loopless paths",
+      "k ta eng qisqa sodda yo‘l"
+    ],
+    "note": "Manfiy bo‘lmagan qirra vaznli grafda berilgan ikki tugun orasidagi k ta eng qisqa siklsiz yo‘lni uzunlik tartibida topadigan algoritm.",
+    "source": "Yen's Algorithm",
+    "uzbek": "Yen algoritmi"
+  }
+]

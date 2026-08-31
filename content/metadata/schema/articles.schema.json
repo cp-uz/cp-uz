@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cp.uz/schemas/articles-v2.json",
+  "title": "CP.UZ Algorithms canonical article metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "articles"],
+  "properties": {
+    "schema_version": {"const": 2},
+    "articles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/article"}
+    }
+  },
+  "$defs": {
+    "nullableString": {"type": ["string", "null"]},
+    "timestamp": {
+      "anyOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewer",
+        "reviewed_at",
+        "notes",
+        "content_sha256",
+        "source_commit"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "approved", "changes_requested"]
+        },
+        "reviewer": {"$ref": "#/$defs/nullableString"},
+        "reviewed_at": {"$ref": "#/$defs/timestamp"},
+        "notes": {"$ref": "#/$defs/nullableString"},
+        "content_sha256": {
+          "anyOf": [
+            {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            {"type": "null"}
+          ]
+        },
+        "source_commit": {
+          "anyOf": [
+            {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "historyEvent": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["event", "actor", "at"],
+      "properties": {
+        "event": {"type": "string", "minLength": 1},
+        "actor": {"type": "string", "minLength": 1},
+        "at": {"type": "string", "format": "date-time"},
+        "notes": {"$ref": "#/$defs/nullableString"},
+        "content_sha256": {
+          "anyOf": [
+            {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            {"type": "null"}
+          ]
+        },
+        "source_commit": {
+          "anyOf": [
+            {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "article": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "index",
+        "id",
+        "path",
+        "route",
+        "category",
+        "category_uz",
+        "subcategory",
+        "subcategory_uz",
+        "source",
+        "translation",
+        "upstream",
+        "publication",
+        "reviews",
+        "review_history"
+      ],
+      "properties": {
+        "index": {"type": "integer", "minimum": 1},
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*(?:--[A-Za-z0-9][A-Za-z0-9_.-]*)?$"},
+        "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+\\.md$"},
+        "route": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+/index\\.html$"},
+        "category": {"type": "string", "minLength": 1},
+        "category_uz": {"type": "string", "minLength": 1},
+        "subcategory": {"type": "string", "minLength": 1},
+        "subcategory_uz": {"type": "string", "minLength": 1},
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title", "url", "file", "repo", "commit", "license", "sha256", "extra_front_matter"],
+          "properties": {
+            "title": {"type": "string", "minLength": 1},
+            "url": {"type": "string", "format": "uri"},
+            "file": {"type": "string", "pattern": "^src/.+\\.md$"},
+            "repo": {"type": "string", "format": "uri"},
+            "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            "license": {"type": "string", "minLength": 1},
+            "sha256": {
+              "anyOf": [
+                {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                {"type": "null"}
+              ]
+            },
+            "extra_front_matter": {"type": "object"}
+          }
+        },
+        "translation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "title",
+            "idea",
+            "complexity",
+            "uses",
+            "status",
+            "scope",
+            "fidelity",
+            "full_prose_translated",
+            "translators",
+            "translated_at",
+            "changes"
+          ],
+          "properties": {
+            "title": {"type": "string", "minLength": 1},
+            "idea": {"type": "string"},
+            "complexity": {"type": "string"},
+            "uses": {"type": "string"},
+            "status": {
+              "type": "string",
+              "enum": [
+                "ai_full_translation_draft",
+                "ai_synopsis_draft",
+                "human_translation_draft",
+                "needs_retranslation",
+                "deprecated"
+              ]
+            },
+            "scope": {"type": "string", "minLength": 1},
+            "fidelity": {"type": "string", "minLength": 1},
+            "full_prose_translated": {"type": "boolean"},
+            "translators": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1}
+            },
+            "translated_at": {
+              "anyOf": [
+                {"type": "string", "format": "date"},
+                {"type": "null"}
+              ]
+            },
+            "changes": {"type": "string"}
+          }
+        },
+        "upstream": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "detected_commit", "detected_sha256", "checked_at", "changed_at"],
+          "properties": {
+            "status": {"type": "string", "enum": ["current", "changed", "missing", "deprecated"]},
+            "detected_commit": {
+              "anyOf": [
+                {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+                {"type": "null"}
+              ]
+            },
+            "detected_sha256": {
+              "anyOf": [
+                {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                {"type": "null"}
+              ]
+            },
+            "checked_at": {"$ref": "#/$defs/timestamp"},
+            "changed_at": {"$ref": "#/$defs/timestamp"}
+          }
+        },
+        "publication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "changed_at", "changed_by"],
+          "properties": {
+            "status": {"type": "string", "enum": ["draft", "ready", "published", "deprecated"]},
+            "changed_at": {"$ref": "#/$defs/timestamp"},
+            "changed_by": {"$ref": "#/$defs/nullableString"}
+          }
+        },
+        "reviews": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["technical", "language"],
+          "properties": {
+            "technical": {"$ref": "#/$defs/review"},
+            "language": {"$ref": "#/$defs/review"}
+          }
+        },
+        "review_history": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/historyEvent"}
+        }
+      }
+    }
+  }
+}

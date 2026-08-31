@@ -1,0 +1,13 @@
+{
+  "canonical_inputs": [
+    "articles/",
+    "metadata/articles.yml"
+  ],
+  "commit": "f0b048b6c6228433ffa7d7fd82bf5139a0ae7125",
+  "commit_date": "2026-08-29T19:46:34+03:00",
+  "content_license": "CC-BY-SA-4.0",
+  "repository": "https://github.com/cp-uz/algo.git",
+  "schema": "cpuz.content-snapshot.v1",
+  "upstream_commit": "85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681",
+  "upstream_repository": "https://github.com/cp-algorithms/cp-algorithms"
+}

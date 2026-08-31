@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-21",
+  "upstream_repository": "https://github.com/cp-algorithms/cp-algorithms",
+  "upstream_commit": "85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681",
+  "section": "Data Structures",
+  "article_count": 10,
+  "bundled_snapshot_count": 5,
+  "pinned_remote_source_count": 5,
+  "fetch_command": "python scripts/fetch_upstream.py --commit 85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681",
+  "articles": [
+    {
+      "path": "data_structures/stack_queue_modification.md",
+      "source_title": "Minimum Stack / Minimum Queue",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/stack_queue_modification.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": true,
+      "source_file_lines": 192,
+      "source_sha256": "74787644b643d217ca723c3d8564b93a499d652d579a4589b9cda481b4a5ac94"
+    },
+    {
+      "path": "data_structures/sparse-table.md",
+      "source_title": "Sparse Table",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/sparse-table.md",
+      "upstream_tag": "Original",
+      "source_snapshot_bundled": false,
+      "source_file_lines": 155,
+      "source_sha256": null
+    },
+    {
+      "path": "data_structures/disjoint_set_union.md",
+      "source_title": "Disjoint Set Union",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/disjoint_set_union.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": true,
+      "source_file_lines": 592,
+      "source_sha256": "bc80ab3ff57cfd7e339985daed2d4ee9bd2d6a6bc88d94c31268766f433fed64"
+    },
+    {
+      "path": "data_structures/fenwick.md",
+      "source_title": "Fenwick Tree",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/fenwick.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": false,
+      "source_file_lines": 458,
+      "source_sha256": null
+    },
+    {
+      "path": "data_structures/sqrt_decomposition.md",
+      "source_title": "Sqrt Decomposition",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/sqrt_decomposition.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": true,
+      "source_file_lines": 250,
+      "source_sha256": "19363e61dc26b9ad89531500b02488b94c2f186fcdf50a53b1bcb38532d14516"
+    },
+    {
+      "path": "data_structures/segment_tree.md",
+      "source_title": "Segment Tree",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/segment_tree.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": true,
+      "source_file_lines": 1213,
+      "source_sha256": "1d878bb8bda937b37e9e221e819057f4df846a5dc4eeccaec80ea791c8c137fb"
+    },
+    {
+      "path": "data_structures/treap.md",
+      "source_title": "Treap",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/treap.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": false,
+      "source_file_lines": 384,
+      "source_sha256": null
+    },
+    {
+      "path": "data_structures/sqrt-tree.md",
+      "source_title": "Sqrt Tree",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/sqrt-tree.md",
+      "upstream_tag": "Original",
+      "source_snapshot_bundled": true,
+      "source_file_lines": 351,
+      "source_sha256": "f1b84a2840a02d4eb334c03f3ba6a61264e7a2551fc57109f9b8f14c9a793980"
+    },
+    {
+      "path": "data_structures/randomized_heap.md",
+      "source_title": "Randomized Heap",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/randomized_heap.md",
+      "upstream_tag": "Translated",
+      "source_snapshot_bundled": false,
+      "source_file_lines": 113,
+      "source_sha256": null
+    },
+    {
+      "path": "data_structures/deleting_in_log_n.md",
+      "source_title": "Deleting from a data structure in O(T(n) log n)",
+      "raw_source_url": "https://raw.githubusercontent.com/cp-algorithms/cp-algorithms/85a94001d46b9f34d3b2cf26aca6bd0f7a7e8681/src/data_structures/deleting_in_log_n.md",
+      "upstream_tag": "Original",
+      "source_snapshot_bundled": false,
+      "source_file_lines": 145,
+      "source_sha256": null
+    }
+  ]
+}

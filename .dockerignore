@@ -1,0 +1,20 @@
+.git
+.github
+.template
+Minimal TypeScript v7.6.1.zip
+.env*
+**/.env*
+backups
+.release
+content
+scripts
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.venv
+frontend/node_modules
+frontend/dist
+backend/staticfiles
+backend/media
+backend/*.sqlite3
+*.log

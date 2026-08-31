@@ -1,0 +1,122 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings.development
+      DJANGO_SECRET_KEY: ci-only-secret-key-not-for-production
+      DJANGO_DEBUG: "false"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements/base.txt
+            backend/requirements/dev.txt
+      - name: Install development dependencies
+        run: python -m pip install -r requirements/dev.txt
+      - name: Lint Python
+        run: python -m ruff check .
+      - name: Run Django system checks
+        run: python manage.py check
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run
+      - name: Apply migrations
+        run: python manage.py migrate --noinput
+      - name: Validate OpenAPI schema
+        run: python manage.py spectacular --validate --fail-on-warn --file /tmp/cpuz-openapi.yml
+      - name: Run backend tests
+        run: python manage.py test --verbosity 2
+
+  frontend:
+    name: Frontend checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Lint frontend
+        run: npm run lint
+      - name: Type-check frontend
+        run: npm run typecheck
+      - name: Run frontend tests and content-render audit
+        run: npm test
+      - name: Build production frontend
+        run: npm run build
+
+  content-and-deploy-contracts:
+    name: Content and deploy contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements/base.txt
+            backend/requirements/dev.txt
+      - name: Install validation dependencies
+        run: python -m pip install -r backend/requirements/dev.txt
+      - name: Lint deployment shell scripts
+        run: shellcheck deploy/*.sh
+      - name: Validate canonical content and checksums
+        run: python scripts/validate_content.py
+      - name: Run content pipeline tests
+        run: python -m unittest scripts/test_content_pipeline.py -v
+      - name: Run deployment contract tests
+        run: python -m unittest discover -s deploy -p "test_*.py" -v
+
+  container:
+    name: Production container build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [backend, frontend, content-and-deploy-contracts]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Prepare non-secret CI environment
+        run: |
+          cp .env.example .env
+          sed -i 's/CHANGE_ME_generate_a_long_random_value/ci-only-secret-value-0000000000000000000000000000000000000000/g' .env
+      - name: Validate Compose configuration
+        run: docker compose config --quiet
+      - name: Build production containers
+        run: docker compose build

@@ -1,0 +1,103 @@
+name: cpuz
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cpuz}
+      POSTGRES_USER: ${POSTGRES_USER:-cpuz}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cpuz} -d ${POSTGRES_DB:-cpuz}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - cpuz_internal
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    logging: *default-logging
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - cpuz_internal
+
+  web:
+    build:
+      context: .
+      dockerfile: deploy/backend.Dockerfile
+    restart: unless-stopped
+    init: true
+    logging: *default-logging
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/1}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - static_data:/app/staticfiles
+      - media_data:/app/media
+      - ./content:/app/content:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    networks:
+      - cpuz_internal
+
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/frontend.Dockerfile
+      args:
+        VITE_API_URL: /api/v1
+    restart: unless-stopped
+    logging: *default-logging
+    depends_on:
+      web:
+        condition: service_healthy
+    ports:
+      - "${CPUZ_BIND_ADDRESS:-127.0.0.1}:${CPUZ_HTTP_PORT:-18181}:80"
+    volumes:
+      - static_data:/var/www/static:ro
+      - media_data:/var/www/media:ro
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks:
+      - cpuz_internal
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
+
+networks:
+  cpuz_internal:
+    driver: bridge

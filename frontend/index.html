@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#036fdc" />
+    <meta name="description" content="Sport dasturlashni o‘zbek tilida tizimli, sodda va chuqur o‘rganing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="cp.uz" />
+    <meta property="og:title" content="cp.uz — Algoritmlarni tushunib o‘rganing" />
+    <meta property="og:description" content="O‘zbek tilidagi sport dasturlash bilim ombori: 163 ta nashr qilingan algoritm maqolasi, yo‘l xaritasi va terminlar lug‘ati." />
+    <meta property="og:url" content="https://cp.uz" />
+    <meta property="og:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://cp.uz" />
+    <link rel="icon" type="image/png" href="/assets/brand/cpuz-logo.png" />
+    <script src="/loader-facts.js"></script>
+    <script>
+      (() => {
+        try {
+          const settings = JSON.parse(localStorage.getItem('app-settings') || 'null');
+          const fonts = ['Public Sans Variable', 'Inter Variable', 'IBM Plex Sans Variable', 'Source Sans 3 Variable'];
+          if (settings && fonts.includes(settings.fontFamily)) {
+            document.documentElement.style.setProperty('--boot-font-family', `"${settings.fontFamily}", Arial, sans-serif`);
+          }
+          if (settings && Number.isFinite(settings.fontSize)) {
+            document.documentElement.style.setProperty('--boot-font-size', `${Math.min(20, Math.max(14, settings.fontSize))}px`);
+          }
+        } catch {
+          // The default boot typography remains active when stored settings are malformed.
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/boot.css" />
+    <title>cp.uz — Algoritmlarni tushunib o‘rganing</title>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebSite","name":"cp.uz","url":"https://cp.uz","inLanguage":"uz","description":"Sport dasturlashni o‘zbek tilida o‘rganish bilim ombori","potentialAction":{"@type":"SearchAction","target":"https://cp.uz/algoritmlar?q={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
+  </head>
+
+  <body>
+    <div id="root">
+      <div class="boot-splash" role="status" aria-label="Sahifa yuklanmoqda">
+        <div class="boot-graph" aria-hidden="true">
+          <span class="boot-edge boot-edge-ab"></span>
+          <span class="boot-edge boot-edge-bc"></span>
+          <span class="boot-edge boot-edge-cd"></span>
+          <span class="boot-edge boot-edge-ac"></span>
+          <span class="boot-node boot-node-a"></span>
+          <span class="boot-node boot-node-b"></span>
+          <span class="boot-node boot-node-c"></span>
+          <span class="boot-node boot-node-d"></span>
+        </div>
+        <span class="boot-kicker">Algoritmik fakt</span>
+        <div class="boot-facts" aria-hidden="true">
+          <p id="boot-fact">Algoritmik fakt tayyorlanmoqda…</p>
+        </div>
+        <div class="boot-brand" aria-hidden="true">
+          <img src="/assets/brand/cpuz-logo.png" width="40" height="40" alt="" />
+          <strong>cp uz;</strong>
+        </div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const facts = Array.isArray(window.__cpuzLoadingFacts)
+          ? window.__cpuzLoadingFacts
+          : ['Algoritm murakkabligini kirish hajmiga bog‘lab tahlil qiling.'];
+        const storageKey = 'cpuz:loader-last-fact';
+        const factElement = document.getElementById('boot-fact');
+        let previous = -1;
+        try {
+          const stored = Number(localStorage.getItem(storageKey));
+          if (Number.isInteger(stored) && stored >= 0 && stored < facts.length) previous = stored;
+        } catch {
+          // Storage is optional for the boot experience.
+        }
+        const nextIndex = () => {
+          const index = previous < 0
+            ? Math.floor(Math.random() * facts.length)
+            : (previous + 1 + Math.floor(Math.random() * (facts.length - 1))) % facts.length;
+          previous = index;
+          document.documentElement.dataset.loaderFactIndex = String(index);
+          try { localStorage.setItem(storageKey, String(index)); } catch { /* noop */ }
+          if (factElement) factElement.textContent = facts[index];
+        };
+        nextIndex();
+        window.__cpuzBootFactTimer = window.setInterval(nextIndex, 1800);
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

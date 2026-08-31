@@ -1,0 +1,6 @@
+site_name: CP.UZ Algoritmlar
+site_description: cp-algorithms maqolalarining o‘zbekcha, review qilinadigan moslashtirishi
+language: uz
+editor_base_url: ''
+repository_url: https://github.com/cp-uz/algo
+public_base_url: https://cp.uz/algo/

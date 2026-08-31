@@ -1,0 +1,1006 @@
+- source: Competitive Programming
+  uzbek: Sport dasturlash
+  note: Algoritm va ma’lumotlar tuzilmalaridan foydalanib, qat’iy vaqt hamda xotira cheklovlarida masalalar yechiladigan intellektual sport yo‘nalishi.
+  aliases:
+  - CP
+- source: Algorithm
+  uzbek: Algoritm
+  note: Masalani yechishga olib boradigan aniq, tartibli va chekli qadamlar ketma-ketligi.
+  aliases:
+  - Algo
+- source: Problem Constraint
+  uzbek: Masala cheklovi
+  note: Kirish qiymatlari va yechim sarflashi mumkin bo‘lgan resurslar chegarasini bildiradigan shart.
+  aliases:
+  - Constraints
+  - Limitlar
+- source: Input Size
+  uzbek: Kirish hajmi
+  note: Algoritm qabul qiladigan ma’lumot miqdorini ifodalovchi asosiy o‘lchov.
+  aliases:
+  - Input length
+  - Kirish o‘lchami
+- source: Correctness
+  uzbek: To‘g‘rilik
+  note: Algoritmning ruxsat etilgan har bir kirish uchun talab qilingan javobni berish xossasi.
+  aliases:
+  - Algorithm correctness
+  - Korrektlik
+- source: Proof
+  uzbek: Isbot
+  note: Algoritm yoki matematik da’voning to‘g‘riligini mantiqiy dalillar bilan asoslash.
+  aliases:
+  - Dalil
+  - Proof of correctness
+- source: Invariant
+  uzbek: Invariant
+  note: Algoritmning belgilangan bosqichlarida o‘zgarmay saqlanib, to‘g‘rilikni asoslashga yordam beradigan xossa.
+  aliases:
+  - Loop invariant
+  - Sikl invarianti
+- source: Pseudocode
+  uzbek: Psevdokod
+  note: Dasturlash tili sintaksisiga bog‘lanmasdan algoritm qadamlarini ifodalovchi yozuv.
+  aliases:
+  - Pseudo-code
+- source: Complexity
+  uzbek: Murakkablik
+  note: Algoritm sarflaydigan vaqt yoki xotiraning kirish hajmiga bog‘liq o‘sishini baholovchi mezon.
+  aliases:
+  - Algorithmic complexity
+  - Resurs murakkabligi
+- source: Time Complexity
+  uzbek: Vaqt murakkabligi
+  note: Algoritm bajaradigan asosiy amallar sonining kirish hajmiga bog‘liq o‘sish tartibi.
+  aliases:
+  - Running time
+  - Vaqt sarfi
+- source: Space Complexity
+  uzbek: Xotira murakkabligi
+  note: Algoritm ishlatadigan xotira miqdorining kirish hajmiga bog‘liq o‘sish tartibi.
+  aliases:
+  - Memory complexity
+  - Xotira sarfi
+- source: Asymptotic Complexity
+  uzbek: Asimptotik murakkablik
+  note: Kirish hajmi juda kattalashganda resurs sarfining yetakchi o‘sish tezligini ifodalovchi baho.
+  aliases:
+  - Asymptotics
+  - Asimptotika
+- source: Big O Notation
+  uzbek: Big O belgisi
+  note: Funksiya o‘sishiga doimiy ko‘paytuvchilargacha bo‘lgan asimptotik yuqori chegara beradigan belgi.
+  aliases:
+  - O notation
+  - Big-Oh
+- source: Big Omega Notation
+  uzbek: Big Omega belgisi
+  note: Funksiya o‘sishiga doimiy ko‘paytuvchilargacha bo‘lgan asimptotik quyi chegara beradigan belgi.
+  aliases:
+  - Omega notation
+  - Big-Ω
+- source: Big Theta Notation
+  uzbek: Big Theta belgisi
+  note: Funksiya o‘sishiga bir vaqtda mos asimptotik yuqori va quyi chegara beradigan belgi.
+  aliases:
+  - Theta notation
+  - Big-Θ
+- source: Worst Case
+  uzbek: Eng yomon holat
+  note: Bir xil hajmdagi barcha kirishlar orasida algoritm eng ko‘p resurs sarflaydigan holat.
+  aliases:
+  - Worst-case
+  - Eng og‘ir holat
+- source: Expected Time
+  uzbek: Kutilgan ishlash vaqti
+  note: Algoritmning tasodifiy tanlovlari yoki aniq ko‘rsatilgan kirish taqsimoti bo‘yicha ishlash vaqti matematik kutilmasi.
+  aliases:
+  - Expected runtime
+  - Kutilgan vaqt
+- source: Amortized Analysis
+  uzbek: Amortizatsion tahlil
+  note: Ehtimollikka tayanmasdan, amallar ketma-ketligining jami xarajatini amallar soniga taqsimlab baholash usuli.
+  aliases:
+  - Amortised analysis
+  - Amortizatsiyalangan tahlil
+- source: Data Structure
+  uzbek: Ma’lumotlar tuzilmasi
+  note: Ma’lumotlarni saqlash, tartiblash va ular ustida samarali amallar bajarishga mo‘ljallangan tuzilma.
+  aliases:
+  - DS
+  - Ma’lumot tuzilmasi
+- source: Array
+  uzbek: Massiv
+  note: Elementlari indeks orqali olinadigan va odatda xotirada ketma-ket joylashadigan ma’lumotlar tuzilmasi.
+  aliases:
+  - Static array
+- source: Dynamic Array
+  uzbek: Dinamik massiv
+  note: Sig‘imi zaruratga qarab avtomatik kengayadigan va indeks orqali tez murojaatni saqlaydigan massiv.
+  aliases:
+  - Resizable array
+  - Dinamik vektor
+- source: Linked List
+  uzbek: Bog‘langan ro‘yxat
+  note: Har bir elementi keyingi yoki qo‘shni elementlarga havola saqlaydigan chiziqli tuzilma.
+  aliases:
+  - Singly linked list
+  - Zanjirli ro‘yxat
+- source: Stack
+  uzbek: Stek
+  note: Elementlar oxirgi kirgan birinchi chiqadi tamoyili bo‘yicha olinadigan tuzilma.
+  aliases:
+  - LIFO
+- source: Queue
+  uzbek: Navbat
+  note: Elementlar birinchi kirgan birinchi chiqadi tamoyili bo‘yicha olinadigan tuzilma.
+  aliases:
+  - FIFO
+  - Queue data structure
+- source: Deque
+  uzbek: Ikki tomonlama navbat
+  note: Elementlarni ikkala uchidan ham qo‘shish va olib tashlash mumkin bo‘lgan navbat.
+  aliases:
+  - Double-ended queue
+  - Dek
+- source: Priority Queue
+  uzbek: Ustuvor navbat
+  note: Har safar ustuvorligi eng yuqori yoki eng past elementni tez qaytaradigan tuzilma.
+  aliases:
+  - priority_queue
+  - Prioritetli navbat
+- source: Heap
+  uzbek: Uyum
+  note: Ota va farzand qiymatlari orasidagi tartib xossasini saqlaydigan daraxtsimon tuzilma.
+  aliases:
+  - Binary heap
+  - Piramida
+- source: Min Heap
+  uzbek: Minimum uyum
+  note: Har bir ota qiymati farzandlaridan katta bo‘lmaydigan va minimumni ildizda saqlaydigan uyum.
+  aliases:
+  - Min-heap
+  - Minimum piramida
+- source: Max Heap
+  uzbek: Maksimum uyum
+  note: Har bir ota qiymati farzandlaridan kichik bo‘lmaydigan va maksimumni ildizda saqlaydigan uyum.
+  aliases:
+  - Max-heap
+  - Maksimum piramida
+- source: Set
+  uzbek: To‘plam
+  note: Har bir qiymat ko‘pi bilan bir marta saqlanadigan ma’lumotlar tuzilmasi.
+  aliases:
+  - Takrorsiz to‘plam
+- source: Multiset
+  uzbek: Multito‘plam
+  note: Bir xil qiymatni bir necha marta saqlashga ruxsat beradigan to‘plam.
+  aliases:
+  - Bag
+  - Takrorli to‘plam
+- source: Map
+  uzbek: Kalit–qiymat xaritasi
+  note: Har bir noyob kalitni unga mos qiymat bilan bog‘laydigan assotsiativ tuzilma.
+  aliases:
+  - Dictionary
+  - Associative array
+  - Lug‘at tuzilmasi
+- source: Hash Table
+  uzbek: Xesh jadvali
+  note: Kalit xeshini jadval indeksiga akslantirib, qidirish va yangilashni o‘rtacha O(1) vaqtda bajaradigan tuzilma.
+  aliases:
+  - Hash map
+  - Unordered map
+- source: Hash Collision
+  uzbek: Xesh kolliziyasi
+  note: Turli kalitlar bir xil xesh qiymati yoki jadval katagiga tushib qoladigan holat.
+  aliases:
+  - Collision in hashing
+  - Xesh to‘qnashuvi
+- source: Disjoint Set Union
+  uzbek: Kesishmaydigan to‘plamlar birlashmasi
+  note: Elementlarni kesishmaydigan guruhlarda saqlab, vakilni topish va guruhlarni birlashtirishni tez bajaradigan tuzilma.
+  aliases:
+  - DSU
+  - Union-Find
+- source: Tree
+  uzbek: Daraxt
+  note: Bog‘langan va siklsiz graf bo‘lib, n ta tugun uchun n−1 ta qirraga ega.
+  aliases:
+  - Free tree
+  - Daraxt graf
+- source: Rooted Tree
+  uzbek: Ildizli daraxt
+  note: Bitta tuguni ildiz sifatida tanlanib, ota-farzand munosabatlari belgilangan daraxt.
+  aliases:
+  - Ildizlangan daraxt
+- source: Binary Tree
+  uzbek: Ikkilik daraxt
+  note: Har bir tuguni ko‘pi bilan ikkita farzandga ega bo‘lgan ildizli daraxt.
+  aliases:
+  - Binary rooted tree
+- source: Binary Search Tree
+  uzbek: Ikkilik qidiruv daraxti
+  note: Har bir tugunda chap ost-daraxt kalitlari kichikroq, o‘ng ost-daraxt kalitlari kattaroq bo‘ladigan ikkilik daraxt.
+  aliases:
+  - BST
+- source: Fenwick Tree
+  uzbek: Fenwick daraxti
+  note: Prefiks agregatlarini yangilash va hisoblashni O(log n) vaqtda bajaradigan indekslangan daraxt.
+  aliases:
+  - BIT
+  - Binary Indexed Tree
+- source: Segment Tree
+  uzbek: Segment daraxti
+  note: Massiv oraliqlari bo‘yicha so‘rov va yangilashlarni odatda O(log n) vaqtda bajaradigan daraxt.
+  aliases:
+  - Kesma daraxti
+  - SegmentTree
+- source: Lazy Propagation
+  uzbek: Kechiktirib tarqatish
+  note: Segment daraxtidagi oraliq yangilanishlarini zarur bo‘lguncha farzand tugunlarga uzatmay saqlash usuli.
+  aliases:
+  - Lazy update
+  - Kechiktirilgan yangilash
+- source: Sparse Table
+  uzbek: Siyrak jadval
+  note: O‘zgarmas massivdagi idempotent oraliq so‘rovlarini oldindan hisoblash orqali O(1) vaqtda bajaradigan tuzilma.
+  aliases:
+  - RMQ table
+  - Sparse-table
+- source: Trie
+  uzbek: Prefiks daraxti
+  note: Satrlarni belgilar bo‘yicha shoxlanib saqlaydigan va umumiy prefikslarni birlashtiradigan daraxt.
+  aliases:
+  - Prefix tree
+- source: Graph
+  uzbek: Graf
+  note: Tugunlar va ularni bog‘lovchi qirralardan iborat munosabatlar modeli.
+  aliases:
+  - Graph structure
+- source: Vertex
+  uzbek: Tugun
+  note: Grafdagi alohida obyekt yoki holatni ifodalovchi asosiy element.
+  aliases:
+  - Node
+  - Cho‘qqi
+- source: Edge
+  uzbek: Qirra
+  note: Grafdagi ikki tugun orasidagi bog‘lanishni ifodalovchi element.
+  aliases:
+  - Arc
+  - Yoy
+- source: Directed Graph
+  uzbek: Yo‘naltirilgan graf
+  note: Har bir qirrasi boshlanish va tugash yo‘nalishiga ega bo‘lgan graf.
+  aliases:
+  - Digraph
+- source: Undirected Graph
+  uzbek: Yo‘naltirilmagan graf
+  note: Qirralari ikki tomonda ham bir xil bog‘lanishni ifodalaydigan graf.
+  aliases:
+  - Unoriented graph
+- source: Weighted Graph
+  uzbek: Vaznli graf
+  note: Qirra yoki tugunlariga sonli vazn biriktirilgan graf.
+  aliases:
+  - Edge-weighted graph
+  - Og‘irlikli graf
+- source: Degree
+  uzbek: Daraja
+  note: Yo‘naltirilmagan grafda tugunga tutash qirralar soni.
+  aliases:
+  - Vertex degree
+  - Tugun darajasi
+- source: In-Degree
+  uzbek: Kirish darajasi
+  note: Yo‘naltirilgan grafda tugunga kiradigan qirralar soni.
+  aliases:
+  - Indegree
+  - Kiruvchi daraja
+- source: Out-Degree
+  uzbek: Chiqish darajasi
+  note: Yo‘naltirilgan grafda tugundan chiqadigan qirralar soni.
+  aliases:
+  - Outdegree
+  - Chiquvchi daraja
+- source: Walk
+  uzbek: Yurish
+  note: Grafda ketma-ket qirralar orqali o‘tiladigan va tugun hamda qirralar takrorlanishi mumkin bo‘lgan marshrut.
+  aliases:
+  - Graph walk
+  - Marshrut
+- source: Path
+  uzbek: Yo‘l
+  note: Ketma-ket qirralar bilan bog‘langan va tugunlari takrorlanmaydigan graf marshruti.
+  aliases:
+  - Graph path
+  - Oddiy yo‘l
+- source: Cycle
+  uzbek: Sikl
+  note: Faqat boshlanish va tugash tuguni bir xil bo‘lgan yopiq yo‘l.
+  aliases:
+  - Graph cycle
+  - Yopiq yo‘l
+- source: Directed Acyclic Graph
+  uzbek: Yo‘naltirilgan siklsiz graf
+  note: Hech qanday yo‘naltirilgan siklga ega bo‘lmagan yo‘naltirilgan graf.
+  aliases:
+  - DAG
+- source: Connected Graph
+  uzbek: Bog‘langan graf
+  note: Istalgan ikki tuguni orasida yo‘l mavjud bo‘lgan yo‘naltirilmagan graf.
+  aliases:
+  - Ulangan graf
+- source: Connected Component
+  uzbek: Bog‘langan komponent
+  note: Yo‘naltirilmagan grafning o‘zaro yo‘l bilan bog‘langan maksimal tugunlar to‘plami.
+  aliases:
+  - CC
+  - Connectivity component
+- source: Breadth-First Search
+  uzbek: Kenglik bo‘yicha qidiruv
+  note: Grafni boshlang‘ich tugundan masofa qatlamlari bo‘yicha ko‘rib chiqadigan qidiruv algoritmi.
+  aliases:
+  - BFS
+  - Breadth-first traversal
+- source: Depth-First Search
+  uzbek: Chuqurlik bo‘yicha qidiruv
+  note: Grafda bir yo‘nalish bo‘ylab imkon qadar chuqur yurib, so‘ng ortga qaytadigan qidiruv algoritmi.
+  aliases:
+  - DFS
+  - Depth-first traversal
+- source: Topological Sort
+  uzbek: Topologik saralash
+  note: Yo‘naltirilgan siklsiz graf tugunlarini har bir qirra boshi qirra oxiridan oldin keladigan chiziqli tartibga joylaydi.
+  aliases:
+  - Topological ordering
+  - Topologik tartiblash
+- source: Shortest Path
+  uzbek: Eng qisqa yo‘l
+  note: Ikki tugun orasida qirralar soni yoki vaznlar yig‘indisi eng kichik bo‘lgan yo‘l.
+  aliases:
+  - Minimal yo‘l
+- source: Relaxation
+  uzbek: Relaksatsiya
+  note: Yangi qirra orqali topilgan yo‘l yaxshiroq bo‘lsa, saqlangan masofani yangilash amali.
+  aliases:
+  - Edge relaxation
+  - Masofani yaxshilash
+- source: Dijkstra's Algorithm
+  uzbek: Dijkstra algoritmi
+  note: Manfiy bo‘lmagan qirra vaznli grafda bitta manbadan eng qisqa yo‘llarni topadigan algoritm.
+  aliases:
+  - Dijkstra
+- source: Bellman-Ford Algorithm
+  uzbek: Bellman–Ford algoritmi
+  note: Manfiy vaznli qirralarga ruxsat berib, bitta manbadan eng qisqa yo‘llarni va erishiladigan manfiy siklni aniqlaydigan algoritm.
+  aliases:
+  - Bellman Ford
+  - Ford–Bellman algoritmi
+- source: Floyd-Warshall Algorithm
+  uzbek: Floyd–Warshall algoritmi
+  note: Barcha tugun juftlari orasidagi eng qisqa yo‘llarni O(n³) vaqtda topadigan dinamik dasturlash algoritmi.
+  aliases:
+  - Floyd algorithm
+- source: Spanning Tree
+  uzbek: Ostov daraxt
+  note: Bog‘langan grafning barcha tugunlarini qamrab oladigan siklsiz bog‘langan qismgraf.
+  aliases:
+  - Qamrovchi daraxt
+- source: Minimum Spanning Tree
+  uzbek: Minimal ostov daraxt
+  note: Vaznli bog‘langan grafdagi jami qirra vazni eng kichik bo‘lgan ostov daraxt.
+  aliases:
+  - MST
+  - Minimum ostov daraxt
+  - Minimal qamrovchi daraxt
+- source: Kruskal's Algorithm
+  uzbek: Kruskal algoritmi
+  note: Qirralarni vazni bo‘yicha ko‘rib chiqib, DSU yordamida sikl hosil qilmaydiganlarini tanlash orqali minimal ostov daraxt quradi.
+  aliases:
+  - Kruskal
+- source: Prim's Algorithm
+  uzbek: Prim algoritmi
+  note: Qurilgan daraxtni tashqaridagi tugun bilan bog‘laydigan eng arzon qirrani ketma-ket qo‘shib minimal ostov daraxt quradi.
+  aliases:
+  - Prim
+- source: Strongly Connected Component
+  uzbek: Kuchli bog‘langan komponent
+  note: Yo‘naltirilgan grafda har bir tugunidan boshqa har bir tuguniga yetish mumkin bo‘lgan maksimal qismgraf.
+  aliases:
+  - SCC
+  - Strong component
+- source: Bridge
+  uzbek: Ko‘prik qirra
+  note: Olib tashlanganda yo‘naltirilmagan grafdagi bog‘langan komponentlar sonini oshiradigan qirra.
+  aliases:
+  - Cut edge
+  - Ko‘prik
+- source: Articulation Point
+  uzbek: Ajratuvchi tugun
+  note: O‘zi va unga tutash qirralar olib tashlanganda bog‘langan komponentlar sonini oshiradigan tugun.
+  aliases:
+  - Cut vertex
+  - Artikulyatsiya nuqtasi
+- source: Lowest Common Ancestor
+  uzbek: Eng yaqin umumiy ajdod
+  note: Ildizli daraxtdagi ikki tugunning ikkalasiga ham ajdod bo‘lgan eng chuqur tugun.
+  aliases:
+  - LCA
+  - Eng quyi umumiy ajdod
+- source: Bipartite Graph
+  uzbek: Ikki bo‘lakli graf
+  note: Tugunlarini har bir qirra turli bo‘laklardagi tugunlarni bog‘laydigan ikki to‘plamga ajratish mumkin bo‘lgan graf.
+  aliases:
+  - Bigraph
+  - Ikki rangli graf
+- source: Matching
+  uzbek: Juftlashtirish
+  note: Hech ikkisi umumiy tugunga ega bo‘lmagan qirralar to‘plami.
+  aliases:
+  - Moslik
+- source: Maximum Bipartite Matching
+  uzbek: Ikki bo‘lakli grafdagi eng katta juftlashtirish
+  note: Ikki bo‘lakli grafda qirralari soni mumkin qadar katta bo‘lgan juftlashtirish.
+  aliases:
+  - Maximum matching
+- source: Flow Network
+  uzbek: Oqim tarmog‘i
+  note: Manba, qabul qiluvchi va sig‘imli yo‘naltirilgan qirralarga ega graf.
+  aliases:
+  - Oqimli tarmoq
+- source: Maximum Flow
+  uzbek: Maksimal oqim
+  note: Sig‘im va oqim saqlanishi shartlarida manbadan qabul qiluvchiga yuboriladigan eng katta oqim.
+  aliases:
+  - Max flow
+  - Eng katta oqim
+- source: Minimum Cut
+  uzbek: Minimal kesim
+  note: Manbani qabul qiluvchidan ajratadigan va kesib o‘tilgan sig‘imlar yig‘indisi eng kichik bo‘lgan kesim.
+  aliases:
+  - Min cut
+  - Eng kichik kesim
+- source: Residual Graph
+  uzbek: Qoldiq graf
+  note: Joriy oqimdan keyin qirralarda qolgan yoki qaytarilishi mumkin bo‘lgan sig‘imlarni ifodalovchi graf.
+  aliases:
+  - Residual network
+  - Qoldiq tarmoq
+- source: Eulerian Path
+  uzbek: Eyler yo‘li
+  note: Grafning har bir qirrasidan aynan bir marta o‘tadigan yurish.
+  aliases:
+  - Euler path
+  - Euler trail
+- source: Hamiltonian Path
+  uzbek: Gamilton yo‘li
+  note: Grafning har bir tugunidan aynan bir marta o‘tadigan yo‘l.
+  aliases:
+  - Hamilton path
+- source: Sorting
+  uzbek: Saralash
+  note: Elementlarni belgilangan taqqoslash tartibida joylashtirish jarayoni.
+  aliases:
+  - Sort
+  - Tartiblash
+- source: Stable Sort
+  uzbek: Barqaror saralash
+  note: Teng kalitli elementlarning dastlabki o‘zaro tartibini saqlaydigan saralash.
+  aliases:
+  - Stable sorting
+  - Turg‘un saralash
+- source: Merge Sort
+  uzbek: Birlashtirib saralash
+  note: Massivni bo‘lib, qismlarni saralab va tartibli birlashtirib ishlaydigan algoritm.
+  aliases:
+  - Mergesort
+  - Merge sorting
+- source: Quick Sort
+  uzbek: Tez saralash
+  note: Tayanch element bo‘yicha qismlarga ajratib, ularni rekursiv saralaydigan algoritm.
+  aliases:
+  - Quicksort
+  - Quick sorting
+- source: Counting Sort
+  uzbek: Sanash orqali saralash
+  note: Cheklangan oraliqdagi butun kalitlar takrorlanishini sanash orqali taqqoslashsiz saralaydigan algoritm.
+  aliases:
+  - Count sort
+  - Sanoq saralash
+- source: Binary Search
+  uzbek: Ikkilik qidiruv
+  note: Tartiblangan soha yoki monoton predikatda qidiruv oralig‘ini har qadamda ikki baravar qisqartiradigan algoritm.
+  aliases:
+  - Bisection search
+- source: Ternary Search
+  uzbek: Uchlik qidiruv
+  note: Unimodal funksiyaning ekstremumini topish uchun oraliqni uch qism yordamida qisqartiradigan usul.
+  aliases:
+  - Trisection search
+- source: Two Pointers
+  uzbek: Ikki ko‘rsatkich usuli
+  note: Ketma-ketlikdagi ikki indeksni muvofiqlashtirib siljitish orqali qidiruvni tezlashtiradigan usul.
+  aliases:
+  - Two-pointer technique
+- source: Sliding Window
+  uzbek: Sirpanuvchi oyna
+  note: Uzluksiz oraliq chegaralarini siljitib, uning qiymatini boshidan hisoblamasdan yangilash usuli.
+  aliases:
+  - Sliding-window technique
+  - Harakatlanuvchi oyna
+- source: Prefix Sum
+  uzbek: Prefiks yig‘indisi
+  note: Har bir pozitsiyagacha bo‘lgan yig‘indilarni saqlab, oraliq yig‘indisini tez hisoblash usuli.
+  aliases:
+  - Cumulative sum
+  - Prefsum
+- source: Difference Array
+  uzbek: Ayirmalar massivi
+  note: Qo‘shni qiymatlar farqini saqlab, oraliq yangilashlarni tez bajarishga yordam beradigan massiv.
+  aliases:
+  - Imos method
+  - Diff array
+- source: Recursion
+  uzbek: Rekursiya
+  note: Funksiyaning bazaviy holatga yaqinlashuvchi kichikroq masala uchun o‘zini qayta chaqirish usuli.
+  aliases:
+  - Recursive call
+  - Rekursiv chaqiruv
+- source: Dynamic Programming
+  uzbek: Dinamik dasturlash
+  note: Takrorlanuvchi qismmasalalar natijalarini holatlar orqali saqlab, hisoblarni qayta ishlatadigan yondashuv.
+  aliases:
+  - DP
+  - Dinamika
+- source: State
+  uzbek: Holat
+  note: Dinamik dasturlashda qismmasalani bir qiymatli aniqlash uchun yetarli parametrlar to‘plami.
+  aliases:
+  - DP state
+  - Holat parametrlari
+- source: Transition
+  uzbek: O‘tish
+  note: Bir yoki bir nechta oldingi holat javobidan yangi holat javobini hisoblash qoidasi.
+  aliases:
+  - State transition
+  - Holatlar o‘tishi
+- source: Memoization
+  uzbek: Memoizatsiya
+  note: Rekursiv hisoblangan natijalarni xotirada saqlab, bir qismmasalani takror hisoblamaslik usuli.
+  aliases:
+  - Natijalarni xotiralash
+  - Top-down cache
+- source: Greedy Algorithm
+  uzbek: Ochko‘z algoritm
+  note: Har qadamda mahalliy eng yaxshi tanlovni qilib, isbotlanadigan hollarda global optimal yechim quradigan algoritm.
+  aliases:
+  - Greedy method
+  - Ochko‘z usul
+- source: Divide and Conquer
+  uzbek: Bo‘lib yechish
+  note: Masalani kichik mustaqil qismlarga ajratib, ularni yechib va natijalarni birlashtiradigan yondashuv.
+  aliases:
+  - D&C
+  - Divide-and-conquer
+- source: Backtracking
+  uzbek: Ortga qaytish
+  note: Qisman yechimni qurib, yaroqsiz tarmoq aniqlanganda oldingi tanlovga qaytadigan qidiruv.
+  aliases:
+  - Backtrack
+  - Qaytishli qidiruv
+- source: Meet in the Middle
+  uzbek: O‘rtada uchrashish
+  note: Kirishni ikki qismga bo‘lib, har ikki tomon natijalarini birlashtirish orqali eksponensial qidiruvni kamaytiradigan usul.
+  aliases:
+  - MITM
+  - Ikki yarmli qidiruv
+- source: Coordinate Compression
+  uzbek: Koordinatalarni siqish
+  note: Qiymatlar tartibini saqlagan holda ularni ixcham ketma-ket indekslarga almashtirish usuli.
+  aliases:
+  - Rank compression
+  - Indekslarni siqish
+- source: Sweep Line
+  uzbek: Supuruvchi chiziq
+  note: Geometrik yoki oraliq hodisalarni bir koordinata bo‘yicha tartibda ko‘rib chiqadigan algoritmik usul.
+  aliases:
+  - Scanline
+- source: Offline Algorithm
+  uzbek: Oflayn algoritm
+  note: Barcha so‘rovlar oldindan ma’lum bo‘lgani uchun ularni qulay tartibda qayta ishlaydigan algoritm.
+  aliases:
+  - Offline processing
+  - Oldindan ma’lum so‘rovlar
+- source: Online Algorithm
+  uzbek: Onlayn algoritm
+  note: Kirish yoki so‘rovlarni kelish tartibida, kelajak ma’lumotini bilmasdan qayta ishlaydigan algoritm.
+  aliases:
+  - Online processing
+  - Ketma-ket so‘rovlar
+- source: Bitmask
+  uzbek: Bit niqobi
+  note: Kichik to‘plam yoki mantiqiy holatlarni bitta butun sonning bitlari bilan ifodalash usuli.
+  aliases:
+  - Bit mask
+- source: Submask
+  uzbek: Qism niqob
+  note: Berilgan bit niqobida yoqilgan bitlarning ixtiyoriy qismidan tuzilgan niqob.
+  aliases:
+  - Sub-mask
+- source: Divisor
+  uzbek: Bo‘luvchi
+  note: Berilgan sonni qoldiqsiz bo‘ladigan butun son.
+  aliases:
+  - Factor
+  - Bo‘luvchi son
+- source: Multiple
+  uzbek: Karrali son
+  note: Berilgan sonning biror butun songa ko‘paytmasi sifatida yoziladigan son.
+  aliases:
+  - Karrali
+- source: Prime Number
+  uzbek: Tub son
+  note: Birdan katta bo‘lib, faqat birga va o‘ziga musbat bo‘linadigan butun son.
+  aliases:
+  - Prime
+  - Tub
+- source: Composite Number
+  uzbek: Murakkab son
+  note: Birdan katta va ikkitadan ko‘p musbat bo‘luvchiga ega butun son.
+  aliases:
+  - Composite
+  - Tarkibli son
+- source: Greatest Common Divisor
+  uzbek: Eng katta umumiy bo‘luvchi (EKUB)
+  note: Ikki yoki undan ortiq sonning barchasini qoldiqsiz bo‘ladigan eng katta musbat son.
+  aliases:
+  - GCD
+- source: Least Common Multiple
+  uzbek: Eng kichik umumiy karrali (EKUK)
+  note: Ikki yoki undan ortiq sonning barchasiga bo‘linadigan eng kichik musbat son.
+  aliases:
+  - LCM
+- source: Euclidean Algorithm
+  uzbek: Evklid algoritmi
+  note: Qoldiqli bo‘lishni takrorlash orqali ikki sonning eng katta umumiy bo‘luvchisini topadigan algoritm.
+  aliases:
+  - Euclid algorithm
+  - EKUB algoritmi
+- source: Sieve of Eratosthenes
+  uzbek: Eratosfen elagi
+  note: Belgilangan chegaragacha tub sonlarni ularning karralilarini belgilash orqali topadigan algoritm.
+  aliases:
+  - Prime sieve
+  - Eratosthenes sieve
+- source: Prime Factorization
+  uzbek: Tub ko‘paytuvchilarga ajratish
+  note: Musbat butun sonni tub sonlar darajalari ko‘paytmasi ko‘rinishida yozish.
+  aliases:
+  - Factorisation
+  - Tub faktorizatsiya
+- source: Modular Arithmetic
+  uzbek: Modul arifmetikasi
+  note: Sonlarni belgilangan modul bo‘yicha qoldiq sinflari orqali hisoblash tizimi.
+  aliases:
+  - Mod arithmetic
+  - Qoldiqlar arifmetikasi
+- source: Congruence
+  uzbek: Modul bo‘yicha taqqoslama
+  note: Ikki sonning ayirmasi modulga bo‘linsa, ular shu modul bo‘yicha teng qoldiqli ekanini bildiradigan munosabat.
+  aliases:
+  - Modular congruence
+  - Kongruensiya
+  - Taqqoslama
+- source: Modular Inverse
+  uzbek: Modul bo‘yicha teskari element
+  note: a·x qoldig‘i modul bo‘yicha birga teng bo‘ladigan x bo‘lib, u a va modul o‘zaro tub bo‘lganda mavjud.
+  aliases:
+  - Modular reciprocal
+  - Multiplikativ teskari element
+- source: Binary Exponentiation
+  uzbek: Ikkilik darajaga oshirish
+  note: Daraja ko‘rsatkichini bitlar bo‘yicha ajratib, darajani O(log n) ko‘paytirishda hisoblash usuli.
+  aliases:
+  - Binpow
+  - Fast power
+  - Exponentiation by squaring
+- source: Euler's Totient Function
+  uzbek: Eylerning phi-funksiyasi
+  note: Birdan n gacha bo‘lgan va n bilan o‘zaro tub musbat sonlar miqdorini beradigan funksiya.
+  aliases:
+  - Euler phi
+  - Totient
+  - φ-funksiya
+- source: Chinese Remainder Theorem
+  uzbek: Xitoy qoldiqlari teoremasi
+  note: Juft-jufti bilan o‘zaro tub modullar bo‘yicha taqqoslamalar sistemasining yechimini modullar ko‘paytmasigacha yagona tiklaydigan teorema.
+  aliases:
+  - CRT
+  - Chinese remainder
+- source: Diophantine Equation
+  uzbek: Diofant tenglamasi
+  note: Faqat butun sonli yechimlari izlanadigan ko‘phadli tenglama.
+  aliases:
+  - Diophantine
+  - Butun yechimli tenglama
+- source: Factorial
+  uzbek: Faktorial
+  note: n dan birgacha bo‘lgan musbat butun sonlar ko‘paytmasi bo‘lib, nol faktorial birga teng.
+  aliases:
+  - n factorial
+  - Faktorial son
+- source: Permutation
+  uzbek: Permutatsiya
+  note: Elementlarning tartibi ahamiyatli bo‘lgan joylashuvi.
+  aliases:
+  - Ordered arrangement
+  - O‘rin almashtirish
+- source: Combination
+  uzbek: Kombinatsiya
+  note: Elementlarning tartibi ahamiyatsiz bo‘lgan tanlovi.
+  aliases:
+  - Unordered selection
+  - Tanlanma
+- source: Binomial Coefficient
+  uzbek: Binomial koeffitsiyent
+  note: n elementdan k tasini tartibsiz tanlash usullari sonini beradigan qiymat.
+  aliases:
+  - nCk
+  - Choose function
+- source: Pascal's Triangle
+  uzbek: Paskal uchburchagi
+  note: Har bir ichki soni yuqoridagi ikki qo‘shni son yig‘indisiga teng bo‘lgan binomial koeffitsiyentlar jadvali.
+  aliases:
+  - Pascal triangle
+  - Binomial triangle
+- source: Inclusion-Exclusion Principle
+  uzbek: Kiritish–chiqarish prinsipi
+  note: To‘plamlar birlashmasi hajmini kesishmalarni navbat bilan qo‘shib va ayirib hisoblaydigan prinsip.
+  aliases:
+  - PIE
+  - Qo‘shish–ayirish prinsipi
+- source: Pigeonhole Principle
+  uzbek: Dirixle prinsipi
+  note: Obyektlar qutilardan ko‘p bo‘lsa, kamida bitta qutida birdan ortiq obyekt bo‘lishini kafolatlaydigan prinsip.
+  aliases:
+  - Pigeonhole
+  - Qutilar prinsipi
+- source: Matrix
+  uzbek: Matritsa
+  note: Son yoki boshqa qiymatlar satr va ustunlarda joylashtirilgan to‘g‘ri to‘rtburchak jadval.
+  aliases:
+  - Matrix table
+- source: Determinant
+  uzbek: Determinant
+  note: Kvadrat matritsaning teskarilanuvchanligi va chiziqli o‘zgarish masshtabini ifodalovchi skalyar qiymat.
+  aliases:
+  - Matrix determinant
+  - Aniqlovchi
+- source: Probability
+  uzbek: Ehtimollik
+  note: Tasodifiy hodisa yuz berish darajasini noldan birgacha bo‘lgan qiymat orqali ifodalovchi o‘lchov.
+  aliases:
+  - Chance
+  - Hodisa ehtimoli
+- source: Expected Value
+  uzbek: Matematik kutilma
+  note: Tasodifiy miqdor qiymatlarining ehtimolliklari bilan og‘irlangan o‘rtachasi.
+  aliases:
+  - Expectation
+- source: String
+  uzbek: Satr
+  note: Belgilardan tuzilgan tartibli ketma-ketlik.
+  aliases:
+  - Text string
+  - Matn satri
+- source: Character
+  uzbek: Belgi
+  note: Satr alifbosidagi bitta atomar qiymat.
+  aliases:
+  - Char
+- source: Alphabet
+  uzbek: Alifbo
+  note: Satrlar tuzilishi mumkin bo‘lgan ruxsat etilgan belgilar to‘plami.
+  aliases:
+  - Character set
+  - Belgilar to‘plami
+- source: Substring
+  uzbek: Qism satr
+  note: Satrning uzluksiz pozitsiyalaridan olingan qismi.
+  aliases:
+  - Substr
+  - Ostsatr
+- source: Subsequence
+  uzbek: Qism ketma-ketlik
+  note: Asl tartibni saqlab, ayrim elementlarni tashlab yuborish orqali olinadigan ketma-ketlik.
+  aliases:
+  - Qismketma-ketlik
+- source: Prefix
+  uzbek: Prefiks
+  note: Satr yoki ketma-ketlikning birinchi elementdan boshlanadigan uzluksiz qismi.
+  aliases:
+  - Initial segment
+  - Bosh qism
+- source: Suffix
+  uzbek: Suffiks
+  note: Satr yoki ketma-ketlikning oxirgi elementida tugaydigan uzluksiz qismi.
+  aliases:
+  - Terminal segment
+  - Oxirgi qism
+- source: Lexicographic Order
+  uzbek: Leksikografik tartib
+  note: Ketma-ketliklarni birinchi farqli element bo‘yicha lug‘at tartibida solishtirish qoidasi.
+  aliases:
+  - Dictionary order
+  - Lug‘aviy tartib
+- source: String Matching
+  uzbek: Satrda andoza qidirish
+  note: Berilgan andozaning matndagi barcha uchrashuvlarini topish masalasi.
+  aliases:
+  - Pattern matching
+  - Satr qidiruvi
+- source: String Hashing
+  uzbek: Satrni xeshlash
+  note: Satrni tez solishtiriladigan sonli qiymatga akslantirib, kolliziya ehtimolini hisobga oladigan usul.
+  aliases:
+  - Rolling hash
+  - Polynomial hash
+- source: Prefix Function
+  uzbek: Prefiks funksiyasi
+  note: Har bir prefiks uchun uning o‘ziga teng bo‘lmagan eng uzun prefiks-suffiks uzunligini beradigan funksiya.
+  aliases:
+  - Pi function
+  - π-function
+- source: Z-Function
+  uzbek: Z-funksiya
+  note: Har bir pozitsiyadan boshlangan suffiks bilan butun satrning eng uzun umumiy prefiksi uzunligini beradigan massiv.
+  aliases:
+  - Z array
+  - Z-function array
+- source: Knuth-Morris-Pratt Algorithm
+  uzbek: Knuth–Morris–Pratt algoritmi
+  note: Prefiks funksiyasidan foydalanib andozani matnda O(n+m) vaqtda qidiradigan algoritm.
+  aliases:
+  - KMP
+- source: Aho-Corasick Algorithm
+  uzbek: Aho–Corasick algoritmi
+  note: Trie va muvaffaqiyatsizlik havolalari yordamida ko‘p andozani matnda bir vaqtda qidiradigan algoritm.
+  aliases:
+  - AC automaton
+- source: Suffix Array
+  uzbek: Suffikslar massivi
+  note: Satr barcha suffikslarining boshlanish indekslarini leksikografik tartibda saqlaydigan massiv.
+  aliases:
+  - SA
+- source: Suffix Tree
+  uzbek: Suffiks daraxti
+  note: Satrning barcha suffikslarini siqilgan trie ko‘rinishida saqlaydigan daraxt.
+  aliases:
+  - Compressed suffix trie
+  - Suffikslar daraxti
+- source: Suffix Automaton
+  uzbek: Suffiks avtomati
+  note: Satrning barcha qism satrlarini tanib, ekvivalent tugash holatlarini birlashtiradigan minimal deterministik avtomat.
+  aliases:
+  - SAM
+  - DAWG
+- source: Palindrome
+  uzbek: Palindrom
+  note: Chapdan o‘ngga va o‘ngdan chapga bir xil o‘qiladigan satr yoki ketma-ketlik.
+  aliases:
+  - Palindromic string
+- source: Point
+  uzbek: Nuqta
+  note: Fazodagi joylashuvni koordinatalar bilan ifodalovchi geometrik obyekt.
+  aliases:
+  - Coordinate point
+- source: Vector
+  uzbek: Vektor
+  note: Yo‘nalish va uzunlikka ega bo‘lgan yoki koordinatalar ayirmasi bilan ifodalangan kattalik.
+  aliases:
+  - Yo‘nalgan kesma
+- source: Line
+  uzbek: To‘g‘ri chiziq
+  note: Ikki tomonga cheksiz davom etadigan bir o‘lchamli geometrik obyekt.
+  aliases:
+  - Infinite line
+  - Chiziq
+- source: Line Segment
+  uzbek: Kesma
+  note: Ikki uch nuqta orasidagi to‘g‘ri chiziqning chegaralangan qismi.
+  aliases:
+  - Segment
+  - Chiziq kesmasi
+- source: Ray
+  uzbek: Nur
+  note: Bitta boshlanish nuqtasidan bir yo‘nalishda cheksiz davom etadigan chiziq qismi.
+  aliases:
+  - Half-line
+  - Yarim chiziq
+- source: Circle
+  uzbek: Aylana
+  note: Tekislikdagi berilgan markazdan bir xil masofada joylashgan nuqtalar to‘plami.
+  aliases:
+  - Circumference
+  - Doira chegarasi
+- source: Polygon
+  uzbek: Ko‘pburchak
+  note: Ketma-ket kesmalar yopiq chegara hosil qiladigan tekis geometrik shakl.
+  aliases:
+  - Polygonal shape
+- source: Area
+  uzbek: Yuza
+  note: Tekis shakl egallagan soha miqdorini ifodalovchi o‘lchov.
+  aliases:
+  - Maydon
+- source: Orientation
+  uzbek: Uch nuqtaning yo‘nalishi
+  note: Uch nuqtaning soat yo‘nalishida, unga qarshi yoki bir chiziqda joylashganini bildiruvchi belgi.
+  aliases:
+  - Turn test
+  - Burilish yo‘nalishi
+- source: Cross Product
+  uzbek: Vektor ko‘paytma
+  note: Ikki vektor uchun tekislikda yo‘nalgan yuza qiymatini, fazoda esa ularga perpendikulyar vektorni beradigan ko‘paytma.
+  aliases:
+  - Vector product
+  - Tashqi ko‘paytma
+- source: Dot Product
+  uzbek: Skalyar ko‘paytma
+  note: Ikki vektor uzunliklari bilan ular orasidagi burchak kosinusi ko‘paytmasiga teng skalyar qiymat.
+  aliases:
+  - Scalar product
+  - Nuqtaviy ko‘paytma
+- source: Intersection
+  uzbek: Kesishma
+  note: Ikki geometrik obyektga bir vaqtda tegishli bo‘lgan nuqtalar to‘plami.
+  aliases:
+  - Geometric intersection
+  - Kesishish
+- source: Convex Hull
+  uzbek: Qavariq qobiq
+  note: Berilgan nuqtalarning barchasini o‘z ichiga oladigan eng kichik qavariq to‘plam.
+  aliases:
+  - Convex envelope
+  - Qavariq qamrov
+- source: Point in Polygon
+  uzbek: Nuqtaning ko‘pburchakka tegishliligi
+  note: Nuqta ko‘pburchak ichida, tashqarisida yoki chegarasida ekanini aniqlash masalasi.
+  aliases:
+  - PIP
+  - Nuqta ko‘pburchak ichida
+- source: Manhattan Distance
+  uzbek: Manhattan masofasi
+  note: Koordinatalar bo‘yicha mutlaq farqlar yig‘indisi sifatida o‘lchanadigan masofa.
+  aliases:
+  - L1 distance
+  - Taksi masofasi
+- source: Judge
+  uzbek: Tekshiruvchi tizim
+  note: Yechim kodini testlarda ishga tushirib, vaqt va xotira cheklovlari hamda chiqishning to‘g‘riligiga ko‘ra natija beradigan avtomatik tizim.
+  aliases:
+  - Online judge
+  - Avtomatik tekshiruvchi
+  - Hakam tizimi
+- source: Number Theory
+  uzbek: Sonlar nazariyasi
+  note: Butun sonlarning bo‘linuvchanlik, tub sonlar, qoldiqlar va Diofant tenglamalari kabi xossalarini o‘rganadigan matematika sohasi.
+  aliases:
+  - NT
+- source: XOR
+  uzbek: Istisnoli YOKI amali
+  note: Ikki bit turlicha bo‘lganda bir, bir xil bo‘lganda nol qaytaradigan bitli mantiqiy amal.
+  aliases:
+  - Exclusive OR
+  - XOR amali
+  - Bitwise XOR
+  - Istisno qiluvchi YOKI
+- source: Yen's Algorithm
+  uzbek: Yen algoritmi
+  note: Manfiy bo‘lmagan qirra vaznli grafda berilgan ikki tugun orasidagi k ta eng qisqa siklsiz yo‘lni uzunlik tartibida topadigan algoritm.
+  aliases:
+  - Yen algorithm
+  - K shortest loopless paths
+  - k ta eng qisqa sodda yo‘l
