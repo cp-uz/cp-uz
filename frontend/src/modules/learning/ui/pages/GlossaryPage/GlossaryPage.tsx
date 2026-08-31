@@ -320,7 +320,7 @@ export default function GlossaryPage() {
           </Stack>
           <Button
             component="a"
-            href="https://github.com/cp-uz/algo/issues"
+            href="https://github.com/cp-uz/cp-uz/issues"
             target="_blank"
             rel="noreferrer"
             endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={18} />}

@@ -14,5 +14,10 @@ FROM nginx:1.30-alpine AS runtime
 
 COPY deploy/nginx-app.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
+# The restricted release checkout uses umask 077. Vite-generated bundles get
+# fresh, readable modes, but files copied verbatim from frontend/public keep
+# 0600 unless we normalize the final image tree explicitly.
+RUN find /usr/share/nginx/html -type d -exec chmod 0755 {} + \
+    && find /usr/share/nginx/html -type f -exec chmod 0644 {} +
 
 EXPOSE 80

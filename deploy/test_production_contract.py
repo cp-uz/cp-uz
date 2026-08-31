@@ -118,6 +118,41 @@ class ComposeContractTests(unittest.TestCase):
         self.assertNotIn("ENV HTTP_PROXY", dockerfile)
         self.assertNotIn("ENV HTTPS_PROXY", dockerfile)
 
+    def test_frontend_public_assets_are_readable_under_restricted_checkout_umask(self) -> None:
+        dockerfile = (ROOT / "deploy" / "frontend.Dockerfile").read_text(encoding="utf-8")
+        copy_index = dockerfile.index("COPY --from=build /app/dist /usr/share/nginx/html")
+        directory_mode_index = dockerfile.index(
+            "find /usr/share/nginx/html -type d -exec chmod 0755"
+        )
+        file_mode_index = dockerfile.index(
+            "find /usr/share/nginx/html -type f -exec chmod 0644"
+        )
+        self.assertIn(
+            "find /usr/share/nginx/html -type d -exec chmod 0755",
+            dockerfile,
+        )
+        self.assertIn(
+            "find /usr/share/nginx/html -type f -exec chmod 0644",
+            dockerfile,
+        )
+        self.assertLess(copy_index, directory_mode_index)
+        self.assertLess(copy_index, file_mode_index)
+
+    def test_release_smokes_boot_and_team_assets_before_and_after_cutover(self) -> None:
+        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
+        for path in (
+            "/boot.css",
+            "/loader-facts.js",
+            "/assets/brand/cpuz-logo.png",
+            "/assets/team/asadullo-ganiev.png",
+            "/assets/team/dilshodbek-khujaev.png",
+            "/assets/team/dilyorbek-valijanov.png",
+            "/assets/team/ulugbek-abdimanabov.png",
+        ):
+            with self.subTest(path=path):
+                self.assertIn(path, release)
+        self.assertIn('for endpoint in "${SMOKE_ENDPOINTS[@]}"', release)
+
     def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         self.assertIn("cpuz_sqlite_data", release)

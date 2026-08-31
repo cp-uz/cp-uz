@@ -325,7 +325,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             </Typography>
             <Button
               component="a"
-              href="https://github.com/cp-uz/algo"
+              href="https://github.com/cp-uz/cp-uz"
               target="_blank"
               rel="noreferrer"
               color="inherit"

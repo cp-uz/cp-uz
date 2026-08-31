@@ -593,7 +593,7 @@ export default function ArticlePage() {
                 {contributors.length > 0 && <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>{contributors.map((item) => `${item.name}${item.role ? ` — ${item.role}` : ''}`).join(', ')}</Typography>}
               </Box>
               <Stack direction="row" spacing={1}>
-                <Button component="a" href="https://github.com/cp-uz/algo" target="_blank" rel="noopener noreferrer" size="small">Tahrir taklif qilish</Button>
+                <Button component="a" href="https://github.com/cp-uz/cp-uz" target="_blank" rel="noopener noreferrer" size="small">Tahrir taklif qilish</Button>
                 {!!revisions.length && <Button size="small" color="inherit" onClick={() => setRevisionsOpen(true)}>Tarix ({revisions.length})</Button>}
               </Stack>
             </Stack>

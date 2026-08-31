@@ -210,10 +210,30 @@ assert actual == expected, f"Imported corpus mismatch: {actual} != {expected}"
 print(actual)
 '
 
+SMOKE_ENDPOINTS=(
+  /healthz
+  /
+  /api/v1/health/
+  /boot.css
+  /loader-facts.js
+  /assets/brand/cpuz-logo.png
+  /assets/team/asadullo-ganiev.png
+  /assets/team/dilshodbek-khujaev.png
+  /assets/team/dilyorbek-valijanov.png
+  /assets/team/ulugbek-abdimanabov.png
+)
+
 healthy=0
 for _ in $(seq 1 30); do
-  if curl --fail --silent --show-error "http://127.0.0.1:${HTTP_PORT}/healthz" >/dev/null \
-    && curl --fail --silent --show-error "http://127.0.0.1:${HTTP_PORT}/api/v1/health/" >/dev/null; then
+  healthy=1
+  for endpoint in "${SMOKE_ENDPOINTS[@]}"; do
+    if ! curl --fail --silent --show-error \
+      "http://127.0.0.1:${HTTP_PORT}${endpoint}" >/dev/null; then
+      healthy=0
+      break
+    fi
+  done
+  if [[ "${healthy}" -eq 1 ]]; then
     healthy=1
     break
   fi
@@ -250,7 +270,7 @@ systemctl reload nginx
 
 smoke_public() {
   local endpoint
-  for endpoint in /healthz / /api/v1/health/; do
+  for endpoint in "${SMOKE_ENDPOINTS[@]}"; do
     curl --fail --silent --show-error \
       --retry 8 --retry-delay 2 --retry-all-errors \
       --noproxy '*' \

@@ -525,7 +525,7 @@ export default function HomePage() {
               </Box>
               <Button
                 component="a"
-                href="https://github.com/cp-uz/algo"
+                href="https://github.com/cp-uz/cp-uz"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
