@@ -80,6 +80,10 @@ kbd,
 .markdown-code,
 .code-block {
   font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-variant-ligatures: none;
+  font-feature-settings:
+    'liga' 0,
+    'calt' 0;
 }
 
 ::selection {
@@ -254,6 +258,23 @@ kbd,
   color: inherit;
   background: transparent;
   font-size: 0.875rem;
+}
+
+.markdown-code-frame {
+  position: relative;
+  margin: 1.75rem 0;
+}
+
+.rich-markdown .markdown-code-frame .markdown-code {
+  padding-top: 3.35rem;
+  margin: 0;
+}
+
+.markdown-code-copy {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 1;
 }
 
 .syntax-token--comment {

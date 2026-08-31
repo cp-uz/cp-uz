@@ -1,10 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import {
   tokenizeCode,
   normalizeSyntaxLanguage,
 } from '../src/modules/learning/ui/shared/syntax-highlight.ts';
+
+const globalStyles = readFileSync(new URL('../src/app/styles/global.css', import.meta.url), 'utf8');
+const richMarkdown = readFileSync(
+  new URL('../src/modules/learning/ui/shared/RichMarkdown.tsx', import.meta.url),
+  'utf8'
+);
 
 test('normalizes the supported C++ and Python fence names', () => {
   assert.equal(normalizeSyntaxLanguage('c++'), 'cpp');
@@ -32,4 +39,17 @@ test('highlights Python comments, keywords, builtins, and strings', () => {
   assert.ok(tokens.some((token) => token.kind === 'keyword'));
   assert.ok(tokens.some((token) => token.kind === 'builtin'));
   assert.ok(tokens.some((token) => token.kind === 'string'));
+});
+
+test('keeps multi-character code operators visually separate', () => {
+  assert.match(globalStyles, /font-variant-ligatures:\s*none/);
+  assert.match(globalStyles, /'liga'\s+0/);
+  assert.match(globalStyles, /'calt'\s+0/);
+});
+
+test('article code blocks expose a clipboard action with a browser fallback', () => {
+  assert.match(richMarkdown, /Nusxalash/);
+  assert.match(richMarkdown, /navigator\.clipboard\?\.writeText/);
+  assert.match(richMarkdown, /document\.execCommand\('copy'\)/);
+  assert.match(globalStyles, /\.markdown-code-copy/);
 });

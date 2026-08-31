@@ -4,8 +4,9 @@ import type { LearningArticle } from '../../domain';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { UiIcon } from 'shared/ui/UiIcon';
 import ReactMarkdown from 'react-markdown';
-import { useMemo, isValidElement } from 'react';
+import { useMemo, useState, isValidElement } from 'react';
 
 import { normalizeSyntaxLanguage } from './syntax-highlight';
 import { SyntaxHighlightedCode } from './SyntaxHighlightedCode';
@@ -24,6 +25,76 @@ function plainText(value: ReactNode): string {
   if (Array.isArray(value)) return value.map(plainText).join('');
   if (isValidElement<{ children?: ReactNode }>(value)) return plainText(value.props.children);
   return '';
+}
+
+function copySourceText(value: ReactNode): string {
+  if (Array.isArray(value)) return value.map(copySourceText).join('');
+  if (isValidElement<{ children?: ReactNode; 'data-copy-code'?: string }>(value)) {
+    return value.props['data-copy-code'] ?? copySourceText(value.props.children);
+  }
+  return plainText(value);
+}
+
+async function writeClipboard(value: string) {
+  const textarea = document.createElement('textarea');
+  textarea.value = value;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  textarea.remove();
+  if (copied) return;
+
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+  throw new Error('Clipboardga nusxalab bo‘lmadi.');
+}
+
+function MarkdownCodeBlock({ children }: { children: ReactNode }) {
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
+  const code = copySourceText(children).replace(/\n$/, '');
+
+  const copy = async () => {
+    try {
+      await writeClipboard(code);
+      setCopyState('copied');
+    } catch {
+      setCopyState('error');
+    }
+    window.setTimeout(() => setCopyState('idle'), 1600);
+  };
+
+  return (
+    <div className="markdown-code-frame">
+      <button
+        className="code-copy markdown-code-copy"
+        type="button"
+        onClick={() => void copy()}
+        aria-label="Kodni nusxalash"
+      >
+        <UiIcon
+          icon={
+            copyState === 'copied'
+              ? 'solar:check-circle-bold'
+              : copyState === 'error'
+                ? 'solar:danger-triangle-linear'
+                : 'solar:copy-linear'
+          }
+          width={17}
+        />
+        {copyState === 'copied'
+          ? 'Nusxalandi'
+          : copyState === 'error'
+            ? 'Nusxalanmadi'
+            : 'Nusxalash'}
+      </button>
+      <pre className="markdown-code">{children}</pre>
+    </div>
+  );
 }
 
 export { slugifyHeading, extractMarkdownHeadings };
@@ -94,13 +165,21 @@ export function RichMarkdown({
               {alt && <span className="article-image__caption">{alt}</span>}
             </span>
           ),
-          pre: ({ children: codeChildren }) => <pre className="markdown-code">{codeChildren}</pre>,
+          pre: ({ children: codeChildren }) => (
+            <MarkdownCodeBlock>{codeChildren}</MarkdownCodeBlock>
+          ),
           code: ({ className, children: codeChildren }) => {
             const language = normalizeSyntaxLanguage(/language-([^\s]+)/.exec(className ?? '')?.[1]);
-            if (!language) return <code className={className}>{codeChildren}</code>;
             const code = plainText(codeChildren).replace(/\n$/, '');
+            if (!language) {
+              return (
+                <code className={className} data-copy-code={code}>
+                  {codeChildren}
+                </code>
+              );
+            }
             return (
-              <code className={className} data-language={language}>
+              <code className={className} data-language={language} data-copy-code={code}>
                 <SyntaxHighlightedCode code={code} language={language} />
               </code>
             );
