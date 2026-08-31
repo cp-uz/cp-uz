@@ -57,6 +57,12 @@ async function writeClipboard(value: string) {
 function MarkdownCodeBlock({ children }: { children: ReactNode }) {
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
   const code = copySourceText(children).replace(/\n$/, '');
+  const copyLabel =
+    copyState === 'copied'
+      ? 'Kod nusxalandi'
+      : copyState === 'error'
+        ? 'Kodni nusxalab bo‘lmadi'
+        : 'Kodni nusxalash';
 
   const copy = async () => {
     try {
@@ -74,7 +80,8 @@ function MarkdownCodeBlock({ children }: { children: ReactNode }) {
         className="code-copy markdown-code-copy"
         type="button"
         onClick={() => void copy()}
-        aria-label="Kodni nusxalash"
+        aria-label={copyLabel}
+        title={copyLabel}
       >
         <UiIcon
           icon={
@@ -84,13 +91,8 @@ function MarkdownCodeBlock({ children }: { children: ReactNode }) {
                 ? 'solar:danger-triangle-linear'
                 : 'solar:copy-linear'
           }
-          width={17}
+          width={18}
         />
-        {copyState === 'copied'
-          ? 'Nusxalandi'
-          : copyState === 'error'
-            ? 'Nusxalanmadi'
-            : 'Nusxalash'}
       </button>
       <pre className="markdown-code">{children}</pre>
     </div>

@@ -48,8 +48,10 @@ test('keeps multi-character code operators visually separate', () => {
 });
 
 test('article code blocks expose a clipboard action with a browser fallback', () => {
-  assert.match(richMarkdown, /Nusxalash/);
+  assert.match(richMarkdown, /aria-label=\{copyLabel\}/);
+  assert.match(richMarkdown, /title=\{copyLabel\}/);
   assert.match(richMarkdown, /navigator\.clipboard\?\.writeText/);
   assert.match(richMarkdown, /document\.execCommand\('copy'\)/);
   assert.match(globalStyles, /\.markdown-code-copy/);
+  assert.match(globalStyles, /position:\s*absolute/);
 });

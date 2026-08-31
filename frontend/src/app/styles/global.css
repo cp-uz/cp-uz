@@ -266,7 +266,7 @@ kbd,
 }
 
 .rich-markdown .markdown-code-frame .markdown-code {
-  padding-top: 3.35rem;
+  padding-right: 3.75rem;
   margin: 0;
 }
 
@@ -275,6 +275,11 @@ kbd,
   top: 0.65rem;
   right: 0.65rem;
   z-index: 1;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 .syntax-token--comment {
