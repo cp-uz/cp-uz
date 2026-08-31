@@ -89,26 +89,27 @@ class PersonalNoteViewSet(OwnedModelViewSet):
         )
 
 
-def _public_score_name(user) -> str:
+def _public_score_name(user, *, is_current_user: bool = False) -> str:
     if user.is_guest:
         suffix = user.guest_session.public_id.hex[:6].upper()
         return f"Mehmon #{suffix}"
-    if user.public_profile:
+    if user.public_profile or is_current_user:
         return user.name
     return "Ishtirokchi"
 
 
 def _leaderboard_entry(score, rank: int, current_user_id: int | None) -> dict:
     total = score.total_answers
+    is_current_user = score.user_id == current_user_id
     return {
         "rank": rank,
-        "name": _public_score_name(score.user),
+        "name": _public_score_name(score.user, is_current_user=is_current_user),
         "correct": score.correct_answers,
         "total": total,
         "percent": round(score.correct_answers / total * 100) if total else 0,
         "current_streak": score.current_streak,
         "best_streak": score.best_streak,
-        "is_current_user": score.user_id == current_user_id,
+        "is_current_user": is_current_user,
         "updated_at": score.updated_at,
     }
 

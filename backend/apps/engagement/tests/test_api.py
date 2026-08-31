@@ -212,6 +212,27 @@ class EngagementApiTests(TestCase):
         self.assertEqual(anonymous.data["leaderboard"][0]["name"], "other")
         self.assertIsNone(zero_answer_user.data["personal"])
 
+    def test_private_profile_sees_own_name_but_remains_anonymous_to_others(self):
+        self.user.first_name = "Ali"
+        self.user.last_name = "Valiyev"
+        self.user.public_profile = False
+        self.user.save(update_fields=("first_name", "last_name", "public_profile"))
+        GlossaryQuizScore.objects.create(
+            user=self.user,
+            correct_answers=2,
+            total_answers=2,
+            current_streak=2,
+            best_streak=2,
+        )
+
+        anonymous = self.client.get("/api/v1/glossary/leaderboard/")
+        self.client.force_authenticate(self.user)
+        personal = self.client.get("/api/v1/glossary/leaderboard/")
+
+        self.assertEqual(anonymous.data["leaderboard"][0]["name"], "Ishtirokchi")
+        self.assertEqual(personal.data["leaderboard"][0]["name"], "Ali Valiyev")
+        self.assertEqual(personal.data["personal"]["name"], "Ali Valiyev")
+
     def test_glossary_quiz_idempotency_survives_guest_resume_and_upgrade(self):
         anonymous = APIClient()
         created = anonymous.post("/api/v1/auth/guest/", {}, format="json")
