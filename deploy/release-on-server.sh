@@ -35,6 +35,21 @@ for required in .env compose.yaml content/exports/articles.v1.json deploy/backup
   fi
 done
 
+# The restricted deploy account checks Git out with umask 077. Canonical
+# content contains no secrets and is bind-mounted read-only into the non-root
+# Django container, so normalize only this exact tree to traversable/readable
+# permissions. Refuse symlinks before the recursive operation.
+if [[ "$(realpath -e content)" != "${APP_DIR}/content" ]]; then
+  echo "Canonical content resolved unexpectedly; refusing release." >&2
+  exit 1
+fi
+if find content -type l -print -quit | grep -q .; then
+  echo "Canonical content must not contain symbolic links." >&2
+  exit 1
+fi
+find content -type d -exec chmod 0755 {} +
+find content -type f -exec chmod 0644 {} +
+
 # The file is read by Compose and contains every production secret.
 chown root:root .env
 chmod 0600 .env

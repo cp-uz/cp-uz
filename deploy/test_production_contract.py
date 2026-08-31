@@ -126,6 +126,13 @@ class ComposeContractTests(unittest.TestCase):
         self.assertNotIn("pg_dump", release)
         self.assertNotIn("postgres.dump", release)
 
+    def test_release_makes_only_the_canonical_content_tree_container_readable(self) -> None:
+        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
+        self.assertIn('realpath -e content', release)
+        self.assertIn('find content -type l', release)
+        self.assertIn('find content -type d -exec chmod 0755', release)
+        self.assertIn('find content -type f -exec chmod 0644', release)
+
 
 if __name__ == "__main__":
     unittest.main()
