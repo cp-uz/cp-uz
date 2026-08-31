@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
 
 await import('../public/loader-facts.js');
 
@@ -16,4 +17,15 @@ test('boot and React use one sizeable, clean loading-fact catalogue', () => {
     assert.ok(fact.length >= 24, `fact is too short: ${fact}`);
     assert.ok(fact.length <= 110, `fact is too long: ${fact}`);
   });
+});
+
+test('fact loader is limited to the first visit and route transitions stay simple', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const app = readFileSync(new URL('../src/app/App.tsx', import.meta.url), 'utf8');
+
+  assert.match(html, /cpuz:fact-loader-shown/);
+  assert.match(html, /sessionStorage\.getItem\(visitKey\)/);
+  assert.match(html, /dataset\.loaderExperience = loaderExperience/);
+  assert.match(app, /setLoadingVariant\('simple'\)/);
+  assert.match(app, /<LoadingScreen variant=\{loadingVariant\}/);
 });

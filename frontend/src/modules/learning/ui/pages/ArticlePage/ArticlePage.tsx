@@ -291,12 +291,25 @@ export default function ArticlePage() {
     );
   }
 
-  const reviewLabel =
-    article.editorialStatus === 'published'
-      ? 'Nashr qilingan'
-      : article.editorialStatus === 'draft'
-        ? 'Tarjima qoralamasi'
-        : 'Tayyor · tekshiruvda';
+  const isHumanReviewed =
+    article.reviewState?.technical === 'approved' && article.reviewState?.language === 'approved';
+  const reviewLabel = isHumanReviewed ? 'Tekshiruvdan o‘tgan tarjima' : 'AI-tarjima';
+  const sourceLinks = [
+    article.sourceUrl
+      ? {
+          label: 'Original maqola',
+          site: 'cp-algorithms.com',
+          href: article.sourceUrl,
+        }
+      : null,
+    article.russianSourceUrl
+      ? {
+          label: 'Ruscha',
+          site: 'e-maxx.ru',
+          href: article.russianSourceUrl,
+        }
+      : null,
+  ].filter((item): item is { label: string; site: string; href: string } => Boolean(item));
   const contributors = (article.contributors ?? [])
     .map((item) => ({ ...item, name: displayContributorName(item.name) }))
     .filter(
@@ -419,21 +432,25 @@ export default function ArticlePage() {
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               ·
             </Typography>
-            <Stack direction="row" spacing={0.75} alignItems="center">
-              <Box
-                sx={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: '50%',
-                  bgcolor:
-                    article.editorialStatus === 'published'
-                      ? 'success.main'
-                      : article.editorialStatus === 'draft'
-                        ? 'warning.main'
-                        : 'primary.main',
-                }}
+            <Stack
+              direction="row"
+              spacing={0.75}
+              alignItems="center"
+              sx={{
+                px: 1,
+                py: 0.5,
+                borderRadius: 1,
+                color: isHumanReviewed ? 'success.dark' : 'warning.dark',
+                bgcolor: isHumanReviewed ? 'success.lighter' : 'warning.lighter',
+              }}
+            >
+              <UiIcon
+                icon={
+                  isHumanReviewed ? 'solar:verified-check-linear' : 'solar:magic-stick-3-linear'
+                }
+                width={16}
               />
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography variant="caption" sx={{ color: 'inherit', fontWeight: 600 }}>
                 {reviewLabel}
               </Typography>
             </Stack>
@@ -453,6 +470,47 @@ export default function ArticlePage() {
           >
             {article.summary}
           </Typography>
+
+          {sourceLinks.length > 0 && (
+            <Stack
+              direction="row"
+              useFlexGap
+              flexWrap="wrap"
+              spacing={{ xs: 1.5, sm: 2.5 }}
+              sx={{ mt: 2.25 }}
+            >
+              {sourceLinks.map((source) => (
+                <Link
+                  key={source.href}
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                  sx={{
+                    gap: 0.75,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    color: 'text.secondary',
+                    fontSize: '0.875rem',
+                    textUnderlineOffset: 3,
+                    '&:hover': { color: 'primary.main' },
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src="/assets/brands/cp-algorithms-favicon.ico"
+                    alt=""
+                    aria-hidden="true"
+                    sx={{ width: 16, height: 16, objectFit: 'contain' }}
+                  />
+                  <span>
+                    {source.label}: {source.site}
+                  </span>
+                  <UiIcon icon="solar:arrow-right-up-linear" width={15} />
+                </Link>
+              ))}
+            </Stack>
+          )}
 
           <Stack
             direction={{ xs: 'column', sm: 'row' }}

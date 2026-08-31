@@ -7,12 +7,16 @@ import Box from '@mui/material/Box';
 import Portal from '@mui/material/Portal';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const injectedFacts = Reflect.get(window, '__cpuzLoadingFacts');
 
-export const LOADING_FACTS: readonly string[] = Array.isArray(injectedFacts) && injectedFacts.length > 0
-  ? injectedFacts.filter((value): value is string => typeof value === 'string' && Boolean(value.trim()))
-  : ['Algoritm murakkabligini kirish hajmiga bog‘lab tahlil qiling.'];
+export const LOADING_FACTS: readonly string[] =
+  Array.isArray(injectedFacts) && injectedFacts.length > 0
+    ? injectedFacts.filter(
+        (value): value is string => typeof value === 'string' && Boolean(value.trim())
+      )
+    : ['Algoritm murakkabligini kirish hajmiga bog‘lab tahlil qiling.'];
 
 const LOADING_FACT_STORAGE_KEY = 'cpuz:loader-last-fact';
 
@@ -33,7 +37,8 @@ export function pickNextLoadingFactIndex() {
   } catch {
     // Browser privacy settings can disable storage; the in-memory index still avoids repetition.
   }
-  const next = (previous + 1 + Math.floor(Math.random() * (LOADING_FACTS.length - 1))) % LOADING_FACTS.length;
+  const next =
+    (previous + 1 + Math.floor(Math.random() * (LOADING_FACTS.length - 1))) % LOADING_FACTS.length;
   document.documentElement.dataset.loaderFactIndex = String(next);
   try {
     localStorage.setItem(LOADING_FACT_STORAGE_KEY, String(next));
@@ -45,17 +50,23 @@ export function pickNextLoadingFactIndex() {
 
 export type LoadingScreenProps = React.ComponentProps<'div'> & {
   portal?: boolean;
+  variant?: 'fact' | 'simple';
   initialFactIndex?: number;
   sx?: SxProps<Theme>;
 };
 
-export function LoadingScreen({ portal = true, initialFactIndex, sx, ...other }: LoadingScreenProps) {
+export function LoadingScreen({
+  portal = true,
+  variant = 'fact',
+  initialFactIndex,
+  sx,
+  ...other
+}: LoadingScreenProps) {
   const PortalWrapper = portal ? Portal : Fragment;
-  const factIndex = (
+  const factIndex =
     initialFactIndex !== undefined && validFactIndex(initialFactIndex)
       ? initialFactIndex
-      : pickNextLoadingFactIndex()
-  );
+      : pickNextLoadingFactIndex();
 
   useEffect(() => {
     const htmlOverflow = document.documentElement.style.overflow;
@@ -71,25 +82,31 @@ export function LoadingScreen({ portal = true, initialFactIndex, sx, ...other }:
   return (
     <PortalWrapper>
       <LoadingContent role="status" aria-live="polite" sx={sx} {...other}>
-        <Box className="cp-loading-graph" aria-hidden="true">
-          <span className="cp-loading-edge cp-loading-edge--ab" />
-          <span className="cp-loading-edge cp-loading-edge--bc" />
-          <span className="cp-loading-edge cp-loading-edge--cd" />
-          <span className="cp-loading-edge cp-loading-edge--ac" />
-          <span className="cp-loading-node cp-loading-node--a" />
-          <span className="cp-loading-node cp-loading-node--b" />
-          <span className="cp-loading-node cp-loading-node--c" />
-          <span className="cp-loading-node cp-loading-node--d" />
-        </Box>
-        <Typography variant="caption" sx={{ color: 'primary.main', fontWeight: 600 }}>
-          Algoritmik fakt
-        </Typography>
-        <Typography key={factIndex} className="cp-loading-fact" variant="body1">
-          {LOADING_FACTS[factIndex]}
-        </Typography>
-        <Box className="cp-loading-brand">
-          <BrandLogo />
-        </Box>
+        {variant === 'fact' ? (
+          <>
+            <Box className="cp-loading-graph" aria-hidden="true">
+              <span className="cp-loading-edge cp-loading-edge--ab" />
+              <span className="cp-loading-edge cp-loading-edge--bc" />
+              <span className="cp-loading-edge cp-loading-edge--cd" />
+              <span className="cp-loading-edge cp-loading-edge--ac" />
+              <span className="cp-loading-node cp-loading-node--a" />
+              <span className="cp-loading-node cp-loading-node--b" />
+              <span className="cp-loading-node cp-loading-node--c" />
+              <span className="cp-loading-node cp-loading-node--d" />
+            </Box>
+            <Typography variant="caption" sx={{ color: 'primary.main', fontWeight: 600 }}>
+              Algoritmik fakt
+            </Typography>
+            <Typography key={factIndex} className="cp-loading-fact" variant="body1">
+              {LOADING_FACTS[factIndex]}
+            </Typography>
+            <Box className="cp-loading-brand">
+              <BrandLogo />
+            </Box>
+          </>
+        ) : (
+          <CircularProgress size={32} thickness={3.5} aria-hidden="true" />
+        )}
         <span className="sr-only">Sahifa yuklanmoqda</span>
       </LoadingContent>
     </PortalWrapper>
@@ -123,8 +140,20 @@ const LoadingContent = styled('div')(({ theme }) => ({
     animation: 'cp-loader-edge-visit 1.6s ease-in-out infinite',
   },
   '.cp-loading-edge--ab': { top: 70, left: 15, width: 64, transform: 'rotate(-39deg)' },
-  '.cp-loading-edge--bc': { top: 32, left: 70, width: 56, transform: 'rotate(35deg)', animationDelay: '240ms' },
-  '.cp-loading-edge--cd': { top: 63, left: 116, width: 52, transform: 'rotate(-48deg)', animationDelay: '480ms' },
+  '.cp-loading-edge--bc': {
+    top: 32,
+    left: 70,
+    width: 56,
+    transform: 'rotate(35deg)',
+    animationDelay: '240ms',
+  },
+  '.cp-loading-edge--cd': {
+    top: 63,
+    left: 116,
+    width: 52,
+    transform: 'rotate(-48deg)',
+    animationDelay: '480ms',
+  },
   '.cp-loading-edge--ac': {
     top: 70,
     left: 15,

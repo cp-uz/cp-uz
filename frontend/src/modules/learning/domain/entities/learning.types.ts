@@ -33,6 +33,8 @@ export type LearningArticle = {
   publicPath?: string;
   route?: string;
   sourcePath?: string;
+  sourceUrl?: string;
+  russianSourceUrl?: string;
   content?: string;
   assetBaseUrl?: string;
   practiceReferences?: PracticeReference[];

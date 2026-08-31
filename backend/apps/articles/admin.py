@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from apps.contributions.models import ReviewRecord
+
 from .models import (
     Article,
     ArticleContributor,
@@ -53,6 +55,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "category",
         "difficulty",
         "status",
+        "translation_review_status",
         "visibility",
         "language",
         "is_featured",
@@ -66,6 +69,60 @@ class ArticleAdmin(admin.ModelAdmin):
     autocomplete_fields = ("category", "created_by", "updated_by")
     readonly_fields = ("content_hash", "created_at", "updated_at", "published_at")
     inlines = (ContributorInline, PrerequisiteInline, PracticeReferenceInline)
+    actions = ("mark_translation_reviewed",)
+
+    @admin.display(description="Tarjima holati")
+    def translation_review_status(self, obj):
+        latest = {
+            stage: obj.review_records.filter(
+                proposal__isnull=True,
+                content_hash=obj.content_hash,
+                stage=stage,
+            )
+            .order_by("-created_at")
+            .values_list("decision", flat=True)
+            .first()
+            for stage in (ReviewRecord.Stage.TECHNICAL, ReviewRecord.Stage.LANGUAGE)
+        }
+        return (
+            "Tekshiruvdan o‘tgan"
+            if all(decision == ReviewRecord.Decision.APPROVED for decision in latest.values())
+            else "AI-tarjima"
+        )
+
+    @admin.action(description="Tanlangan tarjimalarni tekshiruvdan o‘tgan deb belgilash")
+    def mark_translation_reviewed(self, request, queryset):
+        reviewed_articles = 0
+        for article in queryset:
+            changed = False
+            for stage in (ReviewRecord.Stage.TECHNICAL, ReviewRecord.Stage.LANGUAGE):
+                latest_decision = (
+                    article.review_records.filter(
+                        proposal__isnull=True,
+                        content_hash=article.content_hash,
+                        stage=stage,
+                    )
+                    .order_by("-created_at")
+                    .values_list("decision", flat=True)
+                    .first()
+                )
+                if latest_decision == ReviewRecord.Decision.APPROVED:
+                    continue
+                ReviewRecord.objects.create(
+                    article=article,
+                    stage=stage,
+                    decision=ReviewRecord.Decision.APPROVED,
+                    content_hash=article.content_hash,
+                    reviewer=request.user,
+                    notes="Django admin orqali tarjima tekshiruvdan o‘tgan deb belgilandi.",
+                )
+                changed = True
+            reviewed_articles += int(changed)
+        self.message_user(
+            request,
+            f"{reviewed_articles} ta maqola tekshiruvdan o‘tgan deb belgilandi.",
+            level="success",
+        )
 
     def save_model(self, request, obj, form, change):
         if not obj.created_by_id:

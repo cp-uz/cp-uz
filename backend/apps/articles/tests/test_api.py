@@ -23,7 +23,11 @@ class KnowledgeApiTests(TestCase):
             category=cls.child,
             status=Article.Status.DRAFT,
             visibility=Article.Visibility.PUBLIC,
-            provenance={"translation": {"full_prose_translated": True}},
+            source_url="https://cp-algorithms.com/algebra/binary-exp.html",
+            provenance={
+                "translation": {"full_prose_translated": True},
+                "source": {"russian_url": "http://e-maxx.ru/algo/binary_pow"},
+            },
         )
         cls.public_draft.tags.add(cls.tag)
         cls.private_article = Article.objects.create(
@@ -63,6 +67,14 @@ class KnowledgeApiTests(TestCase):
         detail = self.client.get("/api/v1/articles/algebra--binary-exp/")
         self.assertEqual(detail.status_code, 200)
         self.assertFalse(detail.data["review_state"]["fully_reviewed"])
+        self.assertEqual(
+            detail.data["source_url"],
+            "https://cp-algorithms.com/algebra/binary-exp.html",
+        )
+        self.assertEqual(
+            detail.data["russian_source_url"],
+            "http://e-maxx.ru/algo/binary_pow",
+        )
         self.assertEqual(len(detail.data["practice_references"]), 1)
 
     def test_private_article_is_not_publicly_retrievable(self):

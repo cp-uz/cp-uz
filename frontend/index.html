@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#036fdc" />
-    <meta name="description" content="Sport dasturlashni o‘zbek tilida tizimli, sodda va chuqur o‘rganing." />
+    <meta
+      name="description"
+      content="Sport dasturlashni o‘zbek tilida tizimli, sodda va chuqur o‘rganing."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="cp.uz" />
     <meta property="og:title" content="cp uz; o‘zbek sport dasturchilari hamjamiyati" />
-    <meta property="og:description" content="O‘zbek tilidagi sport dasturlash bilim ombori: 163 ta nashr qilingan algoritm maqolasi, yo‘l xaritasi va terminlar lug‘ati." />
+    <meta
+      property="og:description"
+      content="O‘zbek tilidagi sport dasturlash bilim ombori: 163 ta nashr qilingan algoritm maqolasi, yo‘l xaritasi va terminlar lug‘ati."
+    />
     <meta property="og:url" content="https://cp.uz" />
     <meta property="og:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
     <meta name="twitter:card" content="summary" />
@@ -17,14 +23,35 @@
     <script src="/loader-facts.js"></script>
     <script>
       (() => {
+        const visitKey = 'cpuz:fact-loader-shown';
+        let loaderExperience = 'fact';
+        try {
+          if (sessionStorage.getItem(visitKey)) loaderExperience = 'simple';
+          else sessionStorage.setItem(visitKey, '1');
+        } catch {
+          // When session storage is unavailable, preserve the useful first-load experience.
+        }
+        document.documentElement.dataset.loaderExperience = loaderExperience;
+
         try {
           const settings = JSON.parse(localStorage.getItem('app-settings') || 'null');
-          const fonts = ['Public Sans Variable', 'Inter Variable', 'IBM Plex Sans Variable', 'Source Sans 3 Variable'];
+          const fonts = [
+            'Public Sans Variable',
+            'Inter Variable',
+            'IBM Plex Sans Variable',
+            'Source Sans 3 Variable',
+          ];
           if (settings && fonts.includes(settings.fontFamily)) {
-            document.documentElement.style.setProperty('--boot-font-family', `"${settings.fontFamily}", Arial, sans-serif`);
+            document.documentElement.style.setProperty(
+              '--boot-font-family',
+              `"${settings.fontFamily}", Arial, sans-serif`
+            );
           }
           if (settings && Number.isFinite(settings.fontSize)) {
-            document.documentElement.style.setProperty('--boot-font-size', `${Math.min(20, Math.max(14, settings.fontSize))}px`);
+            document.documentElement.style.setProperty(
+              '--boot-font-size',
+              `${Math.min(20, Math.max(14, settings.fontSize))}px`
+            );
           }
         } catch {
           // The default boot typography remains active when stored settings are malformed.
@@ -34,13 +61,26 @@
     <link rel="stylesheet" href="/boot.css" />
     <title>cp uz; o‘zbek sport dasturchilari hamjamiyati</title>
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"WebSite","name":"cp.uz","url":"https://cp.uz","inLanguage":"uz","description":"Sport dasturlashni o‘zbek tilida o‘rganish bilim ombori","potentialAction":{"@type":"SearchAction","target":"https://cp.uz/algoritmlar?q={search_term_string}","query-input":"required name=search_term_string"}}
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "cp.uz",
+        "url": "https://cp.uz",
+        "inLanguage": "uz",
+        "description": "Sport dasturlashni o‘zbek tilida o‘rganish bilim ombori",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cp.uz/algoritmlar?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
     </script>
   </head>
 
   <body>
     <div id="root">
       <div class="boot-splash" role="status" aria-label="Sahifa yuklanmoqda">
+        <span class="boot-simple" aria-hidden="true"></span>
         <div class="boot-graph" aria-hidden="true">
           <span class="boot-edge boot-edge-ab"></span>
           <span class="boot-edge boot-edge-bc"></span>
@@ -63,6 +103,7 @@
     </div>
     <script>
       (() => {
+        if (document.documentElement.dataset.loaderExperience !== 'fact') return;
         const facts = Array.isArray(window.__cpuzLoadingFacts)
           ? window.__cpuzLoadingFacts
           : ['Algoritm murakkabligini kirish hajmiga bog‘lab tahlil qiling.'];
@@ -76,12 +117,17 @@
           // Storage is optional for the boot experience.
         }
         const nextIndex = () => {
-          const index = previous < 0
-            ? Math.floor(Math.random() * facts.length)
-            : (previous + 1 + Math.floor(Math.random() * (facts.length - 1))) % facts.length;
+          const index =
+            previous < 0
+              ? Math.floor(Math.random() * facts.length)
+              : (previous + 1 + Math.floor(Math.random() * (facts.length - 1))) % facts.length;
           previous = index;
           document.documentElement.dataset.loaderFactIndex = String(index);
-          try { localStorage.setItem(storageKey, String(index)); } catch { /* noop */ }
+          try {
+            localStorage.setItem(storageKey, String(index));
+          } catch {
+            /* noop */
+          }
           if (factElement) factElement.textContent = facts[index];
         };
         nextIndex();

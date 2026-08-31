@@ -178,6 +178,7 @@
         "file": "src/algebra/binary-exp.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/binary_pow",
         "sha256": null,
         "title": "Binary Exponentiation",
         "url": "https://cp-algorithms.com/algebra/binary-exp.html"
@@ -290,6 +291,7 @@
         "file": "src/algebra/euclid-algorithm.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/euclid_algorithm",
         "sha256": null,
         "title": "Euclidean algorithm for computing the greatest common divisor",
         "url": "https://cp-algorithms.com/algebra/euclid-algorithm.html"
@@ -410,6 +412,7 @@
         "file": "src/algebra/extended-euclid-algorithm.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/extended_euclid_algorithm",
         "sha256": null,
         "title": "Extended Euclidean Algorithm",
         "url": "https://cp-algorithms.com/algebra/extended-euclid-algorithm.html"
@@ -554,6 +557,7 @@
         "file": "src/algebra/linear-diophantine-equation.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/diofant_2_equation",
         "sha256": null,
         "title": "Linear Diophantine Equations",
         "url": "https://cp-algorithms.com/algebra/linear-diophantine-equation.html"
@@ -762,6 +766,7 @@
         "file": "src/algebra/fibonacci-numbers.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/fibonacci_numbers",
         "sha256": null,
         "title": "Fibonacci Numbers",
         "url": "https://cp-algorithms.com/algebra/fibonacci-numbers.html"
@@ -1002,6 +1007,7 @@
         "file": "src/algebra/sieve-of-eratosthenes.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/eratosthenes_sieve",
         "sha256": null,
         "title": "Sieve of Eratosthenes",
         "url": "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html"
@@ -1097,6 +1103,7 @@
         "file": "src/algebra/prime-sieve-linear.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/prime_sieve_linear",
         "sha256": null,
         "title": "Linear Sieve",
         "url": "https://cp-algorithms.com/algebra/prime-sieve-linear.html"
@@ -1570,6 +1577,7 @@
         "file": "src/algebra/phi-function.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/euler_function",
         "sha256": null,
         "title": "Euler's totient function",
         "url": "https://cp-algorithms.com/algebra/phi-function.html"
@@ -1828,6 +1836,7 @@
         "file": "src/algebra/module-inverse.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/reverse_element",
         "sha256": null,
         "title": "Modular Inverse",
         "url": "https://cp-algorithms.com/algebra/module-inverse.html"
@@ -1923,6 +1932,7 @@
         "file": "src/algebra/linear_congruence_equation.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/diofant_1_equation",
         "sha256": null,
         "title": "Linear Congruence Equation",
         "url": "https://cp-algorithms.com/algebra/linear_congruence_equation.html"
@@ -2038,6 +2048,7 @@
         "file": "src/algebra/chinese-remainder-theorem.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/chinese_theorem",
         "sha256": null,
         "title": "Chinese Remainder Theorem",
         "url": "https://cp-algorithms.com/algebra/chinese-remainder-theorem.html"
@@ -2218,6 +2229,7 @@
         "file": "src/algebra/factorial-modulo.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/modular_factorial",
         "sha256": null,
         "title": "Factorial modulo p",
         "url": "https://cp-algorithms.com/algebra/factorial-modulo.html"
@@ -2349,6 +2361,7 @@
         "file": "src/algebra/discrete-log.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/discrete_log",
         "sha256": null,
         "title": "Discrete Log",
         "url": "https://cp-algorithms.com/algebra/discrete-log.html"
@@ -2439,6 +2452,7 @@
         "file": "src/algebra/primitive-root.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/primitive_root",
         "sha256": null,
         "title": "Primitive Root",
         "url": "https://cp-algorithms.com/algebra/primitive-root.html"
@@ -2538,6 +2552,7 @@
         "file": "src/algebra/discrete-root.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/discrete_root",
         "sha256": null,
         "title": "Discrete Root",
         "url": "https://cp-algorithms.com/algebra/discrete-root.html"
@@ -2727,6 +2742,7 @@
         "file": "src/algebra/balanced-ternary.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/balanced_ternary",
         "sha256": null,
         "title": "Balanced Ternary",
         "url": "https://cp-algorithms.com/algebra/balanced-ternary.html"
@@ -2817,6 +2833,7 @@
         "file": "src/algebra/gray-code.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/gray_code",
         "sha256": null,
         "title": "Gray code",
         "url": "https://cp-algorithms.com/algebra/gray-code.html"
@@ -3063,6 +3080,7 @@
         "file": "src/algebra/all-submasks.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/all_submasks",
         "sha256": null,
         "title": "Enumerating submasks of a bitmask",
         "url": "https://cp-algorithms.com/algebra/all-submasks.html"
@@ -3266,6 +3284,7 @@
         "file": "src/algebra/big-integer.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/big_integer",
         "sha256": null,
         "title": "Arbitrary-Precision Arithmetic",
         "url": "https://cp-algorithms.com/algebra/big-integer.html"
@@ -3453,6 +3472,7 @@
         "file": "src/algebra/fft.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/fft_multiply",
         "sha256": null,
         "title": "Fast Fourier transform",
         "url": "https://cp-algorithms.com/algebra/fft.html"
@@ -3992,6 +4012,7 @@
         "file": "src/data_structures/stack_queue_modification.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/stacks_for_minima",
         "sha256": "74787644b643d217ca723c3d8564b93a499d652d579a4589b9cda481b4a5ac94",
         "title": "Minimum Stack / Minimum Queue",
         "url": "https://cp-algorithms.com/data_structures/stack_queue_modification.html"
@@ -4422,6 +4443,7 @@
         "file": "src/data_structures/disjoint_set_union.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/dsu",
         "sha256": "bc80ab3ff57cfd7e339985daed2d4ee9bd2d6a6bc88d94c31268766f433fed64",
         "title": "Disjoint Set Union",
         "url": "https://cp-algorithms.com/data_structures/disjoint_set_union.html"
@@ -4805,6 +4827,7 @@
         "file": "src/data_structures/fenwick.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/fenwick_tree",
         "sha256": null,
         "title": "Fenwick Tree",
         "url": "https://cp-algorithms.com/data_structures/fenwick.html"
@@ -4996,6 +5019,7 @@
         "file": "src/data_structures/sqrt_decomposition.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/sqrt_decomposition",
         "sha256": "19363e61dc26b9ad89531500b02488b94c2f186fcdf50a53b1bcb38532d14516",
         "title": "Sqrt Decomposition",
         "url": "https://cp-algorithms.com/data_structures/sqrt_decomposition.html"
@@ -5291,6 +5315,7 @@
         "file": "src/data_structures/segment_tree.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/segment_tree",
         "sha256": "1d878bb8bda937b37e9e221e819057f4df846a5dc4eeccaec80ea791c8c137fb",
         "title": "Segment Tree",
         "url": "https://cp-algorithms.com/data_structures/segment_tree.html"
@@ -5506,6 +5531,7 @@
         "file": "src/data_structures/treap.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/treap",
         "sha256": null,
         "title": "Treap",
         "url": "https://cp-algorithms.com/data_structures/treap.html"
@@ -5703,6 +5729,7 @@
         "file": "src/data_structures/randomized_heap.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/randomized_heap",
         "sha256": null,
         "title": "Randomized Heap",
         "url": "https://cp-algorithms.com/data_structures/randomized_heap.html"
@@ -6340,6 +6367,7 @@
         "file": "src/dynamic_programming/longest_increasing_subsequence.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/longest_increasing_subseq_log",
         "sha256": "ee605f44916fe201609156181707701d8931282a4ed84ae76e493f9be80600c5",
         "title": "Longest increasing subsequence",
         "url": "https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html"
@@ -6906,6 +6934,7 @@
         "file": "src/dynamic_programming/profile-dynamics.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/profile_dynamics",
         "sha256": "bc32e72e05fe46b75215185160c79c6bf3d2403c449a95ba4c5cf193b51da7f9",
         "title": "Dynamic Programming on Broken Profile. Problem \"Parquet\"",
         "url": "https://cp-algorithms.com/dynamic_programming/profile-dynamics.html"
@@ -7001,6 +7030,7 @@
         "file": "src/dynamic_programming/zero_matrix.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/maximum_zero_submatrix",
         "sha256": "b7ec4ab9a04268c546852cba65f235823cc978b5d8901fdff97024bb66e4bc0b",
         "title": "Finding the largest zero submatrix",
         "url": "https://cp-algorithms.com/dynamic_programming/zero_matrix.html"
@@ -7248,6 +7278,7 @@
         "file": "src/string/string-hashing.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/string_hashes",
         "sha256": "50017f13fa42713f12028fadd606e93ab30908c287d56804a6ba8751e64ffbc7",
         "title": "String Hashing",
         "url": "https://cp-algorithms.com/string/string-hashing.html"
@@ -7375,6 +7406,7 @@
         "file": "src/string/rabin-karp.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/rabin_karp",
         "sha256": "565a3f1f81a13c106a242d3b93de6ccbac01407f07e1178eff7163ab808f3d0d",
         "title": "Rabin-Karp Algorithm for string matching",
         "url": "https://cp-algorithms.com/string/rabin-karp.html"
@@ -7558,6 +7590,7 @@
         "file": "src/string/prefix-function.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/prefix_function",
         "sha256": "2ee65f86edad83ab7180bb39d2e85ee5abe18601e954e02a14f5190b871803ed",
         "title": "Prefix function. Knuth–Morris–Pratt algorithm",
         "url": "https://cp-algorithms.com/string/prefix-function.html"
@@ -7709,6 +7742,7 @@
         "file": "src/string/z-function.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/z_function",
         "sha256": "ffcebd38db34f02c6e79aefaf860cf0a8be93817b6fc01819086b8f2c5a5b167",
         "title": "Z-function and its calculation",
         "url": "https://cp-algorithms.com/string/z-function.html"
@@ -8060,6 +8094,7 @@
         "file": "src/string/suffix-array.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/suffix_array",
         "sha256": null,
         "title": "Suffix Array",
         "url": "https://cp-algorithms.com/string/suffix-array.html"
@@ -8195,6 +8230,7 @@
         "file": "src/string/aho_corasick.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/aho_corasick",
         "sha256": null,
         "title": "Aho-Corasick algorithm",
         "url": "https://cp-algorithms.com/string/aho_corasick.html"
@@ -8298,6 +8334,7 @@
         "file": "src/string/suffix-tree-ukkonen.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/ukkonen",
         "sha256": null,
         "title": "Suffix Tree. Ukkonen's Algorithm",
         "url": "https://cp-algorithms.com/string/suffix-tree-ukkonen.html"
@@ -8481,6 +8518,7 @@
         "file": "src/string/suffix-automaton.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/suffix_automata",
         "sha256": "6a2640372afc19e1853017ceebcb8ceca99d1cc819987f35efc416c0406baa59",
         "title": "Suffix Automaton",
         "url": "https://cp-algorithms.com/string/suffix-automaton.html"
@@ -8584,6 +8622,7 @@
         "file": "src/string/lyndon_factorization.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/duval_algorithm",
         "sha256": "029d0ef4e2eff60e38275856d4486422b9a49c0e505d82be90afe2c20cfa796b",
         "title": "Lyndon factorization",
         "url": "https://cp-algorithms.com/string/lyndon_factorization.html"
@@ -8678,6 +8717,7 @@
         "file": "src/string/expression_parsing.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/expressions_parsing",
         "sha256": "91a18a38000428594f64176ca84083603e245362cb46688ab833e5966776f207",
         "title": "Expression parsing",
         "url": "https://cp-algorithms.com/string/expression_parsing.html"
@@ -8829,6 +8869,7 @@
         "file": "src/string/manacher.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/palindromes_count",
         "sha256": "48bd4219e61e8dff9cfe0147ecc42198642ac5637d57b5724badb6417805202c",
         "title": "Manacher's Algorithm - Finding all sub-palindromes in O(N)",
         "url": "https://cp-algorithms.com/string/manacher.html"
@@ -8923,6 +8964,7 @@
         "file": "src/string/main_lorentz.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/string_tandems",
         "sha256": null,
         "title": "Finding repetitions",
         "url": "https://cp-algorithms.com/string/main_lorentz.html"
@@ -9078,6 +9120,7 @@
         "file": "src/linear_algebra/linear-system-gauss.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/linear_systems_gauss",
         "sha256": "18a33f80251ba0a13dc865bd1ef4146c186b0aec53aadd0858b8d32328c706ed",
         "title": "Gauss & System of Linear Equations",
         "url": "https://cp-algorithms.com/linear_algebra/linear-system-gauss.html"
@@ -9177,6 +9220,7 @@
         "file": "src/linear_algebra/determinant-gauss.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/determinant_gauss",
         "sha256": "e523e523d15bed762cbfc8a974ad443068bab516bfeeaec6ea8f70867d5d5d32",
         "title": "Gauss & Determinant",
         "url": "https://cp-algorithms.com/linear_algebra/determinant-gauss.html"
@@ -9366,6 +9410,7 @@
         "file": "src/linear_algebra/rank-matrix.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/matrix_rank",
         "sha256": "4f5c592b07a77fd456fad7cd272ebb8a3780d4b4b64121bb2a5a1483cccb2cae",
         "title": "Rank of a matrix",
         "url": "https://cp-algorithms.com/linear_algebra/rank-matrix.html"
@@ -9460,6 +9505,7 @@
         "file": "src/algebra/factorial-divisors.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/factorial_divisors",
         "sha256": "5829b11afb6afb32ac581bfb3e39a1f5720463196a9b69c15cc36c0f9322f5ae",
         "title": "Finding Power of Factorial Divisor",
         "url": "https://cp-algorithms.com/algebra/factorial-divisors.html"
@@ -9691,6 +9737,7 @@
         "file": "src/combinatorics/binomial-coefficients.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/binomial_coeff",
         "sha256": "d26c773b247f768be7b47ce2adeb44134be0a026ea91da5a2c03735e654da4e2",
         "title": "Binomial Coefficients",
         "url": "https://cp-algorithms.com/combinatorics/binomial-coefficients.html"
@@ -9842,6 +9889,7 @@
         "file": "src/combinatorics/catalan-numbers.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/catalan_numbers",
         "sha256": "5050a9c6dd737fee46ac8ed1f18f9f627db34a91fc4101895551883d69aa7c2a",
         "title": "Catalan Numbers",
         "url": "https://cp-algorithms.com/combinatorics/catalan-numbers.html"
@@ -10089,6 +10137,7 @@
         "file": "src/combinatorics/inclusion-exclusion.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/inclusion_exclusion_principle",
         "sha256": null,
         "title": "The Inclusion-Exclusion Principle",
         "url": "https://cp-algorithms.com/combinatorics/inclusion-exclusion.html"
@@ -10296,6 +10345,7 @@
         "file": "src/combinatorics/burnside.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/burnside_polya",
         "sha256": null,
         "title": "Burnside's lemma / Pólya enumeration theorem",
         "url": "https://cp-algorithms.com/combinatorics/burnside.html"
@@ -10525,6 +10575,7 @@
         "file": "src/combinatorics/generating_combinations.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/generating_combinations",
         "sha256": "b883bba1d9009f77a8d1d4f20a717630357360cf6b709a33367738579eaca614",
         "title": "Generating all K-combinations",
         "url": "https://cp-algorithms.com/combinatorics/generating_combinations.html"
@@ -10619,6 +10670,7 @@
         "file": "src/combinatorics/bishops-on-chessboard.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bishops_arrangement",
         "sha256": null,
         "title": "Placing Bishops on a Chessboard",
         "url": "https://cp-algorithms.com/combinatorics/bishops-on-chessboard.html"
@@ -10713,6 +10765,7 @@
         "file": "src/combinatorics/bracket_sequences.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bracket_sequences",
         "sha256": "d918c766b5f6ea3c67cec69604ed20f4dcfe28d4c37dea660b36d3a823c3a600",
         "title": "Balanced bracket sequences",
         "url": "https://cp-algorithms.com/combinatorics/bracket_sequences.html"
@@ -10807,6 +10860,7 @@
         "file": "src/combinatorics/counting_labeled_graphs.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/counting_connected_graphs",
         "sha256": "d913d08d3577996382f213b9d935fcda9f707f6f994b23a572f422a2037a2e20",
         "title": "Counting labeled graphs",
         "url": "https://cp-algorithms.com/combinatorics/counting_labeled_graphs.html"
@@ -11253,6 +11307,7 @@
         "file": "src/num_methods/ternary_search.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/ternary_search",
         "sha256": "383970eb3d8f7119d2324d0ee62711a674c58580220aeecaa6c7dc7a9932926b",
         "title": "Ternary Search",
         "url": "https://cp-algorithms.com/num_methods/ternary_search.html"
@@ -11352,6 +11407,7 @@
         "file": "src/num_methods/roots_newton.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/roots_newton",
         "sha256": "affa40fab7b4255074e9d667a19c9b75aff4167408ce9ed5218f1364ab7426a1",
         "title": "Newton's method for finding roots",
         "url": "https://cp-algorithms.com/num_methods/roots_newton.html"
@@ -11566,6 +11622,7 @@
         "file": "src/num_methods/simpson-integration.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/simpson_integrating",
         "sha256": "7d69edeef197b84d593d2989a6711d15f343a5ed8dac2bcc4869a9f5ed77e6b4",
         "title": "Integration by Simpson's formula",
         "url": "https://cp-algorithms.com/num_methods/simpson-integration.html"
@@ -11746,6 +11803,7 @@
         "file": "src/geometry/segment-to-line.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/segment_to_line",
         "sha256": null,
         "title": "Finding the equation of a line for a segment",
         "url": "https://cp-algorithms.com/geometry/segment-to-line.html"
@@ -11836,6 +11894,7 @@
         "file": "src/geometry/lines-intersection.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/lines_intersection",
         "sha256": null,
         "title": "Intersection Point of Lines",
         "url": "https://cp-algorithms.com/geometry/lines-intersection.html"
@@ -11926,6 +11985,7 @@
         "file": "src/geometry/check-segments-intersection.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/segments_intersection_checking",
         "sha256": null,
         "title": "Check if two segments intersect",
         "url": "https://cp-algorithms.com/geometry/check-segments-intersection.html"
@@ -12016,6 +12076,7 @@
         "file": "src/geometry/segments-intersection.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/segments_intersection",
         "sha256": null,
         "title": "Intersection of Segments",
         "url": "https://cp-algorithms.com/geometry/segments-intersection.html"
@@ -12106,6 +12167,7 @@
         "file": "src/geometry/circle-line-intersection.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/circle_line_intersection",
         "sha256": null,
         "title": "Circle-Line Intersection",
         "url": "https://cp-algorithms.com/geometry/circle-line-intersection.html"
@@ -12196,6 +12258,7 @@
         "file": "src/geometry/circle-circle-intersection.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/circles_intersection",
         "sha256": null,
         "title": "Circle-Circle Intersection",
         "url": "https://cp-algorithms.com/geometry/circle-circle-intersection.html"
@@ -12295,6 +12358,7 @@
         "file": "src/geometry/tangents-to-two-circles.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/circle_tangents",
         "sha256": null,
         "title": "Common tangents to two circles",
         "url": "https://cp-algorithms.com/geometry/tangents-to-two-circles.html"
@@ -12385,6 +12449,7 @@
         "file": "src/geometry/length-of-segments-union.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/length_of_segments_union",
         "sha256": null,
         "title": "Length of the union of segments",
         "url": "https://cp-algorithms.com/geometry/length-of-segments-union.html"
@@ -12484,6 +12549,7 @@
         "file": "src/geometry/oriented-triangle-area.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/oriented_area",
         "sha256": null,
         "title": "Oriented area of a triangle",
         "url": "https://cp-algorithms.com/geometry/oriented-triangle-area.html"
@@ -12574,6 +12640,7 @@
         "file": "src/geometry/area-of-simple-polygon.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/polygon_area",
         "sha256": null,
         "title": "Area of simple polygon",
         "url": "https://cp-algorithms.com/geometry/area-of-simple-polygon.html"
@@ -12664,6 +12731,7 @@
         "file": "src/geometry/point-in-convex-polygon.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/pt_in_polygon",
         "sha256": null,
         "title": "Check if points belong to the convex polygon in O(log N)",
         "url": "https://cp-algorithms.com/geometry/point-in-convex-polygon.html"
@@ -12869,6 +12937,7 @@
         "file": "src/geometry/picks-theorem.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/pick_grid_theorem",
         "sha256": null,
         "title": "Pick's Theorem - area of lattice polygons",
         "url": "https://cp-algorithms.com/geometry/picks-theorem.html"
@@ -13090,6 +13159,7 @@
         "file": "src/geometry/convex-hull.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/convex_hull_graham",
         "sha256": null,
         "title": "Convex hull construction",
         "url": "https://cp-algorithms.com/geometry/convex-hull.html"
@@ -13270,6 +13340,7 @@
         "file": "src/geometry/intersecting_segments.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/intersecting_segments",
         "sha256": null,
         "title": "Search for a pair of intersecting segments",
         "url": "https://cp-algorithms.com/geometry/intersecting_segments.html"
@@ -13360,6 +13431,7 @@
         "file": "src/geometry/planar.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/facets",
         "sha256": null,
         "title": "Finding faces of a planar graph",
         "url": "https://cp-algorithms.com/geometry/planar.html"
@@ -13540,6 +13612,7 @@
         "file": "src/geometry/nearest_points.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/nearest_points",
         "sha256": null,
         "title": "Finding the nearest pair of points",
         "url": "https://cp-algorithms.com/geometry/nearest_points.html"
@@ -13655,6 +13728,7 @@
         "file": "src/geometry/delaunay.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/voronoi_diagram_2d_n4",
         "sha256": null,
         "title": "Delaunay triangulation and Voronoi diagram",
         "url": "https://cp-algorithms.com/geometry/delaunay.html"
@@ -13762,6 +13836,7 @@
         "file": "src/geometry/vertical_decomposition.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/triangles_union",
         "sha256": null,
         "title": "Vertical decomposition",
         "url": "https://cp-algorithms.com/geometry/vertical_decomposition.html"
@@ -14385,6 +14460,7 @@
         "file": "src/graph/breadth-first-search.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bfs",
         "sha256": null,
         "title": "Breadth-first search",
         "url": "https://cp-algorithms.com/graph/breadth-first-search.html"
@@ -14792,6 +14868,7 @@
         "file": "src/graph/depth-first-search.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/dfs",
         "sha256": null,
         "title": "Depth First Search",
         "url": "https://cp-algorithms.com/graph/depth-first-search.html"
@@ -14911,6 +14988,7 @@
         "file": "src/graph/search-for-connected-components.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/connected_components",
         "sha256": null,
         "title": "Search for connected components in a graph",
         "url": "https://cp-algorithms.com/graph/search-for-connected-components.html"
@@ -15094,6 +15172,7 @@
         "file": "src/graph/bridge-searching.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bridge_searching",
         "sha256": null,
         "title": "Finding bridges in a graph in O(N+M)",
         "url": "https://cp-algorithms.com/graph/bridge-searching.html"
@@ -15188,6 +15267,7 @@
         "file": "src/graph/bridge-searching-online.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bridge_searching_online",
         "sha256": null,
         "title": "Finding Bridges Online",
         "url": "https://cp-algorithms.com/graph/bridge-searching-online.html"
@@ -15315,6 +15395,7 @@
         "file": "src/graph/cutpoints.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/cutpoints",
         "sha256": null,
         "title": "Finding articulation points in a graph in O(N+M)",
         "url": "https://cp-algorithms.com/graph/cutpoints.html"
@@ -15570,6 +15651,7 @@
         "file": "src/graph/strongly-connected-components.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/strong_connected_components",
         "sha256": null,
         "title": "Strongly connected components and the condensation graph",
         "url": "https://cp-algorithms.com/graph/strongly-connected-components.html"
@@ -16072,6 +16154,7 @@
         "file": "src/graph/dijkstra.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/dijkstra",
         "sha256": null,
         "title": "Dijkstra Algorithm",
         "url": "https://cp-algorithms.com/graph/dijkstra.html"
@@ -16166,6 +16249,7 @@
         "file": "src/graph/dijkstra_sparse.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/dijkstra_sparse",
         "sha256": null,
         "title": "Dijkstra on sparse graphs",
         "url": "https://cp-algorithms.com/graph/dijkstra_sparse.html"
@@ -16285,6 +16369,7 @@
         "file": "src/graph/bellman_ford.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/ford_bellman",
         "sha256": null,
         "title": "Bellman-Ford Algorithm",
         "url": "https://cp-algorithms.com/graph/bellman_ford.html"
@@ -16554,6 +16639,7 @@
         "file": "src/graph/desopo_pape.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/levit_algorithm",
         "sha256": null,
         "title": "D´Esopo-Pape algorithm",
         "url": "https://cp-algorithms.com/graph/desopo_pape.html"
@@ -16865,6 +16951,7 @@
         "file": "src/graph/all-pair-shortest-path-floyd-warshall.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/floyd_warshall_algorithm",
         "sha256": null,
         "title": "Floyd-Warshall Algorithm",
         "url": "https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html"
@@ -16959,6 +17046,7 @@
         "file": "src/graph/fixed_length_paths.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/fixed_length_paths",
         "sha256": null,
         "title": "Number of paths of fixed length / Shortest paths of fixed length",
         "url": "https://cp-algorithms.com/graph/fixed_length_paths.html"
@@ -17053,6 +17141,7 @@
         "file": "src/graph/mst_prim.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/mst_prim",
         "sha256": null,
         "title": "Minimum spanning tree - Prim's algorithm",
         "url": "https://cp-algorithms.com/graph/mst_prim.html"
@@ -17372,6 +17461,7 @@
         "file": "src/graph/mst_kruskal.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/mst_kruskal",
         "sha256": null,
         "title": "Minimum spanning tree - Kruskal's algorithm",
         "url": "https://cp-algorithms.com/graph/mst_kruskal.html"
@@ -17466,6 +17556,7 @@
         "file": "src/graph/mst_kruskal_with_dsu.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/mst_kruskal_with_dsu",
         "sha256": null,
         "title": "Minimum spanning tree - Kruskal with Disjoint Set Union",
         "url": "https://cp-algorithms.com/graph/mst_kruskal_with_dsu.html"
@@ -17688,6 +17779,7 @@
         "file": "src/graph/kirchhoff-theorem.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/kirchhoff_theorem",
         "sha256": null,
         "title": "Kirchhoff's theorem. Finding the number of spanning trees",
         "url": "https://cp-algorithms.com/graph/kirchhoff-theorem.html"
@@ -17815,6 +17907,7 @@
         "file": "src/graph/pruefer_code.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/prufer_code_cayley_formula",
         "sha256": null,
         "title": "Prüfer code",
         "url": "https://cp-algorithms.com/graph/pruefer_code.html"
@@ -17934,6 +18027,7 @@
         "file": "src/graph/finding-cycle.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/finding_cycle",
         "sha256": null,
         "title": "Checking a graph for acyclicity and finding a cycle in O(M)",
         "url": "https://cp-algorithms.com/graph/finding-cycle.html"
@@ -18053,6 +18147,7 @@
         "file": "src/graph/finding-negative-cycle-in-graph.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/negative_cycle",
         "sha256": null,
         "title": "Finding a negative cycle in the graph",
         "url": "https://cp-algorithms.com/graph/finding-negative-cycle-in-graph.html"
@@ -18180,6 +18275,7 @@
         "file": "src/graph/euler_path.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/euler_path",
         "sha256": null,
         "title": "Finding the Eulerian path in O(M)",
         "url": "https://cp-algorithms.com/graph/euler_path.html"
@@ -18427,6 +18523,7 @@
         "file": "src/graph/lca.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/lca",
         "sha256": null,
         "title": "Lowest Common Ancestor - O(sqrt(N)) and O(log N) with O(N) preprocessing",
         "url": "https://cp-algorithms.com/graph/lca.html"
@@ -18546,6 +18643,7 @@
         "file": "src/graph/lca_binary_lifting.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/lca_simpler",
         "sha256": null,
         "title": "Lowest Common Ancestor - Binary Lifting",
         "url": "https://cp-algorithms.com/graph/lca_binary_lifting.html"
@@ -18640,6 +18738,7 @@
         "file": "src/graph/lca_farachcoltonbender.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/lca_linear",
         "sha256": null,
         "title": "Lowest Common Ancestor - Farach-Colton and Bender Algorithm",
         "url": "https://cp-algorithms.com/graph/lca_farachcoltonbender.html"
@@ -18734,6 +18833,7 @@
         "file": "src/graph/rmq_linear.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/rmq_linear",
         "sha256": null,
         "title": "Solve RMQ (Range Minimum Query) by finding LCA (Lowest Common Ancestor)",
         "url": "https://cp-algorithms.com/graph/rmq_linear.html"
@@ -18828,6 +18928,7 @@
         "file": "src/graph/lca_tarjan.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/lca_linear_offline",
         "sha256": null,
         "title": "Lowest Common Ancestor - Tarjan's off-line algorithm",
         "url": "https://cp-algorithms.com/graph/lca_tarjan.html"
@@ -18971,6 +19072,7 @@
         "file": "src/graph/edmonds_karp.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/edmonds_karp",
         "sha256": null,
         "title": "Maximum flow - Ford-Fulkerson and Edmonds-Karp",
         "url": "https://cp-algorithms.com/graph/edmonds_karp.html"
@@ -19065,6 +19167,7 @@
         "file": "src/graph/push-relabel.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/preflow_push",
         "sha256": null,
         "title": "Maximum flow - Push-relabel algorithm",
         "url": "https://cp-algorithms.com/graph/push-relabel.html"
@@ -19159,6 +19262,7 @@
         "file": "src/graph/push-relabel-faster.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/preflow_push_faster",
         "sha256": null,
         "title": "Maximum flow - Push-relabel method improved",
         "url": "https://cp-algorithms.com/graph/push-relabel-faster.html"
@@ -19262,6 +19366,7 @@
         "file": "src/graph/dinic.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/dinic",
         "sha256": null,
         "title": "Maximum flow - Dinic's algorithm",
         "url": "https://cp-algorithms.com/graph/dinic.html"
@@ -19450,6 +19555,7 @@
         "file": "src/graph/flow_with_demands.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/flow_with_limits",
         "sha256": null,
         "title": "Flows with demands",
         "url": "https://cp-algorithms.com/graph/flow_with_demands.html"
@@ -19569,6 +19675,7 @@
         "file": "src/graph/min_cost_flow.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/min_cost_flow",
         "sha256": null,
         "title": "Minimum-cost flow - Successive shortest path algorithm",
         "url": "https://cp-algorithms.com/graph/min_cost_flow.html"
@@ -19663,6 +19770,7 @@
         "file": "src/graph/Assignment-problem-min-flow.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/assignment_mincostflow",
         "sha256": null,
         "title": "Solving assignment problem using min-cost-flow",
         "url": "https://cp-algorithms.com/graph/Assignment-problem-min-flow.html"
@@ -19757,6 +19865,7 @@
         "file": "src/graph/stoer_wagner_mincut.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/stoer_wagner_mincut",
         "sha256": null,
         "title": "Minimum cut - Stoer-Wagner algorithm",
         "url": "https://cp-algorithms.com/graph/stoer_wagner_mincut.html"
@@ -19892,6 +20001,7 @@
         "file": "src/graph/bipartite-check.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/bipartite_checking",
         "sha256": null,
         "title": "Check whether a graph is bipartite",
         "url": "https://cp-algorithms.com/graph/bipartite-check.html"
@@ -20003,6 +20113,7 @@
         "file": "src/graph/kuhn_maximum_bipartite_matching.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/kuhn_matching",
         "sha256": null,
         "title": "Kuhn's Algorithm for Maximum Bipartite Matching",
         "url": "https://cp-algorithms.com/graph/kuhn_maximum_bipartite_matching.html"
@@ -20138,6 +20249,7 @@
         "file": "src/graph/hungarian-algorithm.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/assignment_hungary",
         "sha256": null,
         "title": "Hungarian algorithm for solving the assignment problem",
         "url": "https://cp-algorithms.com/graph/hungarian-algorithm.html"
@@ -20232,6 +20344,7 @@
         "file": "src/graph/topological-sort.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/topological_sort",
         "sha256": null,
         "title": "Topological Sorting",
         "url": "https://cp-algorithms.com/graph/topological-sort.html"
@@ -20420,6 +20533,7 @@
         "file": "src/graph/tree_painting.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/tree_painting",
         "sha256": null,
         "title": "Paint the edges of the tree",
         "url": "https://cp-algorithms.com/graph/tree_painting.html"
@@ -20579,6 +20693,7 @@
         "file": "src/graph/2SAT.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/2_sat",
         "sha256": null,
         "title": "2-SAT",
         "url": "https://cp-algorithms.com/graph/2SAT.html"
@@ -20730,6 +20845,7 @@
         "file": "src/graph/hld.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/heavy_light",
         "sha256": null,
         "title": "Heavy-light decomposition",
         "url": "https://cp-algorithms.com/graph/hld.html"
@@ -20988,6 +21104,7 @@
         "file": "src/sequences/rmq.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/rmq",
         "sha256": "4cc386d69177ae1a5e9dc11e2172b560e0b8730d785fec1a7599d6ccbe8151fd",
         "title": "RMQ task (Range Minimum Query - the smallest element in an interval)",
         "url": "https://cp-algorithms.com/sequences/rmq.html"
@@ -21078,6 +21195,7 @@
         "file": "src/others/maximum_average_segment.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/maximum_average_segment",
         "sha256": "52fde60fbfc2469a16e6c799add152f413a3fe23a0fe4eb3d49817491ef30ee8",
         "title": "Search the subsegment with the maximum/minimum sum",
         "url": "https://cp-algorithms.com/others/maximum_average_segment.html"
@@ -21185,6 +21303,7 @@
         "file": "src/sequences/k-th.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/kth_order_statistics",
         "sha256": "f3fd84da078ffb25b531e065c395b672bc6036926e245fc1d3b1b385abd5218a",
         "title": "K-th order statistic in O(N)",
         "url": "https://cp-algorithms.com/sequences/k-th.html"
@@ -21411,6 +21530,7 @@
         "file": "src/game_theory/games_on_graphs.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/games_on_graphs",
         "sha256": "8015a949d9f77637d7ecf32875ae8352698c63c6dd0049a8db834f921b8b83a9",
         "title": "Games on arbitrary graphs",
         "url": "https://cp-algorithms.com/game_theory/games_on_graphs.html"
@@ -21563,6 +21683,7 @@
         "file": "src/game_theory/sprague-grundy-nim.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/sprague_grundy",
         "sha256": "67efb1abe53750a5091a0543e649eb7a437f74714c924bf99cb712a0e92f4807",
         "title": "Sprague-Grundy theorem. Nim",
         "url": "https://cp-algorithms.com/game_theory/sprague-grundy-nim.html"
@@ -21653,6 +21774,7 @@
         "file": "src/schedules/schedule_one_machine.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/johnson_problem_1",
         "sha256": "100a8e3d70ccf01463515e94ae2745355e9c2a8f375b2ead3e4dbe9bec07f33f",
         "title": "Scheduling jobs on one machine",
         "url": "https://cp-algorithms.com/schedules/schedule_one_machine.html"
@@ -21743,6 +21865,7 @@
         "file": "src/schedules/schedule_two_machines.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/johnson_problem_2",
         "sha256": "032aee3e66f69e7595bb704505504490d008dd0853b01787599f0de695c457a6",
         "title": "Scheduling jobs on two machines",
         "url": "https://cp-algorithms.com/schedules/schedule_two_machines.html"
@@ -21833,6 +21956,7 @@
         "file": "src/schedules/schedule-with-completion-duration.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/schedule_with_completion_duration",
         "sha256": "71e3634dce1a3e3d263269a5b9c6a83857f30212812f81187ca3013da1f40f7c",
         "title": "Optimal schedule of jobs given their deadlines and durations",
         "url": "https://cp-algorithms.com/schedules/schedule-with-completion-duration.html"
@@ -22046,6 +22170,7 @@
         "file": "src/others/josephus_problem.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/joseph_problem",
         "sha256": "ef34ee9c6e6ba85e883f75c65997c4fe26db4ca0e0899aa38379f2605641dc5f",
         "title": "Josephus problem",
         "url": "https://cp-algorithms.com/others/josephus_problem.html"
@@ -22145,6 +22270,7 @@
         "file": "src/others/15-puzzle.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/15_puzzle",
         "sha256": "428bac404e5fed69f6976570813f3f1bf5f6502202c3be6e37c65c8810762c13",
         "title": "15 Puzzle Game: Existence Of The Solution",
         "url": "https://cp-algorithms.com/others/15-puzzle.html"
@@ -22235,6 +22361,7 @@
         "file": "src/others/stern_brocot_tree_farey_sequences.md",
         "license": "CC-BY-SA-4.0",
         "repo": "https://github.com/cp-algorithms/cp-algorithms",
+        "russian_url": "http://e-maxx.ru/algo/stern_brocot_farey",
         "sha256": "58023e292711c9ef3c7aabb7c37c7b1da0d1f6430187d42c27dd1f65883cf49c",
         "title": "The Stern-Brocot Tree and Farey Sequences",
         "url": "https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html"

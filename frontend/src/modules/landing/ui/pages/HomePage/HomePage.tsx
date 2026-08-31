@@ -33,7 +33,15 @@ const metricItems = [
   { key: 'practiceReferenceCount' as const, label: 'mashq havolasi' },
 ];
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  image: string;
+  telegram?: string;
+  telegramLabel?: string;
+};
+
+const teamMembers: readonly TeamMember[] = [
   {
     name: 'Asadullo Ganiev',
     role: 'Product Owner',
@@ -62,7 +70,17 @@ const teamMembers = [
     telegram: 'https://t.me/Ulugbek_AF',
     telegramLabel: '@Ulugbek_AF',
   },
-] as const;
+  {
+    name: 'Davlatbek Mirakilov',
+    role: 'Content Maker',
+    image: '/assets/team/davlatbek-mirakilov.jpg',
+  },
+  {
+    name: 'Nazarbek Baltabaev',
+    role: 'Developer',
+    image: '/assets/team/nazarbek-baltabaev.jpg',
+  },
+];
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -113,7 +131,7 @@ export default function HomePage() {
               </Typography>
             </Stack>
             <Typography component="h1" variant="h2" sx={{ mt: 2.5, maxWidth: 780 }}>
-              cp uz; - o‘zbek sport dasturchilari hamjamiyati
+              cp uz; o‘zbek sport dasturchilari hamjamiyati
             </Typography>
             <Typography
               variant="h6"
@@ -519,8 +537,8 @@ export default function HomePage() {
                   variant="body2"
                   sx={{ mt: 0.5, maxWidth: 800, color: 'inherit', opacity: 0.8 }}
                 >
-                  Kutubxonadagi {stats.articleCount || 'barcha'} maqola nashr qilingan.
-                  Hamjamiyat tekshiruvi va tuzatish takliflari doim ochiq.
+                  Kutubxonadagi {stats.articleCount || 'barcha'} maqola nashr qilingan. Hamjamiyat
+                  tekshiruvi va tuzatish takliflari doim ochiq.
                 </Typography>
               </Box>
               <Button
@@ -563,7 +581,7 @@ export default function HomePage() {
               gridTemplateColumns: {
                 xs: '1fr',
                 sm: 'repeat(2, minmax(0, 1fr))',
-                lg: 'repeat(4, minmax(0, 1fr))',
+                md: 'repeat(3, minmax(0, 1fr))',
               },
             }}
           >
@@ -589,33 +607,35 @@ export default function HomePage() {
                 <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
                   {member.role}
                 </Typography>
-                <Box
-                  component="a"
-                  href={member.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${member.name}ning Telegram sahifasi`}
-                  sx={{
-                    gap: 0.75,
-                    mt: 1.5,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    color: 'text.secondary',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    textDecoration: 'none',
-                    '&:hover': { color: 'primary.main' },
-                    '&:focus-visible': {
-                      color: 'primary.main',
-                      outline: '2px solid',
-                      outlineColor: 'primary.main',
-                      outlineOffset: 3,
-                    },
-                  }}
-                >
-                  <UiIcon icon="mingcute:telegram-line" width={18} />
-                  {member.telegramLabel}
-                </Box>
+                {member.telegram && member.telegramLabel && (
+                  <Box
+                    component="a"
+                    href={member.telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${member.name}ning Telegram sahifasi`}
+                    sx={{
+                      gap: 0.75,
+                      mt: 1.5,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      color: 'text.secondary',
+                      fontSize: '0.875rem',
+                      fontWeight: 500,
+                      textDecoration: 'none',
+                      '&:hover': { color: 'primary.main' },
+                      '&:focus-visible': {
+                        color: 'primary.main',
+                        outline: '2px solid',
+                        outlineColor: 'primary.main',
+                        outlineOffset: 3,
+                      },
+                    }}
+                  >
+                    <UiIcon icon="mingcute:telegram-line" width={18} />
+                    {member.telegramLabel}
+                  </Box>
+                )}
               </Box>
             ))}
           </Box>

@@ -171,11 +171,13 @@ class ArticleDetailSerializer(ArticleListSerializer):
     previous_article = serializers.SerializerMethodField()
     next_article = serializers.SerializerMethodField()
     review_state = serializers.SerializerMethodField()
+    russian_source_url = serializers.SerializerMethodField()
 
     class Meta(ArticleListSerializer.Meta):
         fields = ArticleListSerializer.Meta.fields + (
             "content",
             "source_url",
+            "russian_source_url",
             "source_repository",
             "source_path",
             "source_commit",
@@ -223,13 +225,17 @@ class ArticleDetailSerializer(ArticleListSerializer):
 
     def get_review_state(self, obj) -> dict:
         current = obj.review_records.filter(proposal__isnull=True, content_hash=obj.content_hash)
-        approved_stages = set(current.filter(decision="approved").values_list("stage", flat=True))
         latest = {
             stage: current.filter(stage=stage)
             .order_by("-created_at")
             .values("decision", "created_at")
             .first()
             for stage in ("technical", "language", "editorial")
+        }
+        approved_stages = {
+            stage
+            for stage in ("technical", "language")
+            if latest[stage] and latest[stage]["decision"] == "approved"
         }
         return {
             "technical_approved": "technical" in approved_stages,
@@ -238,6 +244,17 @@ class ArticleDetailSerializer(ArticleListSerializer):
             "content_hash": obj.content_hash,
             "latest": latest,
         }
+
+    def get_russian_source_url(self, obj) -> str | None:
+        source = obj.provenance.get("source") if isinstance(obj.provenance, dict) else None
+        if not isinstance(source, dict):
+            return None
+        value = source.get("russian_url")
+        return (
+            value
+            if isinstance(value, str) and value.startswith("http://e-maxx.ru/algo/")
+            else None
+        )
 
 
 class GlossaryTermListSerializer(serializers.ModelSerializer):

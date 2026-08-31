@@ -17,9 +17,7 @@ import { rootCategoryTitle, canonicalCategoryId } from '../../domain';
 type JsonRecord = Record<string, unknown>;
 
 export function record(value: unknown): JsonRecord {
-  return value && typeof value === 'object' && !Array.isArray(value)
-    ? (value as JsonRecord)
-    : {};
+  return value && typeof value === 'object' && !Array.isArray(value) ? (value as JsonRecord) : {};
 }
 
 function text(...values: unknown[]) {
@@ -77,7 +75,9 @@ function normalizeArticleLink(value: unknown): ArticleLink | null {
   const dto = record(value);
   if (!Object.keys(dto).length) return null;
   const category = record(dto.category);
-  const path = text(dto.canonical_path, dto.route).replace(/^\/+|\/+$/g, '').split('/');
+  const path = text(dto.canonical_path, dto.route)
+    .replace(/^\/+|\/+$/g, '')
+    .split('/');
   const markerIndex = Math.max(path.indexOf('algoritmlar'), path.indexOf('algo'));
   return {
     slug: text(path[path.length - 1]?.replace(/\.html$/i, ''), dto.leaf_slug, dto.slug),
@@ -110,9 +110,15 @@ export function normalizeArticle(value: unknown): LearningArticle {
   const routeValue = text(dto.canonical_path, dto.route, dto.public_path);
   const routeParts = routeValue.replace(/^\/+|\/+$/g, '').split('/');
   const canonicalIndex = Math.max(routeParts.indexOf('algoritmlar'), routeParts.indexOf('algo'));
-  const inferredCategory = canonicalIndex >= 0 ? routeParts[canonicalIndex + 1] : routeParts.length > 1 ? routeParts[0] : '';
+  const inferredCategory =
+    canonicalIndex >= 0
+      ? routeParts[canonicalIndex + 1]
+      : routeParts.length > 1
+        ? routeParts[0]
+        : '';
   const inferredSlug = routeParts[routeParts.length - 1]?.replace(/\.html$/i, '');
-  const id = typeof dto.id === 'number' || typeof dto.id === 'string' ? dto.id : text(dto.source_id);
+  const id =
+    typeof dto.id === 'number' || typeof dto.id === 'string' ? dto.id : text(dto.source_id);
   const nestedCategoryRoot = text(category.root_slug, category.slug).split('--')[0];
   const categoryId = canonicalCategoryId(
     text(
@@ -124,7 +130,12 @@ export function normalizeArticle(value: unknown): LearningArticle {
       'miscellaneous'
     )
   );
-  const slug = text(inferredSlug, dto.leaf_slug, String(id).split('--').slice(1).join('--'), dto.slug);
+  const slug = text(
+    inferredSlug,
+    dto.leaf_slug,
+    String(id).split('--').slice(1).join('--'),
+    dto.slug
+  );
   const tags = list(dto.tags)
     .map((item) => {
       const tag = record(item);
@@ -145,10 +156,18 @@ export function normalizeArticle(value: unknown): LearningArticle {
       );
     })
     .filter(Boolean);
-  const technical = text(review.technical, review.technical_status, dto.technical_review_status, 'pending');
-  const language = text(review.language, review.language_status, dto.language_review_status, 'pending');
+  const technical =
+    review.technical_approved === true
+      ? 'approved'
+      : text(review.technical, review.technical_status, dto.technical_review_status, 'pending');
+  const language =
+    review.language_approved === true
+      ? 'approved'
+      : text(review.language, review.language_status, dto.language_review_status, 'pending');
   const rawEditorialStatus = text(dto.status, dto.editorial_status).toLocaleLowerCase('uz');
-  const isPublished = rawEditorialStatus === 'published' || Boolean(review.is_published ?? dto.is_published ?? dto.published);
+  const isPublished =
+    rawEditorialStatus === 'published' ||
+    Boolean(review.is_published ?? dto.is_published ?? dto.published);
   const editorialStatus = isPublished
     ? 'published'
     : rawEditorialStatus === 'in_review' || rawEditorialStatus === 'technical_review'
@@ -163,7 +182,10 @@ export function normalizeArticle(value: unknown): LearningArticle {
     title: text(dto.title, dto.name, slug),
     summary: text(dto.summary, dto.description, dto.excerpt),
     categoryId,
-    category: rootCategoryTitle(categoryId, text(category.title, category.name, dto.category_name, categoryId)),
+    category: rootCategoryTitle(
+      categoryId,
+      text(category.title, category.name, dto.category_name, categoryId)
+    ),
     difficulty: difficulty(dto.difficulty ?? dto.level),
     readTime: Number(dto.estimated_reading_minutes ?? dto.read_time ?? 10),
     updatedAt: text(dto.updated_at, dto.modified_at, dto.date),
@@ -174,6 +196,8 @@ export function normalizeArticle(value: unknown): LearningArticle {
     publicPath: text(dto.public_path, dto.legacy_path) || undefined,
     route: text(dto.route, dto.canonical_path) || undefined,
     sourcePath: text(dto.source_path, dto.content_path) || undefined,
+    sourceUrl: text(dto.source_url) || undefined,
+    russianSourceUrl: text(dto.russian_source_url) || undefined,
     content: text(dto.content, dto.markdown, dto.body) || undefined,
     assetBaseUrl: resolveApiAssetUrl(text(dto.asset_base_url, dto.media_base_url)) || undefined,
     practiceReferences: list(dto.practice_references).map(normalizePractice),
@@ -213,7 +237,9 @@ export function normalizeCategory(value: unknown): LearningCategory {
 
 export function normalizeGlossaryTerm(value: unknown): GlossaryTerm {
   const dto = record(value);
-  const aliases = list(dto.aliases).map((item) => text(item)).filter(Boolean);
+  const aliases = list(dto.aliases)
+    .map((item) => text(item))
+    .filter(Boolean);
   return {
     term: text(dto.uzbek_term, dto.term, dto.title, dto.name),
     english: text(dto.english_term, dto.english, dto.original, list(dto.aliases)[0]),
