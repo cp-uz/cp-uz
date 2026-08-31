@@ -11,6 +11,15 @@
 *.json text eol=lf
 *.md text eol=lf
 
+# Canonical content checksums are byte-for-byte reproducible on Linux and
+# Windows. Binary media rules below override the content-wide LF policy.
+content/** text eol=lf
+content/**/*.png binary
+content/**/*.jpg binary
+content/**/*.jpeg binary
+content/**/*.gif binary
+content/**/*.webp binary
+
 *.png binary
 *.jpg binary
 *.jpeg binary
