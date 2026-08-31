@@ -154,3 +154,37 @@ class GuestUpgradeResponseSerializer(serializers.Serializer):
         help_text="Faqat shu javobda ko‘rsatiladigan, server yaratgan parol."
     )
     user = UserSummarySerializer()
+
+
+class AccountDeleteSerializer(serializers.Serializer):
+    confirmation = serializers.CharField(
+        max_length=20,
+        trim_whitespace=False,
+        help_text='Akkauntni o‘chirishni tasdiqlash uchun aynan "O‘CHIRISH" deb yuboring.',
+    )
+    password = serializers.CharField(
+        required=False,
+        allow_blank=False,
+        max_length=128,
+        trim_whitespace=False,
+        write_only=True,
+        style={"input_type": "password"},
+        help_text="Oddiy akkaunt uchun joriy parol majburiy; mehmon akkaunti uchun yuborilmaydi.",
+    )
+
+    def validate_confirmation(self, value):
+        if value != "O‘CHIRISH":
+            raise serializers.ValidationError('Tasdiqlash uchun aynan "O‘CHIRISH" deb yozing.')
+        return value
+
+    def validate(self, attrs):
+        user = self.context["request"].user
+        if user.is_guest:
+            return attrs
+
+        password = attrs.get("password")
+        if not password:
+            raise serializers.ValidationError({"password": ["Joriy parolni kiriting."]})
+        if not user.check_password(password):
+            raise serializers.ValidationError({"password": ["Joriy parol noto‘g‘ri."]})
+        return attrs

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Bookmark, GlossaryQuizScore, PersonalNote, ReadingProgress
+from .models import Bookmark, GlossaryQuizAnswer, GlossaryQuizScore, PersonalNote, ReadingProgress
 
 
 @admin.register(Bookmark)
@@ -41,3 +41,21 @@ class GlossaryQuizScoreAdmin(admin.ModelAdmin):
     )
     search_fields = ("user__username", "user__display_name")
     autocomplete_fields = ("user",)
+
+
+@admin.register(GlossaryQuizAnswer)
+class GlossaryQuizAnswerAdmin(admin.ModelAdmin):
+    list_display = ("user", "client_answer_id", "is_correct", "created_at")
+    list_filter = ("is_correct",)
+    search_fields = ("user__username", "client_answer_id")
+    autocomplete_fields = ("user",)
+    readonly_fields = ("user", "client_answer_id", "is_correct", "created_at")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

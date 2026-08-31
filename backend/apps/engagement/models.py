@@ -112,3 +112,28 @@ class GlossaryQuizScore(TimeStampedModel):
 
     def __str__(self) -> str:
         return f"{self.user}: {self.correct_answers}/{self.total_answers}"
+
+
+class GlossaryQuizAnswer(models.Model):
+    """A durable idempotency record for one client-side glossary quiz answer."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="glossary_quiz_answers",
+    )
+    client_answer_id = models.CharField(max_length=120)
+    is_correct = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("-created_at", "-id")
+        constraints = [
+            models.UniqueConstraint(
+                fields=("user", "client_answer_id"),
+                name="unique_user_quiz_answer",
+            )
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.user}: {self.client_answer_id}"

@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { authApi, getAuthSession, hasSavedGuestSession } from '../../../application';
+import { authApi, useAuthSession, hasSavedGuestSession } from '../../../application';
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function SignInPage() {
   const [pending, setPending] = useState<'login' | 'guest' | 'new-guest' | null>(null);
   const [error, setError] = useState('');
   const [guestResumeFailed, setGuestResumeFailed] = useState(false);
-  const existingSession = getAuthSession();
+  const existingSession = useAuthSession();
 
   const complete = () => navigate('/profil', { replace: true });
 
@@ -127,7 +127,7 @@ export default function SignInPage() {
               </Button>
             </Stack>
             <Typography component="h1" variant="h3">
-              cp.uz hisobiga kirish
+              cp.uz akkauntiga kirish
             </Typography>
             <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
               Saqlangan maqolalar, o‘qish holati va qaydlaringizni bir profil orqali davom ettiring.
@@ -146,7 +146,7 @@ export default function SignInPage() {
               >
                 {existingSession.user.isGuest
                   ? 'Mehmon sessiyasi saqlangan.'
-                  : `${existingSession.user.username} hisobi saqlangan.`}
+                  : `${existingSession.user.username} akkaunti saqlangan.`}
               </Alert>
             )}
 

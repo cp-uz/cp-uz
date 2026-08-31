@@ -5,11 +5,16 @@ import { UiIcon } from 'shared/ui/UiIcon';
 import { BrandLogo } from 'shared/ui/BrandLogo';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
-import { getAuthSession, GuestUpgradeDialog } from 'modules/auth';
 import { filterArticles, getArticlePath } from 'modules/learning/domain';
 import { useLocation, useNavigate, Link as RouterLink } from 'react-router';
 import { learningQueries as learningApi } from 'modules/learning/application';
 import { useSettingsContext, FONT_FAMILY_OPTIONS } from 'app/providers/settings';
+import {
+  getAuthSession,
+  logoutAuthSession,
+  GuestUpgradeDialog,
+  subscribeAuthSession,
+} from 'modules/auth';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -95,11 +100,13 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
+  useEffect(() => subscribeAuthSession((nextSession) => setSession(nextSession)), []);
+
   useEffect(() => {
     if (!identityAnchorEl) return undefined;
     const frame = window.requestAnimationFrame(() => {
       document
-        .querySelector<HTMLElement>('#guest-identity-menu [role="menuitem"]')
+        .querySelector<HTMLElement>('#profile-identity-menu [role="menuitem"]')
         ?.focus({ preventScroll: true });
     });
     return () => window.cancelAnimationFrame(frame);
@@ -121,6 +128,13 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
     const anchor = identityAnchorEl;
     setIdentityAnchorEl(null);
     window.requestAnimationFrame(() => anchor?.focus({ preventScroll: true }));
+  };
+
+  const logout = () => {
+    setIdentityAnchorEl(null);
+    setMobileOpen(false);
+    logoutAuthSession();
+    navigate('/', { replace: true });
   };
 
   const header = (
@@ -230,13 +244,13 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 <UiIcon icon="solar:bookmark-linear" width={20} />
               </IconButton>
             </Tooltip>
-            {session?.user.isGuest ? (
+            {session ? (
               <Button
-                id="guest-identity-button"
+                id="profile-identity-button"
                 variant="contained"
-                aria-label={`Mehmon profili: ${identityLabel}`}
+                aria-label={`${session.user.isGuest ? 'Mehmon profili' : 'Profil'}: ${identityLabel}`}
                 aria-haspopup="menu"
-                aria-controls={identityAnchorEl ? 'guest-identity-menu' : undefined}
+                aria-controls={identityAnchorEl ? 'profile-identity-menu' : undefined}
                 aria-expanded={identityAnchorEl ? 'true' : undefined}
                 onClick={(event) => setIdentityAnchorEl(event.currentTarget)}
                 startIcon={<UiIcon icon="solar:user-circle-linear" width={18} />}
@@ -248,18 +262,12 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             ) : (
               <Button
                 component={RouterLink}
-                to={session ? '/profil' : '/kirish'}
+                to="/kirish"
                 variant="contained"
-                aria-label={session ? `Profil: ${identityLabel}` : undefined}
-                startIcon={
-                  <UiIcon
-                    icon={session ? 'solar:user-circle-linear' : 'solar:login-2-linear'}
-                    width={18}
-                  />
-                }
+                startIcon={<UiIcon icon="solar:login-2-linear" width={18} />}
                 sx={{ display: { xs: 'none', md: 'inline-flex' } }}
               >
-                {session ? identityLabel : 'Kirish'}
+                Kirish
               </Button>
             )}
           </Stack>
@@ -441,7 +449,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
               })}
             >
               {'icon' in item && (
-                <ListItemIcon sx={{ minWidth: 40, color: 'inherit' }}>
+                <ListItemIcon sx={{ minWidth: 20, mr: 1.5, color: 'inherit' }}>
                   <UiIcon icon={item.icon} width={20} />
                 </ListItemIcon>
               )}
@@ -482,11 +490,22 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
           >
             {session ? identityLabel : 'Kirish'}
           </Button>
+          {session && (
+            <Button
+              fullWidth
+              color="inherit"
+              startIcon={<UiIcon icon="solar:logout-2-linear" width={18} />}
+              onClick={logout}
+              sx={{ mt: 1 }}
+            >
+              Akkauntdan chiqish
+            </Button>
+          )}
         </Box>
       </Drawer>
 
       <Menu
-        id="guest-identity-menu"
+        id="profile-identity-menu"
         autoFocus={false}
         disableAutoFocus
         disableEnforceFocus
@@ -495,26 +514,35 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
         anchorEl={identityAnchorEl}
         open={Boolean(identityAnchorEl)}
         onClose={closeIdentityMenu}
-        MenuListProps={{ 'aria-labelledby': 'guest-identity-button' }}
+        MenuListProps={{ 'aria-labelledby': 'profile-identity-button' }}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <MenuItem component={RouterLink} to="/profil" onClick={closeIdentityMenu}>
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
             <UiIcon icon="solar:user-circle-linear" width={19} />
           </ListItemIcon>
           <ListItemText primary="Mening profilim" />
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            closeIdentityMenu();
-            setGuestUpgradeOpen(true);
-          }}
-        >
-          <ListItemIcon>
-            <UiIcon icon="solar:user-plus-linear" width={19} />
+        {session?.user.isGuest && (
+          <MenuItem
+            onClick={() => {
+              closeIdentityMenu();
+              setGuestUpgradeOpen(true);
+            }}
+          >
+            <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
+              <UiIcon icon="solar:user-plus-linear" width={19} />
+            </ListItemIcon>
+            <ListItemText primary="Akkauntni saqlash" />
+          </MenuItem>
+        )}
+        <Divider />
+        <MenuItem onClick={logout}>
+          <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
+            <UiIcon icon="solar:logout-2-linear" width={19} />
           </ListItemIcon>
-          <ListItemText primary="Akkauntni saqlash" />
+          <ListItemText primary="Akkauntdan chiqish" />
         </MenuItem>
       </Menu>
 

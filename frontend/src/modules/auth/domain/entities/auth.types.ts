@@ -26,3 +26,8 @@ export type GuestUpgradeInput = {
   firstName?: string;
   lastName?: string;
 };
+
+export type AccountDeleteInput = {
+  confirmation: 'O‘CHIRISH';
+  password?: string;
+};

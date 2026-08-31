@@ -1,12 +1,14 @@
 import secrets
 import uuid
+from copy import copy
 
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import IntegrityError, transaction
 from django.utils import timezone
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.openapi import AutoSchema
+from drf_spectacular.utils import OpenApiResponse, extend_schema
 from rest_framework import generics, permissions, status
 from rest_framework.exceptions import (
     AuthenticationFailed,
@@ -18,10 +20,12 @@ from rest_framework.exceptions import (
 from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import GuestSession, User
 from .serializers import (
+    AccountDeleteSerializer,
     CpuzTokenObtainPairSerializer,
     GuestAuthResponseSerializer,
     GuestSessionRequestSerializer,
@@ -33,6 +37,18 @@ from .serializers import (
 
 INVALID_GUEST_HASH = make_password("invalid-guest-session-placeholder")
 UPGRADE_PASSWORD_ALPHABET = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%_-"
+
+
+class DeleteRequestBodySchema(AutoSchema):
+    """Document the explicit confirmation payload accepted by a DELETE operation."""
+
+    def _get_request_body(self, direction="request"):
+        if self.method != "DELETE":
+            return super()._get_request_body(direction)
+
+        request_schema = copy(self)
+        request_schema.method = "POST"
+        return AutoSchema._get_request_body(request_schema, direction)
 
 
 def _generate_one_time_password(user):
@@ -196,3 +212,26 @@ class CurrentUserView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+@extend_schema(
+    tags=["Account"],
+    request=AccountDeleteSerializer,
+    responses={
+        204: OpenApiResponse(
+            description="Akkaunt va unga tegishli barcha shaxsiy ma’lumotlar o‘chirildi."
+        )
+    },
+)
+class AccountDeleteView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    schema = DeleteRequestBodySchema()
+
+    def delete(self, request):
+        serializer = AccountDeleteSerializer(data=request.data, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        user = request.user
+        with transaction.atomic():
+            OutstandingToken.objects.filter(user_id=user.pk).delete()
+            user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

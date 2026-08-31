@@ -6,7 +6,12 @@ from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from apps.accounts.views import CpuzTokenObtainPairView, GuestSessionView, GuestUpgradeView
+from apps.accounts.views import (
+    AccountDeleteView,
+    CpuzTokenObtainPairView,
+    GuestSessionView,
+    GuestUpgradeView,
+)
 from config.health import health
 from config.seo import robots_txt
 from config.sitemaps import ArticleSitemap, CategorySitemap, StaticSitemap
@@ -29,6 +34,7 @@ urlpatterns = [
     path("api/v1/auth/login/", CpuzTokenObtainPairView.as_view(), name="login"),
     path("api/v1/auth/guest/", GuestSessionView.as_view(), name="guest-session"),
     path("api/v1/auth/guest/upgrade/", GuestUpgradeView.as_view(), name="guest-upgrade"),
+    path("api/v1/auth/account/", AccountDeleteView.as_view(), name="account-delete"),
     path("api/v1/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/v1/accounts/", include("apps.accounts.urls")),
     path("api/v1/glossary/", include("apps.engagement.quiz_urls")),

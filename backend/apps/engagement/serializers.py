@@ -121,6 +121,7 @@ class PersonalNoteSerializer(ArticleSlugWriteMixin, serializers.ModelSerializer)
 
 
 class GlossaryQuizSubmissionSerializer(serializers.Serializer):
+    client_answer_id = serializers.CharField(max_length=120, allow_blank=False)
     is_correct = serializers.BooleanField()
 
 
@@ -139,3 +140,4 @@ class GlossaryLeaderboardEntrySerializer(serializers.Serializer):
 class GlossaryQuizStateSerializer(serializers.Serializer):
     leaderboard = GlossaryLeaderboardEntrySerializer(many=True)
     personal = GlossaryLeaderboardEntrySerializer(allow_null=True)
+    participant_count = serializers.IntegerField(min_value=0)

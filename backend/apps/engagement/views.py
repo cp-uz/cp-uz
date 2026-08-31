@@ -6,7 +6,13 @@ from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
-from .models import Bookmark, GlossaryQuizScore, PersonalNote, ReadingProgress
+from .models import (
+    Bookmark,
+    GlossaryQuizAnswer,
+    GlossaryQuizScore,
+    PersonalNote,
+    ReadingProgress,
+)
 from .serializers import (
     BookmarkSerializer,
     GlossaryQuizStateSerializer,
@@ -110,16 +116,20 @@ def _leaderboard_entry(score, rank: int, current_user_id: int | None) -> dict:
 def _quiz_state_payload(request) -> dict:
     current_user_id = request.user.pk if request.user.is_authenticated else None
     scores = list(
-        GlossaryQuizScore.objects.select_related("user__guest_session").order_by(
-            "-correct_answers", "-best_streak", "total_answers", "updated_at", "id"
-        )
+        GlossaryQuizScore.objects.filter(total_answers__gt=0)
+        .select_related("user__guest_session")
+        .order_by("-correct_answers", "-best_streak", "total_answers", "updated_at", "id")
     )
     entries = [
         _leaderboard_entry(score, rank, current_user_id)
         for rank, score in enumerate(scores, 1)
     ]
     personal = next((entry for entry in entries if entry["is_current_user"]), None)
-    return {"leaderboard": entries[:3], "personal": personal}
+    return {
+        "leaderboard": entries[:3],
+        "personal": personal,
+        "participant_count": len(entries),
+    }
 
 
 @extend_schema(
@@ -147,7 +157,16 @@ class GlossaryQuizScoreView(APIView):
     def post(self, request):
         serializer = GlossaryQuizSubmissionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        client_answer_id = serializer.validated_data["client_answer_id"]
         is_correct = serializer.validated_data["is_correct"]
+
+        _, answer_created = GlossaryQuizAnswer.objects.get_or_create(
+            user=request.user,
+            client_answer_id=client_answer_id,
+            defaults={"is_correct": is_correct},
+        )
+        if not answer_created:
+            return Response(_quiz_state_payload(request))
 
         score, _ = GlossaryQuizScore.objects.select_for_update().get_or_create(
             user=request.user,

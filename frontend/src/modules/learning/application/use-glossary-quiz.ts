@@ -3,6 +3,7 @@ import type { GlossaryQuizStats } from './glossary-quiz';
 
 import { useMemo, useState, useCallback } from 'react';
 
+import { enqueueGlossaryScore } from './glossary-score-outbox';
 import {
   emptyQuizStats,
   updateQuizStats,
@@ -24,15 +25,16 @@ function migrateLegacyStats(): GlossaryQuizStats {
   try {
     const history = JSON.parse(localStorage.getItem(LEGACY_GLOSSARY_QUIZ_STORAGE_KEY) ?? '[]');
     if (!Array.isArray(history)) return emptyQuizStats();
-    const valid = history.filter((item) => (
-      item &&
-      typeof item === 'object' &&
-      Number.isInteger(item.correct) &&
-      Number.isInteger(item.total) &&
-      item.total > 0 &&
-      item.correct >= 0 &&
-      item.correct <= item.total
-    ));
+    const valid = history.filter(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        Number.isInteger(item.correct) &&
+        Number.isInteger(item.total) &&
+        item.total > 0 &&
+        item.correct >= 0 &&
+        item.correct <= item.total
+    );
     const stats = sanitizeQuizStats({
       attempts: valid.reduce((sum, item) => sum + item.total, 0),
       correct: valid.reduce((sum, item) => sum + item.correct, 0),
@@ -68,6 +70,22 @@ function randomSeed() {
   }
 }
 
+function answerId() {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = new Uint8Array(16);
+  try {
+    crypto.getRandomValues(bytes);
+  } catch {
+    for (let index = 0; index < bytes.length; index += 1) {
+      bytes[index] = Math.floor(Math.random() * 256);
+    }
+  }
+  bytes[6] = (bytes[6] % 16) + 64;
+  bytes[8] = (bytes[8] % 64) + 128;
+  const hex = Array.from(bytes, (value) => value.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
 export function useGlossaryQuiz(terms: GlossaryTerm[]) {
   const [seed, setSeed] = useState(randomSeed);
   const question = useMemo(
@@ -78,25 +96,30 @@ export function useGlossaryQuiz(terms: GlossaryTerm[]) {
   const [answered, setAnswered] = useState<boolean | null>(null);
   const [latestAnswer, setLatestAnswer] = useState<GlossaryQuizAnswer | null>(null);
 
-  const submit = useCallback((answer: string) => {
-    if (!question || answered !== null) return;
-    const isCorrect = isQuizAnswerCorrect(question, answer);
-    const updatedAt = new Date().toISOString();
-    const nextStats = updateQuizStats(stats, isCorrect, updatedAt);
-    setAnswered(isCorrect);
-    setStats(nextStats);
-    setLatestAnswer({
-      id: `${updatedAt}:${nextStats.attempts}`,
-      questionId: question.id,
-      isCorrect,
-      stats: nextStats,
-    });
-    try {
-      localStorage.setItem(GLOSSARY_QUIZ_STATS_STORAGE_KEY, JSON.stringify(nextStats));
-    } catch {
-      // The quiz remains usable when browser storage is unavailable.
-    }
-  }, [answered, question, stats]);
+  const submit = useCallback(
+    (answer: string) => {
+      if (!question || answered !== null) return;
+      const isCorrect = isQuizAnswerCorrect(question, answer);
+      const updatedAt = new Date().toISOString();
+      const nextStats = updateQuizStats(stats, isCorrect, updatedAt);
+      setAnswered(isCorrect);
+      setStats(nextStats);
+      const latest = {
+        id: answerId(),
+        questionId: question.id,
+        isCorrect,
+        stats: nextStats,
+      };
+      setLatestAnswer(latest);
+      enqueueGlossaryScore({ id: latest.id, isCorrect });
+      try {
+        localStorage.setItem(GLOSSARY_QUIZ_STATS_STORAGE_KEY, JSON.stringify(nextStats));
+      } catch {
+        // The quiz remains usable when browser storage is unavailable.
+      }
+    },
+    [answered, question, stats]
+  );
 
   const next = useCallback(() => {
     if (!question || answered === null) return;

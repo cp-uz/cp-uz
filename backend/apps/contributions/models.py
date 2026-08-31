@@ -82,7 +82,11 @@ class ReviewRecord(models.Model):
     decision = models.CharField(max_length=30, choices=Decision.choices)
     content_hash = models.CharField(max_length=64, db_index=True)
     reviewer = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="review_records"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="review_records",
     )
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -123,7 +127,7 @@ class ProposalStatusEvent(models.Model):
     )
     actor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name="proposal_status_events",

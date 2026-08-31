@@ -13,10 +13,14 @@ import {
 
 const AUTH_STORAGE_KEY = 'cpuz:auth-session';
 const GUEST_TOKEN_KEY = 'cpuz:guest-session-token';
+const AUTH_SESSION_CHANGE_EVENT = 'cpuz:auth-session-change';
 const AUTH_GET_CACHE_TTL_MS = 15_000;
 const authenticatedGetCache = new Map<string, { expiresAt: number; value: unknown }>();
 const authenticatedGetInFlight = new Map<string, Promise<unknown>>();
 let authenticatedDataRevision = 0;
+let volatileSession: AuthSession | null = null;
+let cachedSessionRaw: string | null | undefined;
+let cachedSession: AuthSession | null = null;
 
 function clearAuthenticatedRequestCache() {
   authenticatedDataRevision += 1;
@@ -24,10 +28,70 @@ function clearAuthenticatedRequestCache() {
   authenticatedGetInFlight.clear();
 }
 
+function storageGet(key: string) {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function storageSet(key: string, value: string) {
+  try {
+    if (typeof localStorage !== 'undefined') localStorage.setItem(key, value);
+  } catch {
+    // The in-memory session keeps authentication usable when storage is unavailable.
+  }
+}
+
+function storageRemove(key: string) {
+  try {
+    if (typeof localStorage !== 'undefined') localStorage.removeItem(key);
+  } catch {
+    // Storage can be blocked by browser privacy settings.
+  }
+}
+
+function isAuthSession(value: unknown): value is AuthSession {
+  const session = record(value);
+  const user = record(session.user);
+  return (
+    typeof session.access === 'string' &&
+    session.access.length > 0 &&
+    typeof session.refresh === 'string' &&
+    session.refresh.length > 0 &&
+    (typeof user.id === 'string' || typeof user.id === 'number') &&
+    typeof user.username === 'string' &&
+    user.username.length > 0 &&
+    typeof user.isGuest === 'boolean'
+  );
+}
+
+function notifySessionChanged() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(AUTH_SESSION_CHANGE_EVENT));
+  }
+}
+
 function persistSession(session: AuthSession) {
-  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(session));
-  if (session.sessionToken) localStorage.setItem(GUEST_TOKEN_KEY, session.sessionToken);
+  const serialized = JSON.stringify(session);
+  volatileSession = session;
+  cachedSessionRaw = serialized;
+  cachedSession = session;
+  storageSet(AUTH_STORAGE_KEY, serialized);
+  if (session.sessionToken) storageSet(GUEST_TOKEN_KEY, session.sessionToken);
   clearAuthenticatedRequestCache();
+  notifySessionChanged();
+}
+
+function clearPersistedSession(clearGuestCredential = false) {
+  storageRemove(AUTH_STORAGE_KEY);
+  if (clearGuestCredential) storageRemove(GUEST_TOKEN_KEY);
+  volatileSession = null;
+  cachedSessionRaw = null;
+  cachedSession = null;
+  clearAuthenticatedRequestCache();
+  notifySessionChanged();
 }
 
 function findErrorMessage(payload: unknown): string | undefined {
@@ -58,12 +122,33 @@ function errorMessage(payload: unknown, fallback: string) {
 }
 
 function getSession(): AuthSession | null {
+  const value = storageGet(AUTH_STORAGE_KEY);
+  if (value === null && volatileSession) return volatileSession;
+  if (value === cachedSessionRaw) return cachedSession;
+
   try {
-    const value = localStorage.getItem(AUTH_STORAGE_KEY);
-    return value ? (JSON.parse(value) as AuthSession) : null;
+    const parsed: unknown = value ? JSON.parse(value) : null;
+    if (parsed !== null && !isAuthSession(parsed)) throw new Error('Invalid stored session');
+    cachedSessionRaw = value;
+    cachedSession = parsed;
+    volatileSession = parsed;
+    return parsed;
   } catch {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
+    storageRemove(AUTH_STORAGE_KEY);
+    cachedSessionRaw = null;
+    cachedSession = null;
+    volatileSession = null;
     return null;
+  }
+}
+
+class AuthRequestError extends Error {
+  constructor(
+    message: string,
+    readonly status: number
+  ) {
+    super(message);
+    this.name = 'AuthRequestError';
   }
 }
 
@@ -75,9 +160,29 @@ async function post(path: string, body: Record<string, unknown>) {
   });
   const payload = (await response.json().catch(() => ({}))) as AuthPayload;
   if (!response.ok) {
-    throw new Error(errorMessage(payload, 'Kirish amalga oshmadi. Qayta urinib ko‘ring.'));
+    throw new AuthRequestError(
+      errorMessage(payload, 'Kirish amalga oshmadi. Qayta urinib ko‘ring.'),
+      response.status
+    );
   }
   return payload;
+}
+
+function isUnusableSavedGuestError(reason: unknown) {
+  return reason instanceof AuthRequestError && [400, 401, 403, 404].includes(reason.status);
+}
+
+async function requestGuestSession(savedToken?: string) {
+  return mapAuthPayloadToSession(
+    await post('/api/v1/auth/guest/', savedToken ? { session_token: savedToken } : {})
+  );
+}
+
+function persistGuestUnlessSessionWasEstablished(session: AuthSession) {
+  const establishedSession = getSession();
+  if (establishedSession) return establishedSession;
+  persistSession(session);
+  return session;
 }
 
 async function refreshSession(session: AuthSession) {
@@ -170,17 +275,37 @@ export const authRepository: AuthRepository = {
     return session;
   },
   async continueAsGuest() {
-    const savedToken = localStorage.getItem(GUEST_TOKEN_KEY);
-    const session = mapAuthPayloadToSession(
-      await post('/api/v1/auth/guest/', savedToken ? { session_token: savedToken } : {})
-    );
+    const savedToken = storageGet(GUEST_TOKEN_KEY) ?? undefined;
+    const session = await requestGuestSession(savedToken);
     persistSession(session);
     return session;
   },
   async startNewGuest() {
-    const session = mapAuthPayloadToSession(await post('/api/v1/auth/guest/', {}));
+    const session = await requestGuestSession();
     persistSession(session);
     return session;
+  },
+  async ensureSession() {
+    const existingSession = getSession();
+    if (existingSession) return existingSession;
+
+    const savedToken = storageGet(GUEST_TOKEN_KEY) ?? undefined;
+    if (savedToken) {
+      try {
+        const resumedSession = await requestGuestSession(savedToken);
+        return persistGuestUnlessSessionWasEstablished(resumedSession);
+      } catch (reason) {
+        const sessionEstablishedWhileResuming = getSession();
+        if (sessionEstablishedWhileResuming) return sessionEstablishedWhileResuming;
+        if (!isUnusableSavedGuestError(reason)) throw reason;
+        storageRemove(GUEST_TOKEN_KEY);
+      }
+    }
+
+    const sessionEstablishedBeforeCreation = getSession();
+    if (sessionEstablishedBeforeCreation) return sessionEstablishedBeforeCreation;
+    const createdSession = await requestGuestSession();
+    return persistGuestUnlessSessionWasEstablished(createdSession);
   },
   async upgradeGuest(input) {
     const result = mapGuestUpgradePayload(
@@ -189,14 +314,40 @@ export const authRepository: AuthRepository = {
         body: JSON.stringify(mapGuestUpgradeInput(input)),
       })
     );
-    localStorage.removeItem(GUEST_TOKEN_KEY);
+    storageRemove(GUEST_TOKEN_KEY);
     persistSession(result.session);
     return result;
   },
-  getSession,
-  clearSession: () => {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
-    clearAuthenticatedRequestCache();
+  async deleteAccount(input) {
+    await performAuthenticatedRequest<void>('/api/v1/auth/account/', {
+      method: 'DELETE',
+      body: JSON.stringify({
+        confirmation: input.confirmation,
+        ...(input.password ? { password: input.password } : {}),
+      }),
+    });
+    clearPersistedSession(true);
   },
-  hasSavedGuestSession: () => Boolean(localStorage.getItem(GUEST_TOKEN_KEY)),
+  getSession,
+  clearSession: () => clearPersistedSession(),
+  hasSavedGuestSession: () => Boolean(storageGet(GUEST_TOKEN_KEY)),
+  subscribeSession: (listener) => {
+    if (typeof window === 'undefined') return () => undefined;
+
+    const onSessionChange = () => listener(getSession());
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== null && event.key !== AUTH_STORAGE_KEY) return;
+      volatileSession = null;
+      cachedSessionRaw = undefined;
+      cachedSession = null;
+      listener(getSession());
+    };
+
+    window.addEventListener(AUTH_SESSION_CHANGE_EVENT, onSessionChange);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener(AUTH_SESSION_CHANGE_EVENT, onSessionChange);
+      window.removeEventListener('storage', onStorage);
+    };
+  },
 };

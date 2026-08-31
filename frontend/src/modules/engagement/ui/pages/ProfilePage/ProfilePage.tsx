@@ -3,23 +3,31 @@ import type { LearningArticle } from 'modules/learning/domain';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { useAsyncData } from 'shared/hooks';
-import { Link as RouterLink } from 'react-router';
-import { getAuthSession } from 'modules/auth/application';
+import { useState, useEffect } from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router';
+import { roadmapStages, getArticlePath } from 'modules/learning/domain';
+import { authApi, getAuthSession, subscribeAuthSession } from 'modules/auth/application';
 import {
-  roadmapStages,
-  getArticlePath,
-} from 'modules/learning/domain';
-import { learningQueries as learningApi } from 'modules/learning/application';
+  clearGlossaryQuizLocalData,
+  learningQueries as learningApi,
+} from 'modules/learning/application';
 
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
 import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
-import { useLocalStorageList } from '../../../application';
+import { useLocalStorageList, clearLocalEngagementData } from '../../../application';
 
 const roadmapSlugs = roadmapStages.flatMap((stage) => stage.articleSlugs);
 
@@ -32,7 +40,10 @@ function matchesRoadmap(article: LearningArticle) {
   const sourceSlug = sourceParts[sourceParts.length - 1];
 
   const normalize = (value?: string) =>
-    value?.toLocaleLowerCase('uz').replace(/\.html$/i, '').replace(/_/g, '-') ?? '';
+    value
+      ?.toLocaleLowerCase('uz')
+      .replace(/\.html$/i, '')
+      .replace(/_/g, '-') ?? '';
   const candidates = [article.sourceId, article.slug, publicSlug, routeSlug, sourceSlug].map(
     normalize
   );
@@ -74,7 +85,13 @@ function ReadingList({ items }: { items: LearningArticle[] }) {
 }
 
 export default function ProfilePage() {
-  const session = getAuthSession();
+  const navigate = useNavigate();
+  const [session, setSession] = useState(() => getAuthSession());
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState('');
+  const [deletePassword, setDeletePassword] = useState('');
+  const [deletePending, setDeletePending] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
   const { data: liveArticles } = useAsyncData(learningApi.listArticles, [], []);
   const completed = useLocalStorageList('cpuz:completed', []);
   const bookmarks = useLocalStorageList('cpuz:bookmarks', []);
@@ -96,6 +113,40 @@ export default function ProfilePage() {
       ? `Mehmon sessiyasi · ${session.user.username}`
       : `@${session.user.username}`
     : 'Mahalliy o‘qish holati';
+
+  useEffect(() => subscribeAuthSession(setSession), []);
+
+  const closeDelete = () => {
+    if (deletePending) return;
+    setDeleteOpen(false);
+    setDeleteConfirmation('');
+    setDeletePassword('');
+    setDeleteError('');
+  };
+
+  const deleteAccount = async () => {
+    if (
+      deleteConfirmation !== 'O‘CHIRISH' ||
+      (session && !session.user.isGuest && !deletePassword)
+    ) {
+      return;
+    }
+    setDeletePending(true);
+    setDeleteError('');
+    try {
+      await authApi.deleteAccount({
+        confirmation: 'O‘CHIRISH',
+        ...(deletePassword ? { password: deletePassword } : {}),
+      });
+      clearLocalEngagementData();
+      clearGlossaryQuizLocalData();
+      navigate('/', { replace: true });
+    } catch (reason) {
+      setDeleteError(reason instanceof Error ? reason.message : 'Akkauntni o‘chirib bo‘lmadi.');
+    } finally {
+      setDeletePending(false);
+    }
+  };
 
   return (
     <>
@@ -120,8 +171,8 @@ export default function ProfilePage() {
               O‘qish holati
             </Typography>
             <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
-              Sport dasturlash darsliklaridagi yakunlangan mavzular va saqlangan maqolalar
-              shu yerda ko‘rsatiladi.
+              Sport dasturlash darsliklaridagi yakunlangan mavzular va saqlangan maqolalar shu yerda
+              ko‘rsatiladi.
             </Typography>
           </Box>
           <Button
@@ -129,7 +180,10 @@ export default function ProfilePage() {
             to="/kirish"
             color="inherit"
             startIcon={
-              <UiIcon icon={session ? 'solar:settings-linear' : 'solar:login-2-linear'} width={19} />
+              <UiIcon
+                icon={session ? 'solar:settings-linear' : 'solar:login-2-linear'}
+                width={19}
+              />
             }
             sx={{ flexShrink: 0 }}
           >
@@ -152,8 +206,7 @@ export default function ProfilePage() {
               <Box>
                 <Typography variant="h5">Yo‘l xaritasi</Typography>
                 <Typography variant="body2" sx={{ mt: 0.75, color: 'text.secondary' }}>
-                  {completedRoadmapCount} / {roadmapArticles.length} ta asosiy darslik
-                  yakunlangan
+                  {completedRoadmapCount} / {roadmapArticles.length} ta asosiy darslik yakunlangan
                 </Typography>
               </Box>
               <Typography variant="h4">{progress}%</Typography>
@@ -168,21 +221,24 @@ export default function ProfilePage() {
           <Box sx={{ pl: { md: 5 }, borderLeft: { md: 1 }, borderColor: { md: 'divider' } }}>
             <Stack direction="row" spacing={1.5} alignItems="flex-start">
               <Box sx={{ color: 'primary.main', display: 'flex', mt: 0.25 }}>
-                <UiIcon icon={session ? 'solar:user-check-linear' : 'solar:cloud-linear'} width={23} />
+                <UiIcon
+                  icon={session ? 'solar:user-check-linear' : 'solar:cloud-linear'}
+                  width={23}
+                />
               </Box>
               <Box>
                 <Typography variant="subtitle1">
                   {session
                     ? session.user.isGuest
                       ? 'Mehmon sessiyasi faol'
-                      : 'Hisobga kirgansiz'
-                    : 'Hisobga kirmagansiz'}
+                      : 'Akkauntga kirgansiz'
+                    : 'Akkauntga kirmagansiz'}
                 </Typography>
                 <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
                   {session
                     ? session.user.isGuest
                       ? `Mehmon sessiyasi ${session.user.username} nomi bilan saqlangan.`
-                      : `O‘qish holati @${session.user.username} hisobida saqlanmoqda.`
+                      : `O‘qish holati @${session.user.username} akkauntida saqlanmoqda.`
                     : 'Hozirgi holat faqat shu brauzerning mahalliy xotirasida saqlanmoqda.'}
                 </Typography>
                 <Typography variant="body2" sx={{ mt: 0.75, color: 'text.secondary' }}>
@@ -278,7 +334,96 @@ export default function ProfilePage() {
             )}
           </Box>
         </Box>
+
+        {session && (
+          <Box
+            component="section"
+            aria-labelledby="delete-account-title"
+            sx={{ pt: { xs: 7, md: 9 } }}
+          >
+            <Divider sx={{ mb: { xs: 4, md: 5 } }} />
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              alignItems={{ sm: 'center' }}
+              justifyContent="space-between"
+            >
+              <Box sx={{ maxWidth: 680 }}>
+                <Typography id="delete-account-title" variant="h5">
+                  Akkauntni butunlay o‘chirish
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+                  Profil, o‘qish holati, saqlangan maqolalar, shaxsiy qaydlar va mini test
+                  natijalari qayta tiklab bo‘lmaydigan tarzda o‘chiriladi.
+                </Typography>
+              </Box>
+              <Button
+                color="error"
+                startIcon={<UiIcon icon="solar:trash-bin-trash-linear" width={19} />}
+                onClick={() => setDeleteOpen(true)}
+                sx={{ flexShrink: 0 }}
+              >
+                Akkauntni o‘chirish
+              </Button>
+            </Stack>
+          </Box>
+        )}
       </Container>
+
+      <Dialog open={deleteOpen} onClose={closeDelete} fullWidth maxWidth="xs">
+        <DialogTitle>Akkauntni butunlay o‘chirish</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Bu amalni bekor qilib bo‘lmaydi. Tasdiqlash uchun quyidagi maydonga
+            <strong> O‘CHIRISH</strong> deb yozing.
+          </Typography>
+          <TextField
+            autoFocus
+            fullWidth
+            label="Tasdiqlash"
+            value={deleteConfirmation}
+            onChange={(event) => setDeleteConfirmation(event.target.value)}
+            disabled={deletePending}
+            autoComplete="off"
+            sx={{ mt: 2.5 }}
+          />
+          {session && !session.user.isGuest && (
+            <TextField
+              fullWidth
+              type="password"
+              label="Joriy parol"
+              value={deletePassword}
+              onChange={(event) => setDeletePassword(event.target.value)}
+              disabled={deletePending}
+              autoComplete="current-password"
+              sx={{ mt: 2 }}
+            />
+          )}
+          {deleteError && (
+            <Alert severity="error" sx={{ mt: 2 }}>
+              {deleteError}
+            </Alert>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button color="inherit" onClick={closeDelete} disabled={deletePending}>
+            Bekor qilish
+          </Button>
+          <Button
+            color="error"
+            variant="contained"
+            disabled={
+              deleteConfirmation !== 'O‘CHIRISH' ||
+              Boolean(session && !session.user.isGuest && !deletePassword) ||
+              deletePending
+            }
+            onClick={() => void deleteAccount()}
+            startIcon={deletePending ? <CircularProgress size={17} color="inherit" /> : undefined}
+          >
+            Butunlay o‘chirish
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
