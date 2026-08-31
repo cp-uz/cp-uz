@@ -18,7 +18,7 @@ function setMeta(selector: string, attribute: 'name' | 'property', value: string
 
 export function Seo({ title, description, path = '' }: SeoProps) {
   useEffect(() => {
-    const fullTitle = title.includes('cp.uz') ? title : `${title} — cp.uz`;
+    const fullTitle = title.includes('cp.uz') || title.startsWith('cp uz;') ? title : `${title} — cp.uz`;
     const url = `https://cp.uz${path}`;
     document.title = fullTitle;
     setMeta('meta[name="description"]', 'name', 'description', description);

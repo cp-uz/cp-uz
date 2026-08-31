@@ -7,24 +7,6 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
-  db:
-    image: postgres:17-alpine
-    restart: unless-stopped
-    logging: *default-logging
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-cpuz}
-      POSTGRES_USER: ${POSTGRES_USER:-cpuz}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cpuz} -d ${POSTGRES_DB:-cpuz}"]
-      interval: 5s
-      timeout: 5s
-      retries: 20
-    networks:
-      - cpuz_internal
-
   redis:
     image: redis:7.4-alpine
     restart: unless-stopped
@@ -49,14 +31,13 @@ services:
       - .env
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.production
-      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/db.sqlite3}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/1}
     depends_on:
-      db:
-        condition: service_healthy
       redis:
         condition: service_healthy
     volumes:
+      - sqlite_data:/app/data
       - static_data:/app/staticfiles
       - media_data:/app/media
       - ./content:/app/content:ro
@@ -75,6 +56,8 @@ services:
       dockerfile: deploy/frontend.Dockerfile
       args:
         VITE_API_URL: /api/v1
+        HTTP_PROXY: ${NPM_PROXY_URL:-}
+        HTTPS_PROXY: ${NPM_PROXY_URL:-}
     restart: unless-stopped
     logging: *default-logging
     depends_on:
@@ -94,7 +77,7 @@ services:
       - cpuz_internal
 
 volumes:
-  postgres_data:
+  sqlite_data:
   static_data:
   media_data:
 

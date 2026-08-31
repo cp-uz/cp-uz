@@ -5,7 +5,7 @@ Production topology keeps the shared host Nginx and its existing Let's Encrypt c
 ```text
 Internet → host Nginx :443 → 127.0.0.1:18181 → cpuz frontend Nginx
                                                 ├─ React static files
-                                                └─ /api + /admin → Django/Gunicorn → PostgreSQL
+                                                └─ /api + /admin → Django/Gunicorn → SQLite
 ```
 
 Only `cp.uz` and `www.cp.uz` are changed. The host Nginx source is `/home/nginx-non-kep.conf`; unrelated server blocks and all unrelated Docker projects remain outside this release.
@@ -13,7 +13,7 @@ Only `cp.uz` and `www.cp.uz` are changed. The host Nginx source is `/home/nginx-
 ## Release invariants
 
 1. Application files live at exactly `/home/cp_uz` and secrets live only in `/home/cp_uz/.env` with mode `0600`.
-2. Compose publishes exactly `127.0.0.1:18181`; PostgreSQL, Redis and Gunicorn have no host port.
+2. Compose publishes exactly `127.0.0.1:18181`; Redis and Gunicorn have no host port, and the SQLite file is stored only in the persistent `cpuz_sqlite_data` volume.
 3. Every container and both local HTTP health routes must pass before host Nginx changes.
 4. Only the exact TLS block containing `server_name cp.uz www.cp.uz;` may be replaced, and `nginx -t` must pass before reload.
 5. The homepage, frontend health route and Django health route must all pass through local TLS before legacy cleanup.
@@ -23,14 +23,21 @@ The generic HTTP-to-HTTPS server block already present in `/home/nginx-non-kep.c
 
 ## Environment
 
-Copy `.env.example` to `/home/cp_uz/.env`, replace both placeholders, then keep the file root-only. Generate independent URL-safe values; this avoids both URL encoding mistakes in `DATABASE_URL` and Compose interpolation surprises:
+Copy `.env.example` to `/home/cp_uz/.env`, replace the secret-key placeholder, then keep the file root-only:
 
 ```bash
 python3 -c 'import secrets; print(secrets.token_urlsafe(48))'
 chmod 0600 /home/cp_uz/.env
 ```
 
-`POSTGRES_PASSWORD` must match the password embedded in `DATABASE_URL`. Do not change `CPUZ_BIND_ADDRESS`, `CPUZ_HTTP_PORT`, `DJANGO_SETTINGS_MODULE`, database host or Redis host from their checked-in production values.
+`DATABASE_URL` must remain `sqlite:////app/data/db.sqlite3`; this path is backed by the `cpuz_sqlite_data` named volume and survives container replacement. Do not change `CPUZ_BIND_ADDRESS`, `CPUZ_HTTP_PORT`, `DJANGO_SETTINGS_MODULE`, the database path or Redis host from their checked-in production values.
+
+When the npm registry is reachable only through a proxy, set `NPM_PROXY_URL`
+in the same root-only `.env` file. Compose passes it to the frontend build as
+Docker's predefined `HTTP_PROXY` and `HTTPS_PROXY` build arguments. The
+Dockerfile deliberately does not declare or persist those arguments, so proxy
+credentials do not become an image layer or `docker history` entry. Leave the
+value empty when no proxy is needed.
 
 ## Initial release
 
@@ -57,7 +64,7 @@ cd /home/cp_uz
 bash deploy/release-on-server.sh
 ```
 
-The release performs environment validation, saves the current shared Nginx file, backs up an existing cpuz PostgreSQL database on later runs, builds and waits for Compose health, imports the canonical 163-article snapshot idempotently, switches only the cp.uz TLS block, runs HTTPS smoke tests, and then removes the two exact legacy paths. Rollback artifacts are stored in a timestamped root-only directory under `/root/cpuz-rollbacks/`.
+The release performs environment validation, saves the current shared Nginx file, creates a transactionally consistent backup of an existing SQLite database on later runs, builds and waits for Compose health, imports the canonical 163-article snapshot idempotently, switches only the cp.uz TLS block, runs HTTPS smoke tests, and then removes the two exact legacy paths. Rollback artifacts are stored in a timestamped root-only directory under `/root/cpuz-rollbacks/`.
 
 No Docker command is part of the local developer workflow; local Django and Vite runs are documented in the root README.
 
@@ -97,4 +104,10 @@ nginx -t
 systemctl reload nginx
 ```
 
-If `postgres.dump` exists, it is a custom-format `pg_dump` captured before that release's migrations. Database restoration is intentionally a separate operator action because it overwrites current application data; inspect the target volume and stop writes before using `pg_restore`.
+If `sqlite.sqlite3` exists, it is an online SQLite backup captured before that
+release's migrations and verified with `PRAGMA quick_check`. Database
+restoration is intentionally a separate operator action because it overwrites
+current application data. Stop `frontend` and `web`, preserve the current
+volume first, replace `/app/data/db.sqlite3` in `cpuz_sqlite_data` with the
+backup, remove any stale `db.sqlite3-wal` and `db.sqlite3-shm` files, then start
+Compose and repeat the health checks.

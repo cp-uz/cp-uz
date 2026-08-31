@@ -1,7 +1,7 @@
 # CP.UZ content pipeline
 
-These scripts migrate the learning material only. They do not create a problem
-bank, judge, contest, or training subsystem.
+These scripts synchronize, validate, and export the Uzbek learning material
+translated and adapted from cp-algorithms sources.
 
 Requirements: Python 3.11+ and `PyYAML>=6,<7`.
 
@@ -50,10 +50,9 @@ python scripts/review_readiness.py --apply \
 
 Apply mode is all-or-nothing and records the gate version, content hash, pinned
 source commit, actor, and timestamp in append-only `review_history`. A `ready`
-publication value means the automated import/render evidence passed and maps to
-Django `in_review`; it does **not** create a technical or language approval and
-does not publish an article. Only current human approvals for both stages may
-produce Django `published` status.
+publication value means the automated import/render evidence passed; the
+production importer publishes that lesson while preserving technical and
+language review metadata as separate editorial provenance.
 
 `content/exports/articles.v1.json` is deterministic for a given snapshot. Each
 entry includes the Markdown body, body/document SHA-256, source revision and

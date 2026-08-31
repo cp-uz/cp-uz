@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ ./
 COPY deploy/backend-entrypoint.sh /usr/local/bin/cpuz-entrypoint
-RUN chmod +x /usr/local/bin/cpuz-entrypoint \
-    && mkdir -p /app/staticfiles /app/media \
+RUN chmod 0755 /usr/local/bin/cpuz-entrypoint \
+    && mkdir -p /app/data /app/staticfiles /app/media \
     && chown -R cpuz:cpuz /app
 
 USER cpuz

@@ -1,3 +1,5 @@
+import os
+
 from django.core.exceptions import ImproperlyConfigured
 
 from .base import *  # noqa: F403
@@ -10,6 +12,18 @@ if len(SECRET_KEY) < 50:
     raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set to a strong production value")
 if not os.getenv("DATABASE_URL"):  # noqa: F405
     raise ImproperlyConfigured("DATABASE_URL must be set in production")
+
+# Production deliberately uses one persistent SQLite database. A generous busy
+# timeout and WAL mode make short concurrent writes from Gunicorn workers wait
+# instead of failing immediately with "database is locked".
+if DATABASES["default"]["ENGINE"] != "django.db.backends.sqlite3":  # noqa: F405
+    raise ImproperlyConfigured("Production DATABASE_URL must use SQLite")
+DATABASES["default"]["CONN_MAX_AGE"] = 0  # noqa: F405
+DATABASES["default"]["OPTIONS"] = {  # noqa: F405
+    "timeout": int(os.getenv("SQLITE_BUSY_TIMEOUT_SECONDS", "30")),
+    "transaction_mode": "IMMEDIATE",
+    "init_command": "PRAGMA journal_mode=WAL; PRAGMA synchronous=NORMAL;",
+}
 
 SECURE_SSL_REDIRECT = env_bool("SECURE_SSL_REDIRECT", True)  # noqa: F405
 SESSION_COOKIE_SECURE = True

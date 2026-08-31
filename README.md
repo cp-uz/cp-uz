@@ -2,9 +2,11 @@
 
 `cp.uz` — sport dasturlash algoritmlarini o‘zbek tilida tizimli o‘rganish uchun ochiq bilim platformasi.
 
-Platformada darsliklar katalogi, prerequisite-safe yo‘l xaritasi, atamalar lug‘ati, maqola readeri, shaxsiy progress, qaydlar va bookmarklar mavjud. Mashq havolalari tashqi platformalarga olib boradi; loyiha judge, contest, submission yoki alohida masalalar bankini o‘z ichiga olmaydi.
+Platformada darsliklar katalogi, prerequisite-safe yo‘l xaritasi, atamalar lug‘ati, maqola readeri, shaxsiy progress, qaydlar va bookmarklar mavjud. Har bir darslik oxirida mavzuni mustahkamlash uchun saralangan tashqi mashq havolalari beriladi.
 
-Canonical snapshot hozir 163 ta to‘liq o‘zbekcha maqola, 885 ta strukturalangan tashqi mashq havolasi va inglizcha termin asosida A–Z ni to‘liq qamragan 174 atamani saqlaydi. Maqolalarning tahririyat belgilagan darajalari 58 ta boshlang‘ich, 67 ta o‘rta va 38 ta yuqori maqolaga taqsimlangan. Automated readiness kontentning texnik va til bo‘yicha inson tasdig‘ini anglatmaydi; ichki review holati public nashr statusidan alohida saqlanadi.
+Maqolalar [cp-algorithms](https://cp-algorithms.com/) materiallari asosida o‘zbek tiliga tarjima va mahalliy o‘quvchi uchun adaptatsiya qilingan. Avvalgi o‘zbekcha tarjimalar [cp-uz/algo](https://github.com/cp-uz/algo) snapshotidan migratsiya qilingan; canonical kontent har bir maqolaning upstream manbasi va pinned revisionini saqlaydi.
+
+Canonical snapshot hozir 163 ta to‘liq o‘zbekcha maqola, 885 ta strukturalangan tashqi mashq havolasi va inglizcha termin asosida A–Z ni to‘liq qamragan 174 atamani saqlaydi. Maqolalarning tahririyat belgilagan darajalari 58 ta boshlang‘ich, 67 ta o‘rta va 38 ta yuqori maqolaga taqsimlangan; barcha maqolalar importda nashr qilingan holatga o‘tadi.
 
 ## Repository arxitekturasi
 
@@ -104,7 +106,7 @@ Remote tomonga faqat `deploy <40-hex-sha>` yuboriladi; server SSH kaliti forced-
 
 ## Production
 
-Docker faqat production release uchun ishlatiladi. Compose tashqi tarmoqqa faqat loopback’dagi application portini chiqaradi; PostgreSQL, Redis va Gunicorn host portlariga ochilmaydi. Server talablari, health gate, Nginx almashinuvi va rollback tartibi [deploy/README.md](deploy/README.md) da yozilgan.
+Docker faqat production release uchun ishlatiladi. Compose tashqi tarmoqqa faqat loopback’dagi application portini chiqaradi; persistent SQLite bazasi va media fayllari Docker volume’larda saqlanadi, Redis hamda Gunicorn host portlariga ochilmaydi. Server talablari, health gate, Nginx almashinuvi va rollback tartibi [deploy/README.md](deploy/README.md) da yozilgan.
 
 ## Hamkorlik va siyosatlar
 

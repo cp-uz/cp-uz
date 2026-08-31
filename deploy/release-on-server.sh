@@ -28,7 +28,7 @@ fi
 
 cd "${APP_DIR}"
 
-for required in .env compose.yaml content/exports/articles.v1.json deploy/nginx-host-cpuz.conf deploy/replace_cpuz_nginx_block.py; do
+for required in .env compose.yaml content/exports/articles.v1.json deploy/backup_sqlite.py deploy/nginx-host-cpuz.conf deploy/replace_cpuz_nginx_block.py deploy/validate_production_env.py; do
   if [[ ! -f "${required}" ]]; then
     echo "Missing ${APP_DIR}/${required}" >&2
     exit 1
@@ -52,110 +52,47 @@ if [[ -e "${LOCAL_FIXTURE}" ]]; then
   chmod 0600 "${LOCAL_FIXTURE}"
 fi
 
-python3 - <<'PY'
-from pathlib import Path
-from urllib.parse import unquote, urlsplit
-import re
-
-
-path = Path(".env")
-values: dict[str, str] = {}
-for line_number, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-    line = raw_line.strip()
-    if not line or line.startswith("#"):
-        continue
-    if "=" not in line:
-        raise SystemExit(f"Invalid .env line {line_number}: expected KEY=VALUE")
-    key, value = line.split("=", 1)
-    key = key.strip()
-    value = value.strip()
-    if not re.fullmatch(r"[A-Z][A-Z0-9_]*", key):
-        raise SystemExit(f"Invalid .env key on line {line_number}")
-    if key in values:
-        raise SystemExit(f"Duplicate .env key: {key}")
-    if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
-        value = value[1:-1]
-    values[key] = value
-
-
-def required(name: str) -> str:
-    value = values.get(name, "")
-    if not value:
-        raise SystemExit(f"Missing required .env value: {name}")
-    if "CHANGE_ME" in value:
-        raise SystemExit(f"Placeholder remains in .env: {name}")
-    return value
-
-
-if required("DJANGO_SETTINGS_MODULE") != "config.settings.production":
-    raise SystemExit("DJANGO_SETTINGS_MODULE must be config.settings.production")
-if not re.fullmatch(r"[A-Za-z0-9_-]{50,}", required("DJANGO_SECRET_KEY")):
-    raise SystemExit("DJANGO_SECRET_KEY must be a 50+ character URL-safe value")
-if required("CPUZ_BIND_ADDRESS") != "127.0.0.1":
-    raise SystemExit("CPUZ_BIND_ADDRESS must remain 127.0.0.1 on the shared host")
-if required("CPUZ_HTTP_PORT") != "18181":
-    raise SystemExit("CPUZ_HTTP_PORT must remain 18181")
-
-allowed_hosts = {item.strip() for item in required("DJANGO_ALLOWED_HOSTS").split(",")}
-if not {"cp.uz", "www.cp.uz"}.issubset(allowed_hosts):
-    raise SystemExit("DJANGO_ALLOWED_HOSTS must contain cp.uz and www.cp.uz")
-trusted_origins = {
-    item.strip() for item in required("DJANGO_CSRF_TRUSTED_ORIGINS").split(",")
-}
-if not {"https://cp.uz", "https://www.cp.uz"}.issubset(trusted_origins):
-    raise SystemExit("DJANGO_CSRF_TRUSTED_ORIGINS is missing a production origin")
-
-db_name = required("POSTGRES_DB")
-db_user = required("POSTGRES_USER")
-db_password = required("POSTGRES_PASSWORD")
-if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_-]*", db_name):
-    raise SystemExit("POSTGRES_DB must be a simple identifier")
-if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_-]*", db_user):
-    raise SystemExit("POSTGRES_USER must be a simple identifier")
-if not re.fullmatch(r"[A-Za-z0-9_-]{32,}", db_password):
-    raise SystemExit("POSTGRES_PASSWORD must be a 32+ character URL-safe value")
-
-database_url = urlsplit(required("DATABASE_URL"))
-if database_url.scheme not in {"postgres", "postgresql"}:
-    raise SystemExit("DATABASE_URL must use the postgresql scheme")
-if database_url.hostname != "db" or database_url.port != 5432:
-    raise SystemExit("DATABASE_URL must target db:5432 inside Compose")
-if unquote(database_url.username or "") != db_user:
-    raise SystemExit("DATABASE_URL user does not match POSTGRES_USER")
-if unquote(database_url.password or "") != db_password:
-    raise SystemExit("DATABASE_URL password does not match POSTGRES_PASSWORD")
-if unquote(database_url.path.lstrip("/")) != db_name:
-    raise SystemExit("DATABASE_URL database does not match POSTGRES_DB")
-if required("REDIS_URL") != "redis://redis:6379/1":
-    raise SystemExit("REDIS_URL must target the internal redis service")
-PY
+python3 deploy/validate_production_env.py .env
 
 install -d -m 0700 "${ROLLBACK_DIR}"
 cp -a "${HOST_NGINX_CONFIG}" "${ROLLBACK_DIR}/nginx-non-kep.conf"
 
 docker compose config --quiet
 
-# Preserve the database before a later release can apply new migrations. The
-# volume may exist even when its previous container is stopped.
-if docker volume inspect cpuz_postgres_data >/dev/null 2>&1; then
-  if ! docker compose up -d --wait --wait-timeout 120 db; then
-    docker compose logs --tail=150 db
-    echo "Existing PostgreSQL volume could not be started for backup." >&2
+# Preserve the persistent SQLite database before a later release applies new
+# migrations. SQLite's online backup API produces a transactionally consistent
+# file even while the current web container is serving reads and writes.
+if docker volume inspect cpuz_sqlite_data >/dev/null 2>&1; then
+  web_container="$(docker compose ps -q web | head -n 1)"
+  if [[ -z "${web_container}" ]]; then
+    echo "SQLite volume exists without a running cpuz web container; refusing an unbacked release." >&2
     exit 1
   fi
-  docker compose exec -T db sh -ec \
-    'exec pg_dump --format=custom --username "$POSTGRES_USER" --dbname "$POSTGRES_DB"' \
-    >"${ROLLBACK_DIR}/postgres.dump"
-  if [[ ! -s "${ROLLBACK_DIR}/postgres.dump" ]]; then
-    echo "PostgreSQL backup is empty; refusing release." >&2
+  sqlite_staged_backup="/app/data/.cpuz-pre-release-${RELEASE_STAMP}.sqlite3"
+  docker compose exec -T web python - \
+    /app/data/db.sqlite3 "${sqlite_staged_backup}" \
+    <deploy/backup_sqlite.py
+  if ! docker cp \
+    "${web_container}:${sqlite_staged_backup}" \
+    "${ROLLBACK_DIR}/sqlite.sqlite3"; then
+    docker compose exec -T web python -c \
+      "from pathlib import Path; Path('${sqlite_staged_backup}').unlink(missing_ok=True)"
+    echo "Could not copy the SQLite backup out of the persistent volume." >&2
     exit 1
   fi
+  docker compose exec -T web python -c \
+    "from pathlib import Path; Path('${sqlite_staged_backup}').unlink()"
+  if [[ ! -s "${ROLLBACK_DIR}/sqlite.sqlite3" ]]; then
+    echo "SQLite backup is empty; refusing release." >&2
+    exit 1
+  fi
+  chmod 0600 "${ROLLBACK_DIR}/sqlite.sqlite3"
 fi
 
 docker compose build --pull
 if ! docker compose up -d --remove-orphans --wait --wait-timeout 180; then
   docker compose ps
-  docker compose logs --tail=150 db redis web frontend
+  docker compose logs --tail=150 redis web frontend
   echo "New cp.uz containers did not become healthy; host Nginx is unchanged." >&2
   exit 1
 fi

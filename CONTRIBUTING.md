@@ -1,6 +1,6 @@
 # Hissa qo‘shish
 
-cp.uz sport dasturlash algoritmlarini o‘zbek tilida o‘rgatuvchi, learning-only ochiq platformadir. Judge, contest, submission yoki alohida masalalar banki bu loyiha doirasiga kirmaydi; darslikdagi mashqlar tashqi platformalarga havola qiladi.
+cp.uz sport dasturlash algoritmlarini o‘zbek tilida o‘rgatuvchi ochiq bilim platformasidir. Maqolalar cp-algorithms materiallari asosida tarjima va adaptatsiya qilinadi; darslik oxiridagi saralangan havolalar mavzuni amalda mustahkamlashga yordam beradi.
 
 Ishtirok etishdan oldin [Code of Conduct](CODE_OF_CONDUCT.md) va xavfsizlik muammolari uchun [Security Policy](SECURITY.md) bilan tanishing.
 
