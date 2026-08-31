@@ -92,7 +92,7 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title="cp uz; - o‘zbek sport dasturchilari hamjamiyati"
+        title="cp uz; o‘zbek sport dasturchilari hamjamiyati"
         description="Sport dasturlash algoritmlarini o‘zbek tilida o‘rganish uchun ochiq tekshiruvdagi bilim ombori."
       />
 
