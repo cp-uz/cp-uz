@@ -105,48 +105,86 @@ function ParticipantContent({
       {platformAccounts.length > 0 && (
         <Box sx={{ mt: 3 }}>
           <Typography variant="subtitle2">Platformalar</Typography>
-          <Stack direction="row" flexWrap="wrap" gap={0.75} sx={{ mt: 1 }}>
+          <Box
+            sx={{
+              mt: 1,
+              gap: 1,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            }}
+          >
             {platformAccounts.map((account) => {
               const platform = PLATFORM_ASSETS[account.platform];
               return (
-                <Tooltip key={account.id} title={platform.label} arrow>
-                  <Link
-                    href={account.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    underline="none"
-                    aria-label={`${platform.label}: ${account.handle}`}
+                <Link
+                  key={account.id}
+                  href={account.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  underline="none"
+                  aria-label={`${platform.label}: ${account.handle}`}
+                  sx={{
+                    p: 1.25,
+                    gap: 1,
+                    minWidth: 0,
+                    minHeight: 64,
+                    display: 'grid',
+                    alignItems: 'center',
+                    color: 'text.primary',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    borderRadius: 1.5,
+                    bgcolor: 'background.paper',
+                    gridTemplateColumns: '32px minmax(0, 1fr) 18px',
+                    transition: (theme) =>
+                      theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
+                    '&:hover': {
+                      borderColor: 'primary.main',
+                      bgcolor: 'action.hover',
+                      boxShadow: (theme) => `0 0 0 1px ${theme.palette.primary.main}`,
+                    },
+                  }}
+                >
+                  <Box
                     sx={{
-                      py: 0.625,
-                      px: 1,
-                      gap: 0.75,
-                      display: 'inline-flex',
-                      color: 'text.primary',
-                      alignItems: 'center',
-                      border: '1px solid',
-                      borderColor: 'divider',
-                      borderRadius: 99,
-                      bgcolor: 'background.paper',
-                      '&:hover': { borderColor: 'primary.main', bgcolor: 'action.hover' },
+                      width: 32,
+                      height: 32,
+                      display: 'grid',
+                      borderRadius: 1,
+                      placeItems: 'center',
+                      bgcolor: 'background.neutral',
                     }}
                   >
                     <Box
                       component="img"
                       src={platform.src}
                       alt=""
-                      sx={{ width: 20, height: 20, objectFit: 'contain', flexShrink: 0 }}
+                      sx={{ width: 24, height: 24, objectFit: 'contain' }}
                     />
-                    <Typography variant="body2" noWrap sx={{ maxWidth: 150, fontWeight: 600 }}>
+                  </Box>
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography
+                      variant="caption"
+                      noWrap
+                      sx={{ display: 'block', color: 'text.secondary' }}
+                    >
+                      {platform.label}
+                    </Typography>
+                    <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
                       @{account.handle}
                     </Typography>
-                    {account.verified && (
+                  </Box>
+                  {account.verified ? (
+                    <Tooltip title="Tasdiqlangan akkaunt" arrow>
                       <UiIcon icon="solar:verified-check-bold" width={14} color="primary.main" />
-                    )}
-                  </Link>
-                </Tooltip>
+                    </Tooltip>
+                  ) : (
+                    <Box aria-hidden sx={{ width: 14 }} />
+                  )}
+                </Link>
               );
             })}
-          </Stack>
+          </Box>
         </Box>
       )}
 
