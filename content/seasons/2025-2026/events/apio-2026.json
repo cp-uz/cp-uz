@@ -1,0 +1,153 @@
+{
+  "code": "G5",
+  "slug": "apio-2026",
+  "title": "Osiyo-Tinch okeani informatika olimpiadasi — APIO 2026",
+  "short_title": "APIO 2026",
+  "summary": "Tayvan mezbonligida onlayn tarzda o‘tkazilgan APIO; O‘zbekiston 1 kumush va 2 bronza oldi.",
+  "description": "APIO 2026 9–10-may kunlari Tayvan mezbonligida onlayn o‘tkazildi. Har bir ishtirokchi besh soatlik algoritmik musobaqada qatnashdi; mamlakat bo‘yicha eng yaxshi olti rasmiy natija medal uchun hisoblanadi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-05-09",
+  "end_date": "2026-05-10",
+  "date_label": "9–10-may, 2026",
+  "timezone": "Asia/Taipei",
+  "location": "Tayvan mezbonligi; O‘zbekistonda onlayn",
+  "venue": "",
+  "mode": "online",
+  "platform": "APIO 2026 onlayn baholash tizimi",
+  "organizer": "APIO 2026 tashkiliy qo‘mitasi va milliy delegatsiyalar",
+  "eligibility": "Milliy delegatsiya tomonidan rasmiy ishtirokchi sifatida ro‘yxatga olingan o‘quvchilar.",
+  "is_featured": true,
+  "order": 180,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 20,
+      "node_style": "final",
+      "label": "G5"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "APIO 2026 mezbon sayti",
+      "url": "https://www.apio2026.ntnu.tw",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "APIO 2026 rasmiy reytingi",
+      "url": "https://www.apio2026.ntnu.tw/ranking",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning APIO medallari",
+      "url": "https://olympcenter.uz/uz/olympiads/mintaqaviy",
+      "is_official": true,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "APIO 2026 mezbon sayti",
+      "url": "https://www.apio2026.ntnu.tw",
+      "publisher": "National Taiwan Normal University",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "APIO 2026 rasmiy reytingi",
+      "url": "https://www.apio2026.ntnu.tw/ranking",
+      "publisher": "APIO 2026 tashkiliy qo‘mitasi, National Taiwan Normal University",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "O‘zbekistonning barcha olti rasmiy ishtirokchisi, o‘rinlari, ballari va medal holati shu jadvaldan olindi."
+    },
+    {
+      "type": "official",
+      "title": "O‘zbekistonning APIO bo‘yicha rasmiy medal statistikasi",
+      "url": "https://olympcenter.uz/uz/olympiads/mintaqaviy",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2026-yil uchun 1 kumush va 2 bronza, jami 3 medalni tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "G5:participant:rayxona-sanakulova",
+      "participant": "rayxona-sanakulova",
+      "rank": 36,
+      "score": "113.0",
+      "score_label": "A: 13.0 · B: 0.0 · C: 100",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 1
+    },
+    {
+      "key": "G5:participant:jahonali-xaydaraliyev",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 60,
+      "score": "83.0",
+      "score_label": "A: 24.0 · B: 30.0 · C: 29",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 2
+    },
+    {
+      "key": "G5:participant:timur-kadirbergenov",
+      "participant": "timur-kadirbergenov",
+      "rank": 75,
+      "score": "71.22",
+      "score_label": "A: 13.0 · B: 37.22 · C: 21",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 3
+    },
+    {
+      "key": "G5:participant:ulugbek-raxmatullayev",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 94,
+      "score": "60.0",
+      "score_label": "A: 13.0 · B: 0.0 · C: 47",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 4
+    },
+    {
+      "key": "G5:participant:jahongirshoh-avazxonov",
+      "participant": "jahongirshoh-avazxonov",
+      "rank": 106,
+      "score": "48.5",
+      "score_label": "A: 15.5 · B: 18.0 · C: 15",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 5
+    },
+    {
+      "key": "G5:participant:oysha-mirzatillayeva",
+      "participant": "oysha-mirzatillayeva",
+      "rank": 109,
+      "score": "47.0",
+      "score_label": "A: 15.0 · B: 32.0 · C: 0",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://www.apio2026.ntnu.tw/ranking",
+      "order": 6
+    }
+  ]
+}

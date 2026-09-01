@@ -1,0 +1,72 @@
+{
+  "code": "13",
+  "slug": "al-xorazmiy-2026-maktab-bosqichi",
+  "title": "Al-Xorazmiy olimpiadasi — maktab bosqichi",
+  "short_title": "Al-Xorazmiy maktab bosqichi",
+  "summary": "7–8-sinflar uchun Al-Xorazmiy aniq va tabiiy fanlar olimpiadasining boshlang‘ich tuguni.",
+  "description": "Al-Xorazmiy olimpiadasining maktab bosqichi ta’lim muassasalari kesimida 2025-yil 11–22-dekabr oralig‘ida o‘tkazildi. Hududiy reja-grafik umumiy oynani, maktablarning rasmiy postlari esa shu oraliqdagi alohida kunlarni tasdiqlaydi.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-12-11",
+  "end_date": "2025-12-22",
+  "date_label": "11–22-dekabr, 2025; aniq kun maktab reja-grafigiga bog‘liq",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston maktablari",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "7–8-sinf o‘quvchilari.",
+  "grade_min": 7,
+  "grade_max": 8,
+  "is_featured": false,
+  "order": 90,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 10,
+      "node_style": "default",
+      "label": "13"
+    }
+  ],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "Al-Xorazmiy maktab bosqichi hududiy reja-grafigi",
+      "url": "https://www.scribd.com/document/969917858/33-Maktab-Al-Xorazmiy-Olimpiadasi-Maktab-Bosqichi",
+      "is_official": false,
+      "order": 10
+    },
+    {
+      "type": "announcement",
+      "title": "Qarshi Prezident maktabidagi maktab bosqichi",
+      "url": "https://t.me/s/pmqarshi/1418",
+      "is_official": true,
+      "order": 20
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "Al-Xorazmiy maktab bosqichi 11–22-dekabr reja-grafigi",
+      "url": "https://www.scribd.com/document/969917858/33-Maktab-Al-Xorazmiy-Olimpiadasi-Maktab-Bosqichi",
+      "publisher": "Buxoro tuman maktabgacha va maktab ta’limi bo‘limi hujjati nusxasi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Hududiy reja-grafik 2025–2026 maktab bosqichining 11–22-dekabr oynasini va maktablar kesimidagi kunlarni ko‘rsatadi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "Qarshi Prezident maktabida Al-Xorazmiy maktab bosqichi",
+      "url": "https://t.me/s/pmqarshi/1418",
+      "publisher": "Qarshi shahridagi Prezident maktabi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Maktab bosqichi 15-dekabr kuni o‘tkazilganini tasdiqlovchi ta’lim muassasasining rasmiy posti."
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,44 @@
+{
+  "code": "14",
+  "slug": "khimio-2027-ozbekiston-saralashi",
+  "title": "Al-Xorazmiy xalqaro olimpiadasiga saralash — I bosqich",
+  "short_title": "Al-Xorazmiy saralash I",
+  "summary": "KhIMIO 2027 uchun O‘zbekiston informatika terma jamoasi nomzodlarining I saralash bosqichi.",
+  "description": "2027 nashrining saralash sanasi, kvotasi va formati rasmiy e’lon qilinmagan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 200,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 40,
+      "node_style": "default",
+      "label": "14"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "KhIMIO rasmiy sayti",
+      "url": "https://www.khimio.uz/",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2027 saralash e’loni kutilmoqda."
+    }
+  ],
+  "results": []
+}

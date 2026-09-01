@@ -1,0 +1,69 @@
+{
+  "code": "10",
+  "slug": "egoi-2026-hududiy-bosqich",
+  "title": "EGOI yo‘li — shahar/hududiy bosqich",
+  "short_title": "EGOI hududiy bosqich",
+  "summary": "Qizlar informatika yo‘nalishining hududiy saralash tuguni.",
+  "description": "Qizlar informatika olimpiadasining hududiy bosqichi 2025-yil 29-noyabrda respublikaning barcha hududlarida o‘tkazildi. Fan olimpiadalari markazi shu kuni bosqich o‘tganini tasdiqlagan, RoboContest esa hududlar va sinflar kesimidagi EGOI TST natija jadvallarini jamlagan.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2025-11-29",
+  "date_label": "29-noyabr, 2025",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "Hududiy markazlar va Electicode",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Maktab/hudud darajasida yuqori natija ko‘rsatgan o‘quvchi qizlar; aniq mezon TBA.",
+  "is_featured": false,
+  "order": 43,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 20,
+      "node_style": "default",
+      "label": "10"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "Qizlar olimpiadasi hududiy bosqichi o‘tkazilgani",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8118",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "Hududlar bo‘yicha EGOI TST natijalari",
+      "url": "https://t.me/s/robocontest/1564",
+      "is_official": false,
+      "order": 20
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Qizlar olimpiadasining hududiy bosqichi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8118",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Post 2025-yil 29-noyabr kuni barcha hududlarda Qizlar olimpiadasining hududiy bosqichi o‘tkazilganini tasdiqlaydi."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "8-sinf EGOI TST hududiy natija jadvallari",
+      "url": "https://t.me/s/robocontest/1564",
+      "publisher": "RoboContest.UZ",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Andijon, Buxoro, Farg‘ona va boshqa hududlar bo‘yicha Electicode standings havolalarini jamlaydi."
+    }
+  ],
+  "results": []
+}

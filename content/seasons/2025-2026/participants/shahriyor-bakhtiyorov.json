@@ -1,0 +1,19 @@
+{
+  "full_name": "Shahriyor Bakhtiyorov",
+  "slug": "shahriyor-bakhtiyorov",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "kepuz",
+      "handle": "shahaprog",
+      "url": "https://kep.uz/users/user/shahaprog",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "nps_student",
+      "url": "https://robocontest.uz/profile/nps_student",
+      "is_verified": true
+    }
+  ]
+}

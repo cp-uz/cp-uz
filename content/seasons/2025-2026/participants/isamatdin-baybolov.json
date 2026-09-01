@@ -1,0 +1,36 @@
+{
+  "full_name": "Isamatdin Baybolov",
+  "slug": "isamatdin-baybolov",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "Isamatdin",
+      "url": "https://codeforces.com/profile/Isamatdin",
+      "is_verified": true
+    },
+    {
+      "platform": "atcoder",
+      "handle": "Isamatdin",
+      "url": "https://atcoder.jp/users/Isamatdin",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "Isamatdin",
+      "url": "https://kep.uz/users/user/Isamatdin",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "isamatdin",
+      "url": "https://robocontest.uz/profile/isamatdin",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Isamiddin Baybolov",
+    "Baybolov Isamatdin Baybol Uli",
+    "Isamatdin Baybolov"
+  ]
+}

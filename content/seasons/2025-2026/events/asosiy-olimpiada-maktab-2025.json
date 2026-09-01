@@ -1,0 +1,72 @@
+{
+  "code": "1",
+  "slug": "asosiy-olimpiada-maktab-2025",
+  "title": "Asosiy olimpiada — maktab bosqichi",
+  "short_title": "Maktab bosqichi",
+  "summary": "9–11-sinf o‘quvchilari uchun Asosiy olimpiadaning birinchi bosqichi.",
+  "description": "2025–2026 o‘quv yilidagi Asosiy olimpiadaning maktab bosqichi 17–25-sentabr kunlari o‘tkazildi. Vazirlik reja-grafigida informatika va axborot texnologiyalari shu oraliqda o‘tkaziladigan fanlar qatorida ko‘rsatilgan; aniq kunni har bir ta’lim muassasasi belgilagan.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-09-17",
+  "end_date": "2025-09-25",
+  "date_label": "17–25-sentabr, 2025; aniq kunni ta’lim muassasasi belgilagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston bo‘ylab maktablar",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Maktabgacha va maktab ta’limi tizimi",
+  "eligibility": "Umumta’lim maktablarining 9–11-sinf o‘quvchilari; tegishli ta’lim muassasalari o‘quvchilari.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 10,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 10,
+      "node_style": "default",
+      "label": "1"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "Mahalliy olimpiadalar",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "schedule",
+      "title": "2025–2026 maktab bosqichi muddatlari — vazirlik xati ilovasi",
+      "url": "https://muallimlar.uz/images/posts/1757681918_Olimpiada%20maktab%20bosqichi%202025-2026.pdf",
+      "is_official": false,
+      "order": 20
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning rasmiy bosqichlari va talablari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Maktab bosqichining vazifasi, ishtirok talablari va maxsus qoidalar."
+    },
+    {
+      "type": "official_regulation",
+      "title": "2025–2026 Asosiy olimpiada maktab bosqichi reja-grafigi",
+      "url": "https://muallimlar.uz/images/posts/1757681918_Olimpiada%20maktab%20bosqichi%202025-2026.pdf",
+      "publisher": "O‘zbekiston Respublikasi Maktabgacha va maktab ta’limi vazirligi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Vazirlikning 2025-yil 5-sentabrdagi 02-35-2939-sonli xati ilovasi nusxasi; informatika va boshqa fanlar uchun 17–25-sentabr oralig‘ini belgilaydi."
+    }
+  ],
+  "results": []
+}

@@ -156,7 +156,7 @@ class ComposeContractTests(unittest.TestCase):
     def test_release_imports_and_smokes_canonical_season_data(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         self.assertIn("python manage.py import_seasons", release)
-        self.assertIn("/app/apps/seasons/data/season_seed.json", release)
+        self.assertIn("/app/content/seasons", release)
         self.assertIn('"seasons": 2', release)
         self.assertIn('"events": 50', release)
         self.assertIn('"local_results": 73', release)

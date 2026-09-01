@@ -1,0 +1,141 @@
+{
+  "code": "G2",
+  "slug": "izho-2026",
+  "title": "XXII Xalqaro Jautikov olimpiadasi — IZhO 2026",
+  "short_title": "IZhO 2026",
+  "summary": "Matematika, fizika va informatika bo‘yicha maktab jamoalari xalqaro olimpiadasi.",
+  "description": "XXII IZhO 2026 Olmaotada o‘tkazildi. Informatika bahslarida O‘zbekistondan yetti ishtirokchi qatnashdi; ulardan olti nafari oltin, kumush va bronza medallarini qo‘lga kiritdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-01-10",
+  "end_date": "2026-01-15",
+  "date_label": "10–15-yanvar, 2026",
+  "timezone": "Asia/Almaty",
+  "location": "Olmaota, Qozog‘iston",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Respublika fizika-matematika maktabi va Daryn markazi",
+  "eligibility": "Tashkilotchilar taklif qilgan maktab jamoalari; informatika yo‘nalishi ishtirokchilari.",
+  "is_featured": true,
+  "order": 50,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 45,
+      "node_style": "final",
+      "label": "G2"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IZhO 2026 press-relizi",
+      "url": "https://izho.kz/press-release-2026/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IZhO 2026 rasmiy natijalari",
+      "url": "https://izho.kz/contest/results-izho-2026/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "IZhO 2026 press-relizi",
+      "url": "https://izho.kz/press-release-2026/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "IZhO 2026 rasmiy natijalari",
+      "url": "https://izho.kz/contest/results-izho-2026/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": [
+    {
+      "key": "G2:participant:jahonali-xaydaraliyev",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 8,
+      "score": 295,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 1
+    },
+    {
+      "key": "G2:participant:ulugbek-raxmatullayev",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 10,
+      "score": 279,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 2
+    },
+    {
+      "key": "G2:participant:timur-kadirbergenov",
+      "participant": "timur-kadirbergenov",
+      "rank": 23,
+      "score": 215,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 3
+    },
+    {
+      "key": "G2:participant:jahongirshoh-avazxonov",
+      "participant": "jahongirshoh-avazxonov",
+      "rank": 32,
+      "score": 205,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 4
+    },
+    {
+      "key": "G2:participant:humoyun-abduraufov",
+      "participant": "humoyun-abduraufov",
+      "rank": 50,
+      "score": 171,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 5
+    },
+    {
+      "key": "G2:participant:isamatdin-baybolov",
+      "participant": "isamatdin-baybolov",
+      "rank": 50,
+      "score": 171,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 6
+    },
+    {
+      "key": "G2:participant:sardor-salimov",
+      "participant": "sardor-salimov",
+      "rank": 103,
+      "score": 109,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2026/",
+      "order": 7
+    }
+  ]
+}

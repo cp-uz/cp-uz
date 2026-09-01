@@ -1,0 +1,52 @@
+{
+  "code": "G3",
+  "slug": "egoi-2027",
+  "title": "Yevropa qizlar informatika olimpiadasi — EGOI 2027",
+  "short_title": "EGOI 2027",
+  "summary": "Varshava, Polshada o‘tkaziladigan EGOI 2027.",
+  "description": "EGOI statistik arxivida 2027 mezboni Polsha, shahar Varshava deb ko‘rsatilgan. Aniq sana hali TBA.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Europe/Warsaw",
+  "location": "Varshava, Polsha",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "EGOI 2027 tashkiliy qo‘mitasi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": true,
+  "order": 190,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 50,
+      "node_style": "final",
+      "label": "G3"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "EGOI 2027 statistik sahifasi",
+      "url": "https://stats.egoi.org/editions/2027/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "EGOI 2027 nashri",
+      "url": "https://stats.egoi.org/editions/2027/",
+      "publisher": "EGOI Statistics",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Varshava tasdiqlangan; sana TBA."
+    }
+  ],
+  "results": []
+}

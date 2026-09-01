@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cp.uz/schemas/season-seed-v1.json",
-  "title": "cp.uz season timeline import",
+  "$id": "https://cp.uz/schemas/season-content-v1.json",
+  "title": "cp.uz canonical season content import",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "seasons"],
@@ -33,6 +33,10 @@
         "is_featured": {"type": "boolean"},
         "order": {"type": "integer", "minimum": 0},
         "routes": {"type": "array", "items": {"$ref": "#/$defs/route"}},
+        "participants": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/participantDocument"}
+        },
         "events": {"type": "array", "items": {"$ref": "#/$defs/event"}},
         "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}},
         "relations": {"type": "array", "items": {"$ref": "#/$defs/edge"}}
@@ -180,6 +184,12 @@
         "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
       },
       "additionalProperties": false
+    },
+    "participantDocument": {
+      "allOf": [
+        {"$ref": "#/$defs/participant"},
+        {"required": ["slug"]}
+      ]
     },
     "teamMember": {
       "type": "object",

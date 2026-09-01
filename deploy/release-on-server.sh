@@ -191,7 +191,7 @@ docker compose exec -T web python manage.py import_content \
   --path /app/content/exports/articles.v1.json
 
 docker compose exec -T web python manage.py import_seasons \
-  --path /app/apps/seasons/data/season_seed.json \
+  --path /app/content/seasons \
   --prune
 
 docker compose exec -T web python manage.py shell -c '

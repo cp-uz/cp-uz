@@ -1,0 +1,70 @@
+{
+  "code": "U1",
+  "slug": "vkoshp-2025",
+  "title": "Butunrossiya maktab jamoaviy dasturlash olimpiadasi — VKOSHP 2025",
+  "short_title": "VKOSHP",
+  "summary": "Maktab jamoalari uchun muhim norasmiy jamoaviy sport dasturlash musobaqasi.",
+  "description": "2025–2026 siklida internet saralashi 16-noyabrda, final esa 15–16-dekabrda Sankt-Peterburg, Novosibirsk va Sirius markazlarida o‘tkazilgan. O‘zbekiston jamoalarining tasdiqlangan yakuniy natijasi ochiq rasmiy jadvalda aniqlanmagani uchun mahalliy natija kiritilmadi.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-11-16",
+  "end_date": "2025-12-16",
+  "date_label": "Saralash 16-noyabr; final 15–16-dekabr, 2025",
+  "timezone": "Europe/Moscow",
+  "location": "Onlayn saralash; Rossiyadagi final markazlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "NEERC maktab musobaqalari tizimi",
+  "organizer": "VKOSHP tashkiliy qo‘mitasi",
+  "eligibility": "Maktab o‘quvchilaridan tuzilgan jamoalar; tashkilotchi qoidalariga muvofiq.",
+  "is_featured": false,
+  "order": 25,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 10,
+      "node_style": "default",
+      "label": "U1"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "VKOSHP 2025–2026 sanalari",
+      "url": "https://olimpiada.ru/news/32262",
+      "is_official": false,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "Internet saralashi jadvali",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-internet-2025-standings.html",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "press",
+      "title": "VKOSHP 2025–2026 bosqichlari",
+      "url": "https://olimpiada.ru/news/32262",
+      "publisher": "Olimpiada.ru",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP internet saralashi natijalari",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-internet-2025-standings.html",
+      "publisher": "NEERC",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

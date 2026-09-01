@@ -1,0 +1,38 @@
+{
+  "full_name": "Jahonali Xaydaraliyev",
+  "slug": "jahonali-xaydaraliyev",
+  "photo_url": "/assets/seasons/participants/jahonali-xaydaraliyev.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "JahonaliX",
+      "url": "https://codeforces.com/profile/JahonaliX",
+      "is_verified": true
+    },
+    {
+      "platform": "atcoder",
+      "handle": "JahonaliX",
+      "url": "https://atcoder.jp/users/JahonaliX",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "JahonaliX",
+      "url": "https://kep.uz/users/user/JahonaliX",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "jahonalix",
+      "url": "https://robocontest.uz/profile/jahonalix",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Jaxonali Xaydaraliyev",
+    "Jakhonali Khaydaraliev",
+    "Jahonali Xaydaraliyev"
+  ],
+  "school": "Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktab"
+}

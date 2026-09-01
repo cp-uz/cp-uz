@@ -1,8 +1,8 @@
 # Season seed: manba va aniqlik izohlari
 
-`season_seed.json` 2026-09-01 holatiga ko‘ra 2025–2026 hamda 2026–2027 sport
-dasturlash mavsumlarini saqlaydi. Fayl universal, versiyalangan (`schema_version: 1`) va
-`import_seasons` orqali idempotent import qilinadi. Mavsum biriktirilishi o‘quv/saralash
+`content/seasons/` 2026-09-01 holatiga ko‘ra 2025–2026 hamda 2026–2027 sport
+dasturlash mavsumlarini alohida season, event va participant JSON fayllarida saqlaydi.
+Katalog `import_seasons` orqali idempotent import qilinadi. Mavsum biriktirilishi o‘quv/saralash
 sikliga qarab belgilanadi; shu sababli IOI 2027 sentabrda bo‘lsa ham 2026–2027 siklining
 yakuniy tuguni hisoblanadi.
 

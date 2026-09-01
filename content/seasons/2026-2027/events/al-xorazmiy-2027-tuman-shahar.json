@@ -1,0 +1,46 @@
+{
+  "code": "13A",
+  "slug": "al-xorazmiy-2027-tuman-shahar",
+  "title": "Al-Xorazmiy olimpiadasi — tuman/shahar bosqichi",
+  "short_title": "Al-Xorazmiy tuman bosqichi",
+  "summary": "7–8-sinflar aniq fanlar tuman/shahar bosqichi.",
+  "description": "Oldingi mavsumning 28–30-yanvar sanasi takrorlanmaydi; 2026–2027 jadvali TBA.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Maktab bosqichidan o‘tgan 7–8-sinf o‘quvchilari.",
+  "grade_min": 7,
+  "grade_max": 8,
+  "is_featured": false,
+  "order": 100,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 20,
+      "node_style": "default",
+      "label": "13A"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Al-Xorazmiy 2026–2027 tuman bosqichi sanasi kutilmoqda."
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,44 @@
+{
+  "code": "7",
+  "slug": "ioi-2027-saralash-4",
+  "title": "IOI 2027 saralashi — IV yakuniy bosqich",
+  "short_title": "IOI saralash IV",
+  "summary": "IOI 2027 O‘zbekiston terma jamoasini belgilaydigan yakuniy bosqich.",
+  "description": "Mezbonlik kvotasi 2026-yilga xos edi; 2027 uchun odatiy IOI delegatsiyasi bo‘yicha rasmiy jamoa va saralash formati TBA.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 220,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 70,
+      "node_style": "default",
+      "label": "7"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Fan olimpiadalari markazi rasmiy kanali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "IOI 2027 yakuniy saralash e’loni kutilmoqda."
+    }
+  ],
+  "results": []
+}

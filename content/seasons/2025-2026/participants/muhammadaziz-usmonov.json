@@ -1,0 +1,25 @@
+{
+  "full_name": "Muhammadaziz Usmonov",
+  "slug": "muhammadaziz-usmonov",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "atcoder",
+      "handle": "Muhammadaziz",
+      "url": "https://atcoder.jp/users/Muhammadaziz",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "Darkest_Knight",
+      "url": "https://kep.uz/users/user/Darkest_Knight",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "muhammad_11",
+      "url": "https://robocontest.uz/profile/muhammad_11",
+      "is_verified": true
+    }
+  ]
+}

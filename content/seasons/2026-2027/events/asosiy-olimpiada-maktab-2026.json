@@ -1,0 +1,46 @@
+{
+  "code": "1",
+  "slug": "asosiy-olimpiada-maktab-2026",
+  "title": "Asosiy olimpiada — maktab bosqichi",
+  "short_title": "Maktab bosqichi",
+  "summary": "2026–2027 mavsumining maktab bosqichi.",
+  "description": "9–11-sinflar uchun Asosiy olimpiadaning birinchi bosqichi. Sana nashrga xos rasmiy jadval e’lon qilingach yangilanadi.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston maktablari",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "9–11-sinf o‘quvchilari.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 10,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 10,
+      "node_style": "default",
+      "label": "1"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+    }
+  ],
+  "results": []
+}

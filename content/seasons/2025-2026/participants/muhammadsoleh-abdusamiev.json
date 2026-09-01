@@ -1,0 +1,25 @@
+{
+  "full_name": "Muhammadsoleh Abdusamiev",
+  "slug": "muhammadsoleh-abdusamiev",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "atcoder",
+      "handle": "ihavenot",
+      "url": "https://atcoder.jp/users/ihavenot",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "abdusamiyevmuhammadsoleh",
+      "url": "https://kep.uz/users/user/abdusamiyevmuhammadsoleh",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "muhammadsoleh_coder",
+      "url": "https://robocontest.uz/profile/muhammadsoleh_coder",
+      "is_verified": true
+    }
+  ]
+}

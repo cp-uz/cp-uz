@@ -1,0 +1,56 @@
+{
+  "code": "13B",
+  "slug": "al-xorazmiy-2026-hududiy",
+  "title": "Al-Xorazmiy olimpiadasi — hududiy bosqich",
+  "short_title": "Al-Xorazmiy hududiy bosqich",
+  "summary": "7–8-sinflar Al-Xorazmiy olimpiadasining uchinchi, hududiy bosqichi.",
+  "description": "Hududiy bosqich 2026-yil 25–26-fevral kunlari o‘tkazildi. Informatika yo‘nalishida 7–8-sinf o‘quvchilari beshta turli qiyinlikdagi masalani onlayn portal orqali yechgan.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-02-25",
+  "end_date": "2026-02-26",
+  "date_label": "25–26-fevral, 2026",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "Hududiy markazlardagi onlayn dasturlash portali",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Tuman/shahar bosqichidan o‘tgan 7–8-sinf o‘quvchilari.",
+  "grade_min": 7,
+  "grade_max": 8,
+  "is_featured": false,
+  "order": 140,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 30,
+      "node_style": "default",
+      "label": "13B"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "Hududiy bosqich yo‘riqnomasi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8763",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Al-Xorazmiy informatika hududiy bosqichi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8763",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,69 @@
+{
+  "code": "14",
+  "slug": "khimio-2026-ozbekiston-saralashi",
+  "title": "Al-Xorazmiy xalqaro olimpiadasiga saralash — I bosqich",
+  "short_title": "Al-Xorazmiy saralash I",
+  "summary": "KhIMIO 2026 uchun O‘zbekiston informatika terma jamoasi nomzodlarining I saralash bosqichi.",
+  "description": "Informatika yo‘nalishidagi terma jamoa nomzodlari 2026-yil 12-mayda besh soatlik saralashda qatnashdi. Yakuniy natija 13-mayda e’lon qilinib, 42 nafar ishtirokchi intensiv mashg‘ulotlarga olindi.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-05-12",
+  "date_label": "12-may, 2026; yakuniy natija 13-may",
+  "timezone": "Asia/Tashkent",
+  "location": "Fan olimpiadalari markazi, Toshkent",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "Robocontest CMS",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "KhIMIO informatika terma jamoasiga nomzod o‘quvchilar.",
+  "is_featured": false,
+  "order": 200,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 40,
+      "node_style": "default",
+      "label": "14"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "KhIMIO informatika saralashi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9743",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "KhIMIO saralash yakuniy natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9750",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "KhIMIO informatika saralashi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9743",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "KhIMIO saralash yakuniy natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9750",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

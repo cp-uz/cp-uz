@@ -1,0 +1,52 @@
+{
+  "code": "G2",
+  "slug": "izho-2027",
+  "title": "XXIII Xalqaro Jautikov olimpiadasi — IZhO 2027",
+  "short_title": "IZhO 2027",
+  "summary": "2027-yilgi IZhO xalqaro finali.",
+  "description": "IZhO odatda Qozog‘istonda matematika, fizika va informatika bo‘yicha o‘tkaziladi. 2027 nashrining aniq sanasi va shahri ko‘rilgan rasmiy manbalarda e’lon qilinmagan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "Qozog‘iston; shahar TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "IZhO tashkiliy qo‘mitasi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": true,
+  "order": 50,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 45,
+      "node_style": "final",
+      "label": "G2"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IZhO rasmiy sayti",
+      "url": "https://izho.kz/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "IZhO rasmiy sayti",
+      "url": "https://izho.kz/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2027 sana TBA."
+    }
+  ],
+  "results": []
+}

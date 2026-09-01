@@ -1,0 +1,53 @@
+{
+  "code": "4",
+  "slug": "ioi-2026-saralash-1",
+  "title": "IOI 2026 saralashi — I bosqich",
+  "short_title": "IOI saralash I",
+  "summary": "Nufuzli va mintaqaviy xalqaro olimpiadalar uchun informatika bo‘yicha dastlabki saralash.",
+  "description": "Fan olimpiadalari markazi informatika va axborot texnologiyalari yo‘nalishida xalqaro olimpiadalarga saralashning I bosqichini o‘tkazdi. Yakuniy natijalar 2025-yil 16-dekabrda e’lon qilindi; keyingi IOI bosqichida eng yuqori natijali 100 nafar qatnashdi.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2025-12-01",
+  "date_label": "2025-yil dekabr; yakuniy natija 16-dekabrda e’lon qilingan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Fan olimpiadalari markazi mezonlariga mos kuchli informatika o‘quvchilari.",
+  "is_featured": false,
+  "order": 40,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 40,
+      "node_style": "default",
+      "label": "4"
+    }
+  ],
+  "resources": [
+    {
+      "type": "results",
+      "title": "Informatika saralash I yakuniy natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8250",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Informatika saralash I yakuniy natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8250",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Natijalar 16-dekabrda e’lon qilingan; ochiq post sinovning aniq kunini ko‘rsatmaydi."
+    }
+  ],
+  "results": []
+}

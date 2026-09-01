@@ -1,0 +1,21 @@
+{
+  "full_name": "Sardor Salimov",
+  "slug": "sardor-salimov",
+  "photo_url": "/assets/seasons/participants/sardor-salimov.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "0gur4ik",
+      "url": "https://codeforces.com/profile/0gur4ik",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "user2130_278",
+      "url": "https://robocontest.uz/profile/user2130_278",
+      "is_verified": true
+    }
+  ],
+  "school": "Navoiy shahridagi Prezident maktabi"
+}

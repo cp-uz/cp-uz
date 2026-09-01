@@ -1,0 +1,44 @@
+{
+  "code": "15",
+  "slug": "apio-2027-ozbekiston-saralashi",
+  "title": "APIO 2027 — O‘zbekiston ishtirokchilarini shakllantirish",
+  "short_title": "APIO saralashi",
+  "summary": "APIO 2027 uchun milliy ishtirokchilar hovuzi.",
+  "description": "Alohida APIO saralashi yoki IOI tayyorgarlik hovuzidan tanlash tartibi rasmiy e’lon qilinmaguncha bu tugun TBA va tekshiruv kutilmoqda holatida qoladi.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 170,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 10,
+      "node_style": "default",
+      "label": "15"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Fan olimpiadalari markazi rasmiy kanali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "APIO 2027 milliy ishtirokchilarni tanlash e’loni kutilmoqda."
+    }
+  ],
+  "results": []
+}

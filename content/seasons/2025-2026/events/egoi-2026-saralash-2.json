@@ -1,0 +1,53 @@
+{
+  "code": "12",
+  "slug": "egoi-2026-saralash-2",
+  "title": "EGOI 2026 saralashi — II bosqich",
+  "short_title": "EGOI saralash II",
+  "summary": "Ikki turli milliy saralash; 15 nafar nomzod intensiv tayyorgarlikka o‘tgan.",
+  "description": "Fan olimpiadalari markazi EGOI 2026 terma jamoasiga nomzodlar uchun II bosqichni ikki turda o‘tkazdi. Natijada 15 nafar ishtirokchi keyingi intensiv mashg‘ulotlarga saralandi.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2026-02-01",
+  "date_label": "2026-yil fevral; natija 20-fevralda e’lon qilingan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "EGOI saralash I bosqichidan o‘tgan o‘quvchi qizlar.",
+  "is_featured": false,
+  "order": 105,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 40,
+      "node_style": "default",
+      "label": "12"
+    }
+  ],
+  "resources": [
+    {
+      "type": "results",
+      "title": "EGOI saralash II natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8749",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "EGOI 2026 saralash II natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8749",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Ikki tur va keyingi bosqichga o‘tgan 15 nafar nomzod tasdiqlangan."
+    }
+  ],
+  "results": []
+}

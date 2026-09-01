@@ -1,0 +1,70 @@
+{
+  "code": "5",
+  "slug": "ioi-2026-saralash-2",
+  "title": "IOI 2026 saralashi — II bosqich",
+  "short_title": "IOI saralash II",
+  "summary": "I bosqichdagi eng yaxshi 100 nafar o‘rtasida ikki tur; 50 nafar keyingi bosqichga o‘tgan.",
+  "description": "Birinchi tur 21-fevral, ikkinchi tur 22-fevral kuni o‘tkazilgan. Yakuniy natijaga ko‘ra 50 nafar ishtirokchi IOI saralashining III bosqichiga yo‘l olgan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-02-21",
+  "end_date": "2026-02-22",
+  "date_label": "21–22-fevral, 2026",
+  "timezone": "Asia/Tashkent",
+  "location": "Fan olimpiadalari markazi, O‘zbekiston",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "Robocontest CMS",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "IOI saralash I natijasidagi eng yaxshi 100 nafar.",
+  "is_featured": false,
+  "order": 130,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 50,
+      "node_style": "default",
+      "label": "5"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "IOI saralash II — 1-tur",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8756",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IOI saralash II natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8779",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "IOI saralash II — 1-tur",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8756",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "IOI saralash II natijalari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8779",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

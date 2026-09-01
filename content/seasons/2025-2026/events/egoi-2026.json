@@ -1,0 +1,159 @@
+{
+  "code": "G3",
+  "slug": "egoi-2026",
+  "title": "Yevropa qizlar informatika olimpiadasi — EGOI 2026",
+  "short_title": "EGOI 2026",
+  "summary": "Cesenaticoda o‘tkazilgan EGOI; O‘zbekiston tarixiy 2 kumush va 1 bronza oldi.",
+  "description": "EGOI 2026 Italiyada 12–18-may kunlari bo‘lib o‘tdi; asosiy musobaqa kunlari 14 va 16-may edi. O‘zbekistonning to‘rt ishtirokchisidan uchtasi medal qo‘lga kiritdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-05-12",
+  "end_date": "2026-05-18",
+  "date_label": "12–18-may, 2026",
+  "timezone": "Europe/Rome",
+  "location": "Cesenatico, Italiya",
+  "venue": "Colonia AGIP",
+  "mode": "onsite",
+  "platform": "CMS",
+  "organizer": "EGOI 2026 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy delegatsiyaga tanlangan maktab o‘quvchi qizlari.",
+  "is_featured": true,
+  "order": 190,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 50,
+      "node_style": "final",
+      "label": "G3"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "EGOI 2026 rasmiy sayti",
+      "url": "https://egoi2026.it/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "other",
+      "title": "EGOI 2026 jadvali",
+      "url": "https://egoi2026.it/event/schedule/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning EGOI natijalari",
+      "url": "https://stats.egoi.org/countries/UZB/results/",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "other",
+      "title": "EGOI 2026 musobaqa qoidalari",
+      "url": "https://egoi2026.it/competition/rules/",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "other",
+      "title": "EGOI 2026 O‘zbekiston delegatsiyasi",
+      "url": "https://egoi2026.it/about/participants/",
+      "is_official": true,
+      "order": 50
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "EGOI 2026 jadvali",
+      "url": "https://egoi2026.it/event/schedule/",
+      "publisher": "EGOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "EGOI O‘zbekiston natijalari",
+      "url": "https://stats.egoi.org/countries/UZB/results/",
+      "publisher": "EGOI Statistics",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "O‘zbekiston delegatsiyasining medal xabari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9797",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "EGOI 2026 musobaqa qoidalari",
+      "url": "https://egoi2026.it/competition/rules/",
+      "publisher": "EGOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Musobaqada CMS ishlatilganini va ikki kunda to‘rttadan masala berilganini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "EGOI 2026 ishtirokchilari",
+      "url": "https://egoi2026.it/about/participants/",
+      "publisher": "EGOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "O‘zbekistonning to‘rt ishtirokchisi va delegatsiya rahbarlarini tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "G3:participant:oysha-mirzatillayeva",
+      "participant": "oysha-mirzatillayeva",
+      "rank": 26,
+      "score": 569,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 1
+    },
+    {
+      "key": "G3:participant:rayxona-sanakulova",
+      "participant": "rayxona-sanakulova",
+      "rank": 51,
+      "score": 506,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 2
+    },
+    {
+      "key": "G3:participant:malika-xojamuratova",
+      "participant": "malika-xojamuratova",
+      "rank": 99,
+      "score": 423,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 3
+    },
+    {
+      "key": "G3:participant:durdona-akramova",
+      "participant": "durdona-akramova",
+      "rank": 160,
+      "score": 276,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 4
+    }
+  ]
+}

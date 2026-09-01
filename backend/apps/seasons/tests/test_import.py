@@ -106,6 +106,37 @@ class SeasonImportTests(TestCase):
         path.write_text(json.dumps(payload), encoding="utf-8")
         return path
 
+    def write_content_tree(self, directory: str, payload: dict) -> Path:
+        root = Path(directory) / "seasons"
+        for season in payload["seasons"]:
+            season_directory = root / season["slug"]
+            events_directory = season_directory / "events"
+            participants_directory = season_directory / "participants"
+            events_directory.mkdir(parents=True)
+            participants_directory.mkdir()
+
+            season_document = deepcopy(season)
+            events = season_document.pop("events")
+            (season_directory / "season.json").write_text(
+                json.dumps(season_document), encoding="utf-8"
+            )
+
+            participants = {}
+            for event in events:
+                for result in event.get("results", []):
+                    participant = result.get("participant")
+                    if isinstance(participant, dict):
+                        participants[participant["slug"]] = participant
+                        result["participant"] = participant["slug"]
+                (events_directory / f"{event['slug']}.json").write_text(
+                    json.dumps(event), encoding="utf-8"
+                )
+            for slug, participant in participants.items():
+                (participants_directory / f"{slug}.json").write_text(
+                    json.dumps(participant), encoding="utf-8"
+                )
+        return root
+
     def test_import_is_idempotent_and_updates_existing_rows(self):
         with TemporaryDirectory() as directory:
             payload = self.seed_payload()
@@ -154,6 +185,48 @@ class SeasonImportTests(TestCase):
             call_command("import_seasons", path=path, prune=True, stdout=StringIO())
             self.assertFalse(Event.objects.filter(code="STALE").exists())
 
+    def test_split_content_directory_imports_references_and_prunes_accounts(self):
+        with TemporaryDirectory() as directory:
+            payload = self.seed_payload()
+            participant = payload["seasons"][0]["events"][0]["results"][0]["participant"]
+            participant["slug"] = "jahonali-xaydaraliyev"
+            root = self.write_content_tree(directory, payload)
+
+            call_command("import_seasons", path=root, prune=True, stdout=StringIO())
+
+            self.assertEqual(Season.objects.count(), 1)
+            self.assertEqual(Event.objects.get().slug, "ioi-2026")
+            self.assertEqual(
+                ResultEntry.objects.get().participant.slug,
+                "jahonali-xaydaraliyev",
+            )
+            self.assertEqual(ParticipantPlatformAccount.objects.count(), 1)
+
+            participant_path = root / "2025-2026" / "participants" / "jahonali-xaydaraliyev.json"
+            participant_document = json.loads(participant_path.read_text(encoding="utf-8"))
+            participant_document["platform_accounts"] = []
+            participant_path.write_text(json.dumps(participant_document), encoding="utf-8")
+            call_command("import_seasons", path=root, prune=True, stdout=StringIO())
+            self.assertFalse(ParticipantPlatformAccount.objects.exists())
+
+    def test_split_content_directory_rejects_unknown_participant_reference(self):
+        with TemporaryDirectory() as directory:
+            payload = self.seed_payload()
+            participant = payload["seasons"][0]["events"][0]["results"][0]["participant"]
+            participant["slug"] = "jahonali-xaydaraliyev"
+            root = self.write_content_tree(directory, payload)
+            event_path = root / "2025-2026" / "events" / "ioi-2026.json"
+            event = json.loads(event_path.read_text(encoding="utf-8"))
+            event["results"][0]["participant"] = "missing-participant"
+            event_path.write_text(json.dumps(event), encoding="utf-8")
+
+            with self.assertRaisesMessage(
+                CommandError, "noma’lum participant slug: missing-participant"
+            ):
+                call_command("import_seasons", path=root, stdout=StringIO())
+
+            self.assertFalse(Season.objects.exists())
+
     def test_schema_rejects_unknown_property_with_json_path(self):
         with TemporaryDirectory() as directory:
             payload = self.seed_payload()
@@ -184,9 +257,7 @@ class SeasonImportTests(TestCase):
     def test_semantic_cross_reference_validation_still_runs_after_schema(self):
         with TemporaryDirectory() as directory:
             payload = self.seed_payload()
-            payload["seasons"][0]["events"][0]["route_memberships"][0][
-                "route_code"
-            ] = "MISSING"
+            payload["seasons"][0]["events"][0]["route_memberships"][0]["route_code"] = "MISSING"
             path = self.write_seed(directory, payload)
 
             with self.assertRaisesMessage(CommandError, "noma’lum route_code: MISSING"):

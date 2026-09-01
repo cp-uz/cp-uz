@@ -1,0 +1,102 @@
+{
+  "code": "7",
+  "slug": "ioi-2026-saralash-4",
+  "title": "IOI 2026 saralashi — IV yakuniy bosqich",
+  "short_title": "IOI saralash IV",
+  "summary": "To‘rt turli yakuniy TST; mezbon mamlakat uchun 4 asosiy va 4 qo‘shimcha jamoa a’zosi tanlangan.",
+  "description": "Yakuniy saralash to‘rt turda o‘tkazildi. Ochiq rasmiy postlar 2-turni 11-iyun, 3-turni 13-iyun va 4-turni 14-iyunda tasdiqlaydi; timeline shu hujjatlashtirilgan 11–14-iyun oralig‘ini ko‘rsatadi. 1-turning aniq kuni alohida ochiq postda topilmadi. Har bir turda uchta masala uchun besh soat ajratilgan. Natija bo‘yicha 4 nafar asosiy va 4 nafar mezbonning qo‘shimcha jamoasi tanlangan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-06-11",
+  "end_date": "2026-06-14",
+  "date_label": "11–14-iyun, 2026",
+  "timezone": "Asia/Tashkent",
+  "location": "Fan olimpiadalari markazi, Toshkent",
+  "venue": "CAEx (Central Asian Expo)",
+  "mode": "onsite",
+  "platform": "Robocontest CMS",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "IOI saralash III dan o‘tgan va intensiv tayyorgarlikda davom etgan nomzodlar.",
+  "is_featured": false,
+  "order": 220,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 70,
+      "node_style": "default",
+      "label": "7"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "IOI yakuniy saralash jarayonlari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9988",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "announcement",
+      "title": "IOI yakuniy saralashining 3-turi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/10001",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "announcement",
+      "title": "IOI yakuniy saralashining 4-turi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/10003",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "results",
+      "title": "IOI 2026 terma jamoasi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?q=%23IOI",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "IOI yakuniy saralashining 2-turi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/9988",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2-tur 11-iyunda o‘tkazilgani tasdiqlangan."
+    },
+    {
+      "type": "official",
+      "title": "IOI yakuniy saralashining 3-turi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/10001",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "3-tur 13-iyunda o‘tkazilgani tasdiqlangan."
+    },
+    {
+      "type": "official",
+      "title": "IOI yakuniy saralashining 4-turi",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/10003",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "4-tur 14-iyunda o‘tkazilgani tasdiqlangan."
+    },
+    {
+      "type": "official",
+      "title": "IOI 2026 terma jamoasi aniqlangani",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?q=%23IOI",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

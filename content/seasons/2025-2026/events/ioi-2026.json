@@ -1,0 +1,220 @@
+{
+  "code": "G1",
+  "slug": "ioi-2026",
+  "title": "XXXVIII Xalqaro informatika olimpiadasi — IOI 2026",
+  "short_title": "IOI 2026",
+  "summary": "Toshkent mezbonligidagi IOI; O‘zbekiston tarixidagi eng yaxshi natija — 1 kumush va 3 bronza.",
+  "description": "IOI 2026 9–16-avgust kunlari Toshkentda o‘tkazildi. 92 delegatsiyadan 375 rasmiy ishtirokchi qatnashdi. Mezbon sifatida O‘zbekiston 4 asosiy va 4 qo‘shimcha ishtirokchi bilan qatnashdi; asosiy jamoaning barcha to‘rt a’zosi medal oldi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-08-09",
+  "end_date": "2026-08-16",
+  "date_label": "9–16-avgust, 2026",
+  "timezone": "Asia/Tashkent",
+  "location": "Toshkent, O‘zbekiston",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "IOI CMS va ranking.ioi2026.uz",
+  "organizer": "IOI 2026 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy terma jamoaga saralangan maktab o‘quvchilari; har davlat uchun odatda 4 rasmiy ishtirokchi.",
+  "is_featured": true,
+  "order": 240,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 80,
+      "node_style": "final",
+      "label": "G1"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IOI 2026 rasmiy sayti",
+      "url": "https://ioi2026.uz/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "IOI 2026 yakuniy natijalari",
+      "url": "https://stats.ioinformatics.org/olympiads/2026",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning IOI natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "tasks",
+      "title": "IOI 2026 masalalari",
+      "url": "https://stats.ioinformatics.org/tasks/2026/",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "other",
+      "title": "IOI 2026 musobaqa qoidalari",
+      "url": "https://ioi2026.uz/contest-rules",
+      "is_official": true,
+      "order": 50
+    },
+    {
+      "type": "other",
+      "title": "IOI 2026 maydonlari va turar joylar",
+      "url": "https://ioi2026.uz/venues-and-hotels",
+      "is_official": true,
+      "order": 60
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "IOI 2026 rasmiy sayti",
+      "url": "https://ioi2026.uz/",
+      "publisher": "IOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "archive",
+      "title": "IOI 2026 rasmiy statistika arxivi",
+      "url": "https://stats.ioinformatics.org/olympiads/2026",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "archive",
+      "title": "O‘zbekistonning IOI 2026 natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "government",
+      "title": "O‘zbekiston jamoasining IOI 2026 medallari",
+      "url": "https://gov.uz/oz/digital/news/view/205930",
+      "publisher": "O‘zbekiston Respublikasi Raqamli texnologiyalar vazirligi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "IOI 2026 maydonlari",
+      "url": "https://ioi2026.uz/venues-and-hotels",
+      "publisher": "IOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "CAEx musobaqa zali hamda ochilish va yopilish marosimlari maydoni bo‘lganini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "IOI 2026 musobaqa qoidalari",
+      "url": "https://ioi2026.uz/contest-rules",
+      "publisher": "IOI 2026",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Ikki musobaqa kuni, har kuni 3 ta masala va 5 soatlik formatni tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "G1:participant:jahonali-xaydaraliyev:asosiy-jamoa",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 93,
+      "score": "303.48",
+      "medal": "silver",
+      "category": "Asosiy jamoa",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 1
+    },
+    {
+      "key": "G1:participant:timur-kadirbergenov:asosiy-jamoa",
+      "participant": "timur-kadirbergenov",
+      "rank": 108,
+      "score": "295.79",
+      "medal": "bronze",
+      "category": "Asosiy jamoa",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 2
+    },
+    {
+      "key": "G1:participant:ulugbek-raxmatullayev:asosiy-jamoa",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 118,
+      "score": "288.58",
+      "medal": "bronze",
+      "category": "Asosiy jamoa",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 3
+    },
+    {
+      "key": "G1:participant:jahongirshoh-avazxonov:asosiy-jamoa",
+      "participant": "jahongirshoh-avazxonov",
+      "rank": 120,
+      "score": "285.97",
+      "medal": "bronze",
+      "category": "Asosiy jamoa",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 4
+    },
+    {
+      "key": "G1:participant:ulugbek-kamalov:mezbonning-qo-shimcha-jamoasi",
+      "participant": "ulugbek-kamalov",
+      "score": "209.56",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "notes": "Qo‘shimcha jamoa natijasi rasmiy medal reytingiga kiritilmagan.",
+      "order": 5
+    },
+    {
+      "key": "G1:participant:sardor-salimov:mezbonning-qo-shimcha-jamoasi",
+      "participant": "sardor-salimov",
+      "score": 189,
+      "medal": "honourable_mention",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 6
+    },
+    {
+      "key": "G1:participant:humoyun-abduraufov:mezbonning-qo-shimcha-jamoasi",
+      "participant": "humoyun-abduraufov",
+      "score": "139.34",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 7
+    },
+    {
+      "key": "G1:participant:ravshan-rahmiddinov:mezbonning-qo-shimcha-jamoasi",
+      "participant": "ravshan-rahmiddinov",
+      "score": "35.38",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 8
+    }
+  ]
+}

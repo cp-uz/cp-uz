@@ -1,0 +1,44 @@
+{
+  "code": "15",
+  "slug": "apio-2026-ozbekiston-saralashi",
+  "title": "APIO 2026 — O‘zbekiston ishtirokchilarini shakllantirish",
+  "short_title": "APIO saralashi",
+  "summary": "APIOda O‘zbekiston nomidan qatnashadigan o‘quvchilarni milliy tayyorgarlik hovuzidan shakllantirish tuguni.",
+  "description": "Ochiq rasmiy manbalarda APIO uchun IOI saralashidan mustaqil, alohida bir kunlik milliy saralash e’lon qilinmagan. APIO ishtirokchilari milliy informatika saralashi va tayyorgarlik hovuzidan shakllangan. Rasmiy qoida e’lon qilinmaguncha bu bosqich to‘g‘ridan-to‘g‘ri kvalifikatsiya deb ko‘rsatilmaydi.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — mustaqil APIO saralash sanasi ochiq manbada topilmadi",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Milliy informatika saralashi va tayyorgarlik hovuzidagi o‘quvchilar.",
+  "is_featured": false,
+  "order": 170,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 10,
+      "node_style": "default",
+      "label": "15"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "APIO 2026 O‘zbekiston natijalari",
+      "url": "https://t.me/s/piimauz?after=30090",
+      "publisher": "Ixtisoslashtirilgan ta’lim muassasalari agentligi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Natijalarni tasdiqlaydi, lekin alohida milliy saralash sanasini bermaydi."
+    }
+  ],
+  "results": []
+}

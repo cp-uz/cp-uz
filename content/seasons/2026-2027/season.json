@@ -1,0 +1,270 @@
+{
+  "slug": "2026-2027",
+  "title": "2026–2027 sport dasturlash mavsumi",
+  "summary": "2026-yil kuzidan IOI 2027 finaligacha bo‘lgan dastlabki mavsum taqvimi. Faqat rasman tasdiqlangan mezbon va sanalar aniq ko‘rsatiladi; qolgan bosqichlar TBA.",
+  "start_date": "2026-09-01",
+  "end_date": "2027-09-30",
+  "publication_status": "published",
+  "verification_status": "pending",
+  "is_featured": true,
+  "order": 20,
+  "routes": [
+    {
+      "code": "main",
+      "title": "Asosiy olimpiada va IOI yo‘li",
+      "description": "9–11-sinflar Asosiy olimpiadasi hamda O‘zbekiston terma jamoasining IOI saralash bosqichlari.",
+      "kind": "official",
+      "color": "blue",
+      "line_style": "solid",
+      "icon": "solar:diploma-linear",
+      "order": 10,
+      "is_visible": true
+    },
+    {
+      "code": "egoi",
+      "title": "EGOI yo‘li",
+      "description": "Qizlar uchun informatika saralashlari va EGOI terma jamoasiga olib boruvchi yo‘l.",
+      "kind": "selection",
+      "color": "red",
+      "line_style": "solid",
+      "icon": "solar:medal-ribbon-star-linear",
+      "order": 20,
+      "is_visible": true
+    },
+    {
+      "code": "khimio",
+      "title": "Al-Xorazmiy va KhIMIO yo‘li",
+      "description": "7–8-sinflar Al-Xorazmiy olimpiadasi hamda KhIMIO informatika terma jamoasi saralashi.",
+      "kind": "selection",
+      "color": "brown",
+      "line_style": "solid",
+      "icon": "solar:cup-star-linear",
+      "order": 30,
+      "is_visible": true
+    },
+    {
+      "code": "apio",
+      "title": "APIO yo‘li",
+      "description": "APIO uchun O‘zbekiston ishtirokchilarini shakllantirish va xalqaro onlayn bosqich.",
+      "kind": "selection",
+      "color": "teal",
+      "line_style": "solid",
+      "icon": "solar:global-linear",
+      "order": 40,
+      "is_visible": true
+    },
+    {
+      "code": "unofficial",
+      "title": "Muhim norasmiy musobaqalar",
+      "description": "Davlat saralash tizimiga kirmaydigan, ammo sport dasturlash rivoji uchun muhim musobaqalar.",
+      "kind": "unofficial",
+      "color": "purple",
+      "line_style": "dashed",
+      "icon": "solar:star-ring-linear",
+      "order": 60,
+      "is_visible": true
+    },
+    {
+      "code": "training",
+      "title": "Rasmiy tayyorgarlik",
+      "description": "Fan olimpiadalari markazi tashkil etadigan intensiv mashg‘ulotlar va xalqaro yig‘inlar.",
+      "kind": "training",
+      "color": "green",
+      "line_style": "dotted",
+      "icon": "solar:running-round-linear",
+      "order": 70,
+      "is_visible": true
+    }
+  ],
+  "edges": [
+    {
+      "from_event_code": "1",
+      "to_event_code": "2",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Maktab g‘oliblari",
+      "order": 10
+    },
+    {
+      "from_event_code": "2",
+      "to_event_code": "3",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Tuman/shahar sovrindorlari",
+      "order": 20
+    },
+    {
+      "from_event_code": "3",
+      "to_event_code": "8",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "11-sinf hududiy sovrindorlari",
+      "order": 30
+    },
+    {
+      "from_event_code": "3",
+      "to_event_code": "4",
+      "route_code": "main",
+      "type": "feeds_into",
+      "line_style": "dashed",
+      "label": "Xalqaro saralash nomzodlari bazasi",
+      "order": 40
+    },
+    {
+      "from_event_code": "4",
+      "to_event_code": "5",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Kvota TBA",
+      "order": 50
+    },
+    {
+      "from_event_code": "5",
+      "to_event_code": "6",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Kvota TBA",
+      "order": 60
+    },
+    {
+      "from_event_code": "6",
+      "to_event_code": "7",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Kvota TBA",
+      "order": 70
+    },
+    {
+      "from_event_code": "7",
+      "to_event_code": "G1",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "O‘zbekiston terma jamoasi",
+      "order": 80
+    },
+    {
+      "from_event_code": "4",
+      "to_event_code": "G2",
+      "route_code": "main",
+      "type": "related_to",
+      "line_style": "dashed",
+      "label": "Milliy nomzodlar hovuzi; 2027 tanlov mexanizmi TBA",
+      "order": 90
+    },
+    {
+      "from_event_code": "9",
+      "to_event_code": "10",
+      "route_code": "egoi",
+      "type": "related_to",
+      "line_style": "dashed",
+      "label": "Editionga xos bog‘lanish TBA",
+      "order": 100
+    },
+    {
+      "from_event_code": "10",
+      "to_event_code": "11",
+      "route_code": "egoi",
+      "type": "feeds_into",
+      "line_style": "dashed",
+      "label": "Qizlar saralash hovuzi",
+      "order": 110
+    },
+    {
+      "from_event_code": "11",
+      "to_event_code": "12",
+      "route_code": "egoi",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Kvota TBA",
+      "order": 120
+    },
+    {
+      "from_event_code": "12",
+      "to_event_code": "G3",
+      "route_code": "egoi",
+      "type": "feeds_into",
+      "line_style": "solid",
+      "label": "Yakuniy terma jamoa",
+      "order": 130
+    },
+    {
+      "from_event_code": "13",
+      "to_event_code": "13A",
+      "route_code": "khimio",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Maktabdan tuman/shaharga",
+      "order": 140
+    },
+    {
+      "from_event_code": "13A",
+      "to_event_code": "13B",
+      "route_code": "khimio",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Tuman/shahardan hududiyga",
+      "order": 150
+    },
+    {
+      "from_event_code": "13B",
+      "to_event_code": "14",
+      "route_code": "khimio",
+      "type": "related_to",
+      "line_style": "dashed",
+      "label": "Bevosita yo‘llanma mexanizmi TBA",
+      "order": 160
+    },
+    {
+      "from_event_code": "14",
+      "to_event_code": "G4",
+      "route_code": "khimio",
+      "type": "feeds_into",
+      "line_style": "solid",
+      "label": "KhIMIO delegatsiyasi",
+      "order": 170
+    },
+    {
+      "from_event_code": "5",
+      "to_event_code": "15",
+      "route_code": "apio",
+      "type": "related_to",
+      "line_style": "dashed",
+      "label": "Milliy informatika hovuzi",
+      "order": 180
+    },
+    {
+      "from_event_code": "15",
+      "to_event_code": "G5",
+      "route_code": "apio",
+      "type": "feeds_into",
+      "line_style": "solid",
+      "label": "APIO rasmiy ishtirokchilari",
+      "order": 190
+    },
+    {
+      "from_event_code": "T1",
+      "to_event_code": "G1",
+      "route_code": "training",
+      "type": "training_for",
+      "line_style": "dotted",
+      "label": "IOI 2027 tayyorgarligi",
+      "order": 200
+    },
+    {
+      "from_event_code": "T1",
+      "to_event_code": "7",
+      "route_code": "training",
+      "type": "training_for",
+      "line_style": "dotted",
+      "label": "Saralash oralig‘idagi yig‘inlar",
+      "order": 210
+    }
+  ]
+}

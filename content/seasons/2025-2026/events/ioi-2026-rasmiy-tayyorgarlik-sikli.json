@@ -1,0 +1,63 @@
+{
+  "code": "T1",
+  "slug": "ioi-2026-rasmiy-tayyorgarlik-sikli",
+  "title": "IOI 2026 rasmiy intensiv tayyorgarlik sikli",
+  "short_title": "IOI tayyorgarlik yig‘inlari",
+  "summary": "2025-yil noyabridan boshlangan, xorijiy murabbiylar ishtirokidagi rasmiy yig‘inlar majmuasi.",
+  "description": "Raqamli texnologiyalar vazirligi ma’lumotiga ko‘ra, IOI 2026 jamoasi uchun 2025-yil noyabridan boshlab kamida sakkizta o‘quv yig‘ini tashkil etilgan. Ruminiya, Polsha va Qozog‘istondan murabbiylar jalb qilingan; ayrim mashg‘ulotlar Krokus Park Resort va xorijiy yig‘inlarda o‘tgan. Ochiq manbalarda barcha sakkiz yig‘inning to‘liq kunma-kun jadvali yo‘q, shu sababli bitta agregat tugun ishlatiladi.",
+  "type": "training",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-11-01",
+  "end_date": "2026-07-31",
+  "date_label": "2025-yil noyabr — 2026-yil iyul; oy chegaralari, alohida yig‘in kunlari to‘liq ochiq emas",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston va xorijdagi tayyorgarlik yig‘inlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi va Raqamli texnologiyalar vazirligi",
+  "eligibility": "IOI 2026 milliy saralashidagi yuqori natijali nomzodlar va terma jamoa a’zolari.",
+  "is_featured": false,
+  "order": 35,
+  "route_memberships": [
+    {
+      "route_code": "training",
+      "order": 10,
+      "node_style": "training",
+      "label": "Rasmiy trening"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "IOI tayyorgarlik mashg‘ulotlari",
+      "url": "https://t.me/s/fan_olimpiadalari_m?q=%23IOI",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "government",
+      "title": "IOI 2026 terma jamoasining tayyorgarligi",
+      "url": "https://gov.uz/ru/digital/news/view/200451",
+      "publisher": "O‘zbekiston Respublikasi Raqamli texnologiyalar vazirligi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2025-yil noyabridan boshlab 8 yig‘in va xalqaro ekspertlar ishtiroki qayd etilgan; 31-iyuldagi hukumat xabari siklning shu paytgacha yakunlanganini tasdiqlaydi."
+    },
+    {
+      "type": "official",
+      "title": "IOI intensiv mashg‘ulotlari va xorijiy murabbiylar",
+      "url": "https://t.me/s/fan_olimpiadalari_m?q=%23IOI",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Ruminiyalik va qozog‘istonlik murabbiylar ishtirokidagi alohida yig‘inlar haqida postlar."
+    }
+  ],
+  "results": []
+}

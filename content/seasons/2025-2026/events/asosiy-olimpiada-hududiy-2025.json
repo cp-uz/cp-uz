@@ -1,0 +1,64 @@
+{
+  "code": "3",
+  "slug": "asosiy-olimpiada-hududiy-2025",
+  "title": "Asosiy olimpiada — hududiy bosqich",
+  "short_title": "Hududiy bosqich",
+  "summary": "9–11-sinflar o‘rtasida viloyat, Qoraqalpog‘iston Respublikasi va Toshkent shahar bosqichi.",
+  "description": "Informatika bo‘yicha hududiy bosqich 2025-yil 28-noyabrda o‘tkazildi. Ochiq rasmiy ma’lumotlarda aniq fanlar oynasi 24–28-noyabr, sinflar esa 9–11 deb ko‘rsatilgan. 11-sinf sovrindorlari respublika bosqichiga taklif etiladi.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2025-11-28",
+  "date_label": "28-noyabr, 2025",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "Hududiy markazlarda onlayn dasturlash tizimi",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Tuman/shahar bosqichida 1–3-o‘rin olganlar va nizomda ko‘rsatilgan ixtisoslashtirilgan muassasalar nomzodlari.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 30,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 30,
+      "node_style": "default",
+      "label": "3"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "Hududiy bosqich talablari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning rasmiy bosqichlari va talablari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Aniq fanlar hududiy bosqichi 24–28-noyabr oralig‘ida ekani va 9–11-sinflar qatnashishi ko‘rsatilgan."
+    },
+    {
+      "type": "official",
+      "title": "Informatika hududiy bosqichi jarayonlari",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?before=8106",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Informatika bosqichi 28-noyabrda bo‘lganini tasdiqlovchi postlar oynasi."
+    }
+  ],
+  "results": []
+}

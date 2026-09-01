@@ -1,0 +1,46 @@
+{
+  "code": "2",
+  "slug": "asosiy-olimpiada-tuman-shahar-2026",
+  "title": "Asosiy olimpiada — tuman/shahar bosqichi",
+  "short_title": "Tuman/shahar bosqichi",
+  "summary": "Maktab g‘oliblari uchun tuman/shahar bosqichi.",
+  "description": "O‘tgan mavsum sanasi avtomatik ko‘chirilmaydi. 2026–2027 informatika kuni rasmiy jadval e’lon qilinmaguncha TBA.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Maktab bosqichidan o‘tgan 9–11-sinf o‘quvchilari.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 20,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 20,
+      "node_style": "default",
+      "label": "2"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+    }
+  ],
+  "results": []
+}

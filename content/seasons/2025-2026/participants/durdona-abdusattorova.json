@@ -1,0 +1,19 @@
+{
+  "full_name": "Durdona Abdusattorova",
+  "slug": "durdona-abdusattorova",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "kepuz",
+      "handle": "umbraphile",
+      "url": "https://kep.uz/users/user/umbraphile",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "durdona",
+      "url": "https://robocontest.uz/profile/durdona",
+      "is_verified": true
+    }
+  ]
+}

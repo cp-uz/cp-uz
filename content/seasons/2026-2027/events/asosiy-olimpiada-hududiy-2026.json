@@ -1,0 +1,46 @@
+{
+  "code": "3",
+  "slug": "asosiy-olimpiada-hududiy-2026",
+  "title": "Asosiy olimpiada — hududiy bosqich",
+  "short_title": "Hududiy bosqich",
+  "summary": "Viloyat, Qoraqalpog‘iston Respublikasi va Toshkent shahar bosqichi.",
+  "description": "9–11-sinflar qatnashadigan hududiy bosqich; 11-sinf sovrindorlari respublika finaliga yo‘l oladi. 2026–2027 sanasi TBA.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Tuman/shahar sovrindorlari va nizomdagi bevosita nomzodlar.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 30,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 30,
+      "node_style": "default",
+      "label": "3"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+    }
+  ],
+  "results": []
+}

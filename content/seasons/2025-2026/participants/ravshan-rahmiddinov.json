@@ -1,0 +1,26 @@
+{
+  "full_name": "Ravshan Rahmiddinov",
+  "slug": "ravshan-rahmiddinov",
+  "country_code": "UZB",
+  "school": "TATU akademik litseyi",
+  "platform_accounts": [
+    {
+      "platform": "atcoder",
+      "handle": "hackstar",
+      "url": "https://atcoder.jp/users/hackstar",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "hackstar",
+      "url": "https://kep.uz/users/user/hackstar",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "hackstar",
+      "url": "https://robocontest.uz/profile/hackstar",
+      "is_verified": true
+    }
+  ]
+}

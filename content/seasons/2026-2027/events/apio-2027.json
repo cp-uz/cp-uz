@@ -1,0 +1,52 @@
+{
+  "code": "G5",
+  "slug": "apio-2027",
+  "title": "Osiyo-Tinch okeani informatika olimpiadasi — APIO 2027",
+  "short_title": "APIO 2027",
+  "summary": "Suzhou, Xitoy mezbonligidagi APIO 2027.",
+  "description": "Xitoy Kompyuter Federatsiyasi APIO 2027 mezbonligini Jiangsu Suzhou High Schoolga bergan. Aniq sanalar hali e’lon qilinmagan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Shanghai",
+  "location": "Suzhou, Jiangsu, Xitoy",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "China Computer Federation va Jiangsu Suzhou High School",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": true,
+  "order": 180,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 20,
+      "node_style": "final",
+      "label": "G5"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "APIO 2027 mezboni e’loni",
+      "url": "https://www.noi.cn/xw/2025-05-19/842274.shtml",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "APIO 2027 mezbonini tanlash e’loni",
+      "url": "https://www.noi.cn/xw/2025-05-19/842274.shtml",
+      "publisher": "China Computer Federation / NOI",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Mezbon tasdiqlangan; sana TBA."
+    }
+  ],
+  "results": []
+}

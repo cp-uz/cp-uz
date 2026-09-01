@@ -1,0 +1,44 @@
+{
+  "code": "10",
+  "slug": "egoi-2027-hududiy-bosqich",
+  "title": "EGOI yo‘li — shahar/hududiy bosqich",
+  "short_title": "EGOI hududiy bosqich",
+  "summary": "Qizlar informatika yo‘lining hududiy tuguni.",
+  "description": "Alohida EGOI hududiy bosqichining 2026–2027 sanasi va bevosita kvalifikatsiya qoidasi ochiq rasmiy manbada hali yo‘q.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 43,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 20,
+      "node_style": "default",
+      "label": "10"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Fan olimpiadalari markazi rasmiy kanali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Alohida EGOI hududiy e’loni kutilmoqda."
+    }
+  ],
+  "results": []
+}

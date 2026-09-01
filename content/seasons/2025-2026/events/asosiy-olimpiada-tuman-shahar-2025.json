@@ -1,0 +1,71 @@
+{
+  "code": "2",
+  "slug": "asosiy-olimpiada-tuman-shahar-2025",
+  "title": "Asosiy olimpiada — tuman/shahar bosqichi",
+  "short_title": "Tuman/shahar bosqichi",
+  "summary": "Informatika va axborot texnologiyalari fanidan tuman/shahar saralashi.",
+  "description": "2025–2026 mavsumida barcha fanlar bo‘yicha tuman/shahar bosqichi 14–23-oktabr oralig‘ida o‘tkazildi; informatika va axborot texnologiyalari kuni 17-oktabrga belgilangan. Har bir sinf va fan bo‘yicha eng yaxshi uch nafargacha ishtirokchi hududiy bosqichga o‘tadi.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2025-10-17",
+  "date_label": "17-oktabr, 2025",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston bo‘ylab tuman va shaharlardagi belgilangan markazlar",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi va hududiy ta’lim boshqarmalari",
+  "eligibility": "Maktab bosqichida g‘olib bo‘lgan 9–11-sinf o‘quvchilari.",
+  "grade_min": 9,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 20,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 20,
+      "node_style": "default",
+      "label": "2"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "Fanlar bo‘yicha tuman/shahar bosqichi jadvali",
+      "url": "https://t.me/s/uztdi/10269",
+      "is_official": false,
+      "order": 10
+    },
+    {
+      "type": "official_page",
+      "title": "Asosiy olimpiada bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "press",
+      "title": "Informatika kuni 17-oktabr etib belgilangan jadval",
+      "url": "https://t.me/s/uztdi/10269",
+      "publisher": "Ta’lim nazorati",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Rasmiy jadvalni qayta e’lon qilgan ta’lim axborot kanali."
+    },
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning rasmiy bosqichlari va talablari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Tuman/shahar va hududiy bosqichga o‘tish qoidalari."
+    }
+  ],
+  "results": []
+}

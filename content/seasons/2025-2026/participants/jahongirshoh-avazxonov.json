@@ -1,0 +1,32 @@
+{
+  "full_name": "Jahongirshoh Avazxonov",
+  "slug": "jahongirshoh-avazxonov",
+  "photo_url": "/assets/seasons/participants/jahongirshoh-avazxonov.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "_Jahongir_",
+      "url": "https://codeforces.com/profile/_Jahongir_",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "_Jahongir_",
+      "url": "https://kep.uz/users/user/_Jahongir_",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "aj_official",
+      "url": "https://robocontest.uz/profile/aj_official",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Jahongirshoh Avazkhonov",
+    "Jahongir Shoh Avazkhonov",
+    "Avazxonov Jahongir Shoh"
+  ],
+  "school": "Namangan shahridagi Prezident maktabi"
+}

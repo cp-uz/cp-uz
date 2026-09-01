@@ -1,0 +1,52 @@
+{
+  "code": "U1",
+  "slug": "vkoshp-2026",
+  "title": "Butunrossiya maktab jamoaviy dasturlash olimpiadasi — VKOSHP 2026",
+  "short_title": "VKOSHP",
+  "summary": "2026–2027 siklidagi VKOSHP jamoaviy musobaqasi.",
+  "description": "Saralash va final sanalari ko‘rilgan tashkilotchi arxivida hali e’lon qilinmagan. 2025-yil sanalari taxmin sifatida takrorlanmaydi.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "VKOSHP tashkiliy qo‘mitasi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 25,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 10,
+      "node_style": "default",
+      "label": "U1"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "NEERC maktab musobaqalari arxivi",
+      "url": "https://neerc.ifmo.ru/school/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "NEERC maktab musobaqalari arxivi",
+      "url": "https://neerc.ifmo.ru/school/",
+      "publisher": "NEERC",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2026–2027 VKOSHP sanalari TBA."
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,52 @@
+{
+  "code": "U2",
+  "slug": "info1cup-2027",
+  "title": "InfO(1)Cup 2027",
+  "short_title": "InfO(1)Cup",
+  "summary": "2027-yilgi InfO(1)Cup xalqaro musobaqasi.",
+  "description": "2027 nashrining rasmiy jadvali ochiq arxivda hali e’lon qilinmagan. Oldingi yil fevral sanasi taxmin sifatida ko‘chirilmaydi.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "InfO(1)Cup",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": false,
+  "order": 110,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 20,
+      "node_style": "default",
+      "label": "U2"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "InfO(1)Cup rasmiy sayti",
+      "url": "https://info1cup.com/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "InfO(1)Cup rasmiy sayti",
+      "url": "https://info1cup.com/",
+      "publisher": "InfO(1)Cup",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2027 jadvali TBA."
+    }
+  ],
+  "results": []
+}

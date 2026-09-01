@@ -1,0 +1,141 @@
+{
+  "code": "U2",
+  "slug": "info1cup-2026",
+  "title": "InfO(1)Cup 2026",
+  "short_title": "InfO(1)Cup",
+  "summary": "Ruminiya tashabbusi bilan o‘tkaziladigan yuqori darajadagi xalqaro informatika musobaqasi.",
+  "description": "2026-yilgi nashrning amaliyot kuni 6-fevral, musobaqa kunlari 7–8-fevral bo‘lgan. O‘zbekiston jamoasining to‘rt ishtirokchisi ham medal oldi: bir oltin, ikki kumush va bir bronza.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-02-06",
+  "end_date": "2026-02-08",
+  "date_label": "6–8-fevral, 2026; musobaqa 7–8-fevral",
+  "timezone": "Europe/Bucharest",
+  "location": "Onlayn, xalqaro",
+  "venue": "",
+  "mode": "online",
+  "platform": "InfO(1)Cup onlayn baholash tizimi",
+  "organizer": "InfO(1)Cup",
+  "eligibility": "Tashkilotchilar ro‘yxatiga kiritilgan milliy va maktab jamoalari.",
+  "is_featured": true,
+  "order": 110,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 20,
+      "node_style": "default",
+      "label": "U2"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "InfO(1)Cup rasmiy sayti",
+      "url": "https://info1cup.com/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "other",
+      "title": "2026 jadvali",
+      "url": "https://info1cup.com/schedule",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "other",
+      "title": "O‘zbekiston jamoasi va ishtirokchilar",
+      "url": "https://info1cup.com/participants",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "2026 medallar taqsimoti",
+      "url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "tasks",
+      "title": "2026 masalalari va tahlillar arxivi",
+      "url": "https://info1cup.com/files",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "InfO(1)Cup 2026 jadvali",
+      "url": "https://info1cup.com/schedule",
+      "publisher": "InfO(1)Cup",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "InfO(1)Cup 2026 medallar taqsimoti",
+      "url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "publisher": "InfO(1)Cup",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "InfO(1)Cup 2026 ishtirokchilari",
+      "url": "https://info1cup.com/participants",
+      "publisher": "InfO(1)Cup",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": [
+    {
+      "key": "U2:participant:jahonali-xaydaraliyev",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 3,
+      "score": 490,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "order": 1
+    },
+    {
+      "key": "U2:participant:humoyun-abduraufov",
+      "participant": "humoyun-abduraufov",
+      "rank": 20,
+      "score": 319,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "order": 2
+    },
+    {
+      "key": "U2:participant:isamatdin-baybolov",
+      "participant": "isamatdin-baybolov",
+      "rank": 21,
+      "score": 314,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "order": 3
+    },
+    {
+      "key": "U2:participant:oysha-mirzatillayeva",
+      "participant": "oysha-mirzatillayeva",
+      "rank": 50,
+      "score": 252,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://info1cup.com/archive/2026/MEDALS%20DISTRIBUTION%20INFO1CUP_2026.pdf",
+      "order": 4
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "code": "G4",
+  "slug": "khimio-2026",
+  "title": "IV Al-Xorazmiy xalqaro matematika va informatika olimpiadasi — KhIMIO 2026",
+  "short_title": "KhIMIO 2026",
+  "summary": "Toshkentda o‘tkazilgan xalqaro final; informatika ikki musobaqa kunida oltita masala.",
+  "description": "KhIMIO 2026 1–7-iyun kunlari Toshkentdagi Renessans oromgohida o‘tkazildi. Informatika bahslari 3–4-iyun kunlari ikki turda bo‘ldi. Rasmiy jadvalda O‘zbekistonlik 44 informatika ishtirokchisining natijasi e’lon qilingan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-06-01",
+  "end_date": "2026-06-07",
+  "date_label": "1–7-iyun, 2026; informatika 3–4-iyun",
+  "timezone": "Asia/Tashkent",
+  "location": "Toshkent, O‘zbekiston",
+  "venue": "Renessans sog‘lomlashtirish oromgohi",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "16 yoshdan kichik milliy va hududiy delegatsiyalar; tashkilotchi reglamentiga muvofiq.",
+  "grade_min": 7,
+  "grade_max": 10,
+  "is_featured": true,
+  "order": 210,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 50,
+      "node_style": "final",
+      "label": "G4"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "KhIMIO rasmiy sayti",
+      "url": "https://www.khimio.uz/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "KhIMIO 2026 rasmiy natijalari",
+      "url": "https://www.khimio.uz/results",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "other",
+      "title": "KhIMIO reglamenti",
+      "url": "https://www.khimio.uz/regulations1.pdf",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "other",
+      "title": "KhIMIO 2026 dasturi",
+      "url": "https://www.khimio.uz/programme",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "tasks",
+      "title": "KhIMIO masalalari",
+      "url": "https://www.khimio.uz/problems",
+      "is_official": true,
+      "order": 50
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "KhIMIO 2026 rasmiy natijalari",
+      "url": "https://www.khimio.uz/results",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "KhIMIO 2026 reglamenti",
+      "url": "https://www.khimio.uz/regulations1.pdf",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "KhIMIO 2026 sanalari va ishtirokchilar",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?before=9917",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "KhIMIO 2026 rasmiy dasturi",
+      "url": "https://www.khimio.uz/programme",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "1–7-iyun sanalari va Renaissance Camp manzilini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "KhIMIO formati",
+      "url": "https://www.khimio.uz/about",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Informatika ikki kunda, har kuni 3 tadan masala va 4 soatdan o‘tkazilishini tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "G4:participant:jahonali-xaydaraliyev",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 1,
+      "score": 800,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 1
+    },
+    {
+      "key": "G4:participant:oysha-mirzatillayeva",
+      "participant": "oysha-mirzatillayeva",
+      "rank": 4,
+      "score": 691,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 2
+    },
+    {
+      "key": "G4:participant:temurbek-ubaydullayev",
+      "participant": "temurbek-ubaydullayev",
+      "rank": 5,
+      "score": 691,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 3
+    },
+    {
+      "key": "G4:participant:shahruz-erkinov",
+      "participant": "shahruz-erkinov",
+      "rank": 6,
+      "score": 686,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 4
+    },
+    {
+      "key": "G4:participant:rayxona-sanakulova",
+      "participant": "rayxona-sanakulova",
+      "rank": 7,
+      "score": 648,
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 5
+    },
+    {
+      "key": "G4:participant:humoyun-abduraufov",
+      "participant": "humoyun-abduraufov",
+      "rank": 11,
+      "score": "582.61",
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 6
+    },
+    {
+      "key": "G4:participant:isamatdin-baybolov",
+      "participant": "isamatdin-baybolov",
+      "rank": 14,
+      "score": "568.11",
+      "medal": "gold",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 7
+    },
+    {
+      "key": "G4:participant:asilbek-akhmatov",
+      "participant": "asilbek-akhmatov",
+      "rank": 19,
+      "score": "493.10",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 8
+    },
+    {
+      "key": "G4:participant:muhammadaziz-usmonov",
+      "participant": "muhammadaziz-usmonov",
+      "rank": 21,
+      "score": "458.64",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 9
+    },
+    {
+      "key": "G4:participant:shahriyor-bakhtiyorov",
+      "participant": "shahriyor-bakhtiyorov",
+      "rank": 23,
+      "score": "441.43",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 10
+    },
+    {
+      "key": "G4:participant:behruzbek-rahimboev",
+      "participant": "behruzbek-rahimboev",
+      "rank": 24,
+      "score": "435.33",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 11
+    },
+    {
+      "key": "G4:participant:hojiakbar-obidjonov",
+      "participant": "hojiakbar-obidjonov",
+      "rank": 28,
+      "score": "398.81",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 12
+    },
+    {
+      "key": "G4:participant:diyorbek-sharofov",
+      "participant": "diyorbek-sharofov",
+      "rank": 29,
+      "score": "356.82",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 13
+    },
+    {
+      "key": "G4:participant:timur-jalgasbaev",
+      "participant": "timur-jalgasbaev",
+      "rank": 32,
+      "score": 348,
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 14
+    },
+    {
+      "key": "G4:participant:farhodjon-ergashov",
+      "participant": "farhodjon-ergashov",
+      "rank": 33,
+      "score": "330.46",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 15
+    },
+    {
+      "key": "G4:participant:erkin-karimov",
+      "participant": "erkin-karimov",
+      "rank": 34,
+      "score": "327.21",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 16
+    },
+    {
+      "key": "G4:participant:muhammadali-kosimov",
+      "participant": "muhammadali-kosimov",
+      "rank": 37,
+      "score": "302.42",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 17
+    },
+    {
+      "key": "G4:participant:jaloliddin-kurbonov",
+      "participant": "jaloliddin-kurbonov",
+      "rank": 41,
+      "score": "280.20",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 18
+    },
+    {
+      "key": "G4:participant:akhmadjon-rustamov",
+      "participant": "akhmadjon-rustamov",
+      "rank": 43,
+      "score": "277.87",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 19
+    },
+    {
+      "key": "G4:participant:muhammadsoleh-abdusamiev",
+      "participant": "muhammadsoleh-abdusamiev",
+      "rank": 44,
+      "score": "275.82",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 20
+    },
+    {
+      "key": "G4:participant:jamshidbek-rustamjonov",
+      "participant": "jamshidbek-rustamjonov",
+      "rank": 45,
+      "score": 273,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 21
+    },
+    {
+      "key": "G4:participant:yusuf-mirza-zakirov",
+      "participant": "yusuf-mirza-zakirov",
+      "rank": 46,
+      "score": 268,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 22
+    },
+    {
+      "key": "G4:participant:azizbek-valijonov",
+      "participant": "azizbek-valijonov",
+      "rank": 47,
+      "score": "258.93",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 23
+    },
+    {
+      "key": "G4:participant:behruz-mahramkulov",
+      "participant": "behruz-mahramkulov",
+      "rank": 51,
+      "score": 233,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 24
+    },
+    {
+      "key": "G4:participant:akbarjon-abdumalikov",
+      "participant": "akbarjon-abdumalikov",
+      "rank": 54,
+      "score": 214,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 25
+    },
+    {
+      "key": "G4:participant:abubakir-sirojiddinov",
+      "participant": "abubakir-sirojiddinov",
+      "rank": 56,
+      "score": 212,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 26
+    },
+    {
+      "key": "G4:participant:diyorbek-ruzmatov",
+      "participant": "diyorbek-ruzmatov",
+      "rank": 57,
+      "score": 200,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 27
+    },
+    {
+      "key": "G4:participant:durdona-abdusattorova",
+      "participant": "durdona-abdusattorova",
+      "rank": 58,
+      "score": "192.82",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 28
+    },
+    {
+      "key": "G4:participant:jasurbek-ilhomov",
+      "participant": "jasurbek-ilhomov",
+      "rank": 59,
+      "score": "180.76",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 29
+    },
+    {
+      "key": "G4:participant:kamronbek-sattorov",
+      "participant": "kamronbek-sattorov",
+      "rank": 61,
+      "score": "166.50",
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 30
+    },
+    {
+      "key": "G4:participant:diyorbek-kamulboev",
+      "participant": "diyorbek-kamulboev",
+      "rank": 62,
+      "score": 166,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 31
+    },
+    {
+      "key": "G4:participant:humoyun-akromov",
+      "participant": "humoyun-akromov",
+      "rank": 66,
+      "score": "146.93",
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 32
+    },
+    {
+      "key": "G4:participant:elbek-rustamov",
+      "participant": "elbek-rustamov",
+      "rank": 67,
+      "score": "145.65",
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 33
+    },
+    {
+      "key": "G4:participant:asilbek-arslonov",
+      "participant": "asilbek-arslonov",
+      "rank": 68,
+      "score": "145.25",
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 34
+    },
+    {
+      "key": "G4:participant:jalol-nizomiddinov",
+      "participant": "jalol-nizomiddinov",
+      "rank": 71,
+      "score": "142.87",
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 35
+    },
+    {
+      "key": "G4:participant:behruzbek-uktamov",
+      "participant": "behruzbek-uktamov",
+      "rank": 72,
+      "score": 142,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 36
+    },
+    {
+      "key": "G4:participant:akhadjon-mahammadkarimov",
+      "participant": "akhadjon-mahammadkarimov",
+      "rank": 73,
+      "score": 141,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 37
+    },
+    {
+      "key": "G4:participant:islom-fozilakhmadov",
+      "participant": "islom-fozilakhmadov",
+      "rank": 76,
+      "score": 132,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 38
+    },
+    {
+      "key": "G4:participant:shokhijahon-madgoziev",
+      "participant": "shokhijahon-madgoziev",
+      "rank": 82,
+      "score": 121,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 39
+    },
+    {
+      "key": "G4:participant:mukhammad-ruziev",
+      "participant": "mukhammad-ruziev",
+      "rank": 83,
+      "score": 120,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 40
+    },
+    {
+      "key": "G4:participant:abdulbasir-khudoyberdiev",
+      "participant": "abdulbasir-khudoyberdiev",
+      "rank": 85,
+      "score": 117,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 41
+    },
+    {
+      "key": "G4:participant:muhammadali-matsapaev",
+      "participant": "muhammadali-matsapaev",
+      "rank": 89,
+      "score": 110,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 42
+    },
+    {
+      "key": "G4:participant:akbarjon-shokirov",
+      "participant": "akbarjon-shokirov",
+      "rank": 91,
+      "score": 107,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 43
+    },
+    {
+      "key": "G4:participant:farruh-tojimirzaev",
+      "participant": "farruh-tojimirzaev",
+      "rank": 94,
+      "score": 100,
+      "medal": "none",
+      "award_title": "Ishtirokchi",
+      "is_local": true,
+      "result_url": "https://www.khimio.uz/results",
+      "order": 44
+    }
+  ]
+}

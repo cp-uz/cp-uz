@@ -1,0 +1,46 @@
+{
+  "code": "13",
+  "slug": "al-xorazmiy-2027-maktab-bosqichi",
+  "title": "Al-Xorazmiy olimpiadasi — maktab bosqichi",
+  "short_title": "Al-Xorazmiy maktab bosqichi",
+  "summary": "7–8-sinflar Al-Xorazmiy mahalliy yo‘lining boshlanishi.",
+  "description": "2026–2027 nashri uchun maktab bosqichi sanasi TBA.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston maktablari",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "7–8-sinf o‘quvchilari.",
+  "grade_min": 7,
+  "grade_max": 8,
+  "is_featured": false,
+  "order": 90,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 10,
+      "node_style": "default",
+      "label": "13"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Al-Xorazmiy 2026–2027 sanalari kutilmoqda."
+    }
+  ],
+  "results": []
+}

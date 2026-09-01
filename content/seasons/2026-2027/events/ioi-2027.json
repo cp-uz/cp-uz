@@ -1,0 +1,63 @@
+{
+  "code": "G1",
+  "slug": "ioi-2027",
+  "title": "XXXIX Xalqaro informatika olimpiadasi — IOI 2027",
+  "short_title": "IOI 2027",
+  "summary": "Potsdamdagi Hasso Plattner institutida o‘tkaziladigan IOI 2027.",
+  "description": "IOI 2027 Germaniyaning Potsdam shahrida 12–19-sentabr kunlari bo‘lib o‘tadi. Bu mavsum nomidagi o‘quv yilidan keyingi sentabrga tushadi, ammo saralash siklining yakuniy xalqaro finali sifatida 2026–2027 mavsumiga biriktirilgan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2027-09-12",
+  "end_date": "2027-09-19",
+  "date_label": "12–19-sentabr, 2027",
+  "timezone": "Europe/Berlin",
+  "location": "Potsdam, Germaniya",
+  "venue": "Hasso Plattner Institute",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Hasso Plattner Institute va Bundesweite Informatikwettbewerbe",
+  "eligibility": "Milliy terma jamoalarga tanlangan maktab o‘quvchilari.",
+  "is_featured": true,
+  "order": 240,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 80,
+      "node_style": "final",
+      "label": "G1"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IOI 2027 rasmiy sayti",
+      "url": "https://ioi2027.de/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "IOI 2027 rasmiy sayti",
+      "url": "https://ioi2027.de/",
+      "publisher": "IOI 2027",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    },
+    {
+      "type": "organizer",
+      "title": "HPI mezbonlik ma’lumoti",
+      "url": "https://ioi2027.de/hpi/",
+      "publisher": "Hasso Plattner Institute",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": ""
+    }
+  ],
+  "results": []
+}

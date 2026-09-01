@@ -1,0 +1,52 @@
+{
+  "code": "G4",
+  "slug": "khimio-2027",
+  "title": "V Al-Xorazmiy xalqaro matematika va informatika olimpiadasi — KhIMIO 2027",
+  "short_title": "KhIMIO 2027",
+  "summary": "KhIMIOning 2027-yilgi xalqaro final tuguni.",
+  "description": "Tashkilotchining ochiq sahifasida 2027 nashrining sana va mezbon joyi hali e’lon qilinmagan; 2026-yilgi Toshkent sanasi avtomatik ko‘chirilmaydi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "TBA",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "KhIMIO tashkiliy qo‘mitasi",
+  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "is_featured": true,
+  "order": 210,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 50,
+      "node_style": "final",
+      "label": "G4"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "KhIMIO rasmiy sayti",
+      "url": "https://www.khimio.uz/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "KhIMIO rasmiy sayti",
+      "url": "https://www.khimio.uz/",
+      "publisher": "KhIMIO",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "2027 sana va joy TBA."
+    }
+  ],
+  "results": []
+}

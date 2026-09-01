@@ -1,0 +1,46 @@
+{
+  "code": "9",
+  "slug": "egoi-2026-maktab-bosqichi",
+  "title": "EGOI yo‘li — maktab bosqichi",
+  "short_title": "EGOI maktab bosqichi",
+  "summary": "Qizlar informatika yo‘nalishida iqtidorli nomzodlarni maktab darajasida aniqlash tuguni.",
+  "description": "2025–2026 mavsumida alohida EGOI maktab bosqichining sanasi va yagona rasmiy reglamenti ochiq rasmiy manbalarda topilmadi. Shu sababli bu dastlabki bosqich TBA va tekshiruv kutilmoqda holatida ko‘rsatiladi.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — nashrga xos ochiq rasmiy jadval topilmadi",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston maktablari",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Informatikaga qiziqqan maktab o‘quvchi qizlari; aniq mezon TBA.",
+  "grade_min": 8,
+  "grade_max": 11,
+  "is_featured": false,
+  "order": 41,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 10,
+      "node_style": "default",
+      "label": "9"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Xalqaro qizlar olimpiadasiga dastlabki saralash haqida umumiy xabar",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/8176",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": false,
+      "notes": "Post maktab bosqichini alohida tasdiqlamaydi; faqat qizlar olimpiadasi dastlabki saralashi mavjudligini ko‘rsatadi."
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,46 @@
+{
+  "code": "13B",
+  "slug": "al-xorazmiy-2027-hududiy",
+  "title": "Al-Xorazmiy olimpiadasi — hududiy bosqich",
+  "short_title": "Al-Xorazmiy hududiy bosqich",
+  "summary": "7–8-sinflar Al-Xorazmiy olimpiadasining hududiy bosqichi.",
+  "description": "2026–2027 sanasi va platformasi TBA.",
+  "type": "stage",
+  "publication_status": "published",
+  "event_status": "tba",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston hududlari",
+  "venue": "",
+  "mode": "tba",
+  "platform": "",
+  "organizer": "Fan olimpiadalari markazi",
+  "eligibility": "Tuman/shahar bosqichidan o‘tgan 7–8-sinf o‘quvchilari.",
+  "grade_min": 7,
+  "grade_max": 8,
+  "is_featured": false,
+  "order": 140,
+  "route_memberships": [
+    {
+      "route_code": "khimio",
+      "order": 30,
+      "node_style": "default",
+      "label": "13B"
+    }
+  ],
+  "resources": [],
+  "sources": [
+    {
+      "type": "official",
+      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
+      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-01",
+      "is_primary": true,
+      "notes": "Al-Xorazmiy 2026–2027 hududiy bosqichi sanasi kutilmoqda."
+    }
+  ],
+  "results": []
+}

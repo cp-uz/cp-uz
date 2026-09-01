@@ -1,0 +1,31 @@
+{
+  "full_name": "Humoyun Abduraupov",
+  "slug": "humoyun-abduraufov",
+  "photo_url": "/assets/seasons/participants/humoyun-abduraupov.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "khba",
+      "url": "https://codeforces.com/profile/khba",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "khba",
+      "url": "https://kep.uz/users/user/khba",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "humanfc",
+      "url": "https://robocontest.uz/profile/humanfc",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Humoyun Abduraufov",
+    "Abduraupov Humoyun Bakhriddinovich"
+  ],
+  "school": "Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktab"
+}

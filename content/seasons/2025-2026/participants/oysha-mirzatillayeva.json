@@ -1,0 +1,31 @@
+{
+  "full_name": "Oysha Mirzatillayeva",
+  "slug": "oysha-mirzatillayeva",
+  "photo_url": "/assets/seasons/participants/oysha-mirzatillayeva.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "Aisham",
+      "url": "https://codeforces.com/profile/Aisham",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "Aisha.m",
+      "url": "https://kep.uz/users/user/Aisha.m",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "aisha",
+      "url": "https://robocontest.uz/profile/aisha",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Mirzatillayeva Oysha Zukurjon Qizi",
+    "Oysha Mirzatillaeva",
+    "Mirzatillaeva Oysha"
+  ]
+}
