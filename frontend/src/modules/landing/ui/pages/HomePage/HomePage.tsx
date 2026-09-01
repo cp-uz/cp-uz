@@ -43,12 +43,12 @@ type TeamMember = {
 const teamMembers: readonly TeamMember[] = [
   {
     name: 'Asadullo Ganiev',
-    role: 'Product Owner',
+    role: 'Founder',
     image: '/assets/team/asadullo-ganiev.png',
   },
   {
     name: 'Dilshodbek Khujaev',
-    role: 'Content Maker',
+    role: 'Content maker & Coordinator',
     image: '/assets/team/dilshodbek-khujaev.png',
   },
   {
@@ -58,12 +58,12 @@ const teamMembers: readonly TeamMember[] = [
   },
   {
     name: 'Ulugbek Abdimanabov',
-    role: 'Content Creator & Coordinator',
+    role: 'Content maker',
     image: '/assets/team/ulugbek-abdimanabov.png',
   },
   {
     name: 'Davlatbek Mirakilov',
-    role: 'Content Maker',
+    role: 'Content maker, Developer',
     image: '/assets/team/davlatbek-mirakilov.jpg',
   },
   {
