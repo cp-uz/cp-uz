@@ -47,6 +47,16 @@ test('keeps multi-character code operators visually separate', () => {
   assert.match(globalStyles, /'calt'\s+0/);
 });
 
+test('uses a dedicated high-contrast syntax palette in dark mode', () => {
+  assert.match(globalStyles, /:root\[data-color-scheme='dark'\]/);
+  assert.match(globalStyles, /--syntax-code-background:\s*#202a36/);
+  assert.match(globalStyles, /--syntax-code-foreground:\s*#e6edf3/);
+  assert.match(globalStyles, /--syntax-keyword:\s*#ff7ab2/);
+  assert.match(globalStyles, /--syntax-operator:\s*#89ddff/);
+  assert.match(globalStyles, /\.syntax-token--keyword\s*{[^}]*var\(--syntax-keyword\)/s);
+  assert.match(globalStyles, /\.syntax-token--operator\s*{[^}]*var\(--syntax-operator\)/s);
+});
+
 test('article code blocks expose a clipboard action with a browser fallback', () => {
   assert.match(richMarkdown, /aria-label=\{copyLabel\}/);
   assert.match(richMarkdown, /title=\{copyLabel\}/);

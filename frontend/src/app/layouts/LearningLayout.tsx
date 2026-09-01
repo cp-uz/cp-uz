@@ -170,12 +170,15 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                     px: 1.75,
                     py: 0.875,
                     minHeight: 40,
+                    border: '1px solid transparent',
                     fontWeight: 500,
                     color: selected ? 'primary.main' : 'text.secondary',
                     bgcolor: selected ? 'primary.lighter' : 'transparent',
                     '&:hover': { bgcolor: selected ? 'primary.lighter' : 'action.hover' },
                     ...theme.applyStyles('dark', {
                       bgcolor: selected ? 'primary.darker' : 'transparent',
+                      color: selected ? 'primary.lighter' : 'text.secondary',
+                      borderColor: selected ? 'primary.dark' : 'transparent',
                       '&:hover': { bgcolor: selected ? 'primary.darker' : 'action.hover' },
                     }),
                   })}
@@ -443,7 +446,11 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 '&.Mui-selected': { bgcolor: 'primary.lighter', color: 'primary.main' },
                 '&.Mui-selected:hover': { bgcolor: 'primary.lighter' },
                 ...theme.applyStyles('dark', {
-                  '&.Mui-selected': { bgcolor: 'primary.darker', color: 'primary.main' },
+                  '&.Mui-selected': {
+                    bgcolor: 'primary.darker',
+                    color: 'primary.lighter',
+                    boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary.dark}`,
+                  },
                   '&.Mui-selected:hover': { bgcolor: 'primary.darker' },
                 }),
               })}

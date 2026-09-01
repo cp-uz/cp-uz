@@ -86,6 +86,30 @@ kbd,
     'calt' 0;
 }
 
+:root {
+  --syntax-code-background: var(--palette-background-neutral);
+  --syntax-code-foreground: var(--palette-text-primary);
+  --syntax-comment: var(--palette-text-secondary);
+  --syntax-keyword: var(--palette-primary-dark);
+  --syntax-operator: var(--palette-primary-dark);
+  --syntax-type: var(--palette-secondary-dark);
+  --syntax-builtin: var(--palette-info-dark);
+  --syntax-string: var(--palette-success-dark);
+  --syntax-number: var(--palette-warning-dark);
+}
+
+:root[data-color-scheme='dark'] {
+  --syntax-code-background: #202a36;
+  --syntax-code-foreground: #e6edf3;
+  --syntax-comment: #9aa7b3;
+  --syntax-keyword: #ff7ab2;
+  --syntax-operator: #89ddff;
+  --syntax-type: #ffd580;
+  --syntax-builtin: #82aaff;
+  --syntax-string: #c3e88d;
+  --syntax-number: #f78c6c;
+}
+
 ::selection {
   color: #fff;
   background: #036fdc;
@@ -245,8 +269,8 @@ kbd,
   padding: 1.25rem;
   margin: 1.75rem 0;
   overflow: auto;
-  color: var(--palette-text-primary);
-  background: var(--palette-background-neutral);
+  color: var(--syntax-code-foreground);
+  background: var(--syntax-code-background);
   border-radius: 8px;
   line-height: 1.7;
   tab-size: 2;
@@ -283,29 +307,32 @@ kbd,
 }
 
 .syntax-token--comment {
-  color: var(--palette-text-secondary);
+  color: var(--syntax-comment);
   font-style: italic;
 }
 
-.syntax-token--keyword,
+.syntax-token--keyword {
+  color: var(--syntax-keyword);
+}
+
 .syntax-token--operator {
-  color: var(--palette-primary-dark);
+  color: var(--syntax-operator);
 }
 
 .syntax-token--type {
-  color: var(--palette-secondary-dark);
+  color: var(--syntax-type);
 }
 
 .syntax-token--builtin {
-  color: var(--palette-info-dark);
+  color: var(--syntax-builtin);
 }
 
 .syntax-token--string {
-  color: var(--palette-success-dark);
+  color: var(--syntax-string);
 }
 
 .syntax-token--number {
-  color: var(--palette-warning-dark);
+  color: var(--syntax-number);
 }
 
 .rich-markdown table {
@@ -366,8 +393,8 @@ kbd,
 *************************************** */
 .code-block {
   overflow: hidden;
-  color: var(--palette-text-primary);
-  background: var(--palette-background-neutral);
+  color: var(--syntax-code-foreground);
+  background: var(--syntax-code-background);
   border-radius: 8px;
 }
 
