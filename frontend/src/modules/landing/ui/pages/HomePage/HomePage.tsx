@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { useAsyncData } from 'shared/hooks';
+import { SeasonPreview } from 'modules/seasons';
 import { useNavigate, Link as RouterLink } from 'react-router';
 import { learningQueries as learningApi } from 'modules/learning/application';
 import { roadmapStages, getArticlePath, presentRootCategories } from 'modules/learning/domain';
@@ -310,6 +311,8 @@ export default function HomePage() {
           </Box>
         </Container>
       )}
+
+      <SeasonPreview />
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, bgcolor: 'background.neutral' }}>
         <Container maxWidth="lg">

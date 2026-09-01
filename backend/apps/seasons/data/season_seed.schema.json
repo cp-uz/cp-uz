@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cp.uz/schemas/season-seed-v1.json",
+  "title": "cp.uz season timeline import",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "seasons"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "seasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/season"}
+    }
+  },
+  "$defs": {
+    "publicationStatus": {"enum": ["draft", "published", "archived"]},
+    "verificationStatus": {"enum": ["unverified", "pending", "verified", "disputed"]},
+    "lineStyle": {"enum": ["solid", "dashed", "dotted"]},
+    "date": {"type": ["string", "null"], "format": "date"},
+    "season": {
+      "type": "object",
+      "required": ["slug", "title", "start_date", "end_date", "routes", "events"],
+      "properties": {
+        "slug": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "summary": {"type": "string"},
+        "start_date": {"type": "string", "format": "date"},
+        "end_date": {"type": "string", "format": "date"},
+        "publication_status": {"$ref": "#/$defs/publicationStatus"},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "is_featured": {"type": "boolean"},
+        "order": {"type": "integer", "minimum": 0},
+        "routes": {"type": "array", "items": {"$ref": "#/$defs/route"}},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/event"}},
+        "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}},
+        "relations": {"type": "array", "items": {"$ref": "#/$defs/edge"}}
+      },
+      "additionalProperties": false
+    },
+    "route": {
+      "type": "object",
+      "required": ["code", "title", "kind"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "description": {"type": "string"},
+        "kind": {"enum": ["official", "selection", "international", "unofficial", "training"]},
+        "color": {"enum": ["blue", "red", "brown", "teal", "gold", "purple", "green", "neutral"]},
+        "line_style": {"$ref": "#/$defs/lineStyle"},
+        "icon": {"type": "string"},
+        "order": {"type": "integer", "minimum": 0},
+        "is_visible": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": ["code", "title", "type"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1},
+        "slug": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "short_title": {"type": "string"},
+        "summary": {"type": "string"},
+        "description": {"type": "string"},
+        "type": {"enum": ["stage", "selection", "training", "international", "unofficial"]},
+        "publication_status": {"$ref": "#/$defs/publicationStatus"},
+        "event_status": {"enum": ["tba", "scheduled", "live", "completed", "postponed", "cancelled"]},
+        "status": {"enum": ["tba", "scheduled", "live", "completed", "postponed", "cancelled"]},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "date_precision": {"enum": ["tba", "month", "day", "range", "exact"]},
+        "start_date": {"$ref": "#/$defs/date"},
+        "end_date": {"$ref": "#/$defs/date"},
+        "date_label": {"type": "string"},
+        "timezone": {"type": "string"},
+        "location": {"type": "string"},
+        "venue": {"type": "string"},
+        "mode": {"enum": ["tba", "onsite", "online", "hybrid", "in_person", "offline"]},
+        "platform": {"type": "string"},
+        "organizer": {"type": "string"},
+        "eligibility": {"type": "string"},
+        "grade_min": {"type": ["integer", "null"], "minimum": 1, "maximum": 12},
+        "grade_max": {"type": ["integer", "null"], "minimum": 1, "maximum": 12},
+        "is_featured": {"type": "boolean"},
+        "order": {"type": "integer", "minimum": 0},
+        "route_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "route_memberships": {"type": "array", "items": {"$ref": "#/$defs/membership"}},
+        "resources": {"type": "array", "items": {"$ref": "#/$defs/resource"}},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+        "results": {"type": "array", "items": {"$ref": "#/$defs/result"}}
+      },
+      "additionalProperties": false
+    },
+    "membership": {
+      "type": "object",
+      "required": ["route_code"],
+      "properties": {
+        "route_code": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 0},
+        "node_style": {"enum": ["default", "final", "training"]},
+        "label": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from_event_code", "to_event_code"],
+      "anyOf": [{"required": ["type"]}, {"required": ["relation_type"]}],
+      "properties": {
+        "from_event_code": {"type": "string", "minLength": 1},
+        "to_event_code": {"type": "string", "minLength": 1},
+        "route_code": {"type": ["string", "null"]},
+        "type": {"$ref": "#/$defs/relationType"},
+        "relation_type": {"$ref": "#/$defs/relationType"},
+        "line_style": {"$ref": "#/$defs/lineStyle"},
+        "label": {"type": "string"},
+        "order": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "relationType": {"enum": ["qualifies_to", "feeds_into", "training_for", "related_to"]},
+    "resource": {
+      "type": "object",
+      "required": ["type", "title", "url"],
+      "properties": {
+        "type": {"enum": ["official_page", "announcement", "schedule", "rules", "registration", "platform", "participants", "tasks", "editorial", "scoreboard", "results", "photos", "videos", "mirror", "other"]},
+        "title": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "is_official": {"type": "boolean"},
+        "order": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["type", "title", "url"],
+      "properties": {
+        "type": {"enum": ["official", "government", "organizer", "press", "archive", "official_page", "official_announcement", "official_results", "official_regulation", "organizer_archive", "government_news", "community_report", "other"]},
+        "title": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "publisher": {"type": "string"},
+        "accessed_on": {"$ref": "#/$defs/date"},
+        "is_primary": {"type": "boolean"},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "participantPlatformAccount": {
+      "type": "object",
+      "required": ["platform", "handle", "url"],
+      "properties": {
+        "platform": {"enum": ["codeforces", "atcoder", "kepuz", "robocontest"]},
+        "handle": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "title": {"type": "string"},
+        "is_verified": {"type": "boolean"},
+        "is_public": {"type": "boolean"},
+        "order": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "participant": {
+      "type": "object",
+      "required": ["full_name"],
+      "properties": {
+        "full_name": {"type": "string", "minLength": 1},
+        "slug": {"type": "string"},
+        "country_code": {"type": "string", "maxLength": 3},
+        "region": {"type": "string"},
+        "school": {"type": "string"},
+        "handle": {"type": "string"},
+        "bio": {"type": "string"},
+        "photo_url": {"type": "string", "minLength": 1},
+        "platform_accounts": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/participantPlatformAccount"}
+        },
+        "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "teamMember": {
+      "type": "object",
+      "required": ["participant"],
+      "properties": {
+        "participant": {"oneOf": [{"$ref": "#/$defs/participant"}, {"type": "string"}]},
+        "role": {"enum": ["contestant", "leader", "deputy", "coach", "other"]},
+        "order": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "team": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "code": {"type": "string"},
+        "country_code": {"type": "string", "maxLength": 3},
+        "school": {"type": "string"},
+        "notes": {"type": "string"},
+        "members": {"type": "array", "items": {"$ref": "#/$defs/teamMember"}}
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "oneOf": [
+        {"required": ["participant"], "not": {"required": ["team"]}},
+        {"required": ["team"], "not": {"required": ["participant"]}}
+      ],
+      "properties": {
+        "key": {"type": "string", "minLength": 1},
+        "participant": {"oneOf": [{"$ref": "#/$defs/participant"}, {"type": "string"}]},
+        "team": {"$ref": "#/$defs/team"},
+        "rank": {"type": ["integer", "null"], "minimum": 1},
+        "score": {"type": ["number", "string", "null"]},
+        "score_label": {"type": "string"},
+        "medal": {"enum": ["none", "gold", "silver", "bronze", "honourable_mention", "honorable_mention", "other"]},
+        "award_title": {"type": "string"},
+        "category": {"type": "string"},
+        "is_local": {"type": "boolean"},
+        "result_url": {"type": "string", "format": "uri"},
+        "notes": {"type": "string"},
+        "order": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  }
+}

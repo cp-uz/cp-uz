@@ -190,6 +190,10 @@ fi
 docker compose exec -T web python manage.py import_content \
   --path /app/content/exports/articles.v1.json
 
+docker compose exec -T web python manage.py import_seasons \
+  --path /app/apps/seasons/data/season_seed.json \
+  --prune
+
 docker compose exec -T web python manage.py shell -c '
 from apps.articles.models import Article, Category, ExternalPracticeReference, GlossaryTerm
 actual = {
@@ -210,10 +214,36 @@ assert actual == expected, f"Imported corpus mismatch: {actual} != {expected}"
 print(actual)
 '
 
+docker compose exec -T web python manage.py shell -c '
+from apps.seasons.models import Event, EventEdge, ResultEntry, Route, Season
+actual = {
+    "seasons": Season.objects.count(),
+    "public_seasons": Season.objects.published().count(),
+    "routes": Route.objects.count(),
+    "events": Event.objects.count(),
+    "public_events": Event.objects.published().count(),
+    "edges": EventEdge.objects.count(),
+    "local_results": ResultEntry.objects.filter(is_local=True).count(),
+}
+expected = {
+    "seasons": 2,
+    "public_seasons": 2,
+    "routes": 12,
+    "events": 50,
+    "public_events": 50,
+    "edges": 42,
+    "local_results": 73,
+}
+assert actual == expected, f"Imported season data mismatch: {actual} != {expected}"
+print(actual)
+'
+
 SMOKE_ENDPOINTS=(
   /healthz
   /
   /api/v1/health/
+  /api/v1/seasons/current/
+  /seasons/2026-2027
   /boot.css
   /loader-facts.js
   /assets/brand/cpuz-logo.png

@@ -1,6 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 
 from apps.articles.models import Article, Category
+from apps.seasons.models import Event, PublicationStatus, Season
 
 
 class ArticleSitemap(Sitemap):
@@ -32,6 +33,41 @@ class CategorySitemap(Sitemap):
 
     def lastmod(self, category):
         return category.updated_at
+
+
+class SeasonSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.7
+    protocol = "https"
+
+    def items(self):
+        return Season.objects.published().only("slug", "updated_at")
+
+    def location(self, season):
+        return f"/seasons/{season.slug}/"
+
+    def lastmod(self, season):
+        return season.updated_at
+
+
+class SeasonEventSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.6
+    protocol = "https"
+
+    def items(self):
+        return (
+            Event.objects.published()
+            .filter(season__publication_status=PublicationStatus.PUBLISHED)
+            .select_related("season")
+            .only("slug", "updated_at", "season__slug")
+        )
+
+    def location(self, event):
+        return f"/seasons/{event.season.slug}/{event.slug}/"
+
+    def lastmod(self, event):
+        return event.updated_at
 
 
 class StaticSitemap(Sitemap):

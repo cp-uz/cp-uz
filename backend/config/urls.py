@@ -14,11 +14,19 @@ from apps.accounts.views import (
 )
 from config.health import health
 from config.seo import robots_txt
-from config.sitemaps import ArticleSitemap, CategorySitemap, StaticSitemap
+from config.sitemaps import (
+    ArticleSitemap,
+    CategorySitemap,
+    SeasonEventSitemap,
+    SeasonSitemap,
+    StaticSitemap,
+)
 
 sitemaps = {
     "articles": ArticleSitemap,
     "categories": CategorySitemap,
+    "seasons": SeasonSitemap,
+    "season_events": SeasonEventSitemap,
     "static": StaticSitemap,
 }
 
@@ -42,6 +50,7 @@ urlpatterns = [
     path("api/v1/me/", include("apps.engagement.urls")),
     path("api/v1/contributions/", include("apps.contributions.urls")),
     path("api/v1/search/", include("apps.search.urls")),
+    path("api/v1/", include("apps.seasons.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),

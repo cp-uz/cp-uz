@@ -10,41 +10,48 @@ import { LoadingScreen, readBootLoadingFactIndex } from 'shared/ui/LoadingScreen
 
 type AppProps = { children?: React.ReactNode };
 
+function routeViewKey(pathname: string) {
+  const seasonMatch = pathname.match(/^\/seasons\/([^/]+)(?:\/[^/]+)?\/?$/);
+  return seasonMatch ? `/seasons/${seasonMatch[1]}` : pathname;
+}
+
 function RouteTransitionOverlay() {
   const { pathname } = useLocation();
+  const viewKey = routeViewKey(pathname);
   const [settledPath, setSettledPath] = useState<string | null>(null);
-  const previousPath = useRef(pathname);
-  const initialPath = useRef(pathname);
+  const previousPath = useRef(viewKey);
+  const initialPath = useRef(viewKey);
   const [loadingVariant, setLoadingVariant] = useState<'fact' | 'simple'>(() =>
     document.documentElement.dataset.loaderExperience === 'fact' ? 'fact' : 'simple'
   );
   const factIndex = useRef(readBootLoadingFactIndex());
 
   useLayoutEffect(() => {
-    if (previousPath.current === pathname) return;
-    previousPath.current = pathname;
+    if (previousPath.current === viewKey) return;
+    previousPath.current = viewKey;
     setLoadingVariant('simple');
-  }, [pathname]);
+  }, [viewKey]);
 
   useEffect(() => {
-    if (pathname === settledPath) return undefined;
-    const isFirstFact = pathname === initialPath.current && loadingVariant === 'fact';
+    if (viewKey === settledPath) return undefined;
+    const isFirstFact = viewKey === initialPath.current && loadingVariant === 'fact';
     const minimumVisibleTime = isFirstFact ? 1000 + Math.floor(Math.random() * 1001) : 280;
-    const timer = window.setTimeout(() => setSettledPath(pathname), minimumVisibleTime);
+    const timer = window.setTimeout(() => setSettledPath(viewKey), minimumVisibleTime);
     return () => window.clearTimeout(timer);
-  }, [loadingVariant, pathname, settledPath]);
+  }, [loadingVariant, settledPath, viewKey]);
 
-  return pathname === settledPath ? null : (
+  return viewKey === settledPath ? null : (
     <LoadingScreen variant={loadingVariant} initialFactIndex={factIndex.current} />
   );
 }
 
 export default function App({ children }: AppProps) {
   const { pathname } = useLocation();
+  const viewKey = routeViewKey(pathname);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+  }, [viewKey]);
 
   return (
     <SettingsProvider defaultSettings={defaultSettings}>

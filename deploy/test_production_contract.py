@@ -153,6 +153,16 @@ class ComposeContractTests(unittest.TestCase):
                 self.assertIn(path, release)
         self.assertIn('for endpoint in "${SMOKE_ENDPOINTS[@]}"', release)
 
+    def test_release_imports_and_smokes_canonical_season_data(self) -> None:
+        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
+        self.assertIn("python manage.py import_seasons", release)
+        self.assertIn("/app/apps/seasons/data/season_seed.json", release)
+        self.assertIn('"seasons": 2', release)
+        self.assertIn('"events": 50', release)
+        self.assertIn('"local_results": 73', release)
+        self.assertIn("/api/v1/seasons/current/", release)
+        self.assertIn("/seasons/2026-2027", release)
+
     def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         self.assertIn("cpuz_sqlite_data", release)

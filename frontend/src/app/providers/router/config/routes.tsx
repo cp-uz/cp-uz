@@ -6,15 +6,36 @@ import { LearningLayout } from 'app/layouts/LearningLayout';
 
 import NotFoundPage from '../ui/NotFoundPage';
 
-const HomePage = lazy(() => import('modules/landing').then((module) => ({ default: module.HomePage })));
-const CatalogPage = lazy(() => import('modules/learning').then((module) => ({ default: module.CatalogPage })));
-const RoadmapPage = lazy(() => import('modules/learning').then((module) => ({ default: module.RoadmapPage })));
-const ArticlePage = lazy(() => import('modules/learning').then((module) => ({ default: module.ArticlePage })));
-const LegacyRedirectPage = lazy(() => import('modules/learning').then((module) => ({ default: module.LegacyRedirectPage })));
-const GlossaryPage = lazy(() => import('modules/learning').then((module) => ({ default: module.GlossaryPage })));
-const BookmarksPage = lazy(() => import('modules/engagement').then((module) => ({ default: module.BookmarksPage })));
-const ProfilePage = lazy(() => import('modules/engagement').then((module) => ({ default: module.ProfilePage })));
-const SignInPage = lazy(() => import('modules/auth').then((module) => ({ default: module.SignInPage })));
+const HomePage = lazy(() =>
+  import('modules/landing').then((module) => ({ default: module.HomePage }))
+);
+const CatalogPage = lazy(() =>
+  import('modules/learning').then((module) => ({ default: module.CatalogPage }))
+);
+const RoadmapPage = lazy(() =>
+  import('modules/learning').then((module) => ({ default: module.RoadmapPage }))
+);
+const ArticlePage = lazy(() =>
+  import('modules/learning').then((module) => ({ default: module.ArticlePage }))
+);
+const LegacyRedirectPage = lazy(() =>
+  import('modules/learning').then((module) => ({ default: module.LegacyRedirectPage }))
+);
+const GlossaryPage = lazy(() =>
+  import('modules/learning').then((module) => ({ default: module.GlossaryPage }))
+);
+const BookmarksPage = lazy(() =>
+  import('modules/engagement').then((module) => ({ default: module.BookmarksPage }))
+);
+const ProfilePage = lazy(() =>
+  import('modules/engagement').then((module) => ({ default: module.ProfilePage }))
+);
+const SignInPage = lazy(() =>
+  import('modules/auth').then((module) => ({ default: module.SignInPage }))
+);
+const SeasonPage = lazy(() =>
+  import('modules/seasons').then((module) => ({ default: module.SeasonPage }))
+);
 
 function SuspenseOutlet() {
   return (
@@ -49,6 +70,8 @@ export const routesSection: RouteObject[] = [
       { path: '/lugat', element: <GlossaryPage /> },
       { path: '/saqlanganlar', element: <BookmarksPage /> },
       { path: '/profil', element: <ProfilePage /> },
+      { path: '/seasons/:seasonSlug', element: <SeasonPage /> },
+      { path: '/seasons/:seasonSlug/:eventSlug', element: <SeasonPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "apps.engagement",
     "apps.contributions",
     "apps.search",
+    "apps.seasons",
 ]
 
 MIDDLEWARE = [
@@ -148,6 +149,8 @@ SPECTACULAR_SETTINGS = {
         "ArticleStatusEnum": "apps.articles.models.Article.Status",
         "ProposalStatusEnum": "apps.contributions.models.EditProposal.Status",
         "ReadingProgressStatusEnum": "apps.engagement.models.ReadingProgress.Status",
+        "SeasonPublicationStatusEnum": "apps.seasons.models.PublicationStatus",
+        "SeasonVerificationStatusEnum": "apps.seasons.models.VerificationStatus",
     },
 }
 

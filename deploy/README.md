@@ -53,9 +53,10 @@ install -o root -g root -m 0600 local-db.json /home/cp_uz/.release/local-db.json
 
 The release only loads this fixture when the application database is empty. On
 a retry it requires every included model count to match exactly. It then runs
-the canonical content import, verifies 163 published articles, 885 active
-practice references and 174 public glossary terms, and removes the server copy
-of the fixture only after the final public HTTPS checks pass.
+the canonical content and season imports, verifies 163 published articles, 885 active
+practice references, 174 public glossary terms, 2 published seasons, 50 season events
+and 73 local result rows, and removes the server copy of the fixture only after the
+final public HTTPS checks pass.
 
 After the repository and completed `.env` are present in `/home/cp_uz`:
 
@@ -64,7 +65,7 @@ cd /home/cp_uz
 bash deploy/release-on-server.sh
 ```
 
-The release performs environment validation, saves the current shared Nginx file, creates a transactionally consistent backup of an existing SQLite database on later runs, builds and waits for Compose health, imports the canonical 163-article snapshot idempotently, switches only the cp.uz TLS block, runs HTTPS smoke tests, and then removes the two exact legacy paths. Rollback artifacts are stored in a timestamped root-only directory under `/root/cpuz-rollbacks/`.
+The release performs environment validation, saves the current shared Nginx file, creates a transactionally consistent backup of an existing SQLite database on later runs, builds and waits for Compose health, imports the canonical article and season snapshots idempotently, switches only the cp.uz TLS block, runs HTTPS smoke tests, and then removes the two exact legacy paths. Rollback artifacts are stored in a timestamped root-only directory under `/root/cpuz-rollbacks/`.
 
 No Docker command is part of the local developer workflow; local Django and Vite runs are documented in the root README.
 

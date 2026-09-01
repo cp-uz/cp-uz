@@ -7,3 +7,4 @@ drf-spectacular>=0.28,<0.29
 dj-database-url>=2.3,<3
 redis>=5,<8
 gunicorn>=23,<24
+jsonschema>=4.23,<5
