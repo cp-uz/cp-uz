@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { useAsyncData } from 'shared/hooks';
-import { useParams, useNavigate, Link as RouterLink } from 'react-router';
+import { useParams, useNavigate, useLocation, Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -20,9 +20,9 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { seasonQueries } from '../../../application';
+import { seasonEventMonthKey } from '../../../domain';
 import { SeasonSelector } from '../../shared/SeasonSelector';
 import { SeasonEventDetail } from '../../shared/SeasonEventDetail';
-import { seasonEventMonthKey, findCurrentSeasonEvent } from '../../../domain';
 import { SeasonTimeline, SeasonMonthRail, seasonMonthGroups } from '../../shared/SeasonTimeline';
 
 function PageSkeleton() {
@@ -51,6 +51,7 @@ export default function SeasonPage() {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
+  const { hash } = useLocation();
   const { seasonSlug = '', eventSlug } = useParams();
   const {
     data: season,
@@ -68,7 +69,14 @@ export default function SeasonPage() {
     () => season?.events.find((event) => event.slug === eventSlug),
     [eventSlug, season]
   );
-  const defaultEvent = season ? findCurrentSeasonEvent(season) : undefined;
+  const monthGroups = season ? seasonMonthGroups(season) : [];
+  const navigableMonthGroups = monthGroups.filter((group) => group.key !== 'tba');
+  const hashMonth = hash.startsWith('#season-month-')
+    ? hash.slice('#season-month-'.length)
+    : undefined;
+  const defaultMonthGroup =
+    navigableMonthGroups.find((group) => group.anchorKey === hashMonth) ?? navigableMonthGroups[0];
+  const defaultEvent = defaultMonthGroup?.events[0];
   const matchingFetchedEvent = fetchedEvent?.slug === eventSlug ? fetchedEvent : undefined;
   const selectedEvent: SeasonEvent | undefined = eventSlug
     ? (matchingFetchedEvent ?? graphEvent)
@@ -77,8 +85,11 @@ export default function SeasonPage() {
   const selectedRoute = season?.routes.find((route) =>
     selectedEvent?.routeMemberships.some((membership) => membership.routeCode === route.code)
   );
-  const monthGroups = season ? seasonMonthGroups(season) : [];
-  const selectedMonth = selectedEvent ? seasonEventMonthKey(selectedEvent) : undefined;
+  const selectedMonth = eventSlug
+    ? selectedEvent
+      ? seasonEventMonthKey(selectedEvent)
+      : undefined
+    : defaultMonthGroup?.key;
 
   if (loading) return <PageSkeleton />;
 
@@ -111,11 +122,11 @@ export default function SeasonPage() {
           alignItems={{ md: 'flex-end' }}
         >
           <Box sx={{ maxWidth: 760 }}>
-            <Stack direction="row" spacing={1} alignItems="center" sx={{ color: 'primary.main' }}>
-              <UiIcon icon="solar:calendar-mark-linear" width={19} />
-              <Typography variant="subtitle2">Sport dasturlash mavsumi</Typography>
-            </Stack>
-            <Typography component="h1" variant="h2" sx={{ mt: 1.5 }}>
+            <Typography
+              component="h1"
+              variant="h2"
+              sx={{ fontSize: { xs: 34, sm: 42, md: 48 }, lineHeight: { xs: 1.16, md: 1.2 } }}
+            >
               {season.title}
             </Typography>
             {season.summary && (
@@ -194,7 +205,11 @@ export default function SeasonPage() {
           </Box>
 
           <Box sx={{ minWidth: 0 }}>
-            <SeasonTimeline season={season} selectedEventSlug={selectedEvent?.slug} />
+            <SeasonTimeline
+              season={season}
+              selectedMonth={selectedMonth}
+              selectedEventSlug={selectedEvent?.slug}
+            />
           </Box>
 
           <Box

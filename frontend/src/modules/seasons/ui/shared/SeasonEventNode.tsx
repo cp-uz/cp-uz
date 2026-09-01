@@ -41,6 +41,7 @@ export function SeasonEventNode({
   const unofficialNode = event.type === 'unofficial';
   const presentation = seasonEventPresentation(event, route);
   const eventLogoUrl = seasonEventLogoUrl(event.code, seasonSlug);
+  const squareEventLogo = event.code === 'G2';
   const routeIcon =
     !finalNode && !trainingNode && !unofficialNode && route.icon?.includes(':')
       ? route.icon
@@ -104,7 +105,8 @@ export function SeasonEventNode({
               route={route}
               logoUrl={eventLogoUrl}
               fallbackIcon={presentation.icon}
-              size={compact ? 14 : 18}
+              square={squareEventLogo}
+              size={squareEventLogo ? (compact ? 18 : 26) : compact ? 14 : 18}
             />
           ) : (
             <UiIcon icon={routeIcon} width={compact ? 15 : trainingNode ? 15 : 19} />

@@ -43,15 +43,28 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { MainSection, LayoutSection, HeaderSection } from './core';
 
 const navItems = [
+  {
+    to: '/seasons/2026-2027',
+    label: 'Olimpiada mavsumi',
+    icon: 'solar:calendar-mark-linear',
+  },
   { to: '/algoritmlar', label: 'Algoritmlar', icon: 'solar:library-linear' },
   { to: '/yol-xaritasi', label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
-  { to: '/lugat', label: 'Lug‘at', icon: 'solar:notebook-bookmark-linear' },
 ];
 
+const glossaryItem = {
+  to: '/lugat',
+  label: 'Lug‘at',
+  icon: 'solar:notebook-bookmark-linear',
+};
+
 const utilityItems = [
+  glossaryItem,
   { to: '/saqlanganlar', label: 'Saqlanganlar', icon: 'solar:bookmark-linear' },
   { to: '/profil', label: 'Mening profilim', icon: 'solar:user-circle-linear' },
 ];
+
+const footerItems = [...navItems, glossaryItem];
 
 export function LearningLayout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
@@ -237,6 +250,16 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 <UiIcon icon="solar:text-square-linear" width={20} />
               </IconButton>
             </Tooltip>
+            <Tooltip title="Lug‘at">
+              <IconButton
+                component={RouterLink}
+                to="/lugat"
+                aria-label="Lug‘at"
+                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+              >
+                <UiIcon icon="solar:notebook-bookmark-linear" width={20} />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Saqlanganlar">
               <IconButton
                 component={RouterLink}
@@ -307,7 +330,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
               O‘rganish
             </Typography>
-            {navItems.map((item) => {
+            {footerItems.map((item) => {
               const selected = pathname === item.to || pathname.startsWith(`${item.to}/`);
               return (
                 <Button

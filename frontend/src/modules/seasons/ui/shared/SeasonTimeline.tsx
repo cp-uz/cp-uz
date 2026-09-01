@@ -1,11 +1,14 @@
 import type { SeasonEvent, SeasonRoute, SeasonDetail } from '../../domain';
 
 import { useRef, useMemo } from 'react';
+import { UiIcon } from 'shared/ui/UiIcon';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { SeasonEventNode } from './SeasonEventNode';
 import { SeasonRouteMark, seasonRouteLogoUrl } from './SeasonRouteMark';
@@ -108,7 +111,7 @@ type SeasonMonthRailProps = {
 };
 
 export function SeasonMonthRail({ groups, selectedMonth }: SeasonMonthRailProps) {
-  const navigationGroups = uniqueMonthGroups(groups);
+  const navigationGroups = uniqueMonthGroups(groups).filter((group) => group.key !== 'tba');
   return (
     <Box
       component="nav"
@@ -122,6 +125,7 @@ export function SeasonMonthRail({ groups, selectedMonth }: SeasonMonthRailProps)
             key={group.key}
             href={`#season-month-${group.anchorKey}`}
             underline="none"
+            aria-current={selectedMonth === group.key ? 'location' : undefined}
             color={selectedMonth === group.key ? 'primary.main' : 'text.secondary'}
             sx={{
               py: 0.75,
@@ -151,10 +155,13 @@ export function SeasonMonthRail({ groups, selectedMonth }: SeasonMonthRailProps)
 
 type SeasonTimelineProps = {
   season: SeasonDetail;
+  selectedMonth?: string;
   selectedEventSlug?: string;
 };
 
-export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProps) {
+export function SeasonTimeline({ season, selectedMonth, selectedEventSlug }: SeasonTimelineProps) {
+  const responsiveTheme = useTheme();
+  const compactTimeline = useMediaQuery(responsiveTheme.breakpoints.down('sm'));
   const headerScrollerRef = useRef<HTMLDivElement>(null);
   const bodyScrollerRef = useRef<HTMLDivElement>(null);
   const routes = useMemo(
@@ -170,7 +177,10 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
     [season.events, season.routes]
   );
   const groups = useMemo(() => seasonMonthGroups(season), [season]);
-  const navigationGroups = useMemo(() => uniqueMonthGroups(groups), [groups]);
+  const navigationGroups = useMemo(
+    () => uniqueMonthGroups(groups).filter((group) => group.key !== 'tba'),
+    [groups]
+  );
   const events = useMemo(
     () => sortedSeasonEvents(season).filter((event) => event.type !== 'unofficial'),
     [season]
@@ -179,10 +189,10 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
     () => sortedSeasonEvents(season).filter((event) => event.type === 'unofficial'),
     [season]
   );
-  const laneWidth = 134;
-  const rowHeight = 142;
-  const canvasTop = 62;
-  const minGraphWidth = Math.max(routes.length * laneWidth, 560);
+  const laneWidth = compactTimeline ? 116 : 134;
+  const rowHeight = compactTimeline ? 130 : 142;
+  const canvasTop = compactTimeline ? 68 : 62;
+  const minGraphWidth = Math.max(routes.length * laneWidth, compactTimeline ? 464 : 560);
   const { slotByEvent, slotCount } = seasonTimelineSlotIndexes(events);
   const canvasHeight = Math.max(slotCount * rowHeight + canvasTop + 36, 360);
   const routeByCode = new Map(season.routes.map((route) => [route.code, route]));
@@ -282,21 +292,37 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
             key={group.key}
             href={`#season-month-${group.anchorKey}`}
             underline="none"
-            color="text.primary"
+            color={selectedMonth === group.key ? 'primary.main' : 'text.primary'}
+            aria-current={selectedMonth === group.key ? 'location' : undefined}
             sx={{
               px: 1.25,
               py: 0.75,
               flexShrink: 0,
-              bgcolor: 'background.neutral',
+              bgcolor: selectedMonth === group.key ? 'action.selected' : 'background.neutral',
               borderRadius: 1,
               fontSize: 13,
-              fontWeight: 500,
+              fontWeight: selectedMonth === group.key ? 700 : 500,
             }}
           >
             {group.shortLabel}
           </Link>
         ))}
       </Box>
+
+      <Stack
+        direction="row"
+        spacing={0.75}
+        alignItems="center"
+        sx={{
+          mb: 0.75,
+          px: 0.5,
+          display: { xs: 'flex', md: 'none' },
+          color: 'text.secondary',
+        }}
+      >
+        <UiIcon icon="solar:round-arrow-right-linear" width={16} />
+        <Typography variant="caption">Yo‘nalishlarni ko‘rish uchun yon tomonga suring</Typography>
+      </Stack>
 
       <Box
         sx={{
@@ -335,11 +361,11 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
               return (
                 <Stack
                   key={route.code}
-                  direction="row"
-                  spacing={0.75}
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 0.25, sm: 0.75 }}
                   alignItems="center"
                   justifyContent="center"
-                  sx={{ px: 1, py: 1.5, minWidth: 0 }}
+                  sx={{ px: { xs: 0.5, sm: 1 }, py: { xs: 0.75, sm: 1.5 }, minWidth: 0 }}
                 >
                   <Box
                     sx={(theme) => ({
@@ -359,9 +385,13 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
                     sx={{
                       minWidth: 0,
                       fontWeight: 600,
+                      lineHeight: 1.2,
+                      textAlign: 'center',
                       overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      textOverflow: 'ellipsis',
+                      fontSize: { xs: 10.5, sm: 12 },
+                      whiteSpace: { xs: 'normal', sm: 'nowrap' },
+                      textOverflow: { xs: 'clip', sm: 'ellipsis' },
+                      ...responsiveTheme.mixins.maxLine({ line: 2 }),
                     }}
                   >
                     {route.title}
@@ -386,6 +416,13 @@ export function SeasonTimeline({ season, selectedEventSlug }: SeasonTimelineProp
           pb: 1,
           overflowX: 'auto',
           overscrollBehaviorInline: 'contain',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'thin',
+          '&::-webkit-scrollbar': { height: 5 },
+          '&::-webkit-scrollbar-thumb': {
+            bgcolor: 'divider',
+            borderRadius: 4,
+          },
         }}
       >
         <Box sx={{ minWidth: minGraphWidth }}>

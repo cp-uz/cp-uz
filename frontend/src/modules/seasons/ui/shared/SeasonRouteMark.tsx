@@ -12,6 +12,7 @@ type SeasonRouteMarkProps = {
   logoUrl?: string;
   fallbackIcon?: string;
   size?: number;
+  square?: boolean;
 };
 
 export function seasonRouteLogoUrl(routeCode: string, seasonSlug: string) {
@@ -41,7 +42,13 @@ export function seasonEventLogoUrl(eventCode: string, seasonSlug: string) {
   return logos[eventCode];
 }
 
-export function SeasonRouteMark({ route, logoUrl, fallbackIcon, size = 20 }: SeasonRouteMarkProps) {
+export function SeasonRouteMark({
+  route,
+  logoUrl,
+  fallbackIcon,
+  size = 20,
+  square = false,
+}: SeasonRouteMarkProps) {
   const presentation = SEASON_ROUTE_PRESENTATION[route.color];
   const resolvedFallbackIcon =
     fallbackIcon ?? (route.icon?.includes(':') ? route.icon : presentation.icon);
@@ -54,8 +61,8 @@ export function SeasonRouteMark({ route, logoUrl, fallbackIcon, size = 20 }: Sea
     return (
       <Box
         sx={{
-          p: '2px',
-          width: size * 1.7,
+          p: square ? '1px' : '2px',
+          width: square ? size + 4 : size * 1.7,
           height: size + 4,
           display: 'flex',
           flexShrink: 0,

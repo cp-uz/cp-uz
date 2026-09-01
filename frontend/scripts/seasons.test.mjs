@@ -258,6 +258,29 @@ test('shared season selector owns season labels and both dropdown consumers use 
   assert.match(selectorSource, /formatSeasonLabel\(season\.slug\)/);
 });
 
+test('global navigation promotes the current season and moves glossary beside saved items', () => {
+  const source = readFileSync(
+    new URL('../src/app/layouts/LearningLayout.tsx', import.meta.url),
+    'utf8'
+  );
+  const navItemsSource = source.match(/const navItems = \[([\s\S]*?)\];/)?.[1] || '';
+  const utilityItemsSource = source.match(/const utilityItems = \[([\s\S]*?)\];/)?.[1] || '';
+
+  assert.match(navItemsSource, /to: '\/seasons\/2026-2027'/);
+  assert.match(navItemsSource, /label: 'Olimpiada mavsumi'/);
+  assert.ok(
+    navItemsSource.indexOf("to: '/seasons/2026-2027'") <
+      navItemsSource.indexOf("to: '/algoritmlar'")
+  );
+  assert.doesNotMatch(navItemsSource, /to: '\/lugat'/);
+  assert.match(utilityItemsSource, /glossaryItem/);
+  assert.match(source, /<Tooltip title="Lug‘at">[\s\S]*?to="\/lugat"/);
+  assert.ok(
+    source.indexOf('<Tooltip title="Lug‘at">') < source.indexOf('<Tooltip title="Saqlanganlar">')
+  );
+  assert.match(source, /const footerItems = \[\.\.\.navItems, glossaryItem\]/);
+});
+
 test('selected timeline nodes keep an opaque surface above route lines', () => {
   const source = readFileSync(
     new URL('../src/modules/seasons/ui/shared/SeasonEventNode.tsx', import.meta.url),
@@ -276,6 +299,28 @@ test('official and independent season finals use local brand assets', () => {
   assert.match(source, /G2: '\/assets\/seasons\/izho\.png'/);
   assert.match(source, /U1: '\/assets\/seasons\/vkoshp\.ico'/);
   assert.match(source, /U2: '\/assets\/seasons\/info1cup\.png'/);
+});
+
+test('season page starts from its first dated month and keeps mobile navigation compact', () => {
+  const pageSource = readFileSync(
+    new URL('../src/modules/seasons/ui/pages/SeasonPage/SeasonPage.tsx', import.meta.url),
+    'utf8'
+  );
+  const timelineSource = readFileSync(
+    new URL('../src/modules/seasons/ui/shared/SeasonTimeline.tsx', import.meta.url),
+    'utf8'
+  );
+  const nodeSource = readFileSync(
+    new URL('../src/modules/seasons/ui/shared/SeasonEventNode.tsx', import.meta.url),
+    'utf8'
+  );
+
+  assert.doesNotMatch(pageSource, />Sport dasturlash mavsumi<\/Typography>/);
+  assert.match(pageSource, /navigableMonthGroups\[0\]/);
+  assert.match(timelineSource, /filter\(\(group\) => group\.key !== 'tba'\)/);
+  assert.match(timelineSource, /Yo‘nalishlarni ko‘rish uchun yon tomonga suring/);
+  assert.match(timelineSource, /compactTimeline \? 116 : 134/);
+  assert.match(nodeSource, /const squareEventLogo = event\.code === 'G2'/);
 });
 
 test('landing preview selects a season and keeps independent contests off the main route', () => {
