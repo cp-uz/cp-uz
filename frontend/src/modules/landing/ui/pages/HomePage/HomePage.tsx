@@ -52,7 +52,7 @@ const teamMembers: readonly TeamMember[] = [
   {
     name: 'Dilshodbek Khujaev',
     role: 'Content maker & Coordinator',
-    image: '/assets/team/dilshodbek-khujaev.webp',
+    image: '/assets/team/dilshodbek-khujaev.webp?v=20260904-2',
   },
   {
     name: 'Nazarbek Baltabaev',
@@ -67,7 +67,7 @@ const teamMembers: readonly TeamMember[] = [
   {
     name: 'Dilyorbek Valijanov',
     role: 'Developer',
-    image: '/assets/team/dilyorbek-valijanov.webp',
+    image: '/assets/team/dilyorbek-valijanov.webp?v=20260904-2',
   },
   {
     name: 'Ulugbek Abdimanabov',
