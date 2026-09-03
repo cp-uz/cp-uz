@@ -228,6 +228,7 @@ actual = {
     "public_problems": Problem.objects.filter(publication_status=PublicationStatus.PUBLISHED).count(),
     "links": ProblemLink.objects.count(),
     "attachments": ProblemAttachment.objects.count(),
+    "statement_pdfs": Problem.objects.exclude(statement_pdf_url="").count(),
 }
 expected = {
     "sets": 11,
@@ -235,7 +236,8 @@ expected = {
     "problems": 35,
     "public_problems": 35,
     "links": 64,
-    "attachments": 35,
+    "attachments": 12,
+    "statement_pdfs": 35,
 }
 assert actual == expected, f"Imported problem catalog mismatch: {actual} != {expected}"
 print(actual)
