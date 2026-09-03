@@ -4,6 +4,7 @@ import path from 'node:path';
 
 const outputDirectory = path.join(process.cwd(), 'dist');
 const serviceWorkerPath = path.join(outputDirectory, 'sw.js');
+const rootIndexPath = path.join(outputDirectory, 'index.html');
 const manifestToken = '/* __PRECACHE_MANIFEST__ */';
 const hashToken = '__BUILD_HASH__';
 
@@ -13,7 +14,7 @@ async function listFiles(directory) {
     entries.map(async (entry) => {
       const absolutePath = path.join(directory, entry.name);
       return entry.isDirectory() ? listFiles(absolutePath) : [absolutePath];
-    }),
+    })
   );
   return nestedFiles.flat();
 }
@@ -27,10 +28,16 @@ function toPublicUrl(absolutePath) {
 }
 
 const outputFiles = (await listFiles(outputDirectory))
-  .filter((file) => file !== serviceWorkerPath && !file.endsWith('.map'))
+  .filter(
+    (file) =>
+      file !== serviceWorkerPath &&
+      !file.endsWith('.map') &&
+      (!file.endsWith(`${path.sep}index.html`) || file === rootIndexPath)
+  )
   .sort();
 
-if (outputFiles.length === 0) throw new Error('PWA keshiga qo‘shish uchun build fayllari topilmadi.');
+if (outputFiles.length === 0)
+  throw new Error('PWA keshiga qo‘shish uchun build fayllari topilmadi.');
 
 const serviceWorkerTemplate = await readFile(serviceWorkerPath, 'utf8');
 if (!serviceWorkerTemplate.includes(manifestToken) || !serviceWorkerTemplate.includes(hashToken)) {
@@ -45,7 +52,10 @@ for (const file of outputFiles) {
 }
 
 const cacheVersion = buildHash.digest('hex').slice(0, 16);
-const precacheManifest = outputFiles.map(toPublicUrl).map((url) => JSON.stringify(url)).join(',\n  ');
+const precacheManifest = outputFiles
+  .map(toPublicUrl)
+  .map((url) => JSON.stringify(url))
+  .join(',\n  ');
 const generatedServiceWorker = serviceWorkerTemplate
   .replace(manifestToken, precacheManifest)
   .replaceAll(hashToken, cacheVersion);

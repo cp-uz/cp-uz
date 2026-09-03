@@ -155,6 +155,7 @@ export default function ProfilePage() {
         title="Mening profilim"
         description="O‘qish holati, yakunlangan darsliklar va saqlangan maqolalar."
         path={appRoutes.profile}
+        robots="noindex,nofollow"
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>

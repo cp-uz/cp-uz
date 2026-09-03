@@ -121,6 +121,7 @@ class SeoStatsAndHealthTests(TestCase):
     def setUp(self):
         cache.clear()
         category = Category.objects.create(name="Graf", slug="graphs")
+        Category.objects.create(name="Graf asoslari", slug="graphs--fundamentals", parent=category)
         self.article = Article.objects.create(
             title="DFS",
             slug="graph--dfs",
@@ -154,6 +155,11 @@ class SeoStatsAndHealthTests(TestCase):
         sitemap = self.client.get("/sitemap.xml")
         self.assertEqual(sitemap.status_code, 200)
         self.assertContains(sitemap, "/algo/graph/depth-first-search/")
+        self.assertContains(sitemap, "/algo/graphs/")
+        self.assertNotContains(sitemap, "/algo/graphs--fundamentals/")
+        self.assertContains(sitemap, "/seasons/")
+        self.assertContains(sitemap, "/roadmap/")
+        self.assertNotContains(sitemap, "/biz-haqimizda/")
 
         robots = self.client.get("/robots.txt")
         self.assertEqual(robots.status_code, 200)

@@ -174,6 +174,11 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn("client_max_body_size 8m;", host_nginx)
         self.assertIn("client_max_body_size 8m;", app_nginx)
 
+    def test_www_redirects_to_the_canonical_apex_host(self) -> None:
+        host_nginx = (ROOT / "deploy" / "nginx-host-cpuz.conf").read_text(encoding="utf-8")
+        self.assertIn("if ($host = www.cp.uz)", host_nginx)
+        self.assertIn("return 301 https://cp.uz$request_uri;", host_nginx)
+
     def test_release_smokes_boot_and_team_assets_before_and_after_cutover(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         for path in (

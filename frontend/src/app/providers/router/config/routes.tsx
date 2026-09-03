@@ -68,6 +68,7 @@ export const routesSection: RouteObject[] = [
     children: [
       { path: appRoutes.home, element: <HomePage /> },
       { path: appRoutes.algorithms, element: <CatalogPage /> },
+      { path: appRoutePatterns.algorithmCategory, element: <CatalogPage /> },
       { path: appRoutePatterns.algorithm, element: <ArticlePage /> },
       { path: appRoutes.tasks, element: <ProblemCatalogPage /> },
       { path: appRoutePatterns.taskEvent, element: <ProblemPage /> },

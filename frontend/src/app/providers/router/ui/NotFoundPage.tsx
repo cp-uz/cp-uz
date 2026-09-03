@@ -15,6 +15,7 @@ export default function NotFoundPage() {
       <Seo
         title="Sahifa topilmadi"
         description="So‘ralgan sahifa cp.uz saytida topilmadi."
+        robots="noindex,nofollow"
       />
       <Container
         component="main"
@@ -37,8 +38,8 @@ export default function NotFoundPage() {
             Bu manzil mavjud emas
           </Typography>
           <Typography sx={{ mt: 1.5, maxWidth: 520, color: 'text.secondary' }}>
-            Havola eskirgan yoki sahifa boshqa manzilga ko‘chirilgan bo‘lishi mumkin.
-            Bosh sahifaga qayting yoki algoritmlar kutubxonasidan kerakli mavzuni toping.
+            Havola eskirgan yoki sahifa boshqa manzilga ko‘chirilgan bo‘lishi mumkin. Bosh sahifaga
+            qayting yoki algoritmlar kutubxonasidan kerakli mavzuni toping.
           </Typography>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 4 }}>
             <Button

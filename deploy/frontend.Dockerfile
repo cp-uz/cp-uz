@@ -7,6 +7,7 @@ ENV VITE_API_URL=${VITE_API_URL}
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 
+COPY content/ /content/
 COPY frontend/ ./
 RUN npm run build
 

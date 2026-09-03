@@ -46,6 +46,7 @@ export default function BookmarksPage() {
         title="Saqlangan maqolalar"
         description="Keyinroq o‘qish uchun saqlagan algoritm darsliklaringiz."
         path={appRoutes.saved}
+        robots="noindex,nofollow"
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>

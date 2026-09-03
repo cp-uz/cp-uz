@@ -105,7 +105,17 @@ export default function HomePage() {
     <>
       <Seo
         title="cp uz; o‘zbek sport dasturchilari hamjamiyati"
-        description="Sport dasturlash algoritmlarini o‘zbek tilida o‘rganish uchun ochiq tekshiruvdagi bilim ombori."
+        description="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlashni o‘zbek tilida o‘rganish uchun ochiq bilim ombori."
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          '@id': 'https://cp.uz/#website',
+          name: 'cp.uz',
+          alternateName: ['cp uz', 'O‘zbek sport dasturlash hamjamiyati'],
+          url: 'https://cp.uz/',
+          inLanguage: 'uz-Latn',
+          publisher: { '@id': 'https://cp.uz/#organization' },
+        }}
       />
 
       <Container maxWidth="xl" sx={{ py: { xs: 6, md: 9 } }}>

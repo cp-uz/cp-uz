@@ -388,7 +388,24 @@ export default function ArticlePage() {
 
   return (
     <>
-      <Seo title={article.title} description={article.summary} path={getArticlePath(article)} />
+      <Seo
+        title={article.title}
+        description={article.summary}
+        path={getArticlePath(article)}
+        type="article"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          headline: article.title,
+          description: article.summary,
+          url: `https://cp.uz${getArticlePath(article)}/`,
+          inLanguage: 'uz-Latn',
+          dateModified: article.updatedAt,
+          about: [article.category, ...article.tags],
+          publisher: { '@id': 'https://cp.uz/#organization' },
+          isPartOf: { '@id': 'https://cp.uz/#website' },
+        }}
+      />
       {!!article.content && (
         <LinearProgress
           variant="determinate"

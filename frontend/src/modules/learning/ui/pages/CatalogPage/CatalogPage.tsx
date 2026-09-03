@@ -3,8 +3,8 @@ import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
-import { useSearchParams, Link as RouterLink } from 'react-router';
 import { useLocalStorageList } from 'modules/engagement/application';
+import { useParams, useNavigate, useSearchParams, Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -32,6 +32,8 @@ const difficultyOptions = ['all', 'Boshlang‘ich', 'O‘rta', 'Yuqori'];
 const ARTICLES_PER_BATCH = 10;
 
 export default function CatalogPage() {
+  const navigate = useNavigate();
+  const { category: routeCategory } = useParams<{ category?: string }>();
   const [params, setParams] = useSearchParams();
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [visibleCount, setVisibleCount] = useState(ARTICLES_PER_BATCH);
@@ -48,7 +50,7 @@ export default function CatalogPage() {
   const bookmarks = useLocalStorageList('cpuz:bookmarks', []);
   const query = params.get('q') ?? '';
   const debouncedQuery = useDebouncedValue(query, 300);
-  const category = params.get('category') ?? 'all';
+  const category = routeCategory ?? 'all';
   const difficulty = params.get('difficulty') ?? 'all';
   const rootCategories = presentRootCategories(allCategories);
   const loading = articlesLoading || categoriesLoading;
@@ -71,16 +73,28 @@ export default function CatalogPage() {
     setParams(next, { replace: true });
   };
 
-  const clear = () => setParams({}, { replace: true });
+  const updateCategory = (value: string) => {
+    const next = new URLSearchParams(params);
+    next.delete('category');
+    const queryString = next.toString();
+    const path = value === 'all' ? appRoutes.algorithms : appRoutes.algorithmCategory(value);
+    navigate(queryString ? `${path}?${queryString}` : path);
+  };
+
+  const clear = () => navigate(appRoutes.algorithms);
   const categoryTitle = rootCategories.find((item) => item.id === category)?.title;
   const hasFilters = Boolean(query || category !== 'all' || difficulty !== 'all');
 
   return (
     <>
       <Seo
-        title="Algoritmlar kutubxonasi"
-        description="O‘zbek tilidagi algoritmlar, ma’lumotlar tuzilmalari va sport dasturlash darsliklari."
-        path={appRoutes.algorithms}
+        title={categoryTitle ? `${categoryTitle} algoritmlari` : 'Algoritmlar kutubxonasi'}
+        description={
+          categoryTitle
+            ? `${categoryTitle} bo‘yicha o‘zbekcha algoritmlar, tushuntirishlar va sport dasturlash darsliklari.`
+            : 'O‘zbek tilidagi algoritmlar, ma’lumotlar tuzilmalari va sport dasturlash darsliklari.'
+        }
+        path={category === 'all' ? appRoutes.algorithms : appRoutes.algorithmCategory(category)}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
@@ -141,7 +155,7 @@ export default function CatalogPage() {
             size="small"
             label="Bo‘lim"
             value={category}
-            onChange={(event) => update('category', event.target.value)}
+            onChange={(event) => updateCategory(event.target.value)}
           >
             <MenuItem value="all">
               <ListItemIcon>
@@ -197,7 +211,8 @@ export default function CatalogPage() {
             <Stack spacing={0.25}>
               <ListItemButton
                 selected={category === 'all'}
-                onClick={() => update('category', 'all')}
+                component={RouterLink}
+                to={appRoutes.algorithms}
                 sx={{ px: 1.5, borderRadius: 1 }}
               >
                 <ListItemIcon
@@ -226,7 +241,8 @@ export default function CatalogPage() {
                 <ListItemButton
                   key={item.id}
                   selected={category === item.id}
-                  onClick={() => update('category', item.id)}
+                  component={RouterLink}
+                  to={appRoutes.algorithmCategory(item.id)}
                   sx={{ px: 1.5, borderRadius: 1 }}
                 >
                   <ListItemIcon
@@ -276,7 +292,12 @@ export default function CatalogPage() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Qayerdan boshlashni bilmaysizmi?
             </Typography>
-            <Button component={RouterLink} to={appRoutes.roadmap} size="small" sx={{ mt: 1, px: 0 }}>
+            <Button
+              component={RouterLink}
+              to={appRoutes.roadmap}
+              size="small"
+              sx={{ mt: 1, px: 0 }}
+            >
               Yo‘l xaritasini ochish
             </Button>
           </Box>

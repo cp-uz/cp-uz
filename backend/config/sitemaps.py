@@ -3,7 +3,13 @@ from django.contrib.sitemaps import Sitemap
 from apps.articles.models import Article, Category
 from apps.problems.models import Problem
 from apps.seasons.models import Event, PublicationStatus, Season
-from config.frontend_routes import DICTIONARY_ROOT, algorithm_path, season_path, task_path
+from config.frontend_routes import (
+    DICTIONARY_ROOT,
+    ROADMAP_ROOT,
+    algorithm_path,
+    season_path,
+    task_path,
+)
 
 
 class ArticleSitemap(Sitemap):
@@ -28,7 +34,9 @@ class CategorySitemap(Sitemap):
     protocol = "https"
 
     def items(self):
-        return Category.objects.filter(is_active=True).only("slug", "updated_at")
+        return Category.objects.filter(is_active=True, parent__isnull=True).only(
+            "slug", "updated_at"
+        )
 
     def location(self, category):
         return algorithm_path(category.slug)
@@ -110,8 +118,9 @@ class StaticSitemap(Sitemap):
         "home": ("/", 1.0),
         "articles": (algorithm_path(), 0.9),
         "problems": (task_path(), 0.85),
+        "seasons": (season_path(), 0.75),
+        "roadmap": (f"{ROADMAP_ROOT}/", 0.7),
         "glossary": (f"{DICTIONARY_ROOT}/", 0.6),
-        "about": ("/biz-haqimizda/", 0.4),
     }
 
     def items(self):

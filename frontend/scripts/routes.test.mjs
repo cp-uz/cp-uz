@@ -31,6 +31,8 @@ test('public routes have one canonical source of truth', () => {
   );
 
   assert.equal(appRoutes.algorithm('graph', 'dfs'), '/algo/graph/dfs');
+  assert.equal(appRoutes.algorithmCategory('graphs'), '/algo/graphs');
+  assert.equal(appRoutePatterns.algorithmCategory, '/algo/:category');
   assert.equal(appRoutes.task('2025-2026', 'izho-2026', 'game'), '/tasks/2025-2026/izho-2026/game');
   assert.equal(appRoutes.seasonEvent('2025-2026', 'izho-2026'), '/seasons/2025-2026/izho-2026');
   assert.equal(appRoutePatterns.task, '/tasks/:seasonSlug/:eventSlug/:problemSlug');
@@ -43,6 +45,7 @@ test('router uses canonical route constants and exposes no legacy redirects', ()
   );
 
   assert.match(source, /path: appRoutes\.algorithms/);
+  assert.match(source, /path: appRoutePatterns\.algorithmCategory/);
   assert.match(source, /path: appRoutePatterns\.task/);
   assert.doesNotMatch(
     source,

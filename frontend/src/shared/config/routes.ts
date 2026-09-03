@@ -13,12 +13,10 @@ const rootPaths = {
 
 export const appRoutes = {
   ...rootPaths,
-  algorithm: (category: string, slug: string) =>
-    `${rootPaths.algorithms}/${category}/${slug}`,
-  algorithmSearch: (query: string) =>
-    `${rootPaths.algorithms}?q=${encodeURIComponent(query)}`,
+  algorithm: (category: string, slug: string) => `${rootPaths.algorithms}/${category}/${slug}`,
+  algorithmSearch: (query: string) => `${rootPaths.algorithms}?q=${encodeURIComponent(query)}`,
   algorithmCategory: (category: string) =>
-    `${rootPaths.algorithms}?category=${encodeURIComponent(category)}`,
+    `${rootPaths.algorithms}/${encodeURIComponent(category)}`,
   taskEvent: (seasonSlug: string, eventSlug: string) =>
     `${rootPaths.tasks}/${seasonSlug}/${eventSlug}`,
   task: (seasonSlug: string, eventSlug: string, problemSlug: string) =>
@@ -29,6 +27,7 @@ export const appRoutes = {
 } as const;
 
 export const appRoutePatterns = {
+  algorithmCategory: `${rootPaths.algorithms}/:category`,
   algorithm: `${rootPaths.algorithms}/:category/:slug`,
   taskEvent: `${rootPaths.tasks}/:seasonSlug/:eventSlug`,
   task: `${rootPaths.tasks}/:seasonSlug/:eventSlug/:problemSlug`,

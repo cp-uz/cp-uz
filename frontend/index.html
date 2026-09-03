@@ -4,25 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#036fdc" />
+    <meta
+      name="google-site-verification"
+      content="DtOel18YxQvwwgDg6lzy__lEPgNUxvSoZ31e2SAhKrE"
+    />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="cp.uz" />
     <meta
       name="description"
-      content="Sport dasturlashni o‘zbek tilida tizimli, sodda va chuqur o‘rganing."
+      content="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlashni o‘zbek tilida tizimli o‘rganing."
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="cp.uz" />
     <meta property="og:title" content="cp uz; o‘zbek sport dasturchilari hamjamiyati" />
     <meta
       property="og:description"
-      content="O‘zbek tilidagi sport dasturlash bilim ombori: 163 ta nashr qilingan algoritm maqolasi, yo‘l xaritasi va terminlar lug‘ati."
+      content="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlash bo‘yicha o‘zbekcha ochiq bilim ombori."
     />
     <meta property="og:url" content="https://cp.uz" />
     <meta property="og:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
     <meta name="twitter:card" content="summary" />
-    <link rel="canonical" href="https://cp.uz" />
+    <meta name="twitter:title" content="cp uz; o‘zbek sport dasturchilari hamjamiyati" />
+    <meta
+      name="twitter:description"
+      content="Algoritmlar, olimpiada masalalari va competitive programming bo‘yicha o‘zbekcha bilim ombori."
+    />
+    <meta name="twitter:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
+    <link rel="canonical" href="https://cp.uz/" />
     <link rel="icon" type="image/png" href="/assets/brand/cpuz-logo.png" />
     <link rel="apple-touch-icon" href="/assets/brand/cpuz-logo.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -69,16 +83,30 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "cp.uz",
-        "url": "https://cp.uz",
-        "inLanguage": "uz",
-        "description": "Sport dasturlashni o‘zbek tilida o‘rganish bilim ombori",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://cp.uz/algo?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://cp.uz/#organization",
+            "name": "cp.uz",
+            "url": "https://cp.uz/",
+            "logo": "https://cp.uz/assets/brand/cpuz-logo.png"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cp.uz/#website",
+            "name": "cp.uz",
+            "alternateName": ["cp uz", "O‘zbek sport dasturlash hamjamiyati"],
+            "url": "https://cp.uz/",
+            "inLanguage": "uz-Latn",
+            "publisher": { "@id": "https://cp.uz/#organization" },
+            "description": "Algoritmlar, ma’lumotlar tuzilmalari va sport dasturlash bo‘yicha o‘zbekcha bilim ombori",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://cp.uz/algo/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
       }
     </script>
   </head>

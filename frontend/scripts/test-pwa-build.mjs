@@ -5,11 +5,25 @@ import vm from 'node:vm';
 
 const serviceWorkerPath = path.join(process.cwd(), 'dist', 'sw.js');
 const serviceWorkerSource = await readFile(serviceWorkerPath, 'utf8');
+const prerenderedArticle = await readFile(
+  path.join(process.cwd(), 'dist', 'algo', 'algebra', 'binary-exp', 'index.html'),
+  'utf8'
+);
 
-assert(!serviceWorkerSource.includes('__BUILD_HASH__'), 'Service worker build hash almashtirilmagan.');
+assert.match(prerenderedArticle, /<title>Ikkilik darajaga oshirish — cp\.uz<\/title>/);
+assert.match(
+  prerenderedArticle,
+  /<link rel="canonical" href="https:\/\/cp\.uz\/algo\/algebra\/binary-exp\/" \/>/
+);
+assert.match(prerenderedArticle, /"@type":"TechArticle"/);
+
+assert(
+  !serviceWorkerSource.includes('__BUILD_HASH__'),
+  'Service worker build hash almashtirilmagan.'
+);
 assert(
   !serviceWorkerSource.includes('__PRECACHE_MANIFEST__'),
-  'Service worker precache manifesti almashtirilmagan.',
+  'Service worker precache manifesti almashtirilmagan.'
 );
 
 const manifestMatch = serviceWorkerSource.match(/const APP_SHELL = \[([\s\S]*?)\];/);
@@ -27,11 +41,15 @@ for (const requiredUrl of [
 }
 assert(
   appShell.some((url) => url.startsWith('/assets/') && url.endsWith('.js')),
-  'JavaScript bundle offline keshda yo‘q.',
+  'JavaScript bundle offline keshda yo‘q.'
 );
 assert(
   appShell.some((url) => url.startsWith('/assets/') && url.endsWith('.css')),
-  'CSS bundle offline keshda yo‘q.',
+  'CSS bundle offline keshda yo‘q.'
+);
+assert(
+  !appShell.some((url) => url !== '/index.html' && url.endsWith('/index.html')),
+  'SEO prerender sahifalari PWA app-shell keshiga qo‘shilmasligi kerak.'
 );
 
 const handlers = new Map();
@@ -134,13 +152,13 @@ assert(currentCacheName, 'Versiyalangan PWA keshi yaratilmadi.');
 assert.equal(
   cacheStores.get(currentCacheName).size,
   appShell.length,
-  'App shell fayllarining hammasi keshga yozilmadi.',
+  'App shell fayllarining hammasi keshga yozilmadi.'
 );
 
 cacheStores.set('cpuz-shell-oldest', new Map());
 cacheStores.set(
   'cpuz-shell-previous',
-  new Map([[requestKey('/assets/old-chunk.js'), new Response('old chunk')]]),
+  new Map([[requestKey('/assets/old-chunk.js'), new Response('old chunk')]])
 );
 cacheStores.set('unrelated-cache', new Map());
 const activate = waitableEvent();
@@ -148,7 +166,11 @@ handlers.get('activate')(activate.event);
 await activate.wait();
 assert.equal(claimCalls, 1, 'Yangi worker ochiq tablarni boshqaruvga olmadi.');
 assert.equal(cacheStores.has('cpuz-shell-oldest'), false, 'Keraksiz eski PWA keshi o‘chirilmadi.');
-assert.equal(cacheStores.has('cpuz-shell-previous'), true, 'Oldingi build keshi juda erta o‘chirildi.');
+assert.equal(
+  cacheStores.has('cpuz-shell-previous'),
+  true,
+  'Oldingi build keshi juda erta o‘chirildi.'
+);
 assert.equal(cacheStores.has('unrelated-cache'), true, 'Begona kesh o‘chirib yuborildi.');
 
 let oldChunkResponse;
@@ -162,7 +184,11 @@ handlers.get('fetch')({
     oldChunkResponse = value;
   },
 });
-assert.equal(await (await oldChunkResponse).text(), 'old chunk', 'Eski ochiq tab chunki topilmadi.');
+assert.equal(
+  await (await oldChunkResponse).text(),
+  'old chunk',
+  'Eski ochiq tab chunki topilmadi.'
+);
 
 async function navigateWith(network) {
   networkBehavior = network;
@@ -196,5 +222,5 @@ handlers.get('fetch')({
 assert.equal(apiWasIntercepted, false, 'API so‘rovi xato ravishda keshlangan.');
 
 console.log(
-  `${appShell.length} ta app-shell fayli, silent update, eski chunk va offline fallback tekshirildi.`,
+  `${appShell.length} ta app-shell fayli, silent update, eski chunk va offline fallback tekshirildi.`
 );

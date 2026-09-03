@@ -98,6 +98,7 @@ export default function SignInPage() {
         title="Kirish"
         description="cp.uz o‘qish profilingizga kiring yoki mehmon sessiyasini davom ettiring."
         path={appRoutes.login}
+        robots="noindex,nofollow"
       />
       <Box
         id="main-content"
