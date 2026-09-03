@@ -6,7 +6,6 @@ Minimal TypeScript v7.6.1.zip
 **/.env*
 backups
 .release
-content
 scripts
 **/__pycache__
 **/*.pyc

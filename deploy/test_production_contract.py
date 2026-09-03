@@ -143,6 +143,12 @@ class ComposeContractTests(unittest.TestCase):
         self.assertNotIn("ENV HTTP_PROXY", dockerfile)
         self.assertNotIn("ENV HTTPS_PROXY", dockerfile)
 
+    def test_frontend_build_receives_canonical_content(self) -> None:
+        dockerfile = (ROOT / "deploy" / "frontend.Dockerfile").read_text(encoding="utf-8")
+        dockerignore = (ROOT / ".dockerignore").read_text(encoding="utf-8").splitlines()
+        self.assertIn("COPY content/ /content/", dockerfile)
+        self.assertNotIn("content", dockerignore)
+
     def test_frontend_public_assets_are_readable_under_restricted_checkout_umask(self) -> None:
         dockerfile = (ROOT / "deploy" / "frontend.Dockerfile").read_text(encoding="utf-8")
         copy_index = dockerfile.index("COPY --from=build /app/dist /usr/share/nginx/html")
