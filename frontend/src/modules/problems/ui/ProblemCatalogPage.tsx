@@ -201,7 +201,7 @@ export default function ProblemCatalogPage() {
                             },
                             {
                               count: problemCount,
-                              icon: 'solar:document-text-linear',
+                              icon: 'solar:code-square-linear',
                               label: 'Masalalar soni',
                             },
                           ]}
@@ -226,7 +226,7 @@ export default function ProblemCatalogPage() {
                                   },
                                   {
                                     count: eventProblemCount,
-                                    icon: 'solar:document-text-linear',
+                                    icon: 'solar:code-square-linear',
                                     label: 'Masalalar soni',
                                   },
                                 ]}
@@ -291,7 +291,7 @@ export default function ProblemCatalogPage() {
                                           variant="soft"
                                           label={set.problems.length}
                                           icon={
-                                            <UiIcon icon="solar:document-text-linear" width={15} />
+                                            <UiIcon icon="solar:code-square-linear" width={15} />
                                           }
                                           aria-label={`${set.problems.length} ta masala`}
                                           sx={{
