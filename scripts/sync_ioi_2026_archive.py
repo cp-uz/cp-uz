@@ -2,21 +2,22 @@
 """Import the official reviewed Uzbek IOI 2026 statements into canonical content.
 
 The script intentionally downloads only immutable files from the official IOI task
-archive. It requires ``pypdf`` and is a maintainer tool; production reads the
+archive. It requires ``pymupdf4llm`` and is a maintainer tool; production reads the
 generated files from ``content/problems`` and never depends on the network.
 """
 
 from __future__ import annotations
 
 import argparse
-import io
 import json
 import re
+import unicodedata
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 
-from pypdf import PdfReader
+import pymupdf
+import pymupdf4llm
 
 ARCHIVE_ROOT = "https://raw.githubusercontent.com/ioi/task-archive/master/2026"
 OFFICIAL_ROOT = "https://ioinformatics.org/files"
@@ -41,7 +42,9 @@ class Task:
 
 
 TASKS = (
-    Task(1, 1, "ballmachine", "A", "Koptok mashinasi", "Ball Machine", "communication", 1),
+    Task(
+        1, 1, "ballmachine", "A", "Koptok mashinasi", "Ball Machine", "communication", 1
+    ),
     Task(1, 2, "monuments", "B", "Yodgorliklar", "Monuments", "standard", 2),
     Task(1, 3, "tiling", "C", "Plitkalar o‘yini", "Tiling Game", "communication", 3),
     Task(2, 1, "classroom", "D", "Sinf o‘yini", "Classroom Game", "two_step", 4),
@@ -57,14 +60,58 @@ SECTION_TITLES = {
     "Subtasks": "Qism masalalar",
     "Subtasks and Scoring": "Qism masalalar va baholash",
     "Baholash": "Baholash",
+    "Scoring": "Baholash",
     "Example": "Misol",
+    "Examples": "Misollar",
     "Misol": "Misol",
+    "Explanation": "Tushuntirish",
+    "Implementation": "Amalga oshirish",
     "Sample Grader": "Namuna grader",
     "Input format:": "Kiruvchi ma’lumotlar formati",
     "Output format:": "Chiquvchi ma’lumotlar formati",
+    "Input Format:": "Kiruvchi ma’lumotlar formati",
+    "Output Format:": "Chiquvchi ma’lumotlar formati",
     "Kiruvchi ma’lumotlar": "Kiruvchi ma’lumotlar",
     "Chiquvchi ma’lumotlar": "Chiquvchi ma’lumotlar",
+    "Chiquvchi ma’lumot": "Chiquvchi ma’lumotlar",
     "Tushuntirish": "Tushuntirish",
+}
+
+MATH_ALPHABET = "\U0001d400-\U0001d7ff"
+MATH_TOKEN = re.compile(
+    rf"(?=[{MATH_ALPHABET}0-9+\-−≤≥<>=…]*[{MATH_ALPHABET}])"
+    rf"[{MATH_ALPHABET}0-9+\-−≤≥<>=…]+"
+)
+
+KNOWN_CONSTRAINT_BLOCKS = {
+    "ballmachine": """## Cheklovlar
+
+- $2 \\le N \\le 1000$
+- $1 \\le M \\le 200$
+- $M < N$
+""",
+    "monuments": """## Cheklovlar
+
+- $1 \\le N \\le 500\\,000$
+- $0 \\le M \\le N$
+- $-10^9 \\le X[0] \\le X[1] \\le \\ldots \\le X[N-1] \\le 10^9$
+- $0 \\le P[0] < P[1] < \\ldots < P[M-1] < N$
+""",
+    "classroom": """## Cheklovlar
+
+- $2 \\le N \\le 63$
+- $1 \\le M \\le 63$
+- Har bir talaba o‘yin davomida ko‘pi bilan bir marta qo‘lini ko‘taradi.
+- Har bir bosqichda kamida bitta talaba qo‘lini ko‘tarmaydi.
+""",
+    "partition": """## Cheklovlar
+
+- $3 \\le N \\le 100\\,000$
+- $2 \\le K \\le N$
+- $K \\le 100\\,000$
+- $1 \\le M \\le 10^9$
+- Har bir $0 \\le i < N$ uchun $1 \\le A[i] \\le M$.
+""",
 }
 
 
@@ -83,39 +130,132 @@ def clean_pdf_text(
     payload: bytes,
     source_name: str = "IOI 2026 rasmiy task archive’idagi",
 ) -> str:
-    pages = PdfReader(io.BytesIO(payload)).pages
-    raw_lines: list[str] = []
-    footer = re.compile(
-        rf"^{re.escape(task.archive_slug)}(?:\s+\(\d+ of \d+\)|\s+\d+\s*/\s*\d+\s*-\s*sahifa)$"
+    document = pymupdf.open(stream=payload, filetype="pdf")
+    body = pymupdf4llm.to_markdown(document, use_ocr=False)
+    first_heading = re.search(r"^# .+$", body, flags=re.MULTILINE)
+    if first_heading:
+        body = body[first_heading.end() :]
+
+    body = body.replace("\u00ad", "").replace("ﬁ", "fi").replace("ﬂ", "fl")
+    body = re.sub(
+        r"<!-- Start of picture text -->.*?<!-- End of picture text -->",
+        "_Diagramma rasmiy PDFda keltirilgan._",
+        body,
+        flags=re.DOTALL,
     )
-    for page_index, page in enumerate(pages):
-        lines = (page.extract_text() or "").replace("\u00ad", "").splitlines()
-        if page_index == 0:
-            lines = lines[4:]
-        raw_lines.extend(line for line in lines if not footer.match(line.strip()))
+    body = re.sub(
+        rf"^\s*(?:{re.escape(task.archive_slug)}(?:\s+\(\d+ of \d+\))?|\d+\s*/\s*\d+\s*-\s*sahifa)\s*$",
+        "",
+        body,
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+    body = re.sub(r"^\s*Day \d+ Tasks Uzbek \(UZB\)\s*$", "", body, flags=re.MULTILINE)
+    body = re.sub(r"^\s*Vaqt cheklovi:.*$", "", body, flags=re.MULTILINE)
+    body = re.sub(r"^\s*Xotira cheklovi:.*$", "", body, flags=re.MULTILINE)
 
-    normalized: list[str] = []
-    for raw in raw_lines:
-        line = raw.strip().replace("ﬁ", "fi").replace("ﬂ", "fl")
-        line = re.sub(r"[ \t]+", " ", line)
-        if not line:
-            normalized.append("")
-            continue
-        if re.fullmatch(r"[+=-]+(?:\s+[+=-]+)*", line):
-            normalized.append(f"`{line}`")
-            continue
-        if line.startswith("• "):
-            if normalized and normalized[-1] != "" and not normalized[-1].startswith("- "):
-                normalized.append("")
-            normalized.append(f"- {line[2:]}")
-            continue
-        heading = SECTION_TITLES.get(line)
-        if heading:
-            normalized.extend(("", f"## {heading}", ""))
-        else:
-            normalized.append(line)
+    for source, translated in SECTION_TITLES.items():
+        body = re.sub(
+            rf"^(#+)\s+(?:\*\*)?{re.escape(source.rstrip(':'))}:?(?:\*\*)?\s*$",
+            rf"\1 {translated}",
+            body,
+            flags=re.MULTILINE,
+        )
 
-    body = "\n".join(normalized)
+    for title in sorted(set(SECTION_TITLES.values()), key=len, reverse=True):
+        body = re.sub(
+            rf"^(#{{2,4}})\s+{re.escape(title)}\s+(.+)$",
+            rf"\1 {title}\n\n\2",
+            body,
+            flags=re.MULTILINE,
+        )
+
+    body = re.sub(r"^(#{2,4})\s+\*\*(.+?)\*\*\s*$", r"\1 \2", body, flags=re.MULTILINE)
+    body = re.sub(r"(?<!\*)_([A-Za-z])_(?!\*)", r"$\1$", body)
+    body = MATH_TOKEN.sub(_unicode_math_to_latex, body)
+    body = re.sub(r"\$([^$\n]+)\$<sup>(\d+)</sup>", r"$\1^{\2}$", body)
+    body = re.sub(r"(\d+)<sup>(\d+)</sup>", r"$\1^{\2}$", body)
+    body = re.sub(r"<sup>(\d+)</sup>", r"[\1]", body)
+    body = re.sub(r"\$([^$\n]+)\$", _normalize_latex, body)
+    body = re.sub(
+        r"\$([^$\n]+)=\$\s*(\d+)",
+        lambda match: f"${match.group(1).strip()} = {match.group(2)}$",
+        body,
+    )
+    body = re.sub(
+        r"\$\s*([A-Za-z])\s*\$\s*\[\s*\$\s*([^$\n]+?)\s*\$\s*\]",
+        r"$\1[\2]$",
+        body,
+    )
+    body = re.sub(
+        r"\$\s*([A-Za-z])\s*\$\s*\[\s*\$\s*([^$\n]+?)\s*\$\s*\]",
+        r"$\1[\2]$",
+        body,
+    )
+    body = re.sub(r"\$([A-Za-z])\$\s*\[\s*(\d+)\s*\]", r"$\1[\2]$", body)
+    body = re.sub(r"\$([A-Za-z])=\$\s*(\[[^\]\n]+\])", r"$\1 = \2$", body)
+    body = re.sub(r"\$([A-Za-z])\$\s*−\s*(\d+)", r"$\1 - \2$", body)
+    for _ in range(4):
+        body = re.sub(
+            r"\$([^$\n]+)\$\s*([<>=≠≤≥])\s*\$([^$\n]+)\$",
+            _merge_latex_comparison,
+            body,
+        )
+        body = re.sub(
+            r"\$([^$\n]+)\$\s*([<>=≠≤≥])\s*(\d+)",
+            _merge_latex_number_comparison,
+            body,
+        )
+        body = re.sub(
+            r"(?<![\w$])(\d+)\s*([<>=≠≤≥])\s*\$([^$\n]+)\$",
+            _merge_number_latex_comparison,
+            body,
+        )
+        body = re.sub(
+            r"\$([^$\n]*?)([<>=])\$\s*\$([^$\n]+)\$",
+            _merge_split_latex_comparison,
+            body,
+        )
+        body = re.sub(
+            r"\$([^$\n]+)\$\s*\$((?:\\le|\\ge|\\ne|[<>=])\s*[^$\n]+)\$",
+            _merge_adjacent_latex_comparison,
+            body,
+        )
+    body = re.sub(r"\$([^$\n]+)-\$(?=[A-Za-z])", r"$\1$-", body)
+    body = re.sub(
+        r"\$([^$\n]+)\$\s*=\s*([−-]?\d+)",
+        lambda match: (
+            f"${match.group(1).strip()} = {match.group(2).replace('−', '-')}$"
+        ),
+        body,
+    )
+    body = re.sub(r"\[\s*([+-])\s*\]", r"`\1`", body)
+    body = re.sub(r"^Figure\s+(\d+):\s*", r"**\1-rasm.** ", body, flags=re.MULTILINE)
+    body = re.sub(
+        r"^(#{2,4})\s+Example\s+(\d+)\s*$", r"\1 \2-misol", body, flags=re.MULTILINE
+    )
+    body = re.sub(
+        r"^(#{2,4})\s+Subtask\s+(\d+)\s+\((\d+)\s+points\)\s*$",
+        r"\1 \2-qism masala (\3 ball)",
+        body,
+        flags=re.MULTILINE,
+    )
+    body = re.sub(r"(?<=[A-Za-zʻ’'])\s*(\$[^$\n]+\$)", r" \1", body)
+    body = re.sub(r"(\$[^$\n]+\$)\s*(?=[A-Za-zʻ’'])", r"\1 ", body)
+    if constraint_block := KNOWN_CONSTRAINT_BLOCKS.get(task.archive_slug):
+        body = re.sub(
+            r"(?ms)^## Cheklovlar\s*.*?(?=^## )",
+            lambda _: constraint_block.rstrip() + "\n\n",
+            body,
+            count=1,
+        )
+    for title in sorted(set(SECTION_TITLES.values()), key=len, reverse=True):
+        body = re.sub(
+            rf"^(#{{2,4}})\s+{re.escape(title)}\s+(.+)$",
+            rf"\1 {title}\n\n\2",
+            body,
+            flags=re.MULTILINE,
+        )
+    body = "\n".join(line.rstrip() for line in body.splitlines())
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
     return (
         f"> Ushbu shart {source_name} O‘zbekiston delegatsiyasi "
@@ -123,6 +263,58 @@ def clean_pdf_text(
         "quyidagi rasmiy PDF havolasidan foydalaning.\n\n"
         f"{body}\n"
     )
+
+
+def _unicode_math_to_latex(match: re.Match[str]) -> str:
+    value = unicodedata.normalize("NFKC", match.group(0))
+    value = value.replace("−", "-").replace("≤", r"\le ").replace("≥", r"\ge ")
+    value = value.replace("…", r"\ldots ")
+    if len(value) >= 2 and value[0].isalpha() and value[1].isalnum():
+        value = f"{value[0]}_{{{value[1:]}}}"
+    return f"${value.strip()}$"
+
+
+def _normalize_latex(match: re.Match[str]) -> str:
+    value = unicodedata.normalize("NFKC", match.group(1)).strip()
+    value = value.replace("−", "-").replace("≤", r"\le ").replace("≥", r"\ge ")
+    value = value.replace("≠", r"\ne ").replace("…", r"\ldots ").replace("⋅", r"\cdot ")
+    value = re.sub(r"\s+", " ", value).strip()
+    return f"${value}$"
+
+
+def _latex_operator(value: str) -> str:
+    return {
+        "≤": r"\le",
+        "≥": r"\ge",
+        "≠": r"\ne",
+    }.get(value, value)
+
+
+def _merge_latex_comparison(match: re.Match[str]) -> str:
+    return f"${match.group(1).strip()} {_latex_operator(match.group(2))} {match.group(3).strip()}$"
+
+
+def _merge_latex_number_comparison(match: re.Match[str]) -> str:
+    return (
+        f"${match.group(1).strip()} {_latex_operator(match.group(2))} {match.group(3)}$"
+    )
+
+
+def _merge_number_latex_comparison(match: re.Match[str]) -> str:
+    return (
+        f"${match.group(1)} {_latex_operator(match.group(2))} {match.group(3).strip()}$"
+    )
+
+
+def _merge_split_latex_comparison(match: re.Match[str]) -> str:
+    return (
+        f"${match.group(1).strip()} {_latex_operator(match.group(2))} "
+        f"{match.group(3).strip()}$"
+    )
+
+
+def _merge_adjacent_latex_comparison(match: re.Match[str]) -> str:
+    return f"${match.group(1).strip()} {match.group(2).strip()}$"
 
 
 def dump(path: Path, payload: dict) -> None:

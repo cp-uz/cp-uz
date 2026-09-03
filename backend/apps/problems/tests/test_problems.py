@@ -183,16 +183,22 @@ class ProblemImportTests(TestCase):
         with tempfile.TemporaryDirectory(prefix="cpuz-problems-") as value:
             root = Path(value) / "problems"
             self.write_fixture(root)
+            schema_target = root / "schema" / "problem-content.schema.json"
+            schema_target.parent.mkdir()
+            schema_target.write_text(
+                schema.read_text(encoding="utf-8"),
+                encoding="utf-8",
+                newline="\n",
+            )
             call_command(
                 "import_problems",
                 path=root,
-                schema=schema,
                 dry_run=True,
                 stdout=StringIO(),
             )
             self.assertEqual(Problem.objects.count(), 0)
-            call_command("import_problems", path=root, schema=schema, prune=True, stdout=StringIO())
-            call_command("import_problems", path=root, schema=schema, prune=True, stdout=StringIO())
+            call_command("import_problems", path=root, prune=True, stdout=StringIO())
+            call_command("import_problems", path=root, prune=True, stdout=StringIO())
 
         self.assertEqual(ProblemSet.objects.count(), 1)
         self.assertEqual(Problem.objects.count(), 1)

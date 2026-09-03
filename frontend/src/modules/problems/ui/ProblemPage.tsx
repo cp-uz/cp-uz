@@ -2,9 +2,9 @@ import type { ProblemLink, ProblemDetail } from '../domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
-import { useMemo, useEffect } from 'react';
 import { useAsyncData } from 'shared/hooks';
 import { formatUzbekDate } from 'shared/lib/i18n';
+import { useMemo, useState, useEffect } from 'react';
 import { RichMarkdown } from 'modules/learning/ui/shared';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router';
 
@@ -15,10 +15,12 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -60,6 +62,9 @@ function problemLinkLogo(link: ProblemLink, eventSlug: string) {
 
   if (hostname === 'kep.uz' || hostname.endsWith('.kep.uz')) {
     return '/assets/platforms/kepuz.svg';
+  }
+  if (hostname === 'oj.uz' || hostname.endsWith('.oj.uz')) {
+    return 'https://oj.uz/static/logo_20170205.png';
   }
   if (hostname.includes('egoi') || eventSlug.startsWith('egoi-')) {
     return '/assets/seasons/egoi.png';
@@ -177,6 +182,7 @@ function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
 
 export default function ProblemPage() {
   const navigate = useNavigate();
+  const [navigationOpen, setNavigationOpen] = useState(false);
   const { seasonSlug = '', eventSlug = '', problemSlug } = useParams();
   const {
     data: eventDetail,
@@ -223,7 +229,7 @@ export default function ProblemPage() {
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Skeleton width={260} />
         <Skeleton width="min(560px, 90vw)" height={70} />
-        <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { md: '1fr 300px' } }}>
+        <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { xl: '1fr 340px' } }}>
           <Skeleton variant="rounded" height={620} />
           <Skeleton variant="rounded" height={520} />
         </Box>
@@ -256,27 +262,43 @@ export default function ProblemPage() {
         path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
       />
       <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
-        <Breadcrumbs sx={{ mb: 3 }}>
-          <Link component={RouterLink} to="/masalalar" color="inherit" underline="hover">
-            Masalalar
-          </Link>
-          <Link
-            component={RouterLink}
-            to={`/masalalar/${problem.season.slug}/${problem.event.slug}`}
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ mb: 3 }}
+        >
+          <Breadcrumbs>
+            <Link component={RouterLink} to="/masalalar" color="inherit" underline="hover">
+              Masalalar
+            </Link>
+            <Link
+              component={RouterLink}
+              to={`/masalalar/${problem.season.slug}/${problem.event.slug}`}
+              color="inherit"
+              underline="hover"
+            >
+              {problem.event.shortTitle || problem.event.title}
+            </Link>
+            <Typography color="text.primary">{problem.title}</Typography>
+          </Breadcrumbs>
+          <Button
             color="inherit"
-            underline="hover"
+            onClick={() => setNavigationOpen(true)}
+            startIcon={<UiIcon icon="solar:list-bold" width={18} />}
+            sx={{ display: { xs: 'inline-flex', xl: 'none' }, flexShrink: 0 }}
           >
-            {problem.event.shortTitle || problem.event.title}
-          </Link>
-          <Typography color="text.primary">{problem.title}</Typography>
-        </Breadcrumbs>
+            Masalalar ro‘yxati
+          </Button>
+        </Stack>
 
         <Box
           sx={{
             display: 'grid',
-            gap: { xs: 3, md: 3, lg: 5 },
+            gap: { xs: 3, xl: 5 },
             alignItems: 'start',
-            gridTemplateColumns: { xs: 'minmax(0, 1fr)', md: 'minmax(0, 1fr) 300px' },
+            gridTemplateColumns: { xs: 'minmax(0, 1fr)', xl: 'minmax(0, 1fr) 340px' },
           }}
         >
           <Box component="main" sx={{ minWidth: 0 }}>
@@ -305,34 +327,48 @@ export default function ProblemPage() {
               </Typography>
             )}
 
-            <Stack direction="row" spacing={1.25} flexWrap="wrap" useFlexGap sx={{ mt: 2.5 }}>
+            <Stack direction="row" spacing={2.5} flexWrap="wrap" useFlexGap sx={{ mt: 2.5 }}>
               {practiceLinks.map((link) => (
-                <Button
+                <Link
                   key={link.id}
-                  component="a"
                   href={link.url}
                   target="_blank"
-                  rel="noreferrer"
-                  variant="contained"
-                  startIcon={<ProblemLinkLogo link={link} eventSlug={problem.event.slug} />}
-                  endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
+                  rel="noopener noreferrer"
+                  underline="hover"
+                  sx={{
+                    gap: 0.75,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    color: 'text.primary',
+                    fontWeight: 700,
+                    '&:hover': { color: 'primary.main' },
+                  }}
                 >
+                  <ProblemLinkLogo link={link} eventSlug={problem.event.slug} />
                   {link.title}
-                </Button>
+                  <UiIcon icon="solar:arrow-right-up-linear" width={16} />
+                </Link>
               ))}
               {originalLinks.map((link) => (
-                <Button
+                <Link
                   key={link.id}
-                  component="a"
                   href={link.url}
                   target="_blank"
-                  rel="noreferrer"
-                  variant="outlined"
-                  startIcon={<ProblemLinkLogo link={link} eventSlug={problem.event.slug} />}
-                  endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
+                  rel="noopener noreferrer"
+                  underline="hover"
+                  sx={{
+                    gap: 0.75,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    color: 'text.secondary',
+                    fontWeight: 700,
+                    '&:hover': { color: 'primary.main' },
+                  }}
                 >
+                  <ProblemLinkLogo link={link} eventSlug={problem.event.slug} />
                   {link.title}
-                </Button>
+                  <UiIcon icon="solar:arrow-right-up-linear" width={16} />
+                </Link>
               ))}
             </Stack>
 
@@ -442,10 +478,10 @@ export default function ProblemPage() {
             sx={{
               top: 88,
               p: 2.5,
-              order: { xs: -1, md: 0 },
-              maxHeight: { md: 'calc(100vh - 112px)' },
-              position: { md: 'sticky' },
-              overflowY: { md: 'auto' },
+              display: { xs: 'none', xl: 'block' },
+              maxHeight: 'calc(100vh - 112px)',
+              position: 'sticky',
+              overflowY: 'auto',
               borderRadius: 2,
               scrollbarWidth: 'thin',
             }}
@@ -454,6 +490,26 @@ export default function ProblemPage() {
           </Paper>
         </Box>
       </Container>
+      <Drawer
+        anchor="right"
+        open={navigationOpen}
+        onClose={() => setNavigationOpen(false)}
+        slotProps={{ paper: { sx: { width: { xs: 'min(360px, 92vw)', sm: 380 } } } }}
+      >
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
+          <Typography variant="h6">Masalalar menyusi</Typography>
+          <IconButton
+            aria-label="Masalalar menyusini yopish"
+            onClick={() => setNavigationOpen(false)}
+          >
+            <UiIcon icon="solar:close-circle-linear" width={23} />
+          </IconButton>
+        </Stack>
+        <Divider />
+        <Box sx={{ p: 2.5 }} onClick={() => setNavigationOpen(false)}>
+          <ProblemNavigation problem={problem} />
+        </Box>
+      </Drawer>
     </>
   );
 }

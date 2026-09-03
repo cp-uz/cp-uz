@@ -34,6 +34,7 @@
     "@iconify/react": "^6.0.2",
     "@mui/material": "^7.3.6",
     "@mui/stylis-plugin-rtl": "^7.3.6",
+    "@mui/x-tree-view": "^8.29.3",
     "katex": "^0.16.47",
     "nprogress": "^0.2.0",
     "react": "^19.2.3",

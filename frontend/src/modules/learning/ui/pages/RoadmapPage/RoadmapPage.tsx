@@ -78,10 +78,7 @@ export default function RoadmapPage() {
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
         <Box sx={{ maxWidth: 760 }}>
-          <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
-            Tizimli o‘rganish
-          </Typography>
-          <Typography component="h1" variant="h3" sx={{ mt: 1.5 }}>
+          <Typography component="h1" variant="h3">
             Poydevordan mahoratgacha
           </Typography>
           <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>

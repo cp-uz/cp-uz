@@ -8,6 +8,9 @@ const MuiContainer: Components<Theme>['MuiContainer'] = {
         paddingRight: theme.spacing(4),
       },
     }),
+    maxWidthXl: {
+      maxWidth: '1440px',
+    },
   },
 };
 

@@ -26,6 +26,7 @@ class Task:
     title: str
     original_title: str
     problem_type: str = "standard"
+    sample_count: int = 0
 
     @property
     def slug(self) -> str:
@@ -33,21 +34,27 @@ class Task:
 
 
 TASKS = (
-    Task(1, 1, "ferriswheel", "A", "Charxpalak", "Ferris Wheel"),
-    Task(1, 2, "ovenmasters", "B", "Pech ustalari", "Ovenmasters"),
-    Task(1, 3, "biscuits", "C", "Pechenyelar", "Biscuits"),
+    Task(1, 1, "ferriswheel", "A", "Charxpalak", "Ferris Wheel", sample_count=5),
+    Task(1, 2, "ovenmasters", "B", "Pech ustalari", "Ovenmasters", sample_count=6),
+    Task(1, 3, "biscuits", "C", "Pechenyelar", "Biscuits", sample_count=5),
     Task(1, 4, "census", "D", "Ro‘yxatga olish", "Census", "communication"),
-    Task(2, 1, "wateringplants", "E", "O‘simliklarni sug‘orish", "Watering Plants"),
-    Task(2, 2, "cakes", "F", "Tortlar", "Cakes"),
-    Task(2, 3, "foxfamilies", "G", "Tulki oilalari", "Fox Families"),
+    Task(
+        2,
+        1,
+        "wateringplants",
+        "E",
+        "O‘simliklarni sug‘orish",
+        "Watering Plants",
+        sample_count=4,
+    ),
+    Task(2, 2, "cakes", "F", "Tortlar", "Cakes", sample_count=3),
+    Task(2, 3, "foxfamilies", "G", "Tulki oilalari", "Fox Families", sample_count=3),
     Task(2, 4, "seatingplan", "H", "O‘tirish rejasi", "Seating Plan", "communication"),
 )
 
 
 def statement_url(task: Task) -> str:
-    return (
-        f"{REPOSITORY_ROOT}/day{task.day}/{task.archive_slug}/statement/uz_UZ.pdf"
-    )
+    return f"{REPOSITORY_ROOT}/day{task.day}/{task.archive_slug}/statement/uz_UZ.pdf"
 
 
 def parse_limits(payload: bytes) -> tuple[int | None, int | None]:
@@ -76,6 +83,54 @@ def practice_url(task: Task) -> str:
     if task.archive_slug == "census":
         return "https://qoj.ac/problem/18250"
     return f"https://oj.uz/problem/view/EGOI26_{task.archive_slug}"
+
+
+def replace_standard_examples(markdown: str, task: Task) -> str:
+    if not task.sample_count:
+        return markdown
+
+    examples = ["## Misollar"]
+    for index in range(task.sample_count):
+        root = f"{REPOSITORY_ROOT}/day{task.day}/{task.archive_slug}/statement"
+        sample_input = (
+            fetch(f"{root}/{task.archive_slug}.input{index}.txt")
+            .decode("utf-8")
+            .strip()
+        )
+        sample_output = (
+            fetch(f"{root}/{task.archive_slug}.output{index}.txt")
+            .decode("utf-8")
+            .strip()
+        )
+        examples.extend(
+            (
+                "",
+                f"### {index + 1}-misol",
+                "",
+                "**Kiruvchi ma’lumotlar**",
+                "",
+                "```text",
+                sample_input,
+                "```",
+                "",
+                "**Chiquvchi ma’lumotlar**",
+                "",
+                "```text",
+                sample_output,
+                "```",
+            )
+        )
+
+    replacement = "\n".join(examples).rstrip()
+    return (
+        re.sub(
+            r"(?ms)^## Misollar\s*.*?(?=^## |\Z)",
+            replacement + "\n\n",
+            markdown,
+            count=1,
+        ).rstrip()
+        + "\n"
+    )
 
 
 def write_catalog(output_root: Path) -> None:
@@ -115,12 +170,13 @@ def write_catalog(output_root: Path) -> None:
             time_limit, memory_limit = parse_limits(pdf)
             problem_root = set_root / task.slug
             problem_root.mkdir(parents=True, exist_ok=True)
+            statement = clean_pdf_text(
+                task,
+                pdf,
+                source_name="EGOI 2026 rasmiy repozitoriysidagi",
+            )
             (problem_root / "statement.uz.md").write_text(
-                clean_pdf_text(
-                    task,
-                    pdf,
-                    source_name="EGOI 2026 rasmiy repository’sidagi",
-                ),
+                replace_standard_examples(statement, task),
                 encoding="utf-8",
                 newline="\n",
             )

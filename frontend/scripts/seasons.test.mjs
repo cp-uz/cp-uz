@@ -222,6 +222,32 @@ test('result rows use aligned accessible medal tooltips without visible labels',
   assert.doesNotMatch(dialogSource, /function (?:awardLabel|awardColor)/);
 });
 
+test('participant dialog stays roomy while platform accounts remain compact on mobile', () => {
+  const dialogSource = readFileSync(
+    new URL('../src/modules/seasons/ui/shared/SeasonParticipantDialog.tsx', import.meta.url),
+    'utf8'
+  );
+
+  assert.match(dialogSource, /m: \{ xs: 1\.25, sm: 2 \}/);
+  assert.match(dialogSource, /width: \{ xs: 'calc\(100% - 20px\)', sm: 'calc\(100% - 32px\)' \}/);
+  assert.match(dialogSource, /px: \{ xs: 2, sm: 3 \}/);
+  assert.match(dialogSource, /minHeight: 56/);
+  assert.match(dialogSource, /gridTemplateColumns: '28px minmax\(0, 1fr\) 14px'/);
+  assert.match(
+    dialogSource,
+    /UZB: \{ label: 'O‘zbekiston', src: '\/assets\/countries\/uz\.svg' \}/
+  );
+  assert.match(dialogSource, /src=\{country\.src\}/);
+  assert.match(dialogSource, /alt=\{country\.label\}/);
+  assert.doesNotMatch(dialogSource, /label=\{participant\.countryCode\}/);
+  assert.match(
+    dialogSource,
+    /const PARTICIPANT_AVATAR_FALLBACK = '\/assets\/seasons\/participants\/participant-avatar\.svg'/
+  );
+  assert.match(dialogSource, /src=\{participant\.photoUrl \|\| PARTICIPANT_AVATAR_FALLBACK\}/);
+  assert.doesNotMatch(dialogSource, /function initials/);
+});
+
 test('award presentation unifies medals and both honourable mention spellings', () => {
   assert.equal(seasonAwardPresentation('gold')?.label, 'Oltin medal');
   assert.equal(seasonAwardPresentation('bronze')?.label, 'Bronza medal');

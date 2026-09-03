@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Ishtirokchi avatari">
+  <defs>
+    <linearGradient id="background" x1="24" y1="16" x2="136" y2="148" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7F6F2"/>
+      <stop offset="1" stop-color="#C8EAE2"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="80" y1="98" x2="80" y2="160" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#087F6D"/>
+      <stop offset="1" stop-color="#045B50"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="80" fill="url(#background)"/>
+  <circle cx="80" cy="64" r="31" fill="#F1C7A5"/>
+  <path d="M50 60c0-25 13-39 31-39 22 0 34 16 34 40-8-3-14-9-17-18-11 10-26 16-48 17Z" fill="#334155"/>
+  <path d="M43 160v-23c0-23 17-39 37-39s37 16 37 39v23H43Z" fill="url(#shirt)"/>
+  <path d="M64 99c3 9 9 14 16 14s13-5 16-14c-5-2-10-3-16-3s-11 1-16 3Z" fill="#E8B791"/>
+  <circle cx="68" cy="66" r="2.5" fill="#334155"/>
+  <circle cx="92" cy="66" r="2.5" fill="#334155"/>
+  <path d="M72 80c5 4 11 4 16 0" fill="none" stroke="#9A5C4B" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

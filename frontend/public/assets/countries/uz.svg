@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title">
+  <title id="title">O‘zbekiston bayrog‘i</title>
+  <path fill="#0099b5" d="M0 0h1000v160H0z"/>
+  <path fill="#ce1126" d="M0 160h1000v10H0z"/>
+  <path fill="#fff" d="M0 170h1000v160H0z"/>
+  <path fill="#ce1126" d="M0 330h1000v10H0z"/>
+  <path fill="#1eb53a" d="M0 340h1000v160H0z"/>
+  <circle cx="95" cy="78" r="52" fill="#fff"/>
+  <circle cx="116" cy="68" r="49" fill="#0099b5"/>
+  <defs>
+    <path id="star" d="M10 0l2.35 7.24H20l-6.18 4.47L16.18 19 10 14.5 3.82 19l2.36-7.29L0 7.24h7.65z"/>
+  </defs>
+  <g fill="#fff">
+    <use href="#star" x="175" y="26"/><use href="#star" x="211" y="26"/><use href="#star" x="247" y="26"/>
+    <use href="#star" x="157" y="62"/><use href="#star" x="193" y="62"/><use href="#star" x="229" y="62"/><use href="#star" x="265" y="62"/>
+    <use href="#star" x="139" y="98"/><use href="#star" x="175" y="98"/><use href="#star" x="211" y="98"/><use href="#star" x="247" y="98"/><use href="#star" x="283" y="98"/>
+  </g>
+</svg>

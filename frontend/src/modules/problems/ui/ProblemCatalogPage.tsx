@@ -1,36 +1,141 @@
+import type { ReactNode } from 'react';
+
+import { useMemo } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
-import { useMemo, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
-import Accordion from '@mui/material/Accordion';
+import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { treeItemClasses, TreeItem as MuiTreeItem } from '@mui/x-tree-view/TreeItem';
 
 import { problemQueries } from '../application';
 
+function eventLogo(slug: string) {
+  if (slug === 'ioi-2026') return '/assets/seasons/ioi.png';
+  if (slug === 'egoi-2026') return '/assets/seasons/egoi.png';
+  return undefined;
+}
+
+function TreeEndIcon() {
+  return <UiIcon icon="solar:folder-bold" width={14} />;
+}
+
+const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
+  color: theme.vars.palette.text.secondary,
+  [`& .${treeItemClasses.content}`]: {
+    minHeight: 44,
+    margin: theme.spacing(0.25, 0),
+    padding: theme.spacing(0.5, 1),
+    borderRadius: theme.spacing(0.75),
+    '&:hover': { backgroundColor: theme.vars.palette.action.hover },
+    '&.Mui-selected, &.Mui-selected:hover': {
+      color: theme.vars.palette.text.primary,
+      backgroundColor: theme.vars.palette.action.selected,
+    },
+  },
+  [`& .${treeItemClasses.iconContainer}`]: {
+    width: 22,
+    height: 22,
+    display: 'grid',
+    flexShrink: 0,
+    lineHeight: 0,
+    placeItems: 'center',
+    borderRadius: '50%',
+    color: theme.vars.palette.primary.main,
+    backgroundColor: theme.vars.palette.action.selected,
+    '& svg': { display: 'block', fontSize: 16 },
+  },
+  [`& .${treeItemClasses.groupTransition}`]: {
+    marginLeft: 11,
+    paddingLeft: 20,
+    borderLeft: `1px dashed ${theme.vars.palette.divider}`,
+  },
+  [`&:not([aria-expanded]) > .${treeItemClasses.content} > .${treeItemClasses.iconContainer}`]: {
+    color: theme.vars.palette.primary.dark,
+    backgroundColor: theme.vars.palette.primary.lighter,
+  },
+}));
+
+type TreeLabelProps = {
+  icon: ReactNode;
+  title: string;
+  stats?: Array<{
+    count: number;
+    icon: string;
+    label: string;
+  }>;
+};
+
+function TreeLabel({ icon, title, stats = [] }: TreeLabelProps) {
+  return (
+    <Stack direction="row" alignItems="center" spacing={1.25} sx={{ minWidth: 0, width: 1 }}>
+      <Box
+        sx={{
+          width: 24,
+          height: 24,
+          display: 'grid',
+          flexShrink: 0,
+          placeItems: 'center',
+          color: 'text.secondary',
+        }}
+      >
+        {icon}
+      </Box>
+      <Typography variant="body2" sx={{ minWidth: 0, color: 'text.primary', fontWeight: 600 }}>
+        {title}
+      </Typography>
+      {stats.length > 0 && (
+        <Stack direction="row" spacing={0.75} sx={{ ml: 'auto !important', flexShrink: 0 }}>
+          {stats.map((stat) => (
+            <Tooltip key={stat.label} title={stat.label} arrow>
+              <Chip
+                size="small"
+                variant="soft"
+                label={stat.count}
+                icon={<UiIcon icon={stat.icon} width={15} />}
+                aria-label={`${stat.count} ${stat.label}`}
+                sx={{
+                  height: 26,
+                  '& .MuiChip-label': { px: 0.75, fontWeight: 600 },
+                  '& .MuiChip-icon': { ml: 0.75, color: 'primary.main' },
+                }}
+              />
+            </Tooltip>
+          ))}
+        </Stack>
+      )}
+    </Stack>
+  );
+}
+
 export default function ProblemCatalogPage() {
   const { data, loading, error } = useAsyncData(problemQueries.catalog, null, []);
-  const [seasonSlug, setSeasonSlug] = useState('');
-
-  useEffect(() => {
-    if (!seasonSlug && data?.seasons[0]) setSeasonSlug(data.seasons[0].slug);
-  }, [data, seasonSlug]);
-
-  const events = useMemo(
-    () => data?.events.filter((item) => !seasonSlug || item.season.slug === seasonSlug) ?? [],
-    [data, seasonSlug]
+  const seasons = useMemo(
+    () =>
+      data?.seasons.map((season) => ({
+        season,
+        events: data.events.filter((item) => item.season.slug === season.slug),
+      })) ?? [],
+    [data]
+  );
+  const defaultExpandedItems = useMemo(
+    () => [
+      ...seasons.map(({ season }) => `season:${season.slug}`),
+      ...seasons.flatMap(({ season, events }) =>
+        events.map(({ event }) => `event:${season.slug}:${event.slug}`)
+      ),
+    ],
+    [seasons]
   );
 
   return (
@@ -40,241 +145,182 @@ export default function ProblemCatalogPage() {
         description="Olimpiada mavsumi, musobaqa va bosqichlar bo‘yicha o‘zbekcha masalalar katalogi."
         path="/masalalar"
       />
-      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 7 } }}>
-        <Stack
-          direction={{ xs: 'column', md: 'row' }}
-          spacing={3}
-          alignItems={{ md: 'flex-end' }}
-          justifyContent="space-between"
-        >
-          <Box sx={{ maxWidth: 720 }}>
-            <Stack direction="row" spacing={1} alignItems="center" sx={{ color: 'primary.main' }}>
-              <UiIcon icon="solar:documents-minimalistic-linear" width={20} />
-              <Typography variant="subtitle2">Masalalar katalogi</Typography>
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+        <Box sx={{ maxWidth: 1040 }}>
+          <Typography component="h1" variant="h3">
+            Masalalar
+          </Typography>
+          <Typography sx={{ mt: 1, color: 'text.secondary' }}>
+            Olimpiada masalalari mavsum va bosqich bo‘yicha tartiblangan.
+          </Typography>
+
+          {loading && (
+            <Stack spacing={1} sx={{ mt: 4 }}>
+              {[0, 1, 2].map((item) => (
+                <Skeleton key={item} variant="rounded" height={48} />
+              ))}
             </Stack>
-            <Typography
-              component="h1"
-              variant="h2"
-              sx={{ mt: 1.5, fontSize: { xs: 36, sm: 44, md: 52 } }}
-            >
-              Olimpiada masalalari
-            </Typography>
-            <Typography variant="h6" sx={{ mt: 1.5, color: 'text.secondary', fontWeight: 400 }}>
-              Mavsum, musobaqa va kun bo‘yicha tartiblangan o‘zbekcha shartlar. Masalani shu yerda
-              o‘qing, mavjud platformada esa yechimini yuboring.
-            </Typography>
-          </Box>
-
-          {data && data.seasons.length > 0 && (
-            <FormControl size="small" sx={{ minWidth: 200 }}>
-              <Typography component="label" variant="caption" sx={{ mb: 0.75, fontWeight: 600 }}>
-                Mavsum
-              </Typography>
-              <Select
-                value={seasonSlug}
-                onChange={(event) => setSeasonSlug(event.target.value)}
-                inputProps={{ 'aria-label': 'Masalalar mavsumini tanlash' }}
-              >
-                {data.seasons.map((season) => (
-                  <MenuItem key={season.slug} value={season.slug}>
-                    {season.slug}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
           )}
-        </Stack>
 
-        {loading && (
-          <Stack spacing={2} sx={{ mt: 5 }}>
-            {[0, 1].map((item) => (
-              <Skeleton key={item} variant="rounded" height={180} />
-            ))}
-          </Stack>
-        )}
+          {error && (
+            <Alert severity="error" sx={{ mt: 4 }}>
+              Masalalar katalogini yuklab bo‘lmadi. Server ulanishini tekshiring.
+            </Alert>
+          )}
 
-        {error && (
-          <Alert severity="error" sx={{ mt: 5 }}>
-            Masalalar katalogini yuklab bo‘lmadi. Server ulanishini tekshiring.
-          </Alert>
-        )}
-
-        {!loading && !error && data && events.length === 0 && (
-          <Paper variant="outlined" sx={{ mt: 5, p: { xs: 3, md: 5 }, textAlign: 'center' }}>
-            <UiIcon icon="solar:folder-error-linear" width={42} />
-            <Typography variant="h5" sx={{ mt: 1.5 }}>
-              Bu mavsum uchun masalalar hali qo‘shilmagan
+          {!loading && !error && data && seasons.length === 0 && (
+            <Typography sx={{ mt: 4, color: 'text.secondary' }}>
+              Masalalar hali qo‘shilmagan.
             </Typography>
-          </Paper>
-        )}
+          )}
 
-        <Stack spacing={2} sx={{ mt: 5 }}>
-          {events.map(({ event, season, sets, problemCount }, eventIndex) => (
-            <Accordion
-              key={`${season.slug}:${event.slug}`}
-              defaultExpanded={eventIndex === 0}
-              disableGutters
-              sx={{
-                overflow: 'hidden',
-                border: '1px solid',
-                borderColor: 'divider',
-                borderRadius: '12px !important',
-                bgcolor: 'background.neutral',
-                boxShadow: 'none',
-                '&::before': { display: 'none' },
-              }}
-            >
-              <AccordionSummary
-                expandIcon={<UiIcon icon="solar:alt-arrow-down-linear" width={20} />}
-                sx={{
-                  px: { xs: 2, sm: 3 },
-                  py: 1.25,
-                  bgcolor: 'background.neutral',
-                  '&.Mui-expanded': { borderBottom: '1px solid', borderColor: 'divider' },
-                }}
+          {!loading && !error && data && seasons.length > 0 && (
+            <Box sx={{ mt: 4 }}>
+              <SimpleTreeView
+                aria-label="Olimpiada masalalari katalogi"
+                defaultExpandedItems={defaultExpandedItems}
+                slots={{ endIcon: TreeEndIcon }}
+                sx={{ width: 1, overflowX: 'hidden' }}
               >
-                <Stack
-                  direction={{ xs: 'column', sm: 'row' }}
-                  spacing={{ xs: 0.5, sm: 2 }}
-                  alignItems={{ sm: 'center' }}
-                  sx={{ minWidth: 0, flexGrow: 1 }}
-                >
-                  <Box
-                    sx={{
-                      width: 42,
-                      height: 42,
-                      flexShrink: 0,
-                      display: { xs: 'none', sm: 'grid' },
-                      placeItems: 'center',
-                      color: 'primary.main',
-                      bgcolor: 'primary.lighter',
-                      borderRadius: 1.25,
-                    }}
-                  >
-                    <UiIcon icon="solar:cup-star-linear" width={23} />
-                  </Box>
-                  <Box sx={{ minWidth: 0 }}>
-                    <Typography variant="h6">{event.shortTitle || event.title}</Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {sets.length} ta bosqich · {problemCount} ta masala
-                    </Typography>
-                  </Box>
-                </Stack>
-              </AccordionSummary>
-              <AccordionDetails sx={{ px: { xs: 2, sm: 3 }, pt: 2.5, pb: 3 }}>
-                {event.summary && (
-                  <Typography variant="body2" sx={{ mb: 2.5, color: 'text.secondary' }}>
-                    {event.summary}
-                  </Typography>
-                )}
-                <Box
-                  role="tree"
-                  aria-label={`${event.title} bosqichlari`}
-                  sx={{
-                    position: 'relative',
-                    display: 'grid',
-                    gap: { xs: 1.25, md: 2 },
-                    gridTemplateColumns: {
-                      xs: '1fr',
-                      sm: 'repeat(2, minmax(0, 1fr))',
-                      lg: `repeat(${Math.min(Math.max(sets.length, 1), 4)}, minmax(0, 1fr))`,
-                    },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 27,
-                      left: 28,
-                      right: 28,
-                      height: 2,
-                      display: { xs: 'none', sm: 'block' },
-                      bgcolor: 'divider',
-                    },
-                  }}
-                >
-                  {sets.map((set, setIndex) => {
-                    const firstSetProblem = set.problems[0];
-                    const setPath = firstSetProblem
-                      ? `/masalalar/${season.slug}/${event.slug}/${firstSetProblem.slug}`
-                      : `/masalalar/${season.slug}/${event.slug}`;
-                    return (
-                      <Paper
-                        key={set.slug}
-                        role="treeitem"
-                        variant="outlined"
-                        component={RouterLink}
-                        to={setPath}
-                        sx={{
-                          p: 2,
-                          zIndex: 1,
-                          minHeight: 132,
-                          display: 'flex',
-                          color: 'inherit',
-                          textDecoration: 'none',
-                          flexDirection: 'column',
-                          bgcolor: 'background.paper',
-                          borderColor: 'divider',
-                          borderRadius: 1.5,
-                          transition: (theme) =>
-                            theme.transitions.create(['border-color', 'transform', 'box-shadow']),
-                          '&:hover': {
-                            borderColor: 'primary.main',
-                            boxShadow: (theme) => theme.vars.customShadows.z8,
-                            transform: 'translateY(-2px)',
-                          },
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: 54,
-                            height: 54,
-                            display: 'grid',
-                            placeItems: 'center',
-                            color: 'primary.main',
-                            bgcolor: 'primary.lighter',
-                            border: '2px solid',
-                            borderColor: 'primary.main',
-                            borderRadius: '50%',
-                          }}
-                        >
-                          <UiIcon icon="solar:folder-with-files-linear" width={24} />
-                        </Box>
-                        <Stack
-                          direction="row"
-                          alignItems="flex-end"
-                          justifyContent="space-between"
-                          sx={{ mt: 1.5 }}
-                        >
-                          <Box>
-                            <Typography variant="overline" sx={{ color: 'text.secondary' }}>
-                              {setIndex + 1}-bosqich
-                            </Typography>
-                            <Typography variant="subtitle1">{set.title}</Typography>
-                            {set.dateLabel && (
-                              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                                {set.dateLabel}
-                              </Typography>
-                            )}
-                          </Box>
-                          <Stack
-                            direction="row"
-                            spacing={0.75}
-                            alignItems="center"
-                            sx={{ color: 'primary.main' }}
+                {seasons.map(({ season, events }) => {
+                  const problemCount = events.reduce((total, item) => total + item.problemCount, 0);
+
+                  return (
+                    <TreeItem
+                      key={season.slug}
+                      itemId={`season:${season.slug}`}
+                      label={
+                        <TreeLabel
+                          title={season.slug}
+                          icon={<UiIcon icon="solar:calendar-linear" width={20} />}
+                          stats={[
+                            {
+                              count: events.length,
+                              icon: 'solar:cup-star-linear',
+                              label: 'Musobaqalar soni',
+                            },
+                            {
+                              count: problemCount,
+                              icon: 'solar:document-text-linear',
+                              label: 'Masalalar soni',
+                            },
+                          ]}
+                        />
+                      }
+                    >
+                      {events.map(({ event, sets, problemCount: eventProblemCount }) => {
+                        const logo = eventLogo(event.slug);
+
+                        return (
+                          <TreeItem
+                            key={event.slug}
+                            itemId={`event:${season.slug}:${event.slug}`}
+                            label={
+                              <TreeLabel
+                                title={event.shortTitle || event.title}
+                                stats={[
+                                  {
+                                    count: sets.length,
+                                    icon: 'solar:folder-linear',
+                                    label: 'Bosqichlar soni',
+                                  },
+                                  {
+                                    count: eventProblemCount,
+                                    icon: 'solar:document-text-linear',
+                                    label: 'Masalalar soni',
+                                  },
+                                ]}
+                                icon={
+                                  logo ? (
+                                    <Box
+                                      component="img"
+                                      src={logo}
+                                      alt=""
+                                      aria-hidden="true"
+                                      sx={{ width: 22, height: 22, objectFit: 'contain' }}
+                                    />
+                                  ) : (
+                                    <UiIcon icon="solar:cup-star-linear" width={19} />
+                                  )
+                                }
+                              />
+                            }
                           >
-                            <Typography variant="caption" sx={{ fontWeight: 700 }}>
-                              {set.problems.length} ta masala
-                            </Typography>
-                            <UiIcon icon="solar:arrow-right-linear" width={17} />
-                          </Stack>
-                        </Stack>
-                      </Paper>
-                    );
-                  })}
-                </Box>
-              </AccordionDetails>
-            </Accordion>
-          ))}
-        </Stack>
+                            {sets.map((set) => {
+                              const firstProblem = set.problems[0];
+                              const setPath = firstProblem
+                                ? `/masalalar/${season.slug}/${event.slug}/${firstProblem.slug}`
+                                : `/masalalar/${season.slug}/${event.slug}`;
+
+                              return (
+                                <TreeItem
+                                  key={set.slug}
+                                  itemId={`set:${season.slug}:${event.slug}:${set.slug}`}
+                                  label={
+                                    <Box
+                                      component={RouterLink}
+                                      to={setPath}
+                                      onClick={(treeEvent) => treeEvent.stopPropagation()}
+                                      sx={{
+                                        gap: 1.25,
+                                        width: 1,
+                                        minWidth: 0,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
+                                      }}
+                                    >
+                                      <Typography
+                                        variant="body2"
+                                        sx={{ color: 'text.primary', fontWeight: 500 }}
+                                      >
+                                        {set.title}
+                                      </Typography>
+                                      {set.dateLabel && (
+                                        <Typography
+                                          variant="caption"
+                                          sx={{ color: 'text.secondary' }}
+                                        >
+                                          {set.dateLabel}
+                                        </Typography>
+                                      )}
+                                      <Tooltip title="Masalalar soni" arrow>
+                                        <Chip
+                                          size="small"
+                                          variant="soft"
+                                          label={set.problems.length}
+                                          icon={
+                                            <UiIcon icon="solar:document-text-linear" width={15} />
+                                          }
+                                          aria-label={`${set.problems.length} ta masala`}
+                                          sx={{
+                                            ml: 'auto',
+                                            height: 26,
+                                            '& .MuiChip-label': { px: 0.75, fontWeight: 600 },
+                                            '& .MuiChip-icon': {
+                                              ml: 0.75,
+                                              color: 'primary.main',
+                                            },
+                                          }}
+                                        />
+                                      </Tooltip>
+                                      <UiIcon icon="solar:arrow-right-linear" width={17} />
+                                    </Box>
+                                  }
+                                />
+                              );
+                            })}
+                          </TreeItem>
+                        );
+                      })}
+                    </TreeItem>
+                  );
+                })}
+              </SimpleTreeView>
+            </Box>
+          )}
+        </Box>
       </Container>
     </>
   );

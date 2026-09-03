@@ -16,7 +16,6 @@ from apps.seasons.models import Event
 
 CONTENT_ROOT = Path(__file__).resolve().parents[5] / "content"
 DEFAULT_DATA_PATH = CONTENT_ROOT / "problems"
-DEFAULT_SCHEMA_PATH = DEFAULT_DATA_PATH / "schema" / "problem-content.schema.json"
 
 
 class Command(BaseCommand):
@@ -24,14 +23,16 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--path", type=Path, default=DEFAULT_DATA_PATH)
-        parser.add_argument("--schema", type=Path, default=DEFAULT_SCHEMA_PATH)
+        parser.add_argument("--schema", type=Path)
         parser.add_argument("--prune", action="store_true")
         parser.add_argument("--dry-run", action="store_true")
 
     def handle(self, *args, **options):
         root = options["path"].resolve()
         self.data_root = root
-        schema_path = options["schema"].resolve()
+        schema_path = (
+            options["schema"] or root / "schema" / "problem-content.schema.json"
+        ).resolve()
         if not root.is_dir():
             raise CommandError(f"Masalalar katalogi topilmadi: {root}")
         if not schema_path.is_file():

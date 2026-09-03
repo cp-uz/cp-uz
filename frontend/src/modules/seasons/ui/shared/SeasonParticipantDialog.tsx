@@ -6,7 +6,6 @@ import { Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
@@ -37,13 +36,11 @@ const PLATFORM_ASSETS: Record<string, { label: string; src: string }> = {
   robocontest: { label: 'Robocontest', src: '/assets/platforms/robocontest.png' },
 };
 
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((part) => part[0]?.toLocaleUpperCase('uz'))
-    .join('');
-}
+const COUNTRY_FLAGS: Record<string, { label: string; src: string }> = {
+  UZB: { label: 'O‘zbekiston', src: '/assets/countries/uz.svg' },
+};
+
+const PARTICIPANT_AVATAR_FALLBACK = '/assets/seasons/participants/participant-avatar.svg';
 
 function ParticipantSkeleton() {
   return (
@@ -72,17 +69,16 @@ function ParticipantContent({
   const platformAccounts = participant.platformAccounts.filter(
     (account) => PLATFORM_ASSETS[account.platform]
   );
+  const country = participant.countryCode ? COUNTRY_FLAGS[participant.countryCode] : undefined;
 
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2.25} alignItems={{ sm: 'center' }}>
         <Avatar
-          src={participant.photoUrl}
+          src={participant.photoUrl || PARTICIPANT_AVATAR_FALLBACK}
           alt={participant.fullName}
-          sx={{ width: 88, height: 88, fontSize: 28, bgcolor: 'primary.main' }}
-        >
-          {initials(participant.fullName)}
-        </Avatar>
+          sx={{ width: 88, height: 88, bgcolor: 'background.neutral' }}
+        />
         <Box sx={{ minWidth: 0 }}>
           <Typography component="h2" variant="h4">
             {participant.fullName}
@@ -90,8 +86,15 @@ function ParticipantContent({
           {secondary && (
             <Typography sx={{ mt: 0.5, color: 'text.secondary' }}>{secondary}</Typography>
           )}
-          {participant.countryCode && (
-            <Chip size="small" variant="soft" label={participant.countryCode} sx={{ mt: 1.25 }} />
+          {country && (
+            <Tooltip title={country.label} arrow>
+              <Box
+                component="img"
+                src={country.src}
+                alt={country.label}
+                sx={{ mt: 1.25, width: 28, height: 18, display: 'block', borderRadius: 0.5 }}
+              />
+            </Tooltip>
           )}
         </Box>
       </Stack>
@@ -124,10 +127,10 @@ function ParticipantContent({
                   underline="none"
                   aria-label={`${platform.label}: ${account.handle}`}
                   sx={{
-                    p: 1.25,
-                    gap: 1,
+                    p: 1,
+                    gap: 0.75,
                     minWidth: 0,
-                    minHeight: 64,
+                    minHeight: 56,
                     display: 'grid',
                     alignItems: 'center',
                     color: 'text.primary',
@@ -135,7 +138,7 @@ function ParticipantContent({
                     borderColor: 'divider',
                     borderRadius: 1.5,
                     bgcolor: 'background.paper',
-                    gridTemplateColumns: '32px minmax(0, 1fr) 18px',
+                    gridTemplateColumns: '28px minmax(0, 1fr) 14px',
                     transition: (theme) =>
                       theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
                     '&:hover': {
@@ -147,8 +150,8 @@ function ParticipantContent({
                 >
                   <Box
                     sx={{
-                      width: 32,
-                      height: 32,
+                      width: 28,
+                      height: 28,
                       display: 'grid',
                       borderRadius: 1,
                       placeItems: 'center',
@@ -159,7 +162,7 @@ function ParticipantContent({
                       component="img"
                       src={platform.src}
                       alt=""
-                      sx={{ width: 24, height: 24, objectFit: 'contain' }}
+                      sx={{ width: 20, height: 20, objectFit: 'contain' }}
                     />
                   </Box>
                   <Box sx={{ minWidth: 0 }}>
@@ -176,10 +179,10 @@ function ParticipantContent({
                   </Box>
                   {account.verified ? (
                     <Tooltip title="Tasdiqlangan akkaunt" arrow>
-                      <UiIcon icon="solar:verified-check-bold" width={14} color="primary.main" />
+                      <UiIcon icon="solar:verified-check-bold" width={12} color="primary.main" />
                     </Tooltip>
                   ) : (
-                    <Box aria-hidden sx={{ width: 14 }} />
+                    <Box aria-hidden sx={{ width: 12 }} />
                   )}
                 </Link>
               );
@@ -265,6 +268,14 @@ export function SeasonParticipantDialog({
       fullWidth
       maxWidth="sm"
       aria-labelledby="season-participant-dialog-title"
+      slotProps={{
+        paper: {
+          sx: {
+            m: { xs: 1.25, sm: 2 },
+            width: { xs: 'calc(100% - 20px)', sm: 'calc(100% - 32px)' },
+          },
+        },
+      }}
     >
       <DialogTitle id="season-participant-dialog-title" sx={{ pr: 7 }}>
         Ishtirokchi profili
@@ -276,7 +287,7 @@ export function SeasonParticipantDialog({
       >
         <UiIcon icon="solar:close-circle-linear" width={22} />
       </IconButton>
-      <DialogContent sx={{ pt: 1 }}>
+      <DialogContent sx={{ px: { xs: 2, sm: 3 }, pt: 1 }}>
         {loading && <ParticipantSkeleton />}
         {error && <Alert severity="error">Ishtirokchi profilini yuklab bo‘lmadi.</Alert>}
         {!loading && !error && data && (

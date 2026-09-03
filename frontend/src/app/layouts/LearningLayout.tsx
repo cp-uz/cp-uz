@@ -160,7 +160,11 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             <IconButton
               aria-label="Menyuni ochish"
               onClick={() => setMobileOpen(true)}
-              sx={{ display: { md: 'none' }, ml: -1 }}
+              sx={{
+                ml: -1,
+                display: 'inline-flex',
+                '@media (min-width: 1340px)': { display: 'none' },
+              }}
             >
               <UiIcon icon="solar:hamburger-menu-linear" width={22} />
             </IconButton>
@@ -168,7 +172,11 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
           </Stack>
         ),
         centerArea: (
-          <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Stack
+            direction="row"
+            spacing={0.5}
+            sx={{ display: 'none', '@media (min-width: 1340px)': { display: 'flex' } }}
+          >
             {navItems.map((item) => {
               const selected = navItemSelected(item.to);
               return (
@@ -218,7 +226,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 bgcolor: 'action.hover',
                 borderRadius: 1.25,
                 fontFamily: 'inherit',
-                display: { xs: 'none', sm: 'inline-flex' },
+                display: { xs: 'none', xl: 'inline-flex' },
               }}
             >
               <UiIcon icon="solar:magnifer-linear" width={18} />
@@ -233,6 +241,15 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 Ctrl K
               </Typography>
             </ButtonBase>
+            <Tooltip title="Qidirish">
+              <IconButton
+                aria-label="Sayt bo‘ylab qidirish"
+                onClick={() => setSearchOpen(true)}
+                sx={{ display: { xs: 'inline-flex', xl: 'none' } }}
+              >
+                <UiIcon icon="solar:magnifer-linear" width={20} />
+              </IconButton>
+            </Tooltip>
             <Tooltip title={dark ? 'Yorug‘ mavzu' : 'Qorong‘i mavzu'}>
               <IconButton
                 aria-label={dark ? 'Yorug‘ mavzuga o‘tish' : 'Qorong‘i mavzuga o‘tish'}
@@ -282,7 +299,10 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 onClick={(event) => setIdentityAnchorEl(event.currentTarget)}
                 startIcon={<UiIcon icon="solar:user-circle-linear" width={18} />}
                 endIcon={<UiIcon icon="solar:alt-arrow-down-linear" width={15} />}
-                sx={{ display: { xs: 'none', md: 'inline-flex' } }}
+                sx={{
+                  display: 'none',
+                  '@media (min-width: 1340px)': { display: 'inline-flex' },
+                }}
               >
                 {identityLabel}
               </Button>
@@ -292,7 +312,10 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 to="/kirish"
                 variant="contained"
                 startIcon={<UiIcon icon="solar:login-2-linear" width={18} />}
-                sx={{ display: { xs: 'none', md: 'inline-flex' } }}
+                sx={{
+                  display: 'none',
+                  '@media (min-width: 1340px)': { display: 'inline-flex' },
+                }}
               >
                 Kirish
               </Button>

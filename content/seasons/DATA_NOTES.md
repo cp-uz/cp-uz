@@ -88,7 +88,8 @@ Sardor Salimov (`0gur4ik`), Oysha Mirzatillayeva (`Aisham`) va Rayxona Sanakulov
 - [IOI 2026 O‘zbekiston natijalari va handlelar](https://codeforces.com/blog/entry/155963).
 
 IOI Statistics va EGOI Statistics sahifalarida aniq ishtirokchiga biriktirilgan rasmiy portretlar
-lokal asset sifatida saqlandi. Rasm topilmagan profillarda initials fallback ishlaydi. Platforma
+lokal asset sifatida saqlandi. Rasm topilmagan profillarda ism-harflar o‘rniga neytral ishtirokchi
+avatari ishlaydi. Platforma
 akkauntlari hozircha Codeforces, AtCoder, KEP.uz va Robocontest bilan cheklangan; ular admin
 paneldagi inline formada kiritiladi.
 
@@ -97,6 +98,10 @@ Rasmiy portret manbalari:
 - IOI Statistics: Jakhonali Khaydaraliev (`9095`), Jahongir Shoh Avazkhonov (`9094`),
   Ulug‘bek Rakhmatullaev (`8464`), Timur Kadirbergenov (`8810`) va Sardor Salimov (`8809`);
 - EGOI Statistics: Oysha Mirzatillaeva (`709`) va Raykhona Sanakulova (`1215`).
+- EGOI Statistics: Malika Khojamuratova (`708`).
+- RoboContest: Temurbek Ubaydullayevning tasdiqlangan `temur_ubaydullayev` profili.
+- Ixtisoslashtirilgan ta’lim muassasalari agentligi: Umar Xayyom xalqaro olimpiadasi
+  natijalari kollajida ism bilan belgilangan Shahruz Erkinov portreti.
 
 Platforma logolari ham runtime tashqi URLga bog‘lanmasligi uchun rasmiy sayt aktivlaridan lokal
 saqlandi: Codeforces favicon, AtCoder favicon, KEP.uz `logo.svg` va Robocontest favicon.
