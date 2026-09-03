@@ -138,6 +138,11 @@ class ComposeContractTests(unittest.TestCase):
         self.assertLess(copy_index, directory_mode_index)
         self.assertLess(copy_index, file_mode_index)
 
+    def test_frontend_serves_module_workers_as_javascript(self) -> None:
+        nginx = (ROOT / "deploy" / "nginx-app.conf").read_text(encoding="utf-8")
+        self.assertIn(r"location ~* \.mjs$", nginx)
+        self.assertIn("default_type application/javascript", nginx)
+
     def test_release_smokes_boot_and_team_assets_before_and_after_cutover(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         for path in (
