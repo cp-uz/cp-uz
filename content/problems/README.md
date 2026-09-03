@@ -51,6 +51,13 @@ python scripts/sync_ioi_2026_archive.py
 python scripts/sync_egoi_2026_archive.py
 ```
 
+IZhO 2026 katalogi tashkilotchining [rasmiy masalalar arxivi](https://izho.kz/contest/problems/)
+va undagi 11–12-yanvar inglizcha PDF’lariga tayanadi. APIO 2026 masalalari esa
+[tashkilotchining ochiq task repozitoriysi](https://github.com/apio2026/apio-2026)dan
+olingan; yechish havolalari QOJ’dagi mos mirrorlarga olib boradi. Rasmiy arxivda
+submission tizimi ochiq qolmagan bo‘lsa, `original` havolaning o‘zi public katalog
+uchun yetarli: mavjud bo‘lmagan `practice` URL taxmin qilinmaydi.
+
 JSON hujjatlari [`schema/problem-content.schema.json`](schema/problem-content.schema.json)
 bilan tekshiriladi. Yangi masala qo‘shilganda avval `problem.json` va
 `statement.uz.md` yaratiladi, so‘ng uning papkasi tegishli `set.json` dagi `problems`

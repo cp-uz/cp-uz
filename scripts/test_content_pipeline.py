@@ -318,11 +318,11 @@ articles:
         self.assertEqual(
             validate_problem_inventory(CONTENT),
             {
-                "problem_events": 3,
-                "problem_sets": 8,
-                "problems": 26,
-                "problem_links": 52,
-                "problem_attachments": 26,
+                "problem_events": 5,
+                "problem_sets": 11,
+                "problems": 35,
+                "problem_links": 64,
+                "problem_attachments": 35,
             },
         )
 

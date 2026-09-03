@@ -1,0 +1,9 @@
+{
+  "document_type": "event",
+  "schema_version": 1,
+  "season_slug": "2025-2026",
+  "event_slug": "apio-2026",
+  "sets": [
+    "contest"
+  ]
+}

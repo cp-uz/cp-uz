@@ -167,12 +167,16 @@ class ComposeContractTests(unittest.TestCase):
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         self.assertIn("python manage.py import_problems", release)
         self.assertIn("/app/content/problems", release)
-        self.assertIn('"problems": 26', release)
-        self.assertIn('"links": 52', release)
+        self.assertIn('"problems": 35', release)
+        self.assertIn('"links": 64', release)
         self.assertIn("/api/v1/problems/", release)
         self.assertIn("/masalalar/2025-2026/ioi-2026-saralash-4/temir-rom", release)
         self.assertIn("/masalalar/2025-2026/ioi-2026/ball-machine", release)
         self.assertIn("/masalalar/2025-2026/egoi-2026/ferriswheel", release)
+        self.assertIn(
+            "/masalalar/2025-2026/izho-2026/little-efnesh-and-monitor", release
+        )
+        self.assertIn("/masalalar/2025-2026/apio-2026/apio-bike", release)
 
     def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")

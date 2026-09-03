@@ -1,0 +1,36 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "light-bulbs",
+  "code": "C",
+  "title": "Chiroqlar",
+  "original_title": "Light Bulbs",
+  "statement_file": "statement.uz.md",
+  "translation_status": "ai_translation",
+  "problem_type": "two_step",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": ["IZhO 2026", "Ikki bosqichli", "Daraxt", "Kodlash"],
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IZhO’dagi original inglizcha shart",
+      "url": "https://drive.google.com/file/d/1a3UJXmzlkspGrXtEFM5UAR2qIcEA5s8x/view",
+      "platform": "IZhO",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    }
+  ],
+  "attachments": [
+    {
+      "title": "2-kun rasmiy statementlari (PDF)",
+      "url": "https://drive.google.com/file/d/1a3UJXmzlkspGrXtEFM5UAR2qIcEA5s8x/view",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ]
+}

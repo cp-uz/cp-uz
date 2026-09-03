@@ -61,6 +61,17 @@ tasdiqlangan.
 - IOI 2026 yakuniy saralashida 2-, 3- va 4-turlar mos ravishda 11-, 13- va 14-iyunda
   rasmiy postlarda tasdiqlangan. Timeline hujjatlashtirilgan 11–14-iyun oralig‘ini
   ko‘rsatadi; 1-turning aniq kuni alohida ochiq postda topilmadi.
+- IOI 2026 saralashining I–III bosqichlari bo‘yicha rasmiy postlar, yakuniy jadvallar
+  va bosqich sahifalari tekshirildi: I bosqich uchun
+  [informatikas1](https://sites.google.com/view/informatikas1/), II bosqich uchun
+  [ioisaralash2](https://sites.google.com/view/ioisaralash2/), III bosqich uchun
+  [ioi-3](https://sites.google.com/view/ioi-3/) sahifalari mavjud. Ular natija va
+  saralanganlar sonini tasdiqlaydi, ammo masala shartlari yoki doimiy ochiq judge
+  havolalarini bermaydi. Postlarda ishlatilgan vaqtinchalik RoboContest CMS domenlari
+  ham endi ishlamaydi. KEP.uz ochiq API’sida 2026-yil yakuniy IV bosqichning 12 ta
+  masalasi (`2316–2327`) mavjud, I–III bosqichlarga ishonchli bog‘lanadigan to‘plam
+  topilmadi. Shu sababli katalogga taxminiy nom yoki noto‘g‘ri mirror qo‘shilmadi;
+  rasmiy paket ochilsa ular alohida event katalogi sifatida kiritiladi.
 - VKOSHP 2025–2026 jadvalida O‘zbekiston jamoasining ishonchli rasmiy natijasi
   aniqlanmagani uchun mahalliy natija kiritilmadi.
 - 2026–2027 milliy bosqichlar, treninglar, IZhO/KhIMIO/VKOSHP/InfO(1)Cup sanalari TBA.

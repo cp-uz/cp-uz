@@ -97,8 +97,10 @@ def validate_problem_inventory(content_root: Path) -> dict[str, int]:
                     raise ValueError(f"{problem_dir}: duplicate problem links")
                 if problem["publication_status"] == "published":
                     kinds = {item["kind"] for item in problem["links"]}
-                    if not {"original", "practice"}.issubset(kinds):
-                        raise ValueError(f"{problem_dir}: published problem needs original and practice links")
+                    if not kinds.intersection({"original", "practice"}):
+                        raise ValueError(
+                            f"{problem_dir}: published problem needs an original or practice link"
+                        )
                 counters["problems"] += 1
                 counters["problem_links"] += len(problem["links"])
                 counters["problem_attachments"] += len(problem.get("attachments", []))

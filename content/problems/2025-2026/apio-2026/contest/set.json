@@ -1,0 +1,15 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "contest",
+  "title": "Musobaqa",
+  "description": "APIO 2026 rasmiy musobaqa masalalari.",
+  "date_label": "9–10-may, 2026",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "apio-bike",
+    "navigation",
+    "scallion-pancake-party"
+  ]
+}

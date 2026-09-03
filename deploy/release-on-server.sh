@@ -230,12 +230,12 @@ actual = {
     "attachments": ProblemAttachment.objects.count(),
 }
 expected = {
-    "sets": 8,
-    "public_sets": 8,
-    "problems": 26,
-    "public_problems": 26,
-    "links": 52,
-    "attachments": 26,
+    "sets": 11,
+    "public_sets": 11,
+    "problems": 35,
+    "public_problems": 35,
+    "links": 64,
+    "attachments": 35,
 }
 assert actual == expected, f"Imported problem catalog mismatch: {actual} != {expected}"
 print(actual)
@@ -276,6 +276,8 @@ SMOKE_ENDPOINTS=(
   /masalalar/2025-2026/ioi-2026-saralash-4/temir-rom
   /masalalar/2025-2026/ioi-2026/ball-machine
   /masalalar/2025-2026/egoi-2026/ferriswheel
+  /masalalar/2025-2026/izho-2026/little-efnesh-and-monitor
+  /masalalar/2025-2026/apio-2026/apio-bike
   /boot.css
   /loader-facts.js
   /assets/brand/cpuz-logo.png

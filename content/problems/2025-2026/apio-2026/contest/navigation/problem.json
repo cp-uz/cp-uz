@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "navigation",
+  "code": "B",
+  "title": "Navigatsiya",
+  "original_title": "Navigation",
+  "statement_file": "statement.uz.md",
+  "translation_status": "ai_translation",
+  "problem_type": "two_step",
+  "time_limit_ms": 2000,
+  "memory_limit_mb": 2048,
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": ["APIO 2026", "Ikki bosqichli", "Daraxt", "Kodlash"],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "APIO’dagi original inglizcha shart",
+      "url": "https://raw.githubusercontent.com/apio2026/apio-2026/main/navigation/statements/en.pdf",
+      "platform": "APIO",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "QOJ’da ishlash",
+      "url": "https://qoj.ac/problem/17644",
+      "platform": "QOJ",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy inglizcha statement (PDF)",
+      "url": "https://raw.githubusercontent.com/apio2026/apio-2026/main/navigation/statements/en.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ]
+}
