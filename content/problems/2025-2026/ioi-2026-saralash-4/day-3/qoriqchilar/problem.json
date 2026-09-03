@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2400,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Graflar nazariyasi",
     "Konstruktiv",
@@ -50,5 +48,13 @@
       "size_bytes": 2159,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-3/qoriqchilar/statement.pdf",
+    "sha256": "e52f30a83f62e5425328de17f1c48a9682d5b04384decdb0c5819c3c3821f436",
+    "size_bytes": 157032,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

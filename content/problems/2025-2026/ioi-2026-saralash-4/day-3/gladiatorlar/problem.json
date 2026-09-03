@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2300,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Graflar nazariyasi",
     "Ma`lumotlar tuzilmasi",
@@ -51,5 +49,13 @@
       "size_bytes": 2266,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-3/gladiatorlar/statement.pdf",
+    "sha256": "ea13e3c0de4d8f626cad869596a3527667ac3ee4695813542cc4dd663af81ec2",
+    "size_bytes": 179462,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

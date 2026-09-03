@@ -10,8 +10,6 @@
   "time_limit_ms": 2000,
   "memory_limit_mb": 255,
   "max_score": 100,
-  "rating": 2500,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Dinamik dasturlash",
     "Ma`lumotlar tuzilmasi",
@@ -49,5 +47,13 @@
       "size_bytes": 2583,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-2/darsxona-partalari/statement.pdf",
+    "sha256": "99a392fe1e724d0db36a413a3ebe9a263259c489b83f66fda7e70cf3bc51db9f",
+    "size_bytes": 175313,
+    "page_count": 6,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

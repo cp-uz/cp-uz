@@ -40,6 +40,11 @@ class ProblemAdmin(admin.ModelAdmin):
     )
     search_fields = ("code", "title", "original_title", "problem_set__title")
     autocomplete_fields = ("problem_set",)
+    readonly_fields = (
+        "statement_pdf_sha256",
+        "statement_pdf_size_bytes",
+        "statement_pdf_page_count",
+    )
     inlines = (ProblemLinkInline, ProblemAttachmentInline)
     ordering = (
         "problem_set__event__season",

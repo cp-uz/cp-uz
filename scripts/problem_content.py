@@ -38,8 +38,16 @@ def validate_problem_inventory(content_root: Path) -> dict[str, int]:
         (path.parents[1].name, _read_json(path)["slug"])
         for path in (content_root / "seasons").glob("*/events/*.json")
     }
-    counters = {"problem_events": 0, "problem_sets": 0, "problems": 0, "problem_links": 0, "problem_attachments": 0}
+    counters = {
+        "problem_events": 0,
+        "problem_sets": 0,
+        "problems": 0,
+        "problem_links": 0,
+        "problem_attachments": 0,
+        "problem_statement_pdfs": 0,
+    }
     seen_events: set[tuple[str, str]] = set()
+    seen_pdf_urls: set[str] = set()
 
     def validate(path: Path) -> dict[str, Any]:
         payload = _read_json(path)
@@ -101,8 +109,13 @@ def validate_problem_inventory(content_root: Path) -> dict[str, int]:
                         raise ValueError(
                             f"{problem_dir}: published problem needs an original or practice link"
                         )
+                pdf_url = problem["statement_pdf"]["url"]
+                if pdf_url in seen_pdf_urls:
+                    raise ValueError(f"{problem_dir}: duplicate statement PDF URL")
+                seen_pdf_urls.add(pdf_url)
                 counters["problems"] += 1
                 counters["problem_links"] += len(problem["links"])
                 counters["problem_attachments"] += len(problem.get("attachments", []))
+                counters["problem_statement_pdfs"] += 1
 
     return counters

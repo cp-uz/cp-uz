@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2300,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Heshlash",
     "Ma`lumotlar tuzilmasi",
@@ -48,5 +46,13 @@
       "size_bytes": 1460,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-1/deyarli-anagrammalar/statement.pdf",
+    "sha256": "cf193b79cd15c6325d201754a1ec9887673e1ff91227c81aa1c468f5ccd1dafc",
+    "size_bytes": 152510,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

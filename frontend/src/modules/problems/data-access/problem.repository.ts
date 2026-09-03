@@ -143,10 +143,28 @@ export const problemRepository = {
     const dto = record(payload);
     const summary = mapProblemSummary(dto);
     const setDto = record(dto.problem_set);
+    const statementPdfDto = record(dto.statement_pdf);
     return {
       ...summary,
       statementMarkdown: text(dto.statement_markdown),
       sourcePath: text(dto.source_path),
+      statementPdf: text(statementPdfDto.url)
+        ? {
+            url: text(statementPdfDto.url),
+            sha256: text(statementPdfDto.sha256),
+            sizeBytes: number(statementPdfDto.size_bytes),
+            pageCount: number(statementPdfDto.page_count),
+            language: (text(statementPdfDto.language) || undefined) as
+              | 'uz'
+              | 'en'
+              | undefined,
+            provenance: (text(statementPdfDto.provenance) || undefined) as
+              | 'official'
+              | 'generated'
+              | undefined,
+            provenanceLabel: text(statementPdfDto.provenance_label) || undefined,
+          }
+        : undefined,
       timeLimitMs: number(dto.time_limit_ms),
       memoryLimitMb: number(dto.memory_limit_mb),
       maxScore: dto.max_score == null ? undefined : text(dto.max_score),

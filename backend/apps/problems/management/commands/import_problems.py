@@ -161,6 +161,14 @@ class Command(BaseCommand):
                     "source_path": (
                         Path("problems") / statement_path.relative_to(self.data_root)
                     ).as_posix(),
+                    "statement_pdf_url": data.get("statement_pdf", {}).get("url", ""),
+                    "statement_pdf_sha256": data.get("statement_pdf", {}).get("sha256", ""),
+                    "statement_pdf_size_bytes": data.get("statement_pdf", {}).get("size_bytes"),
+                    "statement_pdf_page_count": data.get("statement_pdf", {}).get("page_count"),
+                    "statement_pdf_language": data.get("statement_pdf", {}).get("language", ""),
+                    "statement_pdf_provenance": data.get("statement_pdf", {}).get(
+                        "provenance", ""
+                    ),
                     "translation_status": data.get("translation_status", "ai_translation"),
                     "problem_type": data.get("problem_type", "standard"),
                     "time_limit_ms": data.get("time_limit_ms"),

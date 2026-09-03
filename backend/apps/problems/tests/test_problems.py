@@ -45,6 +45,15 @@ class ProblemCatalogTests(TestCase):
             title="Namuna",
             statement_markdown="Shartda $n$ berilgan.",
             source_path="problems/test/statement.uz.md",
+            statement_pdf_url=(
+                "https://raw.githubusercontent.com/cp-uz/problem-statements/"
+                "main/2025-2026/tst4/day-1/namuna/statement.pdf"
+            ),
+            statement_pdf_sha256="a" * 64,
+            statement_pdf_size_bytes=1234,
+            statement_pdf_page_count=2,
+            statement_pdf_language="uz",
+            statement_pdf_provenance="generated",
             translation_status="original_uzbek",
             rating=1800,
             order=1,
@@ -73,6 +82,8 @@ class ProblemCatalogTests(TestCase):
         self.assertEqual(event.status_code, 200)
         self.assertEqual(detail.status_code, 200)
         self.assertEqual(detail.data["statement_markdown"], "Shartda $n$ berilgan.")
+        self.assertEqual(detail.data["statement_pdf"]["page_count"], 2)
+        self.assertEqual(detail.data["statement_pdf"]["provenance"], "generated")
         self.assertEqual(detail.data["links"][0]["kind"], "practice")
         self.assertEqual(detail.data["sets"][0]["problems"][0]["code"], "A")
         self.assertEqual(
@@ -156,6 +167,17 @@ class ProblemImportTests(TestCase):
                     "code": "A",
                     "title": "Namuna",
                     "statement_file": "statement.uz.md",
+                    "statement_pdf": {
+                        "url": (
+                            "https://raw.githubusercontent.com/cp-uz/problem-statements/"
+                            "main/2025-2026/tst4/day-1/namuna/statement.pdf"
+                        ),
+                        "sha256": "a" * 64,
+                        "size_bytes": 1234,
+                        "page_count": 2,
+                        "language": "uz",
+                        "provenance": "generated",
+                    },
                     "translation_status": "original_uzbek",
                     "problem_type": "standard",
                     "order": 1,
@@ -207,3 +229,4 @@ class ProblemImportTests(TestCase):
             Problem.objects.get().source_path,
             "problems/2025-2026/ioi-2026-saralash-4/day-1/namuna/statement.uz.md",
         )
+        self.assertEqual(Problem.objects.get().statement_pdf_sha256, "a" * 64)

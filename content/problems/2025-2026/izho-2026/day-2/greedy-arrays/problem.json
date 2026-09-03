@@ -10,7 +10,11 @@
   "problem_type": "standard",
   "max_score": 100,
   "difficulty_label": "Xalqaro olimpiada",
-  "tags": ["IZhO 2026", "Ochko‘z algoritm", "Massiv"],
+  "tags": [
+    "IZhO 2026",
+    "Ochko‘z algoritm",
+    "Massiv"
+  ],
   "order": 1,
   "publication_status": "published",
   "last_verified_on": "2026-09-03",
@@ -25,12 +29,12 @@
       "order": 0
     }
   ],
-  "attachments": [
-    {
-      "title": "2-kun rasmiy statementlari (PDF)",
-      "url": "https://drive.google.com/file/d/1a3UJXmzlkspGrXtEFM5UAR2qIcEA5s8x/view",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/izho-2026/day-2/greedy-arrays/statement.pdf",
+    "sha256": "e57d76f08e0a68b31bd6dcd65a91912984df6dde151d109a5330008ab5197ff7",
+    "size_bytes": 200300,
+    "page_count": 2,
+    "language": "en",
+    "provenance": "official"
+  }
 }

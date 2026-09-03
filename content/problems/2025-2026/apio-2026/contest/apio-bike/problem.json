@@ -12,7 +12,11 @@
   "memory_limit_mb": 2048,
   "max_score": 100,
   "difficulty_label": "Xalqaro olimpiada",
-  "tags": ["APIO 2026", "Daraxt", "Konstruktiv"],
+  "tags": [
+    "APIO 2026",
+    "Daraxt",
+    "Konstruktiv"
+  ],
   "order": 1,
   "publication_status": "published",
   "last_verified_on": "2026-09-03",
@@ -36,12 +40,12 @@
       "order": 1
     }
   ],
-  "attachments": [
-    {
-      "title": "Rasmiy inglizcha statement (PDF)",
-      "url": "https://raw.githubusercontent.com/apio2026/apio-2026/main/bike/statements/en.pdf",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/apio-2026/contest/apio-bike/statement.pdf",
+    "sha256": "4df083e790a5cf072d48be483d31b24feb250601e5d7bb2b6b50e19fc31c4b6e",
+    "size_bytes": 207690,
+    "page_count": 6,
+    "language": "en",
+    "provenance": "official"
+  }
 }

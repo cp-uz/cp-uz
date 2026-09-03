@@ -85,6 +85,15 @@ export type ProblemEventDetail = {
 export type ProblemDetail = ProblemSummary & {
   statementMarkdown: string;
   sourcePath: string;
+  statementPdf?: {
+    url: string;
+    sha256: string;
+    sizeBytes?: number;
+    pageCount?: number;
+    language?: 'uz' | 'en';
+    provenance?: 'official' | 'generated';
+    provenanceLabel?: string;
+  };
   timeLimitMs?: number;
   memoryLimitMb?: number;
   maxScore?: string;

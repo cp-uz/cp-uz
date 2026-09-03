@@ -10,7 +10,11 @@
   "problem_type": "interactive",
   "max_score": 100,
   "difficulty_label": "Xalqaro olimpiada",
-  "tags": ["IZhO 2026", "Interaktiv", "O‘yinlar nazariyasi"],
+  "tags": [
+    "IZhO 2026",
+    "Interaktiv",
+    "O‘yinlar nazariyasi"
+  ],
   "order": 3,
   "publication_status": "published",
   "last_verified_on": "2026-09-03",
@@ -25,12 +29,12 @@
       "order": 0
     }
   ],
-  "attachments": [
-    {
-      "title": "1-kun rasmiy statementlari (PDF)",
-      "url": "https://drive.google.com/file/d/1NMunRDjD3087xrS7jCPOIGeg3GPRkoJx/view",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/izho-2026/day-1/game/statement.pdf",
+    "sha256": "5cb14bca2a489ecac799c06e6e695b5644a3e5908460425ebf69a1d89d4ac2a1",
+    "size_bytes": 197399,
+    "page_count": 2,
+    "language": "en",
+    "provenance": "official"
+  }
 }

@@ -37,6 +37,7 @@
     "@mui/x-tree-view": "^8.29.3",
     "katex": "^0.16.47",
     "nprogress": "^0.2.0",
+    "pdfjs-dist": "^5.4.624",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-markdown": "^10.1.0",

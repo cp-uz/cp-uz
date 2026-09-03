@@ -60,6 +60,30 @@ license, translation fidelity, technical/language review records, append-only
 review history, publication state, computed workflow stage, and structured
 external exercise references.
 
+## Problem statement PDF corpus
+
+The problem catalog renders one canonical PDF per problem. Official individual
+statements are mirrored without modification; the two IZhO day booklets are
+split into individual problem files. Problems without an official PDF are
+exported from the frontend's `?pdf-export=1` print view into A4 documents first.
+
+After those generated files exist under `tmp/generated-statements`, rebuild the
+corpus and refresh every `problem.json` record with verified metadata:
+
+```bash
+python scripts/build_problem_statement_corpus.py \
+  --content-root content/problems \
+  --generated-root tmp/generated-statements \
+  --output-root tmp/problem-statements-repo \
+  --update-content
+```
+
+The command downloads official sources, splits IZhO booklets, validates every
+PDF, calculates SHA-256, byte size and page count, and writes `manifest.json`.
+The output is published in `cp-uz/problem-statements`; `problem.json` files may
+only reference that repository's raw URLs. Run `python scripts/export_content.py`
+afterward to refresh `content/MANIFEST.sha256`.
+
 ## Django management-command contract
 
 The future backend should expose an idempotent command with this interface:

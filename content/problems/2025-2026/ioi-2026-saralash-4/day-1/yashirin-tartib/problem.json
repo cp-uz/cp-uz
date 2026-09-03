@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2200,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Graflar nazariyasi",
     "Interaktiv masala",
@@ -49,5 +47,13 @@
       "size_bytes": 1973,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-1/yashirin-tartib/statement.pdf",
+    "sha256": "0b793b6dfec844a31d160a1b29d6e6845091f309f972e51d55b1b9f9b6df97f7",
+    "size_bytes": 155363,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

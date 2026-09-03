@@ -36,14 +36,14 @@
       "order": 1
     }
   ],
-  "attachments": [
-    {
-      "title": "Rasmiy o‘zbekcha statement (PDF)",
-      "url": "https://raw.githubusercontent.com/egoi-org/egoi-2026/main/day1/biscuits/statement/uz_UZ.pdf",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ],
   "time_limit_ms": 3000,
-  "memory_limit_mb": 1024
+  "memory_limit_mb": 1024,
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/egoi-2026/day-1/biscuits/statement.pdf",
+    "sha256": "ba9c547f885019ab1ce958af767d94b87e9449396f700506a31ad3e8f806abff",
+    "size_bytes": 100222,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  }
 }

@@ -10,8 +10,6 @@
   "time_limit_ms": 2000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2400,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Konstruktiv",
     "Massiv",
@@ -48,5 +46,13 @@
       "size_bytes": 3628,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-4/uch-idish/statement.pdf",
+    "sha256": "b5c09269d9214d4e7fffbfb76fe191161a85ed975c8a5cfef7d835cea7979a5e",
+    "size_bytes": 165288,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

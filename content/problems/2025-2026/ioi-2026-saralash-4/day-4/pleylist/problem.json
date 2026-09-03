@@ -10,8 +10,6 @@
   "time_limit_ms": 3000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2300,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Ma`lumotlar tuzilmasi",
     "Qisman yechim",
@@ -49,5 +47,13 @@
       "size_bytes": 2529,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-4/pleylist/statement.pdf",
+    "sha256": "e4ce8b53de16f4b6280825f6b5c120e5d51f597407f808396eed91052fc1f6e1",
+    "size_bytes": 144346,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

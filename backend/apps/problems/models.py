@@ -22,6 +22,11 @@ class ProblemType(models.TextChoices):
     TWO_STEP = "two_step", "Ikki bosqichli"
 
 
+class StatementPdfProvenance(models.TextChoices):
+    OFFICIAL = "official", "Rasmiy"
+    GENERATED = "generated", "cp.uz tayyorlagan"
+
+
 class ProblemSet(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="problem_sets")
@@ -54,6 +59,16 @@ class Problem(TimeStampedModel):
     original_title = models.CharField(max_length=240, blank=True)
     statement_markdown = models.TextField()
     source_path = models.CharField(max_length=400, blank=True)
+    statement_pdf_url = models.URLField(max_length=1000, blank=True)
+    statement_pdf_sha256 = models.CharField(max_length=64, blank=True)
+    statement_pdf_size_bytes = models.PositiveIntegerField(null=True, blank=True)
+    statement_pdf_page_count = models.PositiveSmallIntegerField(null=True, blank=True)
+    statement_pdf_language = models.CharField(max_length=8, blank=True)
+    statement_pdf_provenance = models.CharField(
+        max_length=20,
+        choices=StatementPdfProvenance.choices,
+        blank=True,
+    )
     translation_status = models.CharField(
         max_length=30,
         choices=TranslationStatus.choices,

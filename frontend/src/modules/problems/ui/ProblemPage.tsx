@@ -6,7 +6,7 @@ import { useAsyncData } from 'shared/hooks';
 import { formatUzbekDate } from 'shared/lib/i18n';
 import { useMemo, useState, useEffect } from 'react';
 import { RichMarkdown } from 'modules/learning/ui/shared';
-import { useParams, useNavigate, Link as RouterLink } from 'react-router';
+import { useParams, useNavigate, useSearchParams, Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -20,11 +20,15 @@ import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
+import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import ListItemButton from '@mui/material/ListItemButton';
 
+import { PdfStatement } from './PdfStatement';
 import { problemQueries } from '../application';
 
 function problemPath(problem: ProblemDetail, slug: string) {
@@ -181,7 +185,10 @@ function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
 }
 
 export default function ProblemPage() {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [navigationOpen, setNavigationOpen] = useState(false);
   const { seasonSlug = '', eventSlug = '', problemSlug } = useParams();
   const {
@@ -248,16 +255,113 @@ export default function ProblemPage() {
     );
   }
 
+  const displayTitle = problem.originalTitle || problem.title;
+  const showDifficulty = problem.event.slug !== 'ioi-2026-saralash-4';
+
+  if (searchParams.get('pdf-export') === '1') {
+    return (
+      <>
+        <Seo
+          title={`${displayTitle} · ${problem.event.shortTitle || problem.event.title}`}
+          description={`${problem.event.shortTitle || problem.event.title}: ${problem.title} masalasi.`}
+          path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
+        />
+        <GlobalStyles
+          styles={{
+            '@page': { size: 'A4', margin: '14mm 15mm 16mm' },
+            '@media print': {
+              'html, body, #root': { backgroundColor: '#fff !important' },
+              'body > #root header, body > #root footer': { display: 'none !important' },
+              'body > #root main': { minHeight: '0 !important', padding: '0 !important' },
+            },
+          }}
+        />
+        <Box
+          id="problem-pdf-export"
+          data-ready="true"
+          sx={{
+            width: '100%',
+            mx: 'auto',
+            color: '#17202a',
+            bgcolor: '#fff',
+            fontFamily: 'Inter, Arial, sans-serif',
+          }}
+        >
+          <Box sx={{ pb: '6mm', mb: '9mm', borderBottom: '2px solid #0877e1' }}>
+            <Typography
+              sx={{ color: '#0877e1', fontSize: 13, fontWeight: 800, letterSpacing: '.04em' }}
+            >
+              cp.uz
+            </Typography>
+            <Typography
+              sx={{
+                mt: '2mm',
+                color: '#657786',
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: '.08em',
+              }}
+            >
+              {problem.season.title.toUpperCase()}
+            </Typography>
+            <Typography
+              component="h1"
+              sx={{ mt: '4mm', mb: '2mm', fontSize: 27, fontWeight: 800, lineHeight: 1.15 }}
+            >
+              {displayTitle}
+            </Typography>
+            <Typography sx={{ m: 0, color: '#657786', fontSize: 11 }}>
+              {problem.event.shortTitle || problem.event.title} · {problem.problemSet.title} ·{' '}
+              {problem.code}
+            </Typography>
+          </Box>
+          <Box
+            id="problem-statement"
+            sx={{
+              '& p, & li': { fontSize: '11.2px !important', lineHeight: '1.55 !important' },
+              '& h2': {
+                mt: '7mm !important',
+                mb: '3mm !important',
+                fontSize: '19px !important',
+                breakAfter: 'avoid',
+              },
+              '& h3': {
+                mt: '5mm !important',
+                mb: '2mm !important',
+                fontSize: '15px !important',
+                breakAfter: 'avoid',
+              },
+              '& img, & svg': { maxWidth: '100% !important', height: 'auto !important' },
+              '& pre, & table, & blockquote': { breakInside: 'avoid' },
+              '& table': { fontSize: '9.5px !important' },
+              '& button': { display: 'none !important' },
+              '& a': { color: 'inherit !important', textDecoration: 'none !important' },
+            }}
+          >
+            <RichMarkdown sourcePath={problem.sourcePath}>{problem.statementMarkdown}</RichMarkdown>
+          </Box>
+        </Box>
+      </>
+    );
+  }
+
   const practiceLinks = problem.links.filter((link) => link.kind === 'practice');
   const practiceUrls = new Set(practiceLinks.map((link) => comparableUrl(link.url)));
   const originalLinks = problem.links.filter(
     (link) => link.kind === 'original' && !practiceUrls.has(comparableUrl(link.url))
   );
+  const statementPdfAttachment = problem.attachments.find(
+    (attachment) => attachment.contentType?.toLowerCase() === 'application/pdf'
+  );
+  const statementPdf = problem.statementPdf ?? statementPdfAttachment;
+  const supplementalAttachments = problem.attachments.filter(
+    (attachment) => attachment.contentType?.toLowerCase() !== 'application/pdf'
+  );
 
   return (
     <>
       <Seo
-        title={`${problem.title} · ${problem.event.shortTitle || problem.event.title}`}
+        title={`${displayTitle} · ${problem.event.shortTitle || problem.event.title}`}
         description={`${problem.season.title} ${problem.problemSet.title}: ${problem.title} masalasining o‘zbekcha sharti.`}
         path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
       />
@@ -281,7 +385,7 @@ export default function ProblemPage() {
             >
               {problem.event.shortTitle || problem.event.title}
             </Link>
-            <Typography color="text.primary">{problem.title}</Typography>
+            <Typography color="text.primary">{displayTitle}</Typography>
           </Breadcrumbs>
           <Button
             color="inherit"
@@ -310,8 +414,12 @@ export default function ProblemPage() {
                 icon={<UiIcon icon="solar:document-add-linear" width={16} />}
               />
               <Chip size="small" label={`${problem.problemSet.title} · ${problem.code}`} />
-              {problem.difficultyLabel && <Chip size="small" label={problem.difficultyLabel} />}
-              {problem.rating && <Chip size="small" label={`${problem.rating} reyting`} />}
+              {showDifficulty && problem.difficultyLabel && (
+                <Chip size="small" label={problem.difficultyLabel} />
+              )}
+              {showDifficulty && problem.rating && (
+                <Chip size="small" label={`${problem.rating} reyting`} />
+              )}
             </Stack>
 
             <Typography
@@ -319,11 +427,11 @@ export default function ProblemPage() {
               variant="h2"
               sx={{ mt: 2, fontSize: { xs: 36, sm: 44, md: 52 } }}
             >
-              {problem.title}
+              {displayTitle}
             </Typography>
             {problem.originalTitle && problem.originalTitle !== problem.title && (
               <Typography sx={{ mt: 1, color: 'text.secondary' }}>
-                Original nomi: {problem.originalTitle}
+                O‘zbekcha nomi: {problem.title}
               </Typography>
             )}
 
@@ -405,23 +513,27 @@ export default function ProblemPage() {
               )}
             </Stack>
 
-            <Paper
-              id="problem-statement"
-              variant="outlined"
-              sx={{ mt: 4, p: { xs: 2.25, sm: 3.5, md: 5 }, borderRadius: 2 }}
-            >
-              <RichMarkdown sourcePath={problem.sourcePath}>
-                {problem.statementMarkdown}
-              </RichMarkdown>
-            </Paper>
+            {statementPdf ? (
+              <PdfStatement source={statementPdf.url} title={displayTitle} />
+            ) : (
+              <Paper
+                id="problem-statement"
+                variant="outlined"
+                sx={{ mt: 4, p: { xs: 2.25, sm: 3.5, md: 5 }, borderRadius: 2 }}
+              >
+                <RichMarkdown sourcePath={problem.sourcePath}>
+                  {problem.statementMarkdown}
+                </RichMarkdown>
+              </Paper>
+            )}
 
-            {(problem.attachments.length > 0 || problem.tags.length > 0) && (
+            {(supplementalAttachments.length > 0 || problem.tags.length > 0) && (
               <Paper variant="outlined" sx={{ mt: 3, p: { xs: 2, sm: 3 } }}>
-                {problem.attachments.length > 0 && (
+                {supplementalAttachments.length > 0 && (
                   <>
                     <Typography variant="subtitle2">Qo‘shimcha fayllar</Typography>
                     <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 1 }}>
-                      {problem.attachments.map((attachment) => (
+                      {supplementalAttachments.map((attachment) => (
                         <Button
                           key={attachment.id}
                           component="a"
@@ -491,15 +603,32 @@ export default function ProblemPage() {
         </Box>
       </Container>
       <Drawer
-        anchor="right"
+        anchor={mobile ? 'bottom' : 'right'}
         open={navigationOpen}
         onClose={() => setNavigationOpen(false)}
-        slotProps={{ paper: { sx: { width: { xs: 'min(360px, 92vw)', sm: 380 } } } }}
+        slotProps={{
+          paper: {
+            sx: mobile
+              ? {
+                  width: '100%',
+                  maxHeight: '88dvh',
+                  borderRadius: '16px 16px 0 0',
+                  pb: 'max(8px, env(safe-area-inset-bottom))',
+                }
+              : { width: 380 },
+          },
+        }}
       >
+        {mobile && (
+          <Box
+            aria-hidden="true"
+            sx={{ width: 38, height: 4, mx: 'auto', mt: 1, bgcolor: 'divider', borderRadius: 2 }}
+          />
+        )}
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
-          <Typography variant="h6">Masalalar menyusi</Typography>
+          <Typography variant="h6">Masalalar ro‘yxati</Typography>
           <IconButton
-            aria-label="Masalalar menyusini yopish"
+            aria-label="Masalalar ro‘yxatini yopish"
             onClick={() => setNavigationOpen(false)}
           >
             <UiIcon icon="solar:close-circle-linear" width={23} />

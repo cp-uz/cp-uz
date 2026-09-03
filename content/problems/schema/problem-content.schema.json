@@ -81,6 +81,19 @@
         "order": { "type": "integer", "minimum": 0, "maximum": 65535 }
       }
     },
+    "statement_pdf": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "sha256", "size_bytes", "page_count", "language", "provenance"],
+      "properties": {
+        "url": { "type": "string", "format": "uri", "pattern": "^https://raw\\.githubusercontent\\.com/cp-uz/problem-statements/" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 1 },
+        "page_count": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "language": { "enum": ["uz", "en"] },
+        "provenance": { "enum": ["official", "generated"] }
+      }
+    },
     "problem": {
       "type": "object",
       "additionalProperties": false,
@@ -91,6 +104,7 @@
         "code",
         "title",
         "statement_file",
+        "statement_pdf",
         "translation_status",
         "problem_type",
         "order",
@@ -106,6 +120,7 @@
         "title": { "type": "string", "minLength": 1, "maxLength": 240 },
         "original_title": { "type": "string", "maxLength": 240 },
         "statement_file": { "$ref": "#/$defs/relative_path" },
+        "statement_pdf": { "$ref": "#/$defs/statement_pdf" },
         "translation_status": {
           "enum": ["ai_translation", "reviewed_translation", "original_uzbek"]
         },

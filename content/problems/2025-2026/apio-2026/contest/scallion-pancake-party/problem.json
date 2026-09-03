@@ -12,7 +12,11 @@
   "memory_limit_mb": 2048,
   "max_score": 100,
   "difficulty_label": "Xalqaro olimpiada",
-  "tags": ["APIO 2026", "Kommunikatsiya", "Kodlash"],
+  "tags": [
+    "APIO 2026",
+    "Kommunikatsiya",
+    "Kodlash"
+  ],
   "order": 3,
   "publication_status": "published",
   "last_verified_on": "2026-09-03",
@@ -36,12 +40,12 @@
       "order": 1
     }
   ],
-  "attachments": [
-    {
-      "title": "Rasmiy inglizcha statement (PDF)",
-      "url": "https://raw.githubusercontent.com/apio2026/apio-2026/main/party/statements/en.pdf",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/apio-2026/contest/scallion-pancake-party/statement.pdf",
+    "sha256": "b551bf233a02c2ed7e4ee4223f74b8079c5322e4b36b53f55d5428c56996eb91",
+    "size_bytes": 199837,
+    "page_count": 6,
+    "language": "en",
+    "provenance": "official"
+  }
 }

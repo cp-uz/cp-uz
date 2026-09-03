@@ -36,12 +36,12 @@
       "order": 1
     }
   ],
-  "attachments": [
-    {
-      "title": "Rasmiy o‘zbekcha statement (PDF)",
-      "url": "https://raw.githubusercontent.com/ioi/task-archive/master/2026/day1/ballmachine/translations/uz_UZ.pdf",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026/day-1/ball-machine/statement.pdf",
+    "sha256": "533be0662665bdca3ad79c126ea29aea776a98d6ff491d14c94a7908689aae76",
+    "size_bytes": 495523,
+    "page_count": 6,
+    "language": "uz",
+    "provenance": "official"
+  }
 }

@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 128,
   "max_score": 100,
-  "rating": 2400,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Graflar nazariyasi",
     "Ma`lumotlar tuzilmasi",
@@ -48,5 +46,13 @@
       "size_bytes": 2170,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-2/qidiruv-daraxtlari/statement.pdf",
+    "sha256": "6421b12ee2f09c4244fcb1cd677200069ee82c1554f64af4bbca0c16f5bcce9c",
+    "size_bytes": 164997,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

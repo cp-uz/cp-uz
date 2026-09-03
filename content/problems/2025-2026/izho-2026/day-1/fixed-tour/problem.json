@@ -10,7 +10,11 @@
   "problem_type": "standard",
   "max_score": 100,
   "difficulty_label": "Xalqaro olimpiada",
-  "tags": ["IZhO 2026", "Daraxt", "DFS"],
+  "tags": [
+    "IZhO 2026",
+    "Daraxt",
+    "DFS"
+  ],
   "order": 2,
   "publication_status": "published",
   "last_verified_on": "2026-09-03",
@@ -25,12 +29,12 @@
       "order": 0
     }
   ],
-  "attachments": [
-    {
-      "title": "1-kun rasmiy statementlari (PDF)",
-      "url": "https://drive.google.com/file/d/1NMunRDjD3087xrS7jCPOIGeg3GPRkoJx/view",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/izho-2026/day-1/fixed-tour/statement.pdf",
+    "sha256": "663b3005ef497e6332f2b0a00ed350c5940c957ca733cf407e24afb5fb53c5ab",
+    "size_bytes": 218484,
+    "page_count": 2,
+    "language": "en",
+    "provenance": "official"
+  }
 }

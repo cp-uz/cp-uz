@@ -28,8 +28,8 @@ from content_pipeline import (
     validate_checksum_manifest,
     validate_inventory,
 )
-from review_readiness import apply_ready_status
 from problem_content import validate_problem_inventory
+from review_readiness import apply_ready_status
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
@@ -322,7 +322,8 @@ articles:
                 "problem_sets": 11,
                 "problems": 35,
                 "problem_links": 64,
-                "problem_attachments": 35,
+                "problem_attachments": 12,
+                "problem_statement_pdfs": 35,
             },
         )
 

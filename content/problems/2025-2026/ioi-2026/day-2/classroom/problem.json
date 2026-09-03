@@ -36,12 +36,12 @@
       "order": 1
     }
   ],
-  "attachments": [
-    {
-      "title": "Rasmiy o‘zbekcha statement (PDF)",
-      "url": "https://raw.githubusercontent.com/ioi/task-archive/master/2026/day2/classroom/translations/uz_UZ.pdf",
-      "content_type": "application/pdf",
-      "order": 0
-    }
-  ]
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026/day-2/classroom/statement.pdf",
+    "sha256": "bb58dbe5990ba128d0ad45990604d1362995b484020b91a3d0b2f150825927d6",
+    "size_bytes": 268643,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "official"
+  }
 }

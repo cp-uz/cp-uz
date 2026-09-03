@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 256,
   "max_score": 100,
-  "rating": 2200,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Dinamik dasturlash",
     "Ma`lumotlar tuzilmasi",
@@ -49,5 +47,13 @@
       "size_bytes": 2088,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-2/vazifalarni-boshqarish/statement.pdf",
+    "sha256": "7ce8605ff5eaced7aa3d9401d0374b3e3f30af9b789ac301ecd8b200d1d31e11",
+    "size_bytes": 159907,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }

@@ -10,8 +10,6 @@
   "time_limit_ms": 1000,
   "memory_limit_mb": 512,
   "max_score": 100,
-  "rating": 2400,
-  "difficulty_label": "Qiyin",
   "tags": [
     "Dinamik dasturlash",
     "Ma`lumotlar tuzilmasi",
@@ -50,5 +48,13 @@
       "size_bytes": 2608,
       "order": 0
     }
-  ]
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/ioi-2026-saralash-4/day-3/somsa/statement.pdf",
+    "sha256": "13373e7417e909cf2f368018210175570bc4cab8452c1acf21aec6f0d154a68e",
+    "size_bytes": 172733,
+    "page_count": 7,
+    "language": "uz",
+    "provenance": "generated"
+  }
 }
