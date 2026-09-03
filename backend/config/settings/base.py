@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "apps.seasons",
     "apps.problems",
     "apps.feedback",
+    "apps.community",
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,7 @@ TELEGRAM_FEEDBACK_CHAT_ID = os.getenv("TELEGRAM_FEEDBACK_CHAT_ID", "").strip()
 TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "").strip()
 TELEGRAM_PROXY_URL = os.getenv("TELEGRAM_PROXY_URL", "").strip()
 TELEGRAM_API_TIMEOUT_SECONDS = int(os.getenv("TELEGRAM_API_TIMEOUT_SECONDS", "15"))
+DISCORD_INVITE_URL_ENCRYPTED = os.getenv("DISCORD_INVITE_URL_ENCRYPTED", "").strip()
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.getenv("JWT_ACCESS_MINUTES", "30"))),

@@ -7,7 +7,9 @@ import { FONT_FAMILY_OPTIONS, SETTINGS_STORAGE_KEY } from './settings-config';
 
 function readSettings(storageKey: string, defaults: SettingsState) {
   try {
-    const stored = JSON.parse(localStorage.getItem(storageKey) ?? 'null') as Partial<SettingsState> | null;
+    const stored = JSON.parse(
+      localStorage.getItem(storageKey) ?? 'null'
+    ) as Partial<SettingsState> | null;
     if (!stored || stored.version !== defaults.version) return defaults;
     const next = { ...defaults, ...stored };
     return FONT_FAMILY_OPTIONS.some((option) => option.value === next.fontFamily)
@@ -23,11 +25,17 @@ export function SettingsProvider({
   defaultSettings,
   storageKey = SETTINGS_STORAGE_KEY,
 }: SettingsProviderProps) {
-  const [state, setStateValue] = useState<SettingsState>(() => readSettings(storageKey, defaultSettings));
+  const [state, setStateValue] = useState<SettingsState>(() =>
+    readSettings(storageKey, defaultSettings)
+  );
 
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(state));
   }, [state, storageKey]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--boot-font-size', `${state.fontSize}px`);
+  }, [state.fontSize]);
 
   const setState = useCallback((updateValue: Partial<SettingsState>) => {
     setStateValue((current) => ({ ...current, ...updateValue }));

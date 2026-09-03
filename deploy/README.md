@@ -30,6 +30,17 @@ python3 -c 'import secrets; print(secrets.token_urlsafe(48))'
 chmod 0600 /home/cp_uz/.env
 ```
 
+Discord manzilini frontend bundle ichiga yozmang. `DJANGO_SECRET_KEY` o‘rnatilgach,
+invite URL’ni shell tarixida qoldirmaydigan interaktiv buyruq bilan shifrlang va
+chiqqan `DISCORD_INVITE_URL_ENCRYPTED=...` qatorini `/home/cp_uz/.env` fayliga
+joylang:
+
+```bash
+docker compose run --rm web python manage.py encrypt_discord_invite
+```
+
+`DJANGO_SECRET_KEY` o‘zgarsa tokenni ham shu buyruq bilan qayta yaratish kerak.
+
 `DATABASE_URL` must remain `sqlite:////app/data/db.sqlite3`; this path is backed by the `cpuz_sqlite_data` named volume and survives container replacement. Do not change `CPUZ_BIND_ADDRESS`, `CPUZ_HTTP_PORT`, `DJANGO_SETTINGS_MODULE`, the database path or Redis host from their checked-in production values.
 
 When the npm registry is reachable only through a proxy, set `NPM_PROXY_URL`

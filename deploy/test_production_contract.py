@@ -15,6 +15,7 @@ def valid_environment() -> dict[str, str]:
     return {
         "DJANGO_SETTINGS_MODULE": "config.settings.production",
         "DJANGO_SECRET_KEY": "s" * 64,
+        "DISCORD_INVITE_URL_ENCRYPTED": "gAAAAA" + "a" * 90,
         "DJANGO_ALLOWED_HOSTS": "cp.uz,www.cp.uz,localhost",
         "DJANGO_CSRF_TRUSTED_ORIGINS": "https://cp.uz,https://www.cp.uz",
         "CPUZ_BIND_ADDRESS": "127.0.0.1",
@@ -79,6 +80,13 @@ class ProductionEnvironmentTests(unittest.TestCase):
                 values[key] = ""
                 with self.assertRaisesRegex(ValueError, key):
                     validate_env(values)
+
+    def test_encrypted_discord_invite_is_required(self) -> None:
+        values = valid_environment()
+        values["DISCORD_INVITE_URL_ENCRYPTED"] = ""
+
+        with self.assertRaisesRegex(ValueError, "DISCORD_INVITE_URL_ENCRYPTED"):
+            validate_env(values)
 
 
 class SQLiteBackupTests(unittest.TestCase):

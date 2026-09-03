@@ -8,10 +8,13 @@ import { cardClasses } from '@mui/material/Card';
 export function applySettingsToComponents(settingsState?: SettingsState): {
   components: Components<Theme>;
 } {
+  const fontSize = settingsState?.fontSize ?? 16;
+
   const MuiCssBaseline: Components<Theme>['MuiCssBaseline'] = {
     styleOverrides: (theme) => ({
       html: {
-        fontSize: settingsState?.fontSize,
+        '--boot-font-size': `${fontSize}px`,
+        fontSize,
       },
       body: {
         [`& .${cardClasses.root}`]: {

@@ -43,6 +43,8 @@ def validate_env(values: dict[str, str]) -> None:
         raise ValueError("DJANGO_SETTINGS_MODULE must be config.settings.production")
     if not re.fullmatch(r"[A-Za-z0-9_-]{50,}", required("DJANGO_SECRET_KEY")):
         raise ValueError("DJANGO_SECRET_KEY must be a 50+ character URL-safe value")
+    if not re.fullmatch(r"gAAAAA[A-Za-z0-9_-]{80,}", required("DISCORD_INVITE_URL_ENCRYPTED")):
+        raise ValueError("DISCORD_INVITE_URL_ENCRYPTED must be a Fernet token")
     if required("CPUZ_BIND_ADDRESS") != "127.0.0.1":
         raise ValueError("CPUZ_BIND_ADDRESS must remain 127.0.0.1 on the shared host")
     if required("CPUZ_HTTP_PORT") != "18181":

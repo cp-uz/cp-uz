@@ -1,4 +1,6 @@
 import json
+import re
+from html import unescape
 from io import BytesIO
 from unittest.mock import patch
 
@@ -50,11 +52,8 @@ class TelegramServiceTests(SimpleTestCase):
         build_opener.return_value.open.assert_called_once()
 
     @patch("apps.feedback.telegram._api_call")
-    def test_photo_is_forwarded_as_photo_without_persistence(self, api_call):
-        api_call.side_effect = [
-            {"ok": True, "result": {"message_id": 42}},
-            {"ok": True, "result": {"message_id": 43}},
-        ]
+    def test_photo_is_forwarded_as_one_message_with_caption(self, api_call):
+        api_call.return_value = {"ok": True, "result": {"message_id": 42}}
         submission = type(
             "Submission",
             (),
@@ -70,5 +69,47 @@ class TelegramServiceTests(SimpleTestCase):
         message_id = telegram.send_feedback(submission, photo)
 
         self.assertEqual(message_id, 42)
-        self.assertEqual(api_call.call_args_list[1].args[0], "sendPhoto")
-        self.assertIs(api_call.call_args_list[1].args[2][1], photo)
+        api_call.assert_called_once()
+        self.assertEqual(api_call.call_args.args[0], "sendPhoto")
+        self.assertIs(api_call.call_args.args[2][1], photo)
+        fields = api_call.call_args.args[1]
+        self.assertIn("<b>Ism:</b> Ali", fields["caption"])
+        self.assertIn("<b>Izoh:</b>\nSalom", fields["caption"])
+        self.assertNotIn("feedback-id", fields["caption"])
+        self.assertEqual(fields["parse_mode"], "HTML")
+
+    @patch("apps.feedback.telegram._api_call")
+    def test_document_is_forwarded_as_one_message_with_caption(self, api_call):
+        api_call.return_value = {"ok": True, "result": {"message_id": 44}}
+        submission = type(
+            "Submission",
+            (),
+            {"full_name": "Ali", "contact": "", "note": "Salom", "id": "feedback-id"},
+        )()
+        document = SimpleUploadedFile("proof.pdf", b"pdf", "application/pdf")
+
+        message_id = telegram.send_feedback(submission, document)
+
+        self.assertEqual(message_id, 44)
+        api_call.assert_called_once()
+        self.assertEqual(api_call.call_args.args[0], "sendDocument")
+        self.assertIs(api_call.call_args.args[2][1], document)
+        self.assertNotIn("<b>Aloqa:</b>", api_call.call_args.args[1]["caption"])
+        self.assertNotIn("feedback-id", api_call.call_args.args[1]["caption"])
+
+    @patch("apps.feedback.telegram._api_call")
+    def test_attachment_caption_stays_within_telegram_limit(self, api_call):
+        api_call.return_value = {"ok": True, "result": {"message_id": 45}}
+        submission = type(
+            "Submission",
+            (),
+            {"full_name": "Ali", "contact": "@ali", "note": "a" * 3000},
+        )()
+        photo = SimpleUploadedFile("photo.jpg", b"jpeg", "image/jpeg")
+
+        telegram.send_feedback(submission, photo)
+
+        caption = api_call.call_args.args[1]["caption"]
+        visible_caption = unescape(re.sub(r"<[^>]+>", "", caption))
+        self.assertLessEqual(len(visible_caption), telegram.TELEGRAM_CAPTION_LIMIT)
+        self.assertTrue(visible_caption.endswith("…"))

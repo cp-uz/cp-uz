@@ -4,6 +4,7 @@ import type { FormEvent, MouseEvent } from 'react';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { BrandLogo } from 'shared/ui/BrandLogo';
+import { apiUrl } from 'shared/api/http/api-base';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
 import { filterArticles, getArticlePath } from 'modules/learning/domain';
@@ -44,13 +45,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { MainSection, LayoutSection, HeaderSection } from './core';
 
 const navItems = [
+  { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'solar:library-linear' },
   {
     to: appRoutes.seasons,
     label: 'Olimpiada mavsumi',
     icon: 'solar:calendar-mark-linear',
   },
   { to: appRoutes.tasks, label: 'Masalalar', icon: 'solar:documents-minimalistic-linear' },
-  { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'solar:library-linear' },
   { to: appRoutes.roadmap, label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
 ];
 
@@ -420,7 +421,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             </Button>
             <Button
               component="a"
-              href="https://discord.gg/dMb3a99tPv"
+              href={apiUrl('/community/discord/')}
               target="_blank"
               rel="noreferrer"
               color="inherit"

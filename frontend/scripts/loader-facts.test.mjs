@@ -29,3 +29,24 @@ test('fact loader is limited to the first visit and route transitions stay simpl
   assert.match(app, /setLoadingVariant\('simple'\)/);
   assert.match(app, /<LoadingScreen variant=\{loadingVariant\}/);
 });
+
+test('reader font size setting overrides the boot stylesheet root size', () => {
+  const bootCss = readFileSync(new URL('../public/boot.css', import.meta.url), 'utf8');
+  const settingsComponents = readFileSync(
+    new URL('../src/app/theme/with-settings/update-components.ts', import.meta.url),
+    'utf8'
+  );
+  const settingsProvider = readFileSync(
+    new URL('../src/app/providers/settings/SettingsProvider.tsx', import.meta.url),
+    'utf8'
+  );
+
+  assert.match(bootCss, /font-size: var\(--boot-font-size, 16px\)/);
+  assert.match(settingsComponents, /'--boot-font-size': `\$\{fontSize\}px`/);
+  assert.match(settingsComponents, /fontSize,/);
+  assert.match(
+    settingsProvider,
+    /document\.documentElement\.style\.setProperty\('--boot-font-size', `\$\{state\.fontSize\}px`\)/
+  );
+  assert.match(settingsProvider, /\[state\.fontSize\]/);
+});

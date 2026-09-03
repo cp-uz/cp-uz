@@ -284,7 +284,7 @@ test('shared season selector owns season labels and both dropdown consumers use 
   assert.match(selectorSource, /formatSeasonLabel\(season\.slug\)/);
 });
 
-test('global navigation promotes the current season and moves glossary beside saved items', () => {
+test('global navigation starts with algorithms and moves glossary beside saved items', () => {
   const source = readFileSync(
     new URL('../src/app/layouts/LearningLayout.tsx', import.meta.url),
     'utf8'
@@ -295,8 +295,8 @@ test('global navigation promotes the current season and moves glossary beside sa
   assert.match(navItemsSource, /to: appRoutes\.seasons/);
   assert.match(navItemsSource, /label: 'Olimpiada mavsumi'/);
   assert.ok(
-    navItemsSource.indexOf('to: appRoutes.seasons') <
-      navItemsSource.indexOf('to: appRoutes.algorithms')
+    navItemsSource.indexOf('to: appRoutes.algorithms') <
+      navItemsSource.indexOf('to: appRoutes.seasons')
   );
   assert.doesNotMatch(navItemsSource, /to: appRoutes\.dictionary/);
   assert.match(utilityItemsSource, /glossaryItem/);

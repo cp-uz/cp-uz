@@ -22,6 +22,9 @@ class TelegramAPIError(RuntimeError):
     pass
 
 
+TELEGRAM_CAPTION_LIMIT = 1024
+
+
 def is_configured() -> bool:
     return bool(settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_FEEDBACK_CHAT_ID)
 
@@ -99,31 +102,51 @@ def send_message(chat_id: str, text: str) -> dict:
     )["result"]
 
 
-def send_feedback(submission: FeedbackSubmission, attachment=None) -> int:
-    contact = submission.contact or "Ko‘rsatilmagan"
-    text = (
-        "<b>cp.uz — yangi murojaat</b>\n\n"
-        f"<b>Ism:</b> {html.escape(submission.full_name)}\n"
-        f"<b>Aloqa:</b> {html.escape(contact)}\n\n"
-        f"<b>Izoh:</b>\n{html.escape(submission.note)}\n\n"
-        f"<code>{submission.id}</code>"
+def _feedback_text(
+    submission: FeedbackSubmission, *, max_visible_length: int | None = None
+) -> str:
+    contact_line = (
+        f"\n<b>Aloqa:</b> {html.escape(submission.contact)}" if submission.contact else ""
     )
-    result = send_message(settings.TELEGRAM_FEEDBACK_CHAT_ID, text)
-    message_id = int(result["message_id"])
+    visible_contact_line = f"\nAloqa: {submission.contact}" if submission.contact else ""
+    visible_prefix = (
+        "cp.uz — yangi murojaat\n\n"
+        f"Ism: {submission.full_name}"
+        f"{visible_contact_line}\n\n"
+        "Izoh:\n"
+    )
+    note = submission.note
+    if max_visible_length is not None and len(visible_prefix) + len(note) > max_visible_length:
+        available = max(1, max_visible_length - len(visible_prefix))
+        note = f"{note[: available - 1].rstrip()}…"
+    return (
+        "<b>cp.uz — yangi murojaat</b>\n\n"
+        f"<b>Ism:</b> {html.escape(submission.full_name)}"
+        f"{contact_line}\n\n"
+        f"<b>Izoh:</b>\n{html.escape(note)}"
+    )
 
-    if attachment is not None:
-        content_type = (getattr(attachment, "content_type", "") or "").lower()
-        method = "sendPhoto" if content_type.startswith("image/") else "sendDocument"
-        field_name = "photo" if method == "sendPhoto" else "document"
-        _api_call(
-            method,
-            {
-                "chat_id": str(settings.TELEGRAM_FEEDBACK_CHAT_ID),
-                "caption": f"Murojaat fayli · {submission.id}",
-            },
-            (field_name, attachment),
-        )
-    return message_id
+
+def send_feedback(submission: FeedbackSubmission, attachment=None) -> int:
+    if attachment is None:
+        text = _feedback_text(submission)
+        result = send_message(settings.TELEGRAM_FEEDBACK_CHAT_ID, text)
+        return int(result["message_id"])
+
+    text = _feedback_text(submission, max_visible_length=TELEGRAM_CAPTION_LIMIT)
+    content_type = (getattr(attachment, "content_type", "") or "").lower()
+    method = "sendPhoto" if content_type.startswith("image/") else "sendDocument"
+    field_name = "photo" if method == "sendPhoto" else "document"
+    result = _api_call(
+        method,
+        {
+            "chat_id": str(settings.TELEGRAM_FEEDBACK_CHAT_ID),
+            "caption": text,
+            "parse_mode": "HTML",
+        },
+        (field_name, attachment),
+    )["result"]
+    return int(result["message_id"])
 
 
 def configure_webhook(*, drop_pending_updates: bool = False) -> dict:
