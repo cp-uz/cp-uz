@@ -23,6 +23,8 @@ import { problemQueries } from '../application';
 function eventLogo(slug: string) {
   if (slug === 'ioi-2026') return '/assets/seasons/ioi.png';
   if (slug === 'egoi-2026') return '/assets/seasons/egoi.png';
+  if (slug.startsWith('apio-')) return '/assets/seasons/apio-2026.png';
+  if (slug.startsWith('izho-')) return '/assets/seasons/izho.png';
   return undefined;
 }
 

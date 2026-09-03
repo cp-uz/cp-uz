@@ -522,36 +522,25 @@ export default function ProblemPage() {
               </Paper>
             )}
 
-            {(supplementalAttachments.length > 0 || problem.tags.length > 0) && (
+            {supplementalAttachments.length > 0 && (
               <Paper variant="outlined" sx={{ mt: 3, p: { xs: 2, sm: 3 } }}>
-                {supplementalAttachments.length > 0 && (
-                  <>
-                    <Typography variant="subtitle2">Qo‘shimcha fayllar</Typography>
-                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 1 }}>
-                      {supplementalAttachments.map((attachment) => (
-                        <Button
-                          key={attachment.id}
-                          component="a"
-                          href={attachment.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          size="small"
-                          variant="outlined"
-                          startIcon={<UiIcon icon="solar:paperclip-linear" width={16} />}
-                        >
-                          {attachment.title}
-                        </Button>
-                      ))}
-                    </Stack>
-                  </>
-                )}
-                {problem.tags.length > 0 && (
-                  <Stack direction="row" spacing={0.75} flexWrap="wrap" useFlexGap sx={{ mt: 2 }}>
-                    {problem.tags.map((tag) => (
-                      <Chip key={tag} size="small" variant="outlined" label={tag} />
-                    ))}
-                  </Stack>
-                )}
+                <Typography variant="subtitle2">Qo‘shimcha fayllar</Typography>
+                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 1 }}>
+                  {supplementalAttachments.map((attachment) => (
+                    <Button
+                      key={attachment.id}
+                      component="a"
+                      href={attachment.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      size="small"
+                      variant="outlined"
+                      startIcon={<UiIcon icon="solar:paperclip-linear" width={16} />}
+                    >
+                      {attachment.title}
+                    </Button>
+                  ))}
+                </Stack>
               </Paper>
             )}
 

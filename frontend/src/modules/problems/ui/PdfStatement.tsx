@@ -1,16 +1,14 @@
 import type { RenderTask, PDFDocumentProxy } from 'pdfjs-dist';
 
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
+import { PDFWorker, getDocument } from 'pdfjs-dist';
 import { useRef, useState, useEffect, useCallback } from 'react';
-import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import PdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?worker&inline';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-
-GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 type PdfCanvasPageProps = {
   document: PDFDocumentProxy;
@@ -122,7 +120,9 @@ export function PdfStatement({ source, title }: PdfStatementProps) {
     let active = true;
     setDocument(null);
     setError(false);
-    const task = getDocument({ url: source, withCredentials: false });
+    const workerPort = new PdfWorker();
+    const worker = PDFWorker.create({ port: workerPort });
+    const task = getDocument({ url: source, withCredentials: false, worker });
 
     void task.promise
       .then((loaded) => {
@@ -135,7 +135,10 @@ export function PdfStatement({ source, title }: PdfStatementProps) {
 
     return () => {
       active = false;
-      void task.destroy();
+      void task.destroy().finally(() => {
+        worker.destroy();
+        workerPort.terminate();
+      });
     };
   }, [source]);
 

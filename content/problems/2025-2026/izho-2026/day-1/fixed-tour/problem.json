@@ -30,9 +30,9 @@
     }
   ],
   "statement_pdf": {
-    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/izho-2026/day-1/fixed-tour/statement.pdf",
-    "sha256": "663b3005ef497e6332f2b0a00ed350c5940c957ca733cf407e24afb5fb53c5ab",
-    "size_bytes": 218484,
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2025-2026/izho-2026/day-1/game/statement.pdf",
+    "sha256": "5cb14bca2a489ecac799c06e6e695b5644a3e5908460425ebf69a1d89d4ac2a1",
+    "size_bytes": 197399,
     "page_count": 2,
     "language": "en",
     "provenance": "official"
