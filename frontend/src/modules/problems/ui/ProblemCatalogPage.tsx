@@ -145,7 +145,7 @@ export default function ProblemCatalogPage() {
         description="Olimpiada mavsumi, musobaqa va bosqichlar bo‘yicha o‘zbekcha masalalar katalogi."
         path="/masalalar"
       />
-      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Box sx={{ maxWidth: 1040 }}>
           <Typography component="h1" variant="h3">
             Masalalar

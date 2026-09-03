@@ -27,7 +27,7 @@ import { SeasonTimeline, SeasonMonthRail, seasonMonthGroups } from '../../shared
 
 function PageSkeleton() {
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
       <Skeleton width={150} />
       <Skeleton width="min(520px, 80vw)" height={64} />
       <Skeleton width="min(680px, 90vw)" />
@@ -114,7 +114,7 @@ export default function SeasonPage() {
         path={`/seasons/${season.slug}${eventSlug ? `/${eventSlug}` : ''}`}
       />
 
-      <Container maxWidth="xl" sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 10 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={3}
@@ -124,13 +124,12 @@ export default function SeasonPage() {
           <Box sx={{ maxWidth: 760 }}>
             <Typography
               component="h1"
-              variant="h2"
-              sx={{ fontSize: { xs: 34, sm: 42, md: 48 }, lineHeight: { xs: 1.16, md: 1.2 } }}
+              variant="h3"
             >
               {season.title}
             </Typography>
             {season.summary && (
-              <Typography variant="h6" sx={{ mt: 1.5, color: 'text.secondary', fontWeight: 400 }}>
+              <Typography sx={{ mt: 1.5, color: 'text.secondary', fontWeight: 400 }}>
                 {season.summary}
               </Typography>
             )}

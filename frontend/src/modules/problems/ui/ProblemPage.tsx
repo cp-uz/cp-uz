@@ -233,7 +233,7 @@ export default function ProblemPage() {
 
   if (loading || (!problemSlug && eventDetail)) {
     return (
-      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Skeleton width={260} />
         <Skeleton width="min(560px, 90vw)" height={70} />
         <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { xl: '1fr 340px' } }}>

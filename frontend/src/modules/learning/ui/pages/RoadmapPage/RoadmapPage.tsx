@@ -76,7 +76,7 @@ export default function RoadmapPage() {
         path="/yol-xaritasi"
       />
 
-      <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
         <Box sx={{ maxWidth: 760 }}>
           <Typography component="h1" variant="h3">
             Poydevordan mahoratgacha

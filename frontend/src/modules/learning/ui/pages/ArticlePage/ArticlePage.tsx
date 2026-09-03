@@ -613,7 +613,7 @@ export default function ArticlePage() {
 
       <Divider />
 
-      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Box
           sx={{
             gap: { md: 4, lg: 6 },
