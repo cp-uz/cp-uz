@@ -46,6 +46,6 @@ test('router uses canonical route constants and exposes no legacy redirects', ()
   assert.match(source, /path: appRoutePatterns\.task/);
   assert.doesNotMatch(
     source,
-    /algoritmlar|masalalar|yol-xaritasi|lugat|saqlanganlar|SectionRedirect|LegacyRedirect/
+    /algoritmlar|masalalar|maqola|yol-xaritasi|lugat|saqlanganlar|SectionRedirect|LegacyRedirect/
   );
 });

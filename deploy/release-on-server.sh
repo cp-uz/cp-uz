@@ -198,6 +198,10 @@ docker compose exec -T web python manage.py import_problems \
   --path /app/content/problems \
   --prune
 
+# This call is idempotent. Telegram signs every webhook request with the
+# root-only secret from .env; no bot credential is stored in Git.
+docker compose exec -T web python manage.py configure_telegram_webhook
+
 docker compose exec -T web python manage.py shell -c '
 from apps.articles.models import Article, Category, ExternalPracticeReference, GlossaryTerm
 actual = {
@@ -273,8 +277,10 @@ SMOKE_ENDPOINTS=(
   /api/v1/health/
   /api/v1/seasons/current/
   /api/v1/problems/
+  /api/v1/feedback/
   /api/v1/problems/2025-2026/izho-2026/little-efnesh-and-monitor/statement.pdf
   /algo
+  /article/algebra--binary-exp
   /tasks
   /seasons
   /saved

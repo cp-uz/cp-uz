@@ -64,6 +64,14 @@ def validate_env(values: dict[str, str]) -> None:
     if any(key.startswith("POSTGRES_") and value for key, value in values.items()):
         raise ValueError("POSTGRES_* values are not used by the SQLite production topology")
 
+    telegram_token = required("TELEGRAM_BOT_TOKEN")
+    if not re.fullmatch(r"[0-9]+:[A-Za-z0-9_-]{30,}", telegram_token):
+        raise ValueError("TELEGRAM_BOT_TOKEN format is invalid")
+    if not re.fullmatch(r"-?[0-9]+", required("TELEGRAM_FEEDBACK_CHAT_ID")):
+        raise ValueError("TELEGRAM_FEEDBACK_CHAT_ID must be an integer")
+    if not re.fullmatch(r"[A-Za-z0-9_-]{32,256}", required("TELEGRAM_WEBHOOK_SECRET")):
+        raise ValueError("TELEGRAM_WEBHOOK_SECRET must be a 32-256 character URL-safe value")
+
     proxy_url = values.get("NPM_PROXY_URL", "").strip()
     if proxy_url:
         parsed = urlsplit(proxy_url)

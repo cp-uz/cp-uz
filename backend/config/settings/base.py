@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "apps.search",
     "apps.seasons",
     "apps.problems",
+    "apps.feedback",
 ]
 
 MIDDLEWARE = [
@@ -127,8 +128,14 @@ REST_FRAMEWORK = {
         "guest_session": os.getenv("GUEST_SESSION_THROTTLE", "20/hour"),
         "guest_upgrade": os.getenv("GUEST_UPGRADE_THROTTLE", "5/hour"),
         "glossary_quiz": os.getenv("GLOSSARY_QUIZ_THROTTLE", "600/hour"),
+        "feedback": os.getenv("FEEDBACK_THROTTLE", "5/hour"),
     },
 }
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_FEEDBACK_CHAT_ID = os.getenv("TELEGRAM_FEEDBACK_CHAT_ID", "").strip()
+TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "").strip()
+TELEGRAM_API_TIMEOUT_SECONDS = int(os.getenv("TELEGRAM_API_TIMEOUT_SECONDS", "15"))
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.getenv("JWT_ACCESS_MINUTES", "30"))),

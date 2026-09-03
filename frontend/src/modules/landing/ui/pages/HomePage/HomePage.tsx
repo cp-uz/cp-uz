@@ -21,6 +21,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 
+import { FeedbackSection } from './FeedbackSection';
+
 const emptyStats: LearningStats = {
   articleCount: 0,
   categoryCount: 0,
@@ -53,6 +55,16 @@ const teamMembers: readonly TeamMember[] = [
     image: '/assets/team/dilshodbek-khujaev.png',
   },
   {
+    name: 'Nazarbek Baltabaev',
+    role: 'Developer',
+    image: '/assets/team/nazarbek-baltabaev.jpg',
+  },
+  {
+    name: 'Davlatbek Mirakilov',
+    role: 'Content maker, Developer',
+    image: '/assets/team/davlatbek-mirakilov.jpg',
+  },
+  {
     name: 'Dilyorbek Valijanov',
     role: 'Developer',
     image: '/assets/team/dilyorbek-valijanov.png',
@@ -61,16 +73,6 @@ const teamMembers: readonly TeamMember[] = [
     name: 'Ulugbek Abdimanabov',
     role: 'Content maker',
     image: '/assets/team/ulugbek-abdimanabov.png',
-  },
-  {
-    name: 'Davlatbek Mirakilov',
-    role: 'Content maker, Developer',
-    image: '/assets/team/davlatbek-mirakilov.jpg',
-  },
-  {
-    name: 'Nazarbek Baltabaev',
-    role: 'Developer',
-    image: '/assets/team/nazarbek-baltabaev.jpg',
   },
 ];
 
@@ -606,6 +608,8 @@ export default function HomePage() {
           </Box>
         </Container>
       </Box>
+
+      <FeedbackSection />
     </>
   );
 }

@@ -22,6 +22,9 @@ def valid_environment() -> dict[str, str]:
         "DATABASE_URL": SQLITE_DATABASE_URL,
         "REDIS_URL": "redis://redis:6379/1",
         "NPM_PROXY_URL": "",
+        "TELEGRAM_BOT_TOKEN": "123456789:" + "a" * 35,
+        "TELEGRAM_FEEDBACK_CHAT_ID": "1234567890",
+        "TELEGRAM_WEBHOOK_SECRET": "s" * 40,
     }
 
 
@@ -62,6 +65,18 @@ class ProductionEnvironmentTests(unittest.TestCase):
             path.write_text("DATABASE_URL=one\nDATABASE_URL=two\n", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "Duplicate"):
                 load_env(path)
+
+    def test_telegram_configuration_is_complete_and_well_formed(self) -> None:
+        for key in (
+            "TELEGRAM_BOT_TOKEN",
+            "TELEGRAM_FEEDBACK_CHAT_ID",
+            "TELEGRAM_WEBHOOK_SECRET",
+        ):
+            with self.subTest(key=key):
+                values = valid_environment()
+                values[key] = ""
+                with self.assertRaisesRegex(ValueError, key):
+                    validate_env(values)
 
 
 class SQLiteBackupTests(unittest.TestCase):
@@ -143,6 +158,12 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn(r"location ~* \.mjs$", nginx)
         self.assertIn("default_type application/javascript", nginx)
 
+    def test_both_nginx_layers_allow_the_five_megabyte_feedback_upload(self) -> None:
+        host_nginx = (ROOT / "deploy" / "nginx-host-cpuz.conf").read_text(encoding="utf-8")
+        app_nginx = (ROOT / "deploy" / "nginx-app.conf").read_text(encoding="utf-8")
+        self.assertIn("client_max_body_size 8m;", host_nginx)
+        self.assertIn("client_max_body_size 8m;", app_nginx)
+
     def test_release_smokes_boot_and_team_assets_before_and_after_cutover(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
         for path in (
@@ -185,6 +206,7 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn("/tasks/2025-2026/ioi-2026-saralash-4/temir-rom", release)
         for route in (
             "/algo",
+            "/article/algebra--binary-exp",
             "/tasks",
             "/seasons",
             "/saved",
@@ -200,6 +222,11 @@ class ComposeContractTests(unittest.TestCase):
             "/tasks/2025-2026/izho-2026/little-efnesh-and-monitor", release
         )
         self.assertIn("/tasks/2025-2026/apio-2026/apio-bike", release)
+
+    def test_release_configures_telegram_webhook_and_smokes_feedback_endpoint(self) -> None:
+        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
+        self.assertIn("python manage.py configure_telegram_webhook", release)
+        self.assertIn("/api/v1/feedback/", release)
 
     def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
