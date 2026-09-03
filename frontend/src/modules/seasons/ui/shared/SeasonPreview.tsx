@@ -476,7 +476,7 @@ export function SeasonPreview() {
       aria-labelledby="season-preview-title"
       sx={{ py: { xs: 6, md: 7.5 }, borderTop: '1px solid', borderColor: 'divider' }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={2}

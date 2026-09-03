@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "ball-machine",
+  "code": "A",
+  "title": "Koptok mashinasi",
+  "original_title": "Ball Machine",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "communication",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "IOI 2026"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IOI’dagi original inglizcha shart",
+      "url": "https://ioinformatics.org/files/ioi2026problem1.pdf",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "OJ.uz’da ishlash",
+      "url": "https://oj.uz/problem/view/IOI26_ballmachine",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statement (PDF)",
+      "url": "https://raw.githubusercontent.com/ioi/task-archive/master/2026/day1/ballmachine/translations/uz_UZ.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ]
+}

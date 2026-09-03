@@ -48,6 +48,7 @@ const navItems = [
     label: 'Olimpiada mavsumi',
     icon: 'solar:calendar-mark-linear',
   },
+  { to: '/masalalar', label: 'Masalalar', icon: 'solar:documents-minimalistic-linear' },
   { to: '/algoritmlar', label: 'Algoritmlar', icon: 'solar:library-linear' },
   { to: '/yol-xaritasi', label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
 ];
@@ -299,7 +300,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
           </Stack>
         ),
       }}
-      slotProps={{ container: { maxWidth: 'lg' } }}
+      slotProps={{ container: { maxWidth: 'xl' } }}
       sx={(theme) => ({
         borderBottom: `solid 1px ${theme.vars.palette.divider}`,
         bgcolor: 'background.default',
@@ -311,7 +312,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
   const footer = (
     <Box component="footer" sx={{ mt: 'auto', bgcolor: 'background.default' }}>
       <Divider />
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 5 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 5 } }}>
         <Box
           sx={{
             gap: 4,

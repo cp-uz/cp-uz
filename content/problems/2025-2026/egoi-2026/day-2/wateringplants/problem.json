@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "wateringplants",
+  "code": "E",
+  "title": "O‘simliklarni sug‘orish",
+  "original_title": "Watering Plants",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "EGOI 2026"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "EGOI’dagi original inglizcha shart",
+      "url": "https://egoi2026.it/competition/problems/wateringplants.pdf",
+      "platform": "EGOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Onlayn judge’da ishlash",
+      "url": "https://oj.uz/problem/view/EGOI26_wateringplants",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statement (PDF)",
+      "url": "https://raw.githubusercontent.com/egoi-org/egoi-2026/main/day2/wateringplants/statement/uz_UZ.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ]
+}

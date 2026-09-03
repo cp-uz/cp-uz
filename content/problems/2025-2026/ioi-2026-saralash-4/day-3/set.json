@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-3",
+  "title": "3-kun",
+  "description": "Uzbekistan TST 2026 — 3-kun masalalari.",
+  "order": 3,
+  "publication_status": "published",
+  "problems": [
+    "gladiatorlar",
+    "somsa",
+    "qoriqchilar"
+  ]
+}

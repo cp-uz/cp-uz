@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-4",
+  "title": "4-kun",
+  "description": "Uzbekistan TST 2026 — 4-kun masalalari.",
+  "order": 4,
+  "publication_status": "published",
+  "problems": [
+    "pleylist",
+    "ormon",
+    "uch-idish"
+  ]
+}

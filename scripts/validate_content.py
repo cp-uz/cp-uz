@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 from content_pipeline import validate_checksum_manifest, validate_inventory
+from problem_content import validate_problem_inventory
 
 
 def main() -> int:
@@ -21,6 +22,7 @@ def main() -> int:
     args = parser.parse_args()
     content_root = args.content_root.resolve()
     summary = validate_inventory(content_root)
+    summary.update(validate_problem_inventory(content_root))
     if not args.skip_checksums:
         validate_checksum_manifest(content_root)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
@@ -29,4 +31,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

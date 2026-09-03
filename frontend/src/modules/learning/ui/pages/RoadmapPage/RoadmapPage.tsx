@@ -23,7 +23,10 @@ import { learningQueries as learningApi } from '../../../application';
 
 function findRoadmapArticle(articleList: LearningArticle[], slug: string) {
   const normalizeSlug = (value: string) =>
-    value.toLocaleLowerCase('en').replace(/\.html$/i, '').replace(/_/g, '-');
+    value
+      .toLocaleLowerCase('en')
+      .replace(/\.html$/i, '')
+      .replace(/_/g, '-');
   const target = normalizeSlug(slug);
 
   return articleList.find((article) => {
@@ -41,11 +44,7 @@ function findRoadmapArticle(articleList: LearningArticle[], slug: string) {
 }
 
 export default function RoadmapPage() {
-  const {
-    data: liveArticles,
-    loading,
-    error,
-  } = useAsyncData(learningApi.listArticles, [], []);
+  const { data: liveArticles, loading, error } = useAsyncData(learningApi.listArticles, [], []);
   const completed = useLocalStorageList('cpuz:completed', []);
   const resolvedStages = roadmapStages.map((stage) => ({
     ...stage,
@@ -77,7 +76,7 @@ export default function RoadmapPage() {
         path="/yol-xaritasi"
       />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
         <Box sx={{ maxWidth: 760 }}>
           <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
             Tizimli o‘rganish
@@ -140,9 +139,10 @@ export default function RoadmapPage() {
           <Box>
             <Typography variant="h5">O‘qish holatingiz</Typography>
             <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-              {loading ? 'Darsliklar hisoblanmoqda.' : `${completedArticleCount} / ${totalArticles} ta asosiy darslik yakunlangan.`}{' '}
-              Holat{' '}
-              {getAuthSession() ? 'profilingizda' : 'shu qurilmada'} avtomatik saqlanadi.
+              {loading
+                ? 'Darsliklar hisoblanmoqda.'
+                : `${completedArticleCount} / ${totalArticles} ta asosiy darslik yakunlangan.`}{' '}
+              Holat {getAuthSession() ? 'profilingizda' : 'shu qurilmada'} avtomatik saqlanadi.
             </Typography>
           </Box>
           <Box>
@@ -197,7 +197,12 @@ export default function RoadmapPage() {
                     gridTemplateColumns: { xs: '1fr', md: '64px minmax(0, 1fr)' },
                   }}
                 >
-                  <Stack direction="row" spacing={1} alignItems="center" sx={{ alignSelf: 'start' }}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    alignItems="center"
+                    sx={{ alignSelf: 'start' }}
+                  >
                     {stageDone ? (
                       <Box sx={{ color: 'success.main', display: 'flex' }}>
                         <UiIcon icon="solar:check-circle-linear" width={28} />
@@ -246,9 +251,7 @@ export default function RoadmapPage() {
                         </Stack>
                         <Stack direction="row" spacing={0.75} alignItems="center">
                           <UiIcon icon="solar:book-2-linear" width={17} />
-                          <Typography variant="caption">
-                            {stageArticles.length} mavzu
-                          </Typography>
+                          <Typography variant="caption">{stageArticles.length} mavzu</Typography>
                         </Stack>
                       </Stack>
                     </Stack>
@@ -258,21 +261,21 @@ export default function RoadmapPage() {
                         const storageKey = article.sourceId ?? article.slug;
                         const isCompleted = completed.has(storageKey);
                         return (
-                            <Stack
-                              key={article.slug}
-                              direction="row"
-                              spacing={1.5}
-                              alignItems="center"
-                              sx={{ py: 1.5 }}
-                            >
-                              {isCompleted ? (
-                                <Tooltip title="Yakunlangan">
-                                  <Box sx={{ p: 0.625, color: 'success.main', display: 'flex' }}>
-                                    <UiIcon icon="solar:check-circle-bold" width={21} />
-                                  </Box>
-                                </Tooltip>
-                              ) : (
-                                <Tooltip title="Yakunlangan deb belgilash">
+                          <Stack
+                            key={article.slug}
+                            direction="row"
+                            spacing={1.5}
+                            alignItems="center"
+                            sx={{ py: 1.5 }}
+                          >
+                            {isCompleted ? (
+                              <Tooltip title="Yakunlangan">
+                                <Box sx={{ p: 0.625, color: 'success.main', display: 'flex' }}>
+                                  <UiIcon icon="solar:check-circle-bold" width={21} />
+                                </Box>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip title="Yakunlangan deb belgilash">
                                 <IconButton
                                   size="small"
                                   aria-label={`“${article.title}” mavzusini yakunlangan deb belgilash`}
@@ -280,28 +283,28 @@ export default function RoadmapPage() {
                                 >
                                   <UiIcon icon="solar:check-circle-linear" width={21} />
                                 </IconButton>
-                                </Tooltip>
-                              )}
-                              <Box
-                                component={RouterLink}
-                                to={getArticlePath(article)}
-                                sx={{
-                                  minWidth: 0,
-                                  flexGrow: 1,
-                                  color: 'text.primary',
-                                  textDecoration: 'none',
-                                  '&:hover h3': { color: 'primary.main' },
-                                }}
-                              >
-                                <Typography component="h3" variant="subtitle2">
-                                  {article.title}
-                                </Typography>
-                                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                                  {article.difficulty} · {article.readTime} daqiqa
-                                </Typography>
-                              </Box>
-                              <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
-                            </Stack>
+                              </Tooltip>
+                            )}
+                            <Box
+                              component={RouterLink}
+                              to={getArticlePath(article)}
+                              sx={{
+                                minWidth: 0,
+                                flexGrow: 1,
+                                color: 'text.primary',
+                                textDecoration: 'none',
+                                '&:hover h3': { color: 'primary.main' },
+                              }}
+                            >
+                              <Typography component="h3" variant="subtitle2">
+                                {article.title}
+                              </Typography>
+                              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                                {article.difficulty} · {article.readTime} daqiqa
+                              </Typography>
+                            </Box>
+                            <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
+                          </Stack>
                         );
                       })}
                     </Stack>
@@ -356,8 +359,8 @@ export default function RoadmapPage() {
           <Box>
             <Typography variant="h6">Tezlik emas, izchillik muhim</Typography>
             <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-              Kuniga 30 daqiqa ajrating: 20 daqiqani darslikka, 10 daqiqani undagi tashqi
-              mashqqa sarflang. Tushunmagan joyingizga qaytish — ortga ketish emas.
+              Kuniga 30 daqiqa ajrating: 20 daqiqani darslikka, 10 daqiqani undagi tashqi mashqqa
+              sarflang. Tushunmagan joyingizga qaytish — ortga ketish emas.
             </Typography>
           </Box>
         </Stack>

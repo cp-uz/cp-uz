@@ -36,6 +36,12 @@ const SignInPage = lazy(() =>
 const SeasonPage = lazy(() =>
   import('modules/seasons').then((module) => ({ default: module.SeasonPage }))
 );
+const ProblemCatalogPage = lazy(() =>
+  import('modules/problems').then((module) => ({ default: module.ProblemCatalogPage }))
+);
+const ProblemPage = lazy(() =>
+  import('modules/problems').then((module) => ({ default: module.ProblemPage }))
+);
 
 function SuspenseOutlet() {
   return (
@@ -64,6 +70,9 @@ export const routesSection: RouteObject[] = [
       { path: '/', element: <HomePage /> },
       { path: '/algoritmlar', element: <CatalogPage /> },
       { path: '/algoritmlar/:category/:slug', element: <ArticlePage /> },
+      { path: '/masalalar', element: <ProblemCatalogPage /> },
+      { path: '/masalalar/:seasonSlug/:eventSlug', element: <ProblemPage /> },
+      { path: '/masalalar/:seasonSlug/:eventSlug/:problemSlug', element: <ProblemPage /> },
       { path: '/yol-xaritasi', element: <RoadmapPage /> },
       { path: '/maqola/:slug', element: <ArticlePage /> },
       { path: '/algo/:category/:legacySlug', element: <LegacyRedirectPage /> },

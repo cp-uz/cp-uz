@@ -18,8 +18,10 @@ olympiad seasons, events, participant profiles, and their editorial metadata.
 
 - `articles/` — canonical translated Markdown and article assets, each linked
   to its exact upstream path and pinned revision.
-- `seasons/` — editable season folders with one JSON per event and participant;
-  imported directly by Django without a generated aggregate seed.
+- `seasons/` — editable season folders with one JSON per event and participant,
+  imported directly by Django without a generated aggregate seed;
+- `problems/` — season/event/set daraxti, har bir masala uchun JSON metadata va
+  o‘zbekcha Markdown shart.
 - `metadata/articles.yml` — canonical identity, taxonomy, source, translation,
   upstream, publication, review, hash, and history metadata.
 - `metadata/article_difficulties.json` — every article's explicit editorial

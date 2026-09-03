@@ -156,7 +156,7 @@ export default function ProfilePage() {
         path="/profil"
       />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}

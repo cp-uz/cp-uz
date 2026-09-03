@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cp.uz/schemas/problem-content.schema.json",
+  "title": "cp.uz canonical olympiad problem content",
+  "oneOf": [
+    { "$ref": "#/$defs/event" },
+    { "$ref": "#/$defs/problem_set" },
+    { "$ref": "#/$defs/problem" }
+  ],
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 180
+    },
+    "relative_path": {
+      "type": "string",
+      "pattern": "^(?![./])(?!.*\\.\\.)[a-zA-Z0-9._-]+(?:/[a-zA-Z0-9._-]+)*$"
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_type", "schema_version", "season_slug", "event_slug", "sets"],
+      "properties": {
+        "document_type": { "const": "event" },
+        "schema_version": { "const": 1 },
+        "season_slug": { "$ref": "#/$defs/slug" },
+        "event_slug": { "$ref": "#/$defs/slug" },
+        "sets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/relative_path" }
+        }
+      }
+    },
+    "problem_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_type", "schema_version", "slug", "title", "order", "publication_status", "problems"],
+      "properties": {
+        "document_type": { "const": "problem_set" },
+        "schema_version": { "const": 1 },
+        "slug": { "$ref": "#/$defs/slug" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "description": { "type": "string" },
+        "date_label": { "type": "string", "maxLength": 80 },
+        "order": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "publication_status": { "enum": ["draft", "published", "archived"] },
+        "problems": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/relative_path" }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "title", "url"],
+      "properties": {
+        "kind": { "enum": ["original", "practice", "editorial", "package", "solution"] },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "platform": { "type": "string", "maxLength": 80 },
+        "is_official": { "type": "boolean" },
+        "is_primary": { "type": "boolean" },
+        "order": { "type": "integer", "minimum": 0, "maximum": 65535 }
+      }
+    },
+    "attachment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "url"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "content_type": { "type": "string", "maxLength": 120 },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "order": { "type": "integer", "minimum": 0, "maximum": 65535 }
+      }
+    },
+    "problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_type",
+        "schema_version",
+        "slug",
+        "code",
+        "title",
+        "statement_file",
+        "translation_status",
+        "problem_type",
+        "order",
+        "publication_status",
+        "last_verified_on",
+        "links"
+      ],
+      "properties": {
+        "document_type": { "const": "problem" },
+        "schema_version": { "const": 1 },
+        "slug": { "$ref": "#/$defs/slug" },
+        "code": { "type": "string", "minLength": 1, "maxLength": 30 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "original_title": { "type": "string", "maxLength": 240 },
+        "statement_file": { "$ref": "#/$defs/relative_path" },
+        "translation_status": {
+          "enum": ["ai_translation", "reviewed_translation", "original_uzbek"]
+        },
+        "problem_type": {
+          "enum": ["standard", "interactive", "output_only", "communication", "two_step"]
+        },
+        "time_limit_ms": { "type": ["integer", "null"], "minimum": 1 },
+        "memory_limit_mb": { "type": ["integer", "null"], "minimum": 1 },
+        "max_score": { "type": ["number", "null"], "minimum": 0 },
+        "rating": { "type": ["integer", "null"], "minimum": 0, "maximum": 10000 },
+        "difficulty_label": { "type": "string", "maxLength": 80 },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "order": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "publication_status": { "enum": ["draft", "published", "archived"] },
+        "last_verified_on": { "type": "string", "format": "date" },
+        "links": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/link" }
+        },
+        "attachments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/attachment" }
+        }
+      }
+    }
+  }
+}

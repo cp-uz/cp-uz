@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "Uzbekistan TST 2026 — 2-kun masalalari.",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "qidiruv-daraxtlari",
+    "darsxona-partalari",
+    "vazifalarni-boshqarish"
+  ]
+}

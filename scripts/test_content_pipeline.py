@@ -29,6 +29,7 @@ from content_pipeline import (
     validate_inventory,
 )
 from review_readiness import apply_ready_status
+from problem_content import validate_problem_inventory
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
@@ -312,6 +313,18 @@ articles:
 
     def test_checked_in_manifest(self) -> None:
         validate_checksum_manifest(CONTENT)
+
+    def test_problem_catalog_is_file_granular_and_complete(self) -> None:
+        self.assertEqual(
+            validate_problem_inventory(CONTENT),
+            {
+                "problem_events": 3,
+                "problem_sets": 8,
+                "problems": 26,
+                "problem_links": 52,
+                "problem_attachments": 26,
+            },
+        )
 
     def test_checksum_manifest_rejects_duplicate_paths(self) -> None:
         with tempfile.TemporaryDirectory(prefix="cpuz-manifest-test-") as value:

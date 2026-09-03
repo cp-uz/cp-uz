@@ -53,10 +53,10 @@ install -o root -g root -m 0600 local-db.json /home/cp_uz/.release/local-db.json
 
 The release only loads this fixture when the application database is empty. On
 a retry it requires every included model count to match exactly. It then runs
-the canonical content and season imports, verifies 163 published articles, 885 active
-practice references, 174 public glossary terms, 2 published seasons, 50 season events
-and 73 local result rows, and removes the server copy of the fixture only after the
-final public HTTPS checks pass.
+the canonical content, season and problem imports; verifies 163 published articles,
+885 active practice references, 174 public glossary terms, 2 published seasons,
+50 season events, 73 local result rows, 4 public problem sets and 12 public problems;
+and removes the server copy of the fixture only after the final public HTTPS checks pass.
 
 After the repository and completed `.env` are present in `/home/cp_uz`:
 

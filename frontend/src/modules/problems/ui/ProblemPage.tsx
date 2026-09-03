@@ -1,0 +1,408 @@
+import type { ProblemDetail } from '../domain';
+
+import { Seo } from 'shared/ui/Seo';
+import { UiIcon } from 'shared/ui/UiIcon';
+import { useMemo, useEffect } from 'react';
+import { useAsyncData } from 'shared/hooks';
+import { formatUzbekDate } from 'shared/lib/i18n';
+import { RichMarkdown } from 'modules/learning/ui/shared';
+import { useParams, useNavigate, Link as RouterLink } from 'react-router';
+
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Chip from '@mui/material/Chip';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
+import Skeleton from '@mui/material/Skeleton';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import ListItemButton from '@mui/material/ListItemButton';
+
+import { problemQueries } from '../application';
+
+function problemPath(problem: ProblemDetail, slug: string) {
+  return `/masalalar/${problem.season.slug}/${problem.event.slug}/${slug}`;
+}
+
+function formatEventDate(event: ProblemDetail['event']) {
+  if (event.dateLabel) return event.dateLabel;
+  if (!event.startDate) return '';
+  const start = formatUzbekDate(event.startDate);
+  if (!event.endDate || event.endDate === event.startDate) return start;
+  return `${start} — ${formatUzbekDate(event.endDate)}`;
+}
+
+function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
+  return (
+    <Box component="nav" aria-label="Event masalalari">
+      <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
+        <Box>
+          <Typography variant="overline" sx={{ color: 'primary.main' }}>
+            {problem.season.title}
+          </Typography>
+          <Typography variant="h6">{problem.event.shortTitle || problem.event.title}</Typography>
+        </Box>
+        <Tooltip title="Mavsum sahifasini ochish">
+          <Button
+            component={RouterLink}
+            to={`/seasons/${problem.season.slug}/${problem.event.slug}`}
+            color="inherit"
+            aria-label="Mavsumdagi event tafsilotlarini ochish"
+            sx={{ minWidth: 40, p: 1 }}
+          >
+            <UiIcon icon="solar:calendar-search-linear" width={21} />
+          </Button>
+        </Tooltip>
+      </Stack>
+      {problem.event.summary && (
+        <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+          {problem.event.summary}
+        </Typography>
+      )}
+      <Stack spacing={0.75} sx={{ mt: 2 }}>
+        {formatEventDate(problem.event) && (
+          <Stack direction="row" spacing={1} alignItems="center">
+            <UiIcon icon="solar:calendar-date-linear" width={17} />
+            <Typography variant="caption">{formatEventDate(problem.event)}</Typography>
+          </Stack>
+        )}
+        {(problem.event.venue || problem.event.location) && (
+          <Stack direction="row" spacing={1} alignItems="center">
+            <UiIcon icon="solar:map-point-linear" width={17} />
+            <Typography variant="caption">
+              {[problem.event.venue, problem.event.location].filter(Boolean).join(' · ')}
+            </Typography>
+          </Stack>
+        )}
+      </Stack>
+
+      <Divider sx={{ my: 2.5 }} />
+      <Typography variant="subtitle2">Barcha masalalar</Typography>
+      <Stack spacing={2} sx={{ mt: 1.5 }}>
+        {problem.sets.map((set) => (
+          <Box key={set.slug}>
+            <Typography variant="caption" sx={{ px: 1, color: 'text.secondary', fontWeight: 700 }}>
+              {set.title}
+            </Typography>
+            <Stack sx={{ mt: 0.5 }}>
+              {set.problems.map((item) => {
+                const selected = item.slug === problem.slug;
+                return (
+                  <ListItemButton
+                    key={item.slug}
+                    component={RouterLink}
+                    to={problemPath(problem, item.slug)}
+                    selected={selected}
+                    aria-current={selected ? 'page' : undefined}
+                    sx={{
+                      px: 1,
+                      py: 0.75,
+                      gap: 1,
+                      minHeight: 42,
+                      borderRadius: 1,
+                      '&.Mui-selected': { bgcolor: 'primary.lighter', color: 'primary.dark' },
+                    }}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{ width: 20, flexShrink: 0, color: 'primary.main', fontWeight: 700 }}
+                    >
+                      {item.code}
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: selected ? 700 : 500 }}>
+                      {item.title}
+                    </Typography>
+                  </ListItemButton>
+                );
+              })}
+            </Stack>
+          </Box>
+        ))}
+      </Stack>
+    </Box>
+  );
+}
+
+export default function ProblemPage() {
+  const navigate = useNavigate();
+  const { seasonSlug = '', eventSlug = '', problemSlug } = useParams();
+  const {
+    data: eventDetail,
+    loading: eventLoading,
+    error: eventError,
+  } = useAsyncData(
+    () =>
+      problemSlug
+        ? Promise.resolve(null)
+        : problemQueries.event(seasonSlug, eventSlug),
+    null,
+    [eventSlug, problemSlug, seasonSlug]
+  );
+  const {
+    data: problem,
+    loading: problemLoading,
+    error: problemError,
+  } = useAsyncData(
+    () =>
+      problemSlug
+        ? problemQueries.detail(seasonSlug, eventSlug, problemSlug)
+        : Promise.resolve(null),
+    null,
+    [eventSlug, problemSlug, seasonSlug]
+  );
+
+  useEffect(() => {
+    if (problemSlug || !eventDetail) return;
+    const first = eventDetail.sets.flatMap((set) => set.problems)[0];
+    if (first) {
+      navigate(`/masalalar/${seasonSlug}/${eventSlug}/${first.slug}`, { replace: true });
+    }
+  }, [eventDetail, eventSlug, navigate, problemSlug, seasonSlug]);
+
+  const orderedProblems = useMemo(
+    () => problem?.sets.flatMap((set) => set.problems) ?? [],
+    [problem]
+  );
+  const selectedIndex = orderedProblems.findIndex((item) => item.slug === problem?.slug);
+  const previous = selectedIndex > 0 ? orderedProblems[selectedIndex - 1] : undefined;
+  const next = selectedIndex >= 0 ? orderedProblems[selectedIndex + 1] : undefined;
+  const loading = problemSlug ? problemLoading : eventLoading;
+  const error = problemSlug ? problemError : eventError;
+
+  if (loading || (!problemSlug && eventDetail)) {
+    return (
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
+        <Skeleton width={260} />
+        <Skeleton width="min(560px, 90vw)" height={70} />
+        <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { md: '1fr 330px' } }}>
+          <Skeleton variant="rounded" height={620} />
+          <Skeleton variant="rounded" height={520} />
+        </Box>
+      </Container>
+    );
+  }
+
+  if (error || !problem) {
+    return (
+      <Container maxWidth="md" sx={{ py: { xs: 8, md: 12 } }}>
+        <Alert severity="error">Masala topilmadi yoki uni yuklab bo‘lmadi.</Alert>
+        <Button component={RouterLink} to="/masalalar" sx={{ mt: 2 }}>
+          Masalalar katalogiga qaytish
+        </Button>
+      </Container>
+    );
+  }
+
+  const originalLinks = problem.links.filter((link) => link.kind === 'original');
+  const practiceLinks = problem.links.filter((link) => link.kind === 'practice');
+
+  return (
+    <>
+      <Seo
+        title={`${problem.title} · ${problem.event.shortTitle || problem.event.title}`}
+        description={`${problem.season.title} ${problem.problemSet.title}: ${problem.title} masalasining o‘zbekcha sharti.`}
+        path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
+      />
+      <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
+        <Breadcrumbs sx={{ mb: 3 }}>
+          <Link component={RouterLink} to="/masalalar" color="inherit" underline="hover">
+            Masalalar
+          </Link>
+          <Link
+            component={RouterLink}
+            to={`/masalalar/${problem.season.slug}/${problem.event.slug}`}
+            color="inherit"
+            underline="hover"
+          >
+            {problem.event.shortTitle || problem.event.title}
+          </Link>
+          <Typography color="text.primary">{problem.title}</Typography>
+        </Breadcrumbs>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gap: { xs: 3, lg: 5 },
+            alignItems: 'start',
+            gridTemplateColumns: { xs: 'minmax(0, 1fr)', lg: 'minmax(0, 1fr) 340px' },
+          }}
+        >
+          <Box component="main" sx={{ minWidth: 0 }}>
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+              <Chip
+                size="small"
+                label={problem.translationStatusLabel}
+                color={problem.translationStatus === 'reviewed_translation' ? 'success' : 'default'}
+                icon={<UiIcon icon="solar:document-add-linear" width={16} />}
+              />
+              <Chip size="small" label={`${problem.problemSet.title} · ${problem.code}`} />
+              {problem.difficultyLabel && <Chip size="small" label={problem.difficultyLabel} />}
+              {problem.rating && <Chip size="small" label={`${problem.rating} reyting`} />}
+            </Stack>
+
+            <Typography
+              component="h1"
+              variant="h2"
+              sx={{ mt: 2, fontSize: { xs: 36, sm: 44, md: 52 } }}
+            >
+              {problem.title}
+            </Typography>
+            {problem.originalTitle && problem.originalTitle !== problem.title && (
+              <Typography sx={{ mt: 1, color: 'text.secondary' }}>
+                Original nomi: {problem.originalTitle}
+              </Typography>
+            )}
+
+            <Stack direction="row" spacing={1.25} flexWrap="wrap" useFlexGap sx={{ mt: 2.5 }}>
+              {practiceLinks.map((link) => (
+                <Button
+                  key={link.id}
+                  component="a"
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="contained"
+                  endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
+                >
+                  {link.title}
+                </Button>
+              ))}
+              {originalLinks.map((link) => (
+                <Button
+                  key={link.id}
+                  component="a"
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="outlined"
+                  endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
+                >
+                  {link.title}
+                </Button>
+              ))}
+            </Stack>
+
+            <Stack
+              direction="row"
+              spacing={{ xs: 2, sm: 3 }}
+              flexWrap="wrap"
+              useFlexGap
+              sx={{ mt: 3, color: 'text.secondary' }}
+            >
+              {problem.timeLimitMs && (
+                <Stack direction="row" spacing={0.75} alignItems="center">
+                  <UiIcon icon="solar:clock-circle-linear" width={17} />
+                  <Typography variant="body2">{problem.timeLimitMs / 1000} soniya</Typography>
+                </Stack>
+              )}
+              {problem.memoryLimitMb && (
+                <Stack direction="row" spacing={0.75} alignItems="center">
+                  <UiIcon icon="solar:server-square-linear" width={17} />
+                  <Typography variant="body2">{problem.memoryLimitMb} MB</Typography>
+                </Stack>
+              )}
+              {problem.maxScore && (
+                <Stack direction="row" spacing={0.75} alignItems="center">
+                  <UiIcon icon="solar:cup-star-linear" width={17} />
+                  <Typography variant="body2">{Number(problem.maxScore)} ball</Typography>
+                </Stack>
+              )}
+              {problem.problemType !== 'standard' && (
+                <Stack direction="row" spacing={0.75} alignItems="center">
+                  <UiIcon icon="solar:code-circle-linear" width={17} />
+                  <Typography variant="body2">{problem.problemTypeLabel}</Typography>
+                </Stack>
+              )}
+            </Stack>
+
+            <Paper
+              id="problem-statement"
+              variant="outlined"
+              sx={{ mt: 4, p: { xs: 2.25, sm: 3.5, md: 5 }, borderRadius: 2 }}
+            >
+              <RichMarkdown sourcePath={problem.sourcePath}>{problem.statementMarkdown}</RichMarkdown>
+            </Paper>
+
+            {(problem.attachments.length > 0 || problem.tags.length > 0) && (
+              <Paper variant="outlined" sx={{ mt: 3, p: { xs: 2, sm: 3 } }}>
+                {problem.attachments.length > 0 && (
+                  <>
+                    <Typography variant="subtitle2">Qo‘shimcha fayllar</Typography>
+                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mt: 1 }}>
+                      {problem.attachments.map((attachment) => (
+                        <Button
+                          key={attachment.id}
+                          component="a"
+                          href={attachment.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          size="small"
+                          variant="outlined"
+                          startIcon={<UiIcon icon="solar:paperclip-linear" width={16} />}
+                        >
+                          {attachment.title}
+                        </Button>
+                      ))}
+                    </Stack>
+                  </>
+                )}
+                {problem.tags.length > 0 && (
+                  <Stack direction="row" spacing={0.75} flexWrap="wrap" useFlexGap sx={{ mt: 2 }}>
+                    {problem.tags.map((tag) => (
+                      <Chip key={tag} size="small" variant="outlined" label={tag} />
+                    ))}
+                  </Stack>
+                )}
+              </Paper>
+            )}
+
+            <Stack direction="row" justifyContent="space-between" sx={{ mt: 4 }}>
+              {previous ? (
+                <Button
+                  component={RouterLink}
+                  to={problemPath(problem, previous.slug)}
+                  startIcon={<UiIcon icon="solar:arrow-left-linear" width={18} />}
+                >
+                  {previous.title}
+                </Button>
+              ) : (
+                <span />
+              )}
+              {next && (
+                <Button
+                  component={RouterLink}
+                  to={problemPath(problem, next.slug)}
+                  endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
+                >
+                  {next.title}
+                </Button>
+              )}
+            </Stack>
+          </Box>
+
+          <Paper
+            component="aside"
+            variant="outlined"
+            sx={{
+              top: 88,
+              p: 2.5,
+              order: { xs: -1, lg: 0 },
+              maxHeight: { lg: 'calc(100vh - 112px)' },
+              position: { lg: 'sticky' },
+              overflowY: { lg: 'auto' },
+              borderRadius: 2,
+              scrollbarWidth: 'thin',
+            }}
+          >
+            <ProblemNavigation problem={problem} />
+          </Paper>
+        </Box>
+      </Container>
+    </>
+  );
+}

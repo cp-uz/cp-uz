@@ -194,6 +194,10 @@ docker compose exec -T web python manage.py import_seasons \
   --path /app/content/seasons \
   --prune
 
+docker compose exec -T web python manage.py import_problems \
+  --path /app/content/problems \
+  --prune
+
 docker compose exec -T web python manage.py shell -c '
 from apps.articles.models import Article, Category, ExternalPracticeReference, GlossaryTerm
 actual = {
@@ -211,6 +215,29 @@ expected = {
     "glossary_terms": 174,
 }
 assert actual == expected, f"Imported corpus mismatch: {actual} != {expected}"
+print(actual)
+'
+
+docker compose exec -T web python manage.py shell -c '
+from apps.problems.models import Problem, ProblemAttachment, ProblemLink, ProblemSet
+from apps.seasons.models import PublicationStatus
+actual = {
+    "sets": ProblemSet.objects.count(),
+    "public_sets": ProblemSet.objects.filter(publication_status=PublicationStatus.PUBLISHED).count(),
+    "problems": Problem.objects.count(),
+    "public_problems": Problem.objects.filter(publication_status=PublicationStatus.PUBLISHED).count(),
+    "links": ProblemLink.objects.count(),
+    "attachments": ProblemAttachment.objects.count(),
+}
+expected = {
+    "sets": 8,
+    "public_sets": 8,
+    "problems": 26,
+    "public_problems": 26,
+    "links": 52,
+    "attachments": 26,
+}
+assert actual == expected, f"Imported problem catalog mismatch: {actual} != {expected}"
 print(actual)
 '
 
@@ -243,7 +270,12 @@ SMOKE_ENDPOINTS=(
   /
   /api/v1/health/
   /api/v1/seasons/current/
+  /api/v1/problems/
   /seasons/2026-2027
+  /masalalar
+  /masalalar/2025-2026/ioi-2026-saralash-4/temir-rom
+  /masalalar/2025-2026/ioi-2026/ball-machine
+  /masalalar/2025-2026/egoi-2026/ferriswheel
   /boot.css
   /loader-facts.js
   /assets/brand/cpuz-logo.png

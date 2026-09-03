@@ -105,7 +105,7 @@ export default function HomePage() {
         description="Sport dasturlash algoritmlarini o‘zbek tilida o‘rganish uchun ochiq tekshiruvdagi bilim ombori."
       />
 
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 9 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 6, md: 9 } }}>
         <Box
           sx={{
             gap: { md: 6, lg: 8 },
@@ -294,7 +294,7 @@ export default function HomePage() {
       </Container>
 
       {(statsError || categoryLoadError || articleLoadError) && (
-        <Container maxWidth="lg" sx={{ pb: 3 }}>
+        <Container maxWidth="xl" sx={{ pb: 3 }}>
           <Box
             sx={{
               px: 2.5,
@@ -315,7 +315,7 @@ export default function HomePage() {
       <SeasonPreview />
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, bgcolor: 'background.neutral' }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={2}
@@ -400,7 +400,7 @@ export default function HomePage() {
         </Container>
       </Box>
 
-      <Container component="section" maxWidth="lg" sx={{ py: { xs: 7, md: 9 } }}>
+      <Container component="section" maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
         <Box
           sx={{
             gap: { xs: 6, md: 8 },
@@ -504,7 +504,7 @@ export default function HomePage() {
       </Container>
 
       <Box component="section" sx={{ pb: { xs: 7, md: 9 } }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Box
             sx={(theme) => ({
               px: { xs: 2.5, md: 3 },
@@ -554,7 +554,7 @@ export default function HomePage() {
         aria-labelledby="team-heading"
         sx={{ py: { xs: 7, md: 9 }, bgcolor: 'background.neutral' }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Box sx={{ mb: { xs: 4, md: 5 }, maxWidth: 640 }}>
             <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
               Platforma ortidagi insonlar

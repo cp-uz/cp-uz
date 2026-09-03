@@ -1,0 +1,15 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "IOI 2026 — 2-musobaqa kuni masalalari.",
+  "date_label": "13-avgust, 2026",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "classroom",
+    "magic-city",
+    "partition"
+  ]
+}

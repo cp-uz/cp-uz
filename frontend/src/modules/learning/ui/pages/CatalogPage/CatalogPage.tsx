@@ -34,16 +34,16 @@ export default function CatalogPage() {
   const [params, setParams] = useSearchParams();
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [visibleCount, setVisibleCount] = useState(ARTICLES_PER_BATCH);
-  const { data: allArticles, loading: articlesLoading, error: articleLoadError } = useAsyncData(
-    learningApi.listArticles,
-    [],
-    []
-  );
-  const { data: allCategories, loading: categoriesLoading, error: categoryLoadError } = useAsyncData(
-    learningApi.listCategories,
-    [],
-    []
-  );
+  const {
+    data: allArticles,
+    loading: articlesLoading,
+    error: articleLoadError,
+  } = useAsyncData(learningApi.listArticles, [], []);
+  const {
+    data: allCategories,
+    loading: categoriesLoading,
+    error: categoryLoadError,
+  } = useAsyncData(learningApi.listCategories, [], []);
   const bookmarks = useLocalStorageList('cpuz:bookmarks', []);
   const query = params.get('q') ?? '';
   const debouncedQuery = useDebouncedValue(query, 300);
@@ -82,10 +82,14 @@ export default function CatalogPage() {
         path="/algoritmlar"
       />
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
         <Box sx={{ maxWidth: 760 }}>
-          <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>Bilim ombori</Typography>
-          <Typography component="h1" variant="h3" sx={{ mt: 1.5 }}>Algoritmlar va mavzular</Typography>
+          <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
+            Bilim ombori
+          </Typography>
+          <Typography component="h1" variant="h3" sx={{ mt: 1.5 }}>
+            Algoritmlar va mavzular
+          </Typography>
           <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
             {articlesLoading
               ? 'Maqolalarni mavzu, daraja yoki kalit so‘z orqali toping.'
@@ -103,8 +107,22 @@ export default function CatalogPage() {
           sx={{ mt: 4, maxWidth: 820 }}
           slotProps={{
             input: {
-              startAdornment: <InputAdornment position="start"><UiIcon icon="solar:magnifer-linear" width={21} /></InputAdornment>,
-              endAdornment: query ? <InputAdornment position="end"><IconButton size="small" onClick={() => update('q', '')} aria-label="Qidiruvni tozalash"><UiIcon icon="solar:close-circle-linear" width={19} /></IconButton></InputAdornment> : null,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <UiIcon icon="solar:magnifer-linear" width={21} />
+                </InputAdornment>
+              ),
+              endAdornment: query ? (
+                <InputAdornment position="end">
+                  <IconButton
+                    size="small"
+                    onClick={() => update('q', '')}
+                    aria-label="Qidiruvni tozalash"
+                  >
+                    <UiIcon icon="solar:close-circle-linear" width={19} />
+                  </IconButton>
+                </InputAdornment>
+              ) : null,
             },
           }}
         />
@@ -127,8 +145,20 @@ export default function CatalogPage() {
             value={category}
             onChange={(event) => update('category', event.target.value)}
           >
-            <MenuItem value="all"><ListItemIcon><UiIcon icon="solar:library-linear" width={18} /></ListItemIcon>Barcha mavzular ({articlesLoading ? '…' : allArticles.length})</MenuItem>
-            {rootCategories.map((item) => <MenuItem key={item.id} value={item.id}><ListItemIcon><UiIcon icon={item.icon} width={18} /></ListItemIcon>{item.title} ({item.articleCount})</MenuItem>)}
+            <MenuItem value="all">
+              <ListItemIcon>
+                <UiIcon icon="solar:library-linear" width={18} />
+              </ListItemIcon>
+              Barcha mavzular ({articlesLoading ? '…' : allArticles.length})
+            </MenuItem>
+            {rootCategories.map((item) => (
+              <MenuItem key={item.id} value={item.id}>
+                <ListItemIcon>
+                  <UiIcon icon={item.icon} width={18} />
+                </ListItemIcon>
+                {item.title} ({item.articleCount})
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             select
@@ -139,7 +169,9 @@ export default function CatalogPage() {
             onChange={(event) => update('difficulty', event.target.value)}
           >
             {difficultyOptions.map((item) => (
-              <MenuItem key={item} value={item}>{item === 'all' ? 'Barchasi' : item}</MenuItem>
+              <MenuItem key={item} value={item}>
+                {item === 'all' ? 'Barchasi' : item}
+              </MenuItem>
             ))}
           </TextField>
         </Box>
@@ -152,26 +184,85 @@ export default function CatalogPage() {
             gridTemplateColumns: { xs: '1fr', md: '240px minmax(0, 1fr)' },
           }}
         >
-          <Box component="aside" sx={{ pr: 3, borderRight: 1, borderColor: 'divider', display: { xs: 'none', md: 'block' } }}>
-            <Typography variant="subtitle2" sx={{ mb: 1 }}>Bo‘limlar</Typography>
+          <Box
+            component="aside"
+            sx={{
+              pr: 3,
+              borderRight: 1,
+              borderColor: 'divider',
+              display: { xs: 'none', md: 'block' },
+            }}
+          >
+            <Typography variant="subtitle2" sx={{ mb: 1 }}>
+              Bo‘limlar
+            </Typography>
             <Stack spacing={0.25}>
-              <ListItemButton selected={category === 'all'} onClick={() => update('category', 'all')} sx={{ px: 1.5, borderRadius: 1 }}>
-                <ListItemIcon sx={{ minWidth: 34, color: category === 'all' ? 'primary.main' : 'text.secondary' }}><UiIcon icon="solar:library-linear" width={18} /></ListItemIcon>
-                <ListItemText primary="Barcha mavzular" slotProps={{ primary: { variant: 'body2', fontWeight: 600, color: category === 'all' ? 'primary.main' : 'text.primary' } }} />
-                <Typography variant="caption" sx={{ color: 'text.secondary' }}>{articlesLoading ? '…' : allArticles.length}</Typography>
+              <ListItemButton
+                selected={category === 'all'}
+                onClick={() => update('category', 'all')}
+                sx={{ px: 1.5, borderRadius: 1 }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 34,
+                    color: category === 'all' ? 'primary.main' : 'text.secondary',
+                  }}
+                >
+                  <UiIcon icon="solar:library-linear" width={18} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Barcha mavzular"
+                  slotProps={{
+                    primary: {
+                      variant: 'body2',
+                      fontWeight: 600,
+                      color: category === 'all' ? 'primary.main' : 'text.primary',
+                    },
+                  }}
+                />
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                  {articlesLoading ? '…' : allArticles.length}
+                </Typography>
               </ListItemButton>
               {rootCategories.map((item) => (
-                <ListItemButton key={item.id} selected={category === item.id} onClick={() => update('category', item.id)} sx={{ px: 1.5, borderRadius: 1 }}>
-                  <ListItemIcon sx={{ minWidth: 34, color: category === item.id ? 'primary.main' : 'text.secondary' }}><UiIcon icon={item.icon} width={18} /></ListItemIcon>
-                  <ListItemText primary={item.title} slotProps={{ primary: { variant: 'body2', color: category === item.id ? 'primary.main' : 'text.primary', fontWeight: category === item.id ? 600 : 400 } }} />
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>{item.articleCount}</Typography>
+                <ListItemButton
+                  key={item.id}
+                  selected={category === item.id}
+                  onClick={() => update('category', item.id)}
+                  sx={{ px: 1.5, borderRadius: 1 }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 34,
+                      color: category === item.id ? 'primary.main' : 'text.secondary',
+                    }}
+                  >
+                    <UiIcon icon={item.icon} width={18} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.title}
+                    slotProps={{
+                      primary: {
+                        variant: 'body2',
+                        color: category === item.id ? 'primary.main' : 'text.primary',
+                        fontWeight: category === item.id ? 600 : 400,
+                      },
+                    }}
+                  />
+                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                    {item.articleCount}
+                  </Typography>
                 </ListItemButton>
               ))}
             </Stack>
 
             <Divider sx={{ my: 3 }} />
             <Typography variant="subtitle2">Daraja</Typography>
-            <RadioGroup value={difficulty} onChange={(event) => update('difficulty', event.target.value)} sx={{ mt: 1 }}>
+            <RadioGroup
+              value={difficulty}
+              onChange={(event) => update('difficulty', event.target.value)}
+              sx={{ mt: 1 }}
+            >
               {difficultyOptions.map((item) => (
                 <FormControlLabel
                   key={item}
@@ -184,15 +275,30 @@ export default function CatalogPage() {
             </RadioGroup>
 
             <Divider sx={{ my: 3 }} />
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>Qayerdan boshlashni bilmaysizmi?</Typography>
-            <Button component={RouterLink} to="/yol-xaritasi" size="small" sx={{ mt: 1, px: 0 }}>Yo‘l xaritasini ochish</Button>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              Qayerdan boshlashni bilmaysizmi?
+            </Typography>
+            <Button component={RouterLink} to="/yol-xaritasi" size="small" sx={{ mt: 1, px: 0 }}>
+              Yo‘l xaritasini ochish
+            </Button>
           </Box>
 
           <Box>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'center' }} justifyContent="space-between">
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              alignItems={{ sm: 'center' }}
+              justifyContent="space-between"
+            >
               <Box>
-                <Typography variant="h5">{query ? `“${query}” natijalari` : categoryTitle ?? 'Barcha maqolalar'}</Typography>
-                <Typography variant="body2" aria-live="polite" sx={{ mt: 0.5, color: 'text.secondary' }}>
+                <Typography variant="h5">
+                  {query ? `“${query}” natijalari` : (categoryTitle ?? 'Barcha maqolalar')}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  aria-live="polite"
+                  sx={{ mt: 0.5, color: 'text.secondary' }}
+                >
                   {loading
                     ? 'Kutubxona yuklanmoqda…'
                     : results.length
@@ -201,31 +307,56 @@ export default function CatalogPage() {
                 </Typography>
               </Box>
               <Stack direction="row" spacing={0.5}>
-                <IconButton color={view === 'grid' ? 'primary' : 'default'} onClick={() => setView('grid')} aria-label="Katakli ko‘rinish"><UiIcon icon="solar:widget-2-linear" width={20} /></IconButton>
-                <IconButton color={view === 'list' ? 'primary' : 'default'} onClick={() => setView('list')} aria-label="Ro‘yxat ko‘rinish"><UiIcon icon="solar:list-linear" width={20} /></IconButton>
+                <IconButton
+                  color={view === 'grid' ? 'primary' : 'default'}
+                  onClick={() => setView('grid')}
+                  aria-label="Katakli ko‘rinish"
+                >
+                  <UiIcon icon="solar:widget-2-linear" width={20} />
+                </IconButton>
+                <IconButton
+                  color={view === 'list' ? 'primary' : 'default'}
+                  onClick={() => setView('list')}
+                  aria-label="Ro‘yxat ko‘rinish"
+                >
+                  <UiIcon icon="solar:list-linear" width={20} />
+                </IconButton>
               </Stack>
             </Stack>
 
             {hasFilters && (
-              <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mt: 2.5, flexWrap: 'wrap' }}>
+              <Stack
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
+                sx={{ mt: 2.5, flexWrap: 'wrap' }}
+              >
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {[query && `qidiruv: ${query}`, categoryTitle, difficulty !== 'all' && difficulty].filter(Boolean).join(' · ')}
+                  {[query && `qidiruv: ${query}`, categoryTitle, difficulty !== 'all' && difficulty]
+                    .filter(Boolean)
+                    .join(' · ')}
                 </Typography>
-                <Button size="small" color="primary" onClick={clear}>Filtrlarni tozalash</Button>
+                <Button size="small" color="primary" onClick={clear}>
+                  Filtrlarni tozalash
+                </Button>
               </Stack>
             )}
 
             {loading && (
               <Stack alignItems="center" spacing={1.5} sx={{ py: 9 }}>
                 <CircularProgress size={30} />
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Kutubxona yuklanmoqda…</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Kutubxona yuklanmoqda…
+                </Typography>
               </Stack>
             )}
 
             {!loading && (articleLoadError || categoryLoadError) && (
               <Box sx={{ py: 8, textAlign: 'center' }}>
                 <UiIcon icon="solar:server-square-cloud-linear" width={40} />
-                <Typography variant="h5" sx={{ mt: 2 }}>Kutubxonani yuklab bo‘lmadi</Typography>
+                <Typography variant="h5" sx={{ mt: 2 }}>
+                  Kutubxonani yuklab bo‘lmadi
+                </Typography>
                 <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
                   Server bilan ulanishni tekshirib, sahifani yangilang.
                 </Typography>
@@ -238,7 +369,8 @@ export default function CatalogPage() {
                   mt: 3,
                   gap: 2,
                   display: 'grid',
-                  gridTemplateColumns: view === 'list' ? '1fr' : { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
+                  gridTemplateColumns:
+                    view === 'list' ? '1fr' : { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' },
                 }}
               >
                 {visibleResults.map((article) => (
@@ -254,9 +386,15 @@ export default function CatalogPage() {
             ) : !loading && !articleLoadError && !categoryLoadError ? (
               <Box sx={{ py: 10, textAlign: 'center' }}>
                 <UiIcon icon="solar:document-add-linear" width={40} />
-                <Typography variant="h5" sx={{ mt: 2 }}>Hech narsa topilmadi</Typography>
-                <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>So‘rovni qisqartiring yoki filtrlarni tozalab qayta urinib ko‘ring.</Typography>
-                <Button variant="contained" onClick={clear} sx={{ mt: 3 }}>Filtrlarni tozalash</Button>
+                <Typography variant="h5" sx={{ mt: 2 }}>
+                  Hech narsa topilmadi
+                </Typography>
+                <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+                  So‘rovni qisqartiring yoki filtrlarni tozalab qayta urinib ko‘ring.
+                </Typography>
+                <Button variant="contained" onClick={clear} sx={{ mt: 3 }}>
+                  Filtrlarni tozalash
+                </Button>
               </Box>
             ) : null}
 

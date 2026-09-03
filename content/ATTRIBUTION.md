@@ -24,9 +24,32 @@ ready for human review without granting approval. Review metadata is preserved e
 review, and 163 remain unpublished.
 
 For the new site, the canonical Markdown and metadata were reorganized into a
-portable snapshot and deterministic JSON import contract. Exercise statements
-are not copied into a local problem bank; the lessons retain outbound references
-to their original platforms.
+portable snapshot and deterministic JSON import contract. Lesson exercise links
+remain outbound references to their original platforms.
+
+## Olimpiada masalalari katalogi
+
+`content/problems/2025-2026/ioi-2026-saralash-4/` ichidagi 12 ta o‘zbekcha masala
+sharti [KEP.uz Uzbekistan TST 2026 katalogi](https://kep.uz/problems?groups=2) dan
+2026-09-03 kuni canonical snapshot sifatida olingan. Har bir `problem.json` jonli
+manba va topshirish sahifasiga aniq linkni saqlaydi; KEP.uz va masala mualliflarining
+nomlari yoki materiallari ustidan egalik da’vo qilinmaydi. Bu snapshot cp.uz bilan
+KEP.uz yoki musobaqa tashkilotchilari o‘rtasida rasmiy hamkorlik borligini anglatmaydi.
+
+`content/problems/2025-2026/ioi-2026/` ichidagi yana 6 ta statement
+[IOI 2026 rasmiy task archive](https://github.com/ioi/task-archive/tree/master/2026)
+dagi O‘zbekiston delegatsiyasi tekshirgan `uz_UZ.pdf` fayllaridan olindi. Canonical
+Markdown PDF matn qatlamidan hosil qilinadi; diagramma va original layout uchun har
+bir masalada rasmiy PDF attachment sifatida ham saqlanadi. Inglizcha original va
+OJ.uz topshirish havolalari alohida ko‘rsatiladi. IOI 2026 qabul qilingan masalalarni
+CC BY shartlarida e’lon qilgan.
+
+`content/problems/2025-2026/egoi-2026/` ichidagi 8 ta statement
+[EGOI 2026 rasmiy repository](https://github.com/egoi-org/egoi-2026) dagi
+O‘zbekiston delegatsiyasi tekshirgan `uz_UZ.pdf` fayllaridan olindi. Original
+inglizcha statementlar EGOI rasmiy saytiga, yechish havolalari OJ.uz va Census
+uchun QOJ mirroriga olib boradi. EGOI 2026 qabul qilingan masalalarni CC BY
+shartlarida e’lon qilgan.
 
 No endorsement by cp-algorithms, its contributors, or any referenced exercise
 platform is implied. Adaptations and further distributions must retain

@@ -1,0 +1,16 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "EGOI 2026 — 2-musobaqa kuni masalalari.",
+  "date_label": "16-may, 2026",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "wateringplants",
+    "cakes",
+    "foxfamilies",
+    "seatingplan"
+  ]
+}

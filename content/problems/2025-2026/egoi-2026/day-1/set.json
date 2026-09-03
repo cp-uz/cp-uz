@@ -1,0 +1,16 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-1",
+  "title": "1-kun",
+  "description": "EGOI 2026 — 1-musobaqa kuni masalalari.",
+  "date_label": "14-may, 2026",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "ferriswheel",
+    "ovenmasters",
+    "biscuits",
+    "census"
+  ]
+}

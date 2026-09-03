@@ -31,6 +31,7 @@ import { skeleton } from './skeleton';
 import { backdrop } from './backdrop';
 import { progress } from './progress';
 import { checkbox } from './checkbox';
+import { container } from './container';
 import { accordion } from './accordion';
 import { textField } from './text-field';
 import { pagination } from './pagination';
@@ -60,6 +61,7 @@ export const components: Components<Theme> = {
   ...drawer,
   ...stepper,
   ...tooltip,
+  ...container,
   ...popover,
   ...svgIcon,
   ...skeleton,

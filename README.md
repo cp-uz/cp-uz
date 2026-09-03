@@ -2,7 +2,7 @@
 
 `cp.uz` — sport dasturlash algoritmlarini o‘zbek tilida tizimli o‘rganish uchun ochiq bilim platformasi.
 
-Platformada darsliklar katalogi, prerequisite-safe yo‘l xaritasi, atamalar lug‘ati, olimpiada mavsumlari, maqola readeri, shaxsiy progress, qaydlar va bookmarklar mavjud. Har bir darslik oxirida mavzuni mustahkamlash uchun saralangan tashqi mashq havolalari beriladi.
+Platformada darsliklar katalogi, prerequisite-safe yo‘l xaritasi, atamalar lug‘ati, olimpiada mavsumlari, o‘zbekcha olimpiada masalalari, maqola readeri, shaxsiy progress, qaydlar va bookmarklar mavjud. Har bir darslik oxirida mavzuni mustahkamlash uchun saralangan tashqi mashq havolalari beriladi.
 
 Maqolalar [cp-algorithms](https://cp-algorithms.com/) materiallari asosida o‘zbek tiliga tarjima va mahalliy o‘quvchi uchun adaptatsiya qilingan. Avvalgi o‘zbekcha tarjimalar [cp-uz/algo](https://github.com/cp-uz/algo) snapshotidan migratsiya qilingan; canonical kontent har bir maqolaning upstream manbasi va pinned revisionini saqlaydi.
 
@@ -13,14 +13,15 @@ Canonical snapshot hozir 163 ta to‘liq o‘zbekcha maqola, 885 ta strukturalan
 ```text
 frontend/
   src/app/       router, provider va layoutlar
-  src/modules/   auth, learning, engagement, seasons va landing modullari
+  src/modules/   auth, learning, engagement, seasons, problems va landing modullari
   src/shared/    umumiy API, hook, theme va UI primitive’lari
 backend/
-  apps/          accounts, articles, contributions, engagement, search va seasons
+  apps/          accounts, articles, contributions, engagement, search, seasons va problems
   config/        Django settings, URL va ASGI/WSGI entrypointlar
 content/
   articles/      canonical Markdown va media
   seasons/       season, event va participant canonical JSON fayllari
+  problems/      event/set/masala JSON metadata va o‘zbekcha Markdown shartlar
   metadata/      taxonomy, provenance va review metadata
   exports/       deterministik backend import payloadi
 scripts/         content export, readiness va integrity tekshiruvlari
@@ -44,6 +45,7 @@ python -m pip install -r requirements/dev.txt
 python manage.py migrate
 python manage.py import_content --path ../content/exports/articles.v1.json
 python manage.py import_seasons --path ../content/seasons --prune
+python manage.py import_problems --path ../content/problems --prune
 python manage.py runserver 127.0.0.1:8000
 ```
 
@@ -58,6 +60,8 @@ npm run dev
 Frontend Vite ko‘rsatgan lokal manzilda, backend esa `http://127.0.0.1:8000` da ishlaydi. Vite `/api` va `/media` so‘rovlarini Django serveriga uzatadi; qo‘shimcha lokal wrapper yoki environment variable kerak emas.
 
 Olimpiada mavsumlari har bir season, event va participant uchun alohida canonical JSON fayllarda saqlanadi. Format sxemasi, minimal namuna, `--dry-run` va idempotent import qoidalari [season content qo‘llanmasida](content/seasons/README.md) berilgan.
+
+Olimpiada masalalari har bir event, set va masala uchun tahrirlash oson bo‘lgan alohida JSON/Markdown fayllarda saqlanadi. Format va import qoidalari [masalalar content qo‘llanmasida](content/problems/README.md) berilgan.
 
 ## Tekshiruvlar
 

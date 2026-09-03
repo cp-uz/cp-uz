@@ -1,0 +1,52 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "ormon",
+  "code": "B",
+  "title": "O'rmon",
+  "statement_file": "statement.uz.md",
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "time_limit_ms": 1500,
+  "memory_limit_mb": 256,
+  "max_score": 100,
+  "rating": 2500,
+  "difficulty_label": "Qiyin",
+  "tags": [
+    "Dinamik dasturlash",
+    "Graflar nazariyasi",
+    "Qisman yechim"
+  ],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "KEP.uz’dagi o‘zbekcha shart",
+      "url": "https://kep.uz/problems/2326",
+      "platform": "KEP.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "KEP.uz’da ishlash",
+      "url": "https://kep.uz/problems/2326",
+      "platform": "KEP.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "fore.zip",
+      "url": "https://cpython.s3.amazonaws.com/media/files/problem-attachments/2326/attachments/fore.zip",
+      "content_type": "application/zip",
+      "size_bytes": 2476,
+      "order": 0
+    }
+  ]
+}

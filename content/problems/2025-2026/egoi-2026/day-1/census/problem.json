@@ -1,0 +1,49 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "census",
+  "code": "D",
+  "title": "Ro‘yxatga olish",
+  "original_title": "Census",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "communication",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "EGOI 2026"
+  ],
+  "order": 4,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "EGOI’dagi original inglizcha shart",
+      "url": "https://egoi2026.it/competition/problems/census.pdf",
+      "platform": "EGOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Onlayn judge’da ishlash",
+      "url": "https://qoj.ac/problem/18250",
+      "platform": "QOJ",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statement (PDF)",
+      "url": "https://raw.githubusercontent.com/egoi-org/egoi-2026/main/day1/census/statement/uz_UZ.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ],
+  "time_limit_ms": 1000,
+  "memory_limit_mb": 128
+}

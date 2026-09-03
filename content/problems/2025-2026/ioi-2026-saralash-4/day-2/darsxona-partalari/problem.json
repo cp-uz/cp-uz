@@ -1,0 +1,53 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "darsxona-partalari",
+  "code": "B",
+  "title": "Darsxona partalari",
+  "statement_file": "statement.uz.md",
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "time_limit_ms": 2000,
+  "memory_limit_mb": 255,
+  "max_score": 100,
+  "rating": 2500,
+  "difficulty_label": "Qiyin",
+  "tags": [
+    "Dinamik dasturlash",
+    "Ma`lumotlar tuzilmasi",
+    "Qizg'anchok algoritmlar",
+    "Tartiblash"
+  ],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-03",
+  "links": [
+    {
+      "kind": "original",
+      "title": "KEP.uz’dagi o‘zbekcha shart",
+      "url": "https://kep.uz/problems/2320",
+      "platform": "KEP.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "KEP.uz’da ishlash",
+      "url": "https://kep.uz/problems/2320",
+      "platform": "KEP.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    }
+  ],
+  "attachments": [
+    {
+      "title": "seats.zip",
+      "url": "https://cpython.s3.amazonaws.com/media/files/problem-attachments/2320/attachments/seats.zip",
+      "content_type": "",
+      "size_bytes": 2583,
+      "order": 0
+    }
+  ]
+}

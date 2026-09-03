@@ -405,7 +405,7 @@ export default function ArticlePage() {
         />
       )}
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 4, md: 5 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 4, md: 5 } }}>
         <Breadcrumbs separator="/" aria-label="Sahifa yo‘li" sx={{ mb: 3 }}>
           <Link component={RouterLink} to="/" underline="hover" color="text.secondary">
             Bosh sahifa
@@ -613,7 +613,7 @@ export default function ArticlePage() {
 
       <Divider />
 
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Box
           sx={{
             gap: { md: 4, lg: 6 },
