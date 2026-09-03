@@ -2,6 +2,7 @@ import type { AuthSession } from 'modules/auth';
 import type { FormEvent, MouseEvent } from 'react';
 
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { BrandLogo } from 'shared/ui/BrandLogo';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
@@ -44,25 +45,25 @@ import { MainSection, LayoutSection, HeaderSection } from './core';
 
 const navItems = [
   {
-    to: '/seasons/2026-2027',
+    to: appRoutes.seasons,
     label: 'Olimpiada mavsumi',
     icon: 'solar:calendar-mark-linear',
   },
-  { to: '/masalalar', label: 'Masalalar', icon: 'solar:documents-minimalistic-linear' },
-  { to: '/algoritmlar', label: 'Algoritmlar', icon: 'solar:library-linear' },
-  { to: '/yol-xaritasi', label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
+  { to: appRoutes.tasks, label: 'Masalalar', icon: 'solar:documents-minimalistic-linear' },
+  { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'solar:library-linear' },
+  { to: appRoutes.roadmap, label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
 ];
 
 const glossaryItem = {
-  to: '/lugat',
+  to: appRoutes.dictionary,
   label: 'Lug‘at',
   icon: 'solar:notebook-bookmark-linear',
 };
 
 const utilityItems = [
   glossaryItem,
-  { to: '/saqlanganlar', label: 'Saqlanganlar', icon: 'solar:bookmark-linear' },
-  { to: '/profil', label: 'Mening profilim', icon: 'solar:user-circle-linear' },
+  { to: appRoutes.saved, label: 'Saqlanganlar', icon: 'solar:bookmark-linear' },
+  { to: appRoutes.profile, label: 'Mening profilim', icon: 'solar:user-circle-linear' },
 ];
 
 const footerItems = [...navItems, glossaryItem];
@@ -128,7 +129,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
 
   const submitSearch = (event: FormEvent) => {
     event.preventDefault();
-    navigate(`/algoritmlar?q=${encodeURIComponent(query)}`);
+    navigate(appRoutes.algorithmSearch(query));
     setSearchOpen(false);
   };
 
@@ -271,7 +272,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             <Tooltip title="Lug‘at">
               <IconButton
                 component={RouterLink}
-                to="/lugat"
+                to={appRoutes.dictionary}
                 aria-label="Lug‘at"
                 sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
               >
@@ -281,7 +282,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             <Tooltip title="Saqlanganlar">
               <IconButton
                 component={RouterLink}
-                to="/saqlanganlar"
+                to={appRoutes.saved}
                 aria-label="Saqlangan maqolalar"
                 sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
               >
@@ -309,7 +310,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             ) : (
               <Button
                 component={RouterLink}
-                to="/kirish"
+                to={appRoutes.login}
                 variant="contained"
                 startIcon={<UiIcon icon="solar:login-2-linear" width={18} />}
                 sx={{
@@ -531,7 +532,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
           )}
           <Button
             component={RouterLink}
-            to={session ? '/profil' : '/kirish'}
+            to={session ? appRoutes.profile : appRoutes.login}
             fullWidth
             variant="contained"
             startIcon={
@@ -572,7 +573,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem component={RouterLink} to="/profil" onClick={closeIdentityMenu}>
+        <MenuItem component={RouterLink} to={appRoutes.profile} onClick={closeIdentityMenu}>
           <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
             <UiIcon icon="solar:user-circle-linear" width={19} />
           </ListItemIcon>

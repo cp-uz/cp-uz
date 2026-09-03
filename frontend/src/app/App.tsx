@@ -1,6 +1,7 @@
 import 'app/styles/global.css';
 import 'katex/dist/katex.min.css';
 
+import { appRoutes } from 'shared/config';
 import { useLocation } from 'react-router';
 import { ProgressBar } from 'shared/ui/ProgressBar';
 import { themeConfig, ThemeProvider } from 'app/theme';
@@ -11,8 +12,10 @@ import { LoadingScreen, readBootLoadingFactIndex } from 'shared/ui/LoadingScreen
 type AppProps = { children?: React.ReactNode };
 
 function routeViewKey(pathname: string) {
-  const seasonMatch = pathname.match(/^\/seasons\/([^/]+)(?:\/[^/]+)?\/?$/);
-  return seasonMatch ? `/seasons/${seasonMatch[1]}` : pathname;
+  const seasonMatch = pathname.match(
+    new RegExp(`^${appRoutes.seasons}/([^/]+)(?:/[^/]+)?/?$`)
+  );
+  return seasonMatch ? appRoutes.season(seasonMatch[1]) : pathname;
 }
 
 function RouteTransitionOverlay() {

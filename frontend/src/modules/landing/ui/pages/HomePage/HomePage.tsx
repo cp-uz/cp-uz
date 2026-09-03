@@ -4,6 +4,7 @@ import type { LearningStats } from 'modules/learning/domain';
 import { useState } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { SeasonPreview } from 'modules/seasons';
 import { useNavigate, Link as RouterLink } from 'react-router';
@@ -95,7 +96,7 @@ export default function HomePage() {
 
   const submit = (event: FormEvent) => {
     event.preventDefault();
-    navigate(`/algoritmlar?q=${encodeURIComponent(query)}`);
+    navigate(appRoutes.algorithmSearch(query));
   };
 
   return (
@@ -144,14 +145,14 @@ export default function HomePage() {
             >
               <Button
                 component={RouterLink}
-                to="/algoritmlar"
+                to={appRoutes.algorithms}
                 size="large"
                 variant="contained"
                 endIcon={<UiIcon icon="solar:arrow-right-linear" width={19} />}
               >
                 Kutubxonani ochish
               </Button>
-              <Button component={RouterLink} to="/yol-xaritasi" size="large" color="inherit">
+              <Button component={RouterLink} to={appRoutes.roadmap} size="large" color="inherit">
                 Yo‘l xaritasidan boshlash
               </Button>
             </Stack>
@@ -339,7 +340,7 @@ export default function HomePage() {
             </Box>
             <Button
               component={RouterLink}
-              to="/algoritmlar"
+              to={appRoutes.algorithms}
               endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
             >
               Barcha maqolalar
@@ -357,7 +358,7 @@ export default function HomePage() {
               <Box
                 key={category.id}
                 component={RouterLink}
-                to={`/algoritmlar?category=${category.id}`}
+                to={appRoutes.algorithmCategory(category.id)}
                 sx={{
                   p: 2,
                   gap: 1.75,
@@ -434,7 +435,7 @@ export default function HomePage() {
                 </Stack>
               ))}
             </Stack>
-            <Button component={RouterLink} to="/yol-xaritasi" sx={{ mt: 2, px: 0 }}>
+            <Button component={RouterLink} to={appRoutes.roadmap} sx={{ mt: 2, px: 0 }}>
               Yo‘l xaritasini ko‘rish
             </Button>
           </Box>
@@ -456,7 +457,7 @@ export default function HomePage() {
               </Box>
               <Button
                 component={RouterLink}
-                to="/algoritmlar"
+                to={appRoutes.algorithms}
                 sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
               >
                 Hammasi

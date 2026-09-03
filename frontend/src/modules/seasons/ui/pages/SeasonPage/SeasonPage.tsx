@@ -3,6 +3,7 @@ import type { SeasonEvent } from '../../../domain';
 import { useMemo } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { useParams, useNavigate, useLocation, Link as RouterLink } from 'react-router';
 
@@ -57,7 +58,11 @@ export default function SeasonPage() {
     data: season,
     loading,
     error,
-  } = useAsyncData(() => seasonQueries.get(seasonSlug), null, [seasonSlug]);
+  } = useAsyncData(
+    () => (seasonSlug ? seasonQueries.get(seasonSlug) : seasonQueries.getFeatured()),
+    null,
+    [seasonSlug]
+  );
   const { data: seasons } = useAsyncData(seasonQueries.list, [], []);
   const { data: fetchedEvent, loading: eventLoading } = useAsyncData(
     () => (eventSlug ? seasonQueries.getEvent(seasonSlug, eventSlug) : Promise.resolve(null)),
@@ -111,7 +116,9 @@ export default function SeasonPage() {
       <Seo
         title={`${selectedEvent && eventSlug ? `${selectedEvent.title} · ` : ''}${season.title}`}
         description={selectedEvent && eventSlug ? selectedEvent.summary : season.summary}
-        path={`/seasons/${season.slug}${eventSlug ? `/${eventSlug}` : ''}`}
+        path={
+          eventSlug ? appRoutes.seasonEvent(season.slug, eventSlug) : appRoutes.season(season.slug)
+        }
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
@@ -141,7 +148,7 @@ export default function SeasonPage() {
             value={season.slug}
             variant="standard"
             ariaLabel="Olimpiada mavsumini tanlash"
-            onChange={(slug) => navigate(`/seasons/${slug}`)}
+            onChange={(slug) => navigate(appRoutes.season(slug))}
           />
         </Stack>
 
@@ -245,7 +252,7 @@ export default function SeasonPage() {
       <Drawer
         anchor="bottom"
         open={mobile && Boolean(eventSlug && selectedEvent)}
-        onClose={() => navigate(`/seasons/${season.slug}`)}
+        onClose={() => navigate(appRoutes.season(season.slug))}
         slotProps={{
           paper: {
             sx: {
@@ -271,7 +278,7 @@ export default function SeasonPage() {
           />
           <IconButton
             aria-label="Tafsilotlarni yopish"
-            onClick={() => navigate(`/seasons/${season.slug}`)}
+            onClick={() => navigate(appRoutes.season(season.slug))}
           >
             <UiIcon icon="solar:close-circle-linear" width={22} />
           </IconButton>

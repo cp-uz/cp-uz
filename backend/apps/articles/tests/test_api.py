@@ -62,7 +62,7 @@ class KnowledgeApiTests(TestCase):
         item = response.data["results"][0]
         self.assertEqual(item["status"], Article.Status.DRAFT)
         self.assertEqual(item["visibility"], Article.Visibility.PUBLIC)
-        self.assertEqual(item["canonical_url"], "/algoritmlar/algebra/binary-exp/")
+        self.assertEqual(item["canonical_url"], "/algo/algebra/binary-exp/")
 
         detail = self.client.get("/api/v1/articles/algebra--binary-exp/")
         self.assertEqual(detail.status_code, 200)
@@ -153,7 +153,7 @@ class SeoStatsAndHealthTests(TestCase):
     def test_sitemap_robots_and_health(self):
         sitemap = self.client.get("/sitemap.xml")
         self.assertEqual(sitemap.status_code, 200)
-        self.assertContains(sitemap, "/algoritmlar/graph/depth-first-search/")
+        self.assertContains(sitemap, "/algo/graph/depth-first-search/")
 
         robots = self.client.get("/robots.txt")
         self.assertEqual(robots.status_code, 200)

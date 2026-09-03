@@ -1,5 +1,6 @@
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -48,7 +49,7 @@ export default function NotFoundPage() {
             >
               Bosh sahifaga
             </Button>
-            <Button component={RouterLink} to="/algoritmlar" color="inherit">
+            <Button component={RouterLink} to={appRoutes.algorithms} color="inherit">
               Algoritmlarni ko‘rish
             </Button>
           </Stack>

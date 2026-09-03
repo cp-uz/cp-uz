@@ -1,5 +1,6 @@
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useLocation } from 'react-router';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
@@ -64,7 +65,7 @@ export default function GlossaryPage() {
       <Seo
         title="Algoritmik atamalar lug‘ati"
         description="Sport dasturlash va algoritmlardagi atamalarning ravon o‘zbekcha izohlari."
-        path="/lugat"
+        path={appRoutes.dictionary}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>

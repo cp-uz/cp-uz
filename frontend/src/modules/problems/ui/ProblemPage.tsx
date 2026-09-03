@@ -2,6 +2,7 @@ import type { ProblemLink, ProblemDetail } from '../domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { formatUzbekDate } from 'shared/lib/i18n';
 import { useMemo, useState, useEffect } from 'react';
@@ -32,7 +33,7 @@ import { PdfStatement } from './PdfStatement';
 import { problemQueries } from '../application';
 
 function problemPath(problem: ProblemDetail, slug: string) {
-  return `/masalalar/${problem.season.slug}/${problem.event.slug}/${slug}`;
+  return appRoutes.task(problem.season.slug, problem.event.slug, slug);
 }
 
 function formatEventDate(event: ProblemDetail['event']) {
@@ -106,7 +107,7 @@ function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
         <Tooltip title="Mavsum sahifasini ochish">
           <Button
             component={RouterLink}
-            to={`/seasons/${problem.season.slug}/${problem.event.slug}`}
+            to={appRoutes.seasonEvent(problem.season.slug, problem.event.slug)}
             color="inherit"
             aria-label="Mavsumdagi event tafsilotlarini ochish"
             sx={{ minWidth: 40, p: 1 }}
@@ -217,7 +218,7 @@ export default function ProblemPage() {
     if (problemSlug || !eventDetail) return;
     const first = eventDetail.sets.flatMap((set) => set.problems)[0];
     if (first) {
-      navigate(`/masalalar/${seasonSlug}/${eventSlug}/${first.slug}`, { replace: true });
+      navigate(appRoutes.task(seasonSlug, eventSlug, first.slug), { replace: true });
     }
   }, [eventDetail, eventSlug, navigate, problemSlug, seasonSlug]);
 
@@ -248,7 +249,7 @@ export default function ProblemPage() {
     return (
       <Container maxWidth="md" sx={{ py: { xs: 8, md: 12 } }}>
         <Alert severity="error">Masala topilmadi yoki uni yuklab bo‘lmadi.</Alert>
-        <Button component={RouterLink} to="/masalalar" sx={{ mt: 2 }}>
+        <Button component={RouterLink} to={appRoutes.tasks} sx={{ mt: 2 }}>
           Masalalar katalogiga qaytish
         </Button>
       </Container>
@@ -264,7 +265,7 @@ export default function ProblemPage() {
         <Seo
           title={`${displayTitle} · ${problem.event.shortTitle || problem.event.title}`}
           description={`${problem.event.shortTitle || problem.event.title}: ${problem.title} masalasi.`}
-          path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
+          path={appRoutes.task(problem.season.slug, problem.event.slug, problem.slug)}
         />
         <GlobalStyles
           styles={{
@@ -363,7 +364,7 @@ export default function ProblemPage() {
       <Seo
         title={`${displayTitle} · ${problem.event.shortTitle || problem.event.title}`}
         description={`${problem.season.title} ${problem.problemSet.title}: ${problem.title} masalasining o‘zbekcha sharti.`}
-        path={`/masalalar/${problem.season.slug}/${problem.event.slug}/${problem.slug}`}
+        path={appRoutes.task(problem.season.slug, problem.event.slug, problem.slug)}
       />
       <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
         <Stack
@@ -374,12 +375,12 @@ export default function ProblemPage() {
           sx={{ mb: 3 }}
         >
           <Breadcrumbs>
-            <Link component={RouterLink} to="/masalalar" color="inherit" underline="hover">
+            <Link component={RouterLink} to={appRoutes.tasks} color="inherit" underline="hover">
               Masalalar
             </Link>
             <Link
               component={RouterLink}
-              to={`/masalalar/${problem.season.slug}/${problem.event.slug}`}
+              to={appRoutes.taskEvent(problem.season.slug, problem.event.slug)}
               color="inherit"
               underline="hover"
             >

@@ -1,6 +1,7 @@
 import { Seo } from 'shared/ui/Seo';
 import { useMemo, useState } from 'react';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 import { ArticleCard } from 'modules/learning/ui/shared';
@@ -44,7 +45,7 @@ export default function BookmarksPage() {
       <Seo
         title="Saqlangan maqolalar"
         description="Keyinroq o‘qish uchun saqlagan algoritm darsliklaringiz."
-        path="/saqlanganlar"
+        path={appRoutes.saved}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
@@ -144,7 +145,7 @@ export default function BookmarksPage() {
             ) : (
               <Button
                 component={RouterLink}
-                to="/algoritmlar"
+                to={appRoutes.algorithms}
                 variant="contained"
                 endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
                 sx={{ mt: 3 }}

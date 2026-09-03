@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 
@@ -145,7 +146,7 @@ export default function ProblemCatalogPage() {
       <Seo
         title="Olimpiada masalalari"
         description="Olimpiada mavsumi, musobaqa va bosqichlar bo‘yicha o‘zbekcha masalalar katalogi."
-        path="/masalalar"
+        path={appRoutes.tasks}
       />
       <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Box sx={{ maxWidth: 1040 }}>
@@ -251,8 +252,8 @@ export default function ProblemCatalogPage() {
                             {sets.map((set) => {
                               const firstProblem = set.problems[0];
                               const setPath = firstProblem
-                                ? `/masalalar/${season.slug}/${event.slug}/${firstProblem.slug}`
-                                : `/masalalar/${season.slug}/${event.slug}`;
+                                ? appRoutes.task(season.slug, event.slug, firstProblem.slug)
+                                : appRoutes.taskEvent(season.slug, event.slug);
 
                               return (
                                 <TreeItem

@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import { useState } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { BrandLogo } from 'shared/ui/BrandLogo';
 import { useNavigate, Link as RouterLink } from 'react-router';
 import { migrateLocalEngagement } from 'modules/engagement/application';
@@ -31,7 +32,7 @@ export default function SignInPage() {
   const [guestResumeFailed, setGuestResumeFailed] = useState(false);
   const existingSession = useAuthSession();
 
-  const complete = () => navigate('/profil', { replace: true });
+  const complete = () => navigate(appRoutes.profile, { replace: true });
 
   const login = async () => {
     setError('');
@@ -96,7 +97,7 @@ export default function SignInPage() {
       <Seo
         title="Kirish"
         description="cp.uz o‘qish profilingizga kiring yoki mehmon sessiyasini davom ettiring."
-        path="/kirish"
+        path={appRoutes.login}
       />
       <Box
         id="main-content"

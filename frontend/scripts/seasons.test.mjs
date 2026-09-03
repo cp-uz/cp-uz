@@ -292,15 +292,15 @@ test('global navigation promotes the current season and moves glossary beside sa
   const navItemsSource = source.match(/const navItems = \[([\s\S]*?)\];/)?.[1] || '';
   const utilityItemsSource = source.match(/const utilityItems = \[([\s\S]*?)\];/)?.[1] || '';
 
-  assert.match(navItemsSource, /to: '\/seasons\/2026-2027'/);
+  assert.match(navItemsSource, /to: appRoutes\.seasons/);
   assert.match(navItemsSource, /label: 'Olimpiada mavsumi'/);
   assert.ok(
-    navItemsSource.indexOf("to: '/seasons/2026-2027'") <
-      navItemsSource.indexOf("to: '/algoritmlar'")
+    navItemsSource.indexOf('to: appRoutes.seasons') <
+      navItemsSource.indexOf('to: appRoutes.algorithms')
   );
-  assert.doesNotMatch(navItemsSource, /to: '\/lugat'/);
+  assert.doesNotMatch(navItemsSource, /to: appRoutes\.dictionary/);
   assert.match(utilityItemsSource, /glossaryItem/);
-  assert.match(source, /<Tooltip title="Lug‘at">[\s\S]*?to="\/lugat"/);
+  assert.match(source, /<Tooltip title="Lug‘at">[\s\S]*?to=\{appRoutes\.dictionary\}/);
   assert.ok(
     source.indexOf('<Tooltip title="Lug‘at">') < source.indexOf('<Tooltip title="Saqlanganlar">')
   );

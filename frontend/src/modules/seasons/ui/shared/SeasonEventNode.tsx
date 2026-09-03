@@ -1,6 +1,7 @@
 import type { SeasonEvent, SeasonRoute } from '../../domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -61,7 +62,7 @@ export function SeasonEventNode({
     >
       <ButtonBase
         component={RouterLink}
-        to={`/seasons/${seasonSlug}/${event.slug}`}
+        to={appRoutes.seasonEvent(seasonSlug, event.slug)}
         preventScrollReset
         aria-label={`${event.title}. ${event.dateLabel || EVENT_STATUS_LABELS[event.status]}`}
         aria-current={selected ? 'step' : undefined}

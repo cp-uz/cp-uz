@@ -1,6 +1,7 @@
 import type { SeasonParticipant } from '../../domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 
@@ -201,7 +202,7 @@ function ParticipantContent({
             <Box
               key={result.id}
               component={RouterLink}
-              to={`/seasons/${seasonSlug}/${result.eventSlug}`}
+              to={appRoutes.seasonEvent(seasonSlug, result.eventSlug)}
               onClick={(event) => event.stopPropagation()}
               sx={{
                 py: 1.5,

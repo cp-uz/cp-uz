@@ -1,5 +1,7 @@
 import type { LearningArticle } from '../entities';
 
+import { appRoutes } from 'shared/config';
+
 import { getArticlePath } from './article-routing';
 
 const SCHEME = /^[a-z][a-z\d+.-]*:/i;
@@ -51,7 +53,7 @@ export function resolveArticleHref(
   const filename = parts.pop() ?? 'index.md';
   const category = parts[0] || 'misc';
   const slug = filename.replace(/\.md$/i, '');
-  return `/algoritmlar/${category}/${slug}${query}${hash}`;
+  return `${appRoutes.algorithm(category, slug)}${query}${hash}`;
 }
 
 export function resolveContentAssetHref(

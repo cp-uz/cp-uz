@@ -3,6 +3,7 @@ from django.contrib.sitemaps import Sitemap
 from apps.articles.models import Article, Category
 from apps.problems.models import Problem
 from apps.seasons.models import Event, PublicationStatus, Season
+from config.frontend_routes import DICTIONARY_ROOT, algorithm_path, season_path, task_path
 
 
 class ArticleSitemap(Sitemap):
@@ -15,7 +16,7 @@ class ArticleSitemap(Sitemap):
 
     def location(self, article):
         path = article.canonical_path or article.slug
-        return f"/algoritmlar/{path.strip('/')}/"
+        return algorithm_path(path)
 
     def lastmod(self, article):
         return article.updated_at
@@ -30,7 +31,7 @@ class CategorySitemap(Sitemap):
         return Category.objects.filter(is_active=True).only("slug", "updated_at")
 
     def location(self, category):
-        return f"/algoritmlar/{category.slug}/"
+        return algorithm_path(category.slug)
 
     def lastmod(self, category):
         return category.updated_at
@@ -45,7 +46,7 @@ class SeasonSitemap(Sitemap):
         return Season.objects.published().only("slug", "updated_at")
 
     def location(self, season):
-        return f"/seasons/{season.slug}/"
+        return season_path(season.slug)
 
     def lastmod(self, season):
         return season.updated_at
@@ -65,7 +66,7 @@ class SeasonEventSitemap(Sitemap):
         )
 
     def location(self, event):
-        return f"/seasons/{event.season.slug}/{event.slug}/"
+        return season_path(event.season.slug, event.slug)
 
     def lastmod(self, event):
         return event.updated_at
@@ -95,7 +96,7 @@ class ProblemSitemap(Sitemap):
 
     def location(self, problem):
         event = problem.problem_set.event
-        return f"/masalalar/{event.season.slug}/{event.slug}/{problem.slug}/"
+        return task_path(event.season.slug, event.slug, problem.slug)
 
     def lastmod(self, problem):
         return problem.updated_at
@@ -107,9 +108,9 @@ class StaticSitemap(Sitemap):
 
     pages = {
         "home": ("/", 1.0),
-        "articles": ("/algoritmlar/", 0.9),
-        "problems": ("/masalalar/", 0.85),
-        "glossary": ("/lugat/", 0.6),
+        "articles": (algorithm_path(), 0.9),
+        "problems": (task_path(), 0.85),
+        "glossary": (f"{DICTIONARY_ROOT}/", 0.6),
         "about": ("/biz-haqimizda/", 0.4),
     }
 

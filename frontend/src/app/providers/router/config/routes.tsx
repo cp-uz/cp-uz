@@ -3,6 +3,7 @@ import type { RouteObject } from 'react-router';
 import { Outlet } from 'react-router';
 import { lazy, Suspense } from 'react';
 import { LearningLayout } from 'app/layouts/LearningLayout';
+import { appRoutes, appRoutePatterns } from 'shared/config';
 
 import NotFoundPage from '../ui/NotFoundPage';
 
@@ -17,9 +18,6 @@ const RoadmapPage = lazy(() =>
 );
 const ArticlePage = lazy(() =>
   import('modules/learning').then((module) => ({ default: module.ArticlePage }))
-);
-const LegacyRedirectPage = lazy(() =>
-  import('modules/learning').then((module) => ({ default: module.LegacyRedirectPage }))
 );
 const GlossaryPage = lazy(() =>
   import('modules/learning').then((module) => ({ default: module.GlossaryPage }))
@@ -53,7 +51,7 @@ function SuspenseOutlet() {
 
 export const routesSection: RouteObject[] = [
   {
-    path: '/kirish',
+    path: appRoutes.login,
     element: (
       <Suspense fallback={null}>
         <SignInPage />
@@ -67,20 +65,20 @@ export const routesSection: RouteObject[] = [
       </LearningLayout>
     ),
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/algoritmlar', element: <CatalogPage /> },
-      { path: '/algoritmlar/:category/:slug', element: <ArticlePage /> },
-      { path: '/masalalar', element: <ProblemCatalogPage /> },
-      { path: '/masalalar/:seasonSlug/:eventSlug', element: <ProblemPage /> },
-      { path: '/masalalar/:seasonSlug/:eventSlug/:problemSlug', element: <ProblemPage /> },
-      { path: '/yol-xaritasi', element: <RoadmapPage /> },
-      { path: '/maqola/:slug', element: <ArticlePage /> },
-      { path: '/algo/:category/:legacySlug', element: <LegacyRedirectPage /> },
-      { path: '/lugat', element: <GlossaryPage /> },
-      { path: '/saqlanganlar', element: <BookmarksPage /> },
-      { path: '/profil', element: <ProfilePage /> },
-      { path: '/seasons/:seasonSlug', element: <SeasonPage /> },
-      { path: '/seasons/:seasonSlug/:eventSlug', element: <SeasonPage /> },
+      { path: appRoutes.home, element: <HomePage /> },
+      { path: appRoutes.algorithms, element: <CatalogPage /> },
+      { path: appRoutePatterns.algorithm, element: <ArticlePage /> },
+      { path: appRoutes.tasks, element: <ProblemCatalogPage /> },
+      { path: appRoutePatterns.taskEvent, element: <ProblemPage /> },
+      { path: appRoutePatterns.task, element: <ProblemPage /> },
+      { path: appRoutes.roadmap, element: <RoadmapPage /> },
+      { path: appRoutePatterns.article, element: <ArticlePage /> },
+      { path: appRoutes.dictionary, element: <GlossaryPage /> },
+      { path: appRoutes.saved, element: <BookmarksPage /> },
+      { path: appRoutes.profile, element: <ProfilePage /> },
+      { path: appRoutes.seasons, element: <SeasonPage /> },
+      { path: appRoutePatterns.season, element: <SeasonPage /> },
+      { path: appRoutePatterns.seasonEvent, element: <SeasonPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

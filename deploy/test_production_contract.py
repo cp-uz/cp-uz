@@ -182,13 +182,24 @@ class ComposeContractTests(unittest.TestCase):
             "little-efnesh-and-monitor/statement.pdf",
             release,
         )
-        self.assertIn("/masalalar/2025-2026/ioi-2026-saralash-4/temir-rom", release)
-        self.assertIn("/masalalar/2025-2026/ioi-2026/ball-machine", release)
-        self.assertIn("/masalalar/2025-2026/egoi-2026/ferriswheel", release)
+        self.assertIn("/tasks/2025-2026/ioi-2026-saralash-4/temir-rom", release)
+        for route in (
+            "/algo",
+            "/tasks",
+            "/seasons",
+            "/saved",
+            "/roadmap",
+            "/dict",
+            "/login",
+            "/profile",
+        ):
+            self.assertIn(route, release)
+        self.assertIn("/tasks/2025-2026/ioi-2026/ball-machine", release)
+        self.assertIn("/tasks/2025-2026/egoi-2026/ferriswheel", release)
         self.assertIn(
-            "/masalalar/2025-2026/izho-2026/little-efnesh-and-monitor", release
+            "/tasks/2025-2026/izho-2026/little-efnesh-and-monitor", release
         )
-        self.assertIn("/masalalar/2025-2026/apio-2026/apio-bike", release)
+        self.assertIn("/tasks/2025-2026/apio-2026/apio-bike", release)
 
     def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
         release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")

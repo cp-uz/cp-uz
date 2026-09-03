@@ -1,6 +1,7 @@
 import type { SeasonEvent, SeasonRoute } from '../../domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 import { useMemo, useState, useEffect } from 'react';
@@ -189,7 +190,7 @@ function PreviewEventLink({
     return (
       <ButtonBase
         component={RouterLink}
-        to={`/seasons/${seasonSlug}/${event.slug}`}
+        to={appRoutes.seasonEvent(seasonSlug, event.slug)}
         preventScrollReset
         aria-label={`${event.title}. ${compactDate}. ${stateLabel}`}
         sx={(theme) => ({
@@ -285,7 +286,7 @@ function PreviewEventLink({
   return (
     <ButtonBase
       component={RouterLink}
-      to={`/seasons/${seasonSlug}/${event.slug}`}
+      to={appRoutes.seasonEvent(seasonSlug, event.slug)}
       preventScrollReset
       aria-label={`${event.title}. ${compactDate}. ${stateLabel}`}
       sx={(theme) => ({
@@ -517,7 +518,7 @@ export function SeasonPreview() {
             {season && (
               <Button
                 component={RouterLink}
-                to={`/seasons/${season.slug}`}
+                to={appRoutes.season(season.slug)}
                 endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
                 sx={{ whiteSpace: 'nowrap' }}
               >

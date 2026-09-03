@@ -274,13 +274,20 @@ SMOKE_ENDPOINTS=(
   /api/v1/seasons/current/
   /api/v1/problems/
   /api/v1/problems/2025-2026/izho-2026/little-efnesh-and-monitor/statement.pdf
+  /algo
+  /tasks
+  /seasons
+  /saved
+  /roadmap
+  /dict
+  /login
+  /profile
   /seasons/2026-2027
-  /masalalar
-  /masalalar/2025-2026/ioi-2026-saralash-4/temir-rom
-  /masalalar/2025-2026/ioi-2026/ball-machine
-  /masalalar/2025-2026/egoi-2026/ferriswheel
-  /masalalar/2025-2026/izho-2026/little-efnesh-and-monitor
-  /masalalar/2025-2026/apio-2026/apio-bike
+  /tasks/2025-2026/ioi-2026-saralash-4/temir-rom
+  /tasks/2025-2026/ioi-2026/ball-machine
+  /tasks/2025-2026/egoi-2026/ferriswheel
+  /tasks/2025-2026/izho-2026/little-efnesh-and-monitor
+  /tasks/2025-2026/apio-2026/apio-bike
   /boot.css
   /loader-facts.js
   /assets/brand/cpuz-logo.png

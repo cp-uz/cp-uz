@@ -1,5 +1,6 @@
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
 import { useSearchParams, Link as RouterLink } from 'react-router';
@@ -79,7 +80,7 @@ export default function CatalogPage() {
       <Seo
         title="Algoritmlar kutubxonasi"
         description="O‘zbek tilidagi algoritmlar, ma’lumotlar tuzilmalari va sport dasturlash darsliklari."
-        path="/algoritmlar"
+        path={appRoutes.algorithms}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
@@ -275,7 +276,7 @@ export default function CatalogPage() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Qayerdan boshlashni bilmaysizmi?
             </Typography>
-            <Button component={RouterLink} to="/yol-xaritasi" size="small" sx={{ mt: 1, px: 0 }}>
+            <Button component={RouterLink} to={appRoutes.roadmap} size="small" sx={{ mt: 1, px: 0 }}>
               Yo‘l xaritasini ochish
             </Button>
           </Box>

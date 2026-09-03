@@ -5,6 +5,7 @@ from django.db import models
 from rest_framework import serializers
 
 from apps.accounts.serializers import UserSummarySerializer
+from config.frontend_routes import algorithm_path
 
 from .models import (
     Article,
@@ -112,7 +113,7 @@ class ArticleLinkSerializer(serializers.ModelSerializer):
 
     def get_canonical_url(self, obj) -> str:
         path = obj.canonical_path or obj.slug
-        return f"/algoritmlar/{path.strip('/')}/"
+        return algorithm_path(path)
 
 
 class PrerequisiteSerializer(serializers.ModelSerializer):
@@ -155,7 +156,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
     def get_canonical_url(self, obj) -> str:
         path = obj.canonical_path or obj.slug
-        return f"/algoritmlar/{path.strip('/')}/"
+        return algorithm_path(path)
 
     def get_asset_base_url(self, obj) -> str:
         directory = str(PurePosixPath(obj.content_path).parent)

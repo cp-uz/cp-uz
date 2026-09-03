@@ -1,5 +1,6 @@
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { formatUzbekDate } from 'shared/lib/i18n';
 import { useAuthSession } from 'modules/auth/application';
@@ -410,7 +411,12 @@ export default function ArticlePage() {
           <Link component={RouterLink} to="/" underline="hover" color="text.secondary">
             Bosh sahifa
           </Link>
-          <Link component={RouterLink} to="/algoritmlar" underline="hover" color="text.secondary">
+          <Link
+            component={RouterLink}
+            to={appRoutes.algorithms}
+            underline="hover"
+            color="text.secondary"
+          >
             Algoritmlar
           </Link>
           <Typography variant="body2" color="text.primary">
@@ -599,7 +605,7 @@ export default function ArticlePage() {
                 <Link
                   key={item}
                   component={RouterLink}
-                  to={`/algoritmlar?q=${encodeURIComponent(item)}`}
+                  to={appRoutes.algorithmSearch(item)}
                   variant="body2"
                   underline="hover"
                 >

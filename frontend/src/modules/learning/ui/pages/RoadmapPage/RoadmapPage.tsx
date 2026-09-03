@@ -2,6 +2,7 @@ import type { LearningArticle } from '../../../domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 import { getAuthSession } from 'modules/auth/application';
@@ -73,7 +74,7 @@ export default function RoadmapPage() {
       <Seo
         title="O‘rganish yo‘l xaritasi"
         description="Sport dasturlashni poydevordan yuqori darajagacha tizimli o‘rganish yo‘l xaritasi."
-        path="/yol-xaritasi"
+        path={appRoutes.roadmap}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
@@ -94,7 +95,7 @@ export default function RoadmapPage() {
             >
               O‘rganishni boshlash
             </Button>
-            <Button component={RouterLink} to="/algoritmlar" color="inherit">
+            <Button component={RouterLink} to={appRoutes.algorithms} color="inherit">
               Mavzular kutubxonasi
             </Button>
           </Stack>

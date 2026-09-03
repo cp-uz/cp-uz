@@ -137,7 +137,7 @@ class ProblemCatalogTests(TestCase):
 
         self.assertContains(
             response,
-            "/masalalar/2025-2026/ioi-2026-saralash-4/namuna/",
+            "/tasks/2025-2026/ioi-2026-saralash-4/namuna/",
         )
 
 

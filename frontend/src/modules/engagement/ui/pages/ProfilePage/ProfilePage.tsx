@@ -2,6 +2,7 @@ import type { LearningArticle } from 'modules/learning/domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
+import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { useState, useEffect } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router';
@@ -153,7 +154,7 @@ export default function ProfilePage() {
       <Seo
         title="Mening profilim"
         description="O‘qish holati, yakunlangan darsliklar va saqlangan maqolalar."
-        path="/profil"
+        path={appRoutes.profile}
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
@@ -177,7 +178,7 @@ export default function ProfilePage() {
           </Box>
           <Button
             component={RouterLink}
-            to="/kirish"
+            to={appRoutes.login}
             color="inherit"
             startIcon={
               <UiIcon
@@ -248,7 +249,7 @@ export default function ProfilePage() {
             </Stack>
             <Button
               component={RouterLink}
-              to="/yol-xaritasi"
+              to={appRoutes.roadmap}
               endIcon={<UiIcon icon="solar:arrow-right-linear" width={17} />}
               sx={{ mt: 1.5 }}
             >
@@ -288,7 +289,7 @@ export default function ProfilePage() {
                 <Typography variant="body2" sx={{ mt: 0.75, color: 'text.secondary' }}>
                   Darslikni o‘qib bo‘lgach, “Yakunlandi” tugmasini bosing.
                 </Typography>
-                <Button component={RouterLink} to="/yol-xaritasi" sx={{ mt: 1.5, px: 0 }}>
+                <Button component={RouterLink} to={appRoutes.roadmap} sx={{ mt: 1.5, px: 0 }}>
                   Birinchi bosqichni ko‘rish
                 </Button>
               </Box>
@@ -309,7 +310,7 @@ export default function ProfilePage() {
                 <ReadingList items={bookmarkedArticles.slice(0, 6)} />
                 <Button
                   component={RouterLink}
-                  to="/saqlanganlar"
+                  to={appRoutes.saved}
                   endIcon={<UiIcon icon="solar:arrow-right-linear" width={17} />}
                   sx={{ mt: 2, px: 0 }}
                 >
@@ -327,7 +328,7 @@ export default function ProfilePage() {
                 <Typography variant="body2" sx={{ mt: 0.75, color: 'text.secondary' }}>
                   Kerakli darslik yonidagi xatcho‘p belgisini bosing.
                 </Typography>
-                <Button component={RouterLink} to="/algoritmlar" sx={{ mt: 1.5, px: 0 }}>
+                <Button component={RouterLink} to={appRoutes.algorithms} sx={{ mt: 1.5, px: 0 }}>
                   Kutubxonani ochish
                 </Button>
               </Box>
