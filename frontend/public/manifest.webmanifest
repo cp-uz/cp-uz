@@ -1,0 +1,20 @@
+{
+  "name": "cp.uz — sport dasturlash bilim ombori",
+  "short_name": "cp.uz",
+  "description": "Sport dasturlashni o‘zbek tilida tizimli, sodda va chuqur o‘rganing.",
+  "lang": "uz",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#036fdc",
+  "icons": [
+    {
+      "src": "/assets/brand/cpuz-logo.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

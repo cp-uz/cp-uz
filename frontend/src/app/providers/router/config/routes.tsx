@@ -1,43 +1,44 @@
 import type { RouteObject } from 'react-router';
 
+import { Suspense } from 'react';
 import { Outlet } from 'react-router';
-import { lazy, Suspense } from 'react';
+import { lazyWithReload } from 'shared/pwa';
 import { LearningLayout } from 'app/layouts/LearningLayout';
 import { appRoutes, appRoutePatterns } from 'shared/config';
 
 import NotFoundPage from '../ui/NotFoundPage';
 
-const HomePage = lazy(() =>
+const HomePage = lazyWithReload(() =>
   import('modules/landing').then((module) => ({ default: module.HomePage }))
 );
-const CatalogPage = lazy(() =>
+const CatalogPage = lazyWithReload(() =>
   import('modules/learning').then((module) => ({ default: module.CatalogPage }))
 );
-const RoadmapPage = lazy(() =>
+const RoadmapPage = lazyWithReload(() =>
   import('modules/learning').then((module) => ({ default: module.RoadmapPage }))
 );
-const ArticlePage = lazy(() =>
+const ArticlePage = lazyWithReload(() =>
   import('modules/learning').then((module) => ({ default: module.ArticlePage }))
 );
-const GlossaryPage = lazy(() =>
+const GlossaryPage = lazyWithReload(() =>
   import('modules/learning').then((module) => ({ default: module.GlossaryPage }))
 );
-const BookmarksPage = lazy(() =>
+const BookmarksPage = lazyWithReload(() =>
   import('modules/engagement').then((module) => ({ default: module.BookmarksPage }))
 );
-const ProfilePage = lazy(() =>
+const ProfilePage = lazyWithReload(() =>
   import('modules/engagement').then((module) => ({ default: module.ProfilePage }))
 );
-const SignInPage = lazy(() =>
+const SignInPage = lazyWithReload(() =>
   import('modules/auth').then((module) => ({ default: module.SignInPage }))
 );
-const SeasonPage = lazy(() =>
+const SeasonPage = lazyWithReload(() =>
   import('modules/seasons').then((module) => ({ default: module.SeasonPage }))
 );
-const ProblemCatalogPage = lazy(() =>
+const ProblemCatalogPage = lazyWithReload(() =>
   import('modules/problems').then((module) => ({ default: module.ProblemCatalogPage }))
 );
-const ProblemPage = lazy(() =>
+const ProblemPage = lazyWithReload(() =>
   import('modules/problems').then((module) => ({ default: module.ProblemPage }))
 );
 

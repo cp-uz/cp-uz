@@ -36,7 +36,7 @@ export function SeasonSelector({
         <Select
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          disableUnderline={variant === 'standard'}
+          {...(variant === 'standard' ? { disableUnderline: true } : {})}
           inputProps={{ 'aria-label': ariaLabel }}
           sx={
             variant === 'standard'
