@@ -127,7 +127,11 @@ def clean_pdf_text(
 
 def dump(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def write_catalog(output_root: Path) -> None:
@@ -166,7 +170,9 @@ def write_catalog(output_root: Path) -> None:
             problem_root = set_root / task.slug
             problem_root.mkdir(parents=True, exist_ok=True)
             (problem_root / "statement.uz.md").write_text(
-                clean_pdf_text(task, fetch(pdf_url)), encoding="utf-8"
+                clean_pdf_text(task, fetch(pdf_url)),
+                encoding="utf-8",
+                newline="\n",
             )
             dump(
                 problem_root / "problem.json",

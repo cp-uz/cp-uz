@@ -65,7 +65,11 @@ def parse_limits(payload: bytes) -> tuple[int | None, int | None]:
 
 def dump(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def practice_url(task: Task) -> str:
@@ -118,6 +122,7 @@ def write_catalog(output_root: Path) -> None:
                     source_name="EGOI 2026 rasmiy repository’sidagi",
                 ),
                 encoding="utf-8",
+                newline="\n",
             )
             problem = {
                 "document_type": "problem",

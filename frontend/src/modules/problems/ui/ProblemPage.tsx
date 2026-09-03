@@ -1,4 +1,4 @@
-import type { ProblemDetail } from '../domain';
+import type { ProblemLink, ProblemDetail } from '../domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
@@ -35,6 +35,53 @@ function formatEventDate(event: ProblemDetail['event']) {
   const start = formatUzbekDate(event.startDate);
   if (!event.endDate || event.endDate === event.startDate) return start;
   return `${start} — ${formatUzbekDate(event.endDate)}`;
+}
+
+function comparableUrl(value: string) {
+  try {
+    const url = new URL(value);
+    url.hash = '';
+    url.searchParams.sort();
+    url.pathname = url.pathname.replace(/\/+$/, '') || '/';
+    return url.toString();
+  } catch {
+    return value.replace(/\/+$/, '');
+  }
+}
+
+function problemLinkLogo(link: ProblemLink, eventSlug: string) {
+  const hostname = (() => {
+    try {
+      return new URL(link.url).hostname.toLowerCase();
+    } catch {
+      return '';
+    }
+  })();
+
+  if (hostname === 'kep.uz' || hostname.endsWith('.kep.uz')) {
+    return '/assets/platforms/kepuz.svg';
+  }
+  if (hostname.includes('egoi') || eventSlug.startsWith('egoi-')) {
+    return '/assets/seasons/egoi.png';
+  }
+  if (hostname.includes('ioinformatics') || eventSlug.startsWith('ioi-')) {
+    return '/assets/seasons/ioi.png';
+  }
+  return undefined;
+}
+
+function ProblemLinkLogo({ link, eventSlug }: { link: ProblemLink; eventSlug: string }) {
+  const src = problemLinkLogo(link, eventSlug);
+  if (!src) return <UiIcon icon="solar:link-circle-linear" width={18} />;
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt=""
+      aria-hidden="true"
+      sx={{ width: 18, height: 18, objectFit: 'contain' }}
+    />
+  );
 }
 
 function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
@@ -136,10 +183,7 @@ export default function ProblemPage() {
     loading: eventLoading,
     error: eventError,
   } = useAsyncData(
-    () =>
-      problemSlug
-        ? Promise.resolve(null)
-        : problemQueries.event(seasonSlug, eventSlug),
+    () => (problemSlug ? Promise.resolve(null) : problemQueries.event(seasonSlug, eventSlug)),
     null,
     [eventSlug, problemSlug, seasonSlug]
   );
@@ -179,7 +223,7 @@ export default function ProblemPage() {
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Skeleton width={260} />
         <Skeleton width="min(560px, 90vw)" height={70} />
-        <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { md: '1fr 330px' } }}>
+        <Box sx={{ display: 'grid', gap: 4, mt: 4, gridTemplateColumns: { md: '1fr 300px' } }}>
           <Skeleton variant="rounded" height={620} />
           <Skeleton variant="rounded" height={520} />
         </Box>
@@ -198,8 +242,11 @@ export default function ProblemPage() {
     );
   }
 
-  const originalLinks = problem.links.filter((link) => link.kind === 'original');
   const practiceLinks = problem.links.filter((link) => link.kind === 'practice');
+  const practiceUrls = new Set(practiceLinks.map((link) => comparableUrl(link.url)));
+  const originalLinks = problem.links.filter(
+    (link) => link.kind === 'original' && !practiceUrls.has(comparableUrl(link.url))
+  );
 
   return (
     <>
@@ -227,9 +274,9 @@ export default function ProblemPage() {
         <Box
           sx={{
             display: 'grid',
-            gap: { xs: 3, lg: 5 },
+            gap: { xs: 3, md: 3, lg: 5 },
             alignItems: 'start',
-            gridTemplateColumns: { xs: 'minmax(0, 1fr)', lg: 'minmax(0, 1fr) 340px' },
+            gridTemplateColumns: { xs: 'minmax(0, 1fr)', md: 'minmax(0, 1fr) 300px' },
           }}
         >
           <Box component="main" sx={{ minWidth: 0 }}>
@@ -267,6 +314,7 @@ export default function ProblemPage() {
                   target="_blank"
                   rel="noreferrer"
                   variant="contained"
+                  startIcon={<ProblemLinkLogo link={link} eventSlug={problem.event.slug} />}
                   endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
                 >
                   {link.title}
@@ -280,6 +328,7 @@ export default function ProblemPage() {
                   target="_blank"
                   rel="noreferrer"
                   variant="outlined"
+                  startIcon={<ProblemLinkLogo link={link} eventSlug={problem.event.slug} />}
                   endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={17} />}
                 >
                   {link.title}
@@ -325,7 +374,9 @@ export default function ProblemPage() {
               variant="outlined"
               sx={{ mt: 4, p: { xs: 2.25, sm: 3.5, md: 5 }, borderRadius: 2 }}
             >
-              <RichMarkdown sourcePath={problem.sourcePath}>{problem.statementMarkdown}</RichMarkdown>
+              <RichMarkdown sourcePath={problem.sourcePath}>
+                {problem.statementMarkdown}
+              </RichMarkdown>
             </Paper>
 
             {(problem.attachments.length > 0 || problem.tags.length > 0) && (
@@ -391,10 +442,10 @@ export default function ProblemPage() {
             sx={{
               top: 88,
               p: 2.5,
-              order: { xs: -1, lg: 0 },
-              maxHeight: { lg: 'calc(100vh - 112px)' },
-              position: { lg: 'sticky' },
-              overflowY: { lg: 'auto' },
+              order: { xs: -1, md: 0 },
+              maxHeight: { md: 'calc(100vh - 112px)' },
+              position: { md: 'sticky' },
+              overflowY: { md: 'auto' },
               borderRadius: 2,
               scrollbarWidth: 'thin',
             }}

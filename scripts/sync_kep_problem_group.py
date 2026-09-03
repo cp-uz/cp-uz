@@ -201,6 +201,7 @@ def write_snapshot(root: Path):
             }
         ),
         encoding="utf-8",
+        newline="\n",
     )
 
     for day_order, (day_slug, day_title, problem_ids) in enumerate(TST_DAYS, start=1):
@@ -221,6 +222,7 @@ def write_snapshot(root: Path):
                 }
             ),
             encoding="utf-8",
+            newline="\n",
         )
 
         for problem_order, problem_id in enumerate(problem_ids, start=1):
@@ -282,10 +284,14 @@ def write_snapshot(root: Path):
                 "attachments": attachments,
             }
             (problem_root / "problem.json").write_text(
-                stable_json(problem_document), encoding="utf-8"
+                stable_json(problem_document),
+                encoding="utf-8",
+                newline="\n",
             )
             (problem_root / "statement.uz.md").write_text(
-                statement_markdown(payload), encoding="utf-8"
+                statement_markdown(payload),
+                encoding="utf-8",
+                newline="\n",
             )
 
 

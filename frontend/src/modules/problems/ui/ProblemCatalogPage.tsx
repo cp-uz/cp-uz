@@ -119,13 +119,19 @@ export default function ProblemCatalogPage() {
                 border: '1px solid',
                 borderColor: 'divider',
                 borderRadius: '12px !important',
+                bgcolor: 'background.neutral',
                 boxShadow: 'none',
                 '&::before': { display: 'none' },
               }}
             >
               <AccordionSummary
                 expandIcon={<UiIcon icon="solar:alt-arrow-down-linear" width={20} />}
-                sx={{ px: { xs: 2, sm: 3 }, py: 1.25 }}
+                sx={{
+                  px: { xs: 2, sm: 3 },
+                  py: 1.25,
+                  bgcolor: 'background.neutral',
+                  '&.Mui-expanded': { borderBottom: '1px solid', borderColor: 'divider' },
+                }}
               >
                 <Stack
                   direction={{ xs: 'column', sm: 'row' }}
@@ -155,7 +161,7 @@ export default function ProblemCatalogPage() {
                   </Box>
                 </Stack>
               </AccordionSummary>
-              <AccordionDetails sx={{ px: { xs: 2, sm: 3 }, pt: 0, pb: 3 }}>
+              <AccordionDetails sx={{ px: { xs: 2, sm: 3 }, pt: 2.5, pb: 3 }}>
                 {event.summary && (
                   <Typography variant="body2" sx={{ mb: 2.5, color: 'text.secondary' }}>
                     {event.summary}
@@ -206,6 +212,8 @@ export default function ProblemCatalogPage() {
                           textDecoration: 'none',
                           flexDirection: 'column',
                           bgcolor: 'background.paper',
+                          borderColor: 'divider',
+                          borderRadius: 1.5,
                           transition: (theme) =>
                             theme.transitions.create(['border-color', 'transform', 'box-shadow']),
                           '&:hover': {
