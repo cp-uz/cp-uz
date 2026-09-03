@@ -9,6 +9,7 @@ const prerenderedArticle = await readFile(
   path.join(process.cwd(), 'dist', 'algo', 'algebra', 'binary-exp', 'index.html'),
   'utf8'
 );
+const llmsText = await readFile(path.join(process.cwd(), 'dist', 'llms.txt'), 'utf8');
 
 assert.match(prerenderedArticle, /<title>Ikkilik darajaga oshirish — cp\.uz<\/title>/);
 assert.match(
@@ -16,6 +17,9 @@ assert.match(
   /<link rel="canonical" href="https:\/\/cp\.uz\/algo\/algebra\/binary-exp\/" \/>/
 );
 assert.match(prerenderedArticle, /"@type":"TechArticle"/);
+assert.match(llmsText, /^# cp\.uz$/m);
+assert.match(llmsText, /does not run online contests/);
+assert.match(llmsText, /does not maintain a participant rating or ranking system/);
 
 assert(
   !serviceWorkerSource.includes('__BUILD_HASH__'),
@@ -35,6 +39,8 @@ for (const requiredUrl of [
   '/manifest.webmanifest',
   '/boot.css',
   '/loader-facts.js',
+  '/llms.txt',
+  '/assets/brand/cpuz-logo-96.webp',
   '/assets/brand/cpuz-logo.png',
 ]) {
   assert(appShell.includes(requiredUrl), `${requiredUrl} offline keshga qo‘shilmagan.`);

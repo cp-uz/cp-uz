@@ -475,7 +475,13 @@ export function SeasonPreview() {
     <Box
       component="section"
       aria-labelledby="season-preview-title"
-      sx={{ py: { xs: 6, md: 7.5 }, borderTop: '1px solid', borderColor: 'divider' }}
+      sx={{
+        py: { xs: 6, md: 7.5 },
+        borderTop: '1px solid',
+        borderColor: 'divider',
+        contentVisibility: 'auto',
+        containIntrinsicSize: 'auto 560px',
+      }}
     >
       <Container maxWidth="xl">
         <Stack

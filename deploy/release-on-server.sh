@@ -296,7 +296,13 @@ SMOKE_ENDPOINTS=(
   /tasks/2025-2026/apio-2026/apio-bike
   /boot.css
   /loader-facts.js
+  /llms.txt
+  /assets/brand/cpuz-logo-96.webp
   /assets/brand/cpuz-logo.png
+  /assets/team/asadullo-ganiev.webp
+  /assets/team/dilshodbek-khujaev.webp
+  /assets/team/dilyorbek-valijanov.webp
+  /assets/team/ulugbek-abdimanabov.webp
   /assets/team/asadullo-ganiev.png
   /assets/team/dilshodbek-khujaev.png
   /assets/team/dilyorbek-valijanov.png

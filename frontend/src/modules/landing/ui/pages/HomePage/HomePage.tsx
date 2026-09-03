@@ -47,32 +47,32 @@ const teamMembers: readonly TeamMember[] = [
   {
     name: 'Asadullo Ganiev',
     role: 'Founder',
-    image: '/assets/team/asadullo-ganiev.png',
+    image: '/assets/team/asadullo-ganiev.webp',
   },
   {
     name: 'Dilshodbek Khujaev',
     role: 'Content maker & Coordinator',
-    image: '/assets/team/dilshodbek-khujaev.png',
+    image: '/assets/team/dilshodbek-khujaev.webp',
   },
   {
     name: 'Nazarbek Baltabaev',
     role: 'Developer',
-    image: '/assets/team/nazarbek-baltabaev.jpg',
+    image: '/assets/team/nazarbek-baltabaev.webp',
   },
   {
     name: 'Davlatbek Mirakilov',
     role: 'Content maker, Developer',
-    image: '/assets/team/davlatbek-mirakilov.jpg',
+    image: '/assets/team/davlatbek-mirakilov.webp',
   },
   {
     name: 'Dilyorbek Valijanov',
     role: 'Developer',
-    image: '/assets/team/dilyorbek-valijanov.png',
+    image: '/assets/team/dilyorbek-valijanov.webp',
   },
   {
     name: 'Ulugbek Abdimanabov',
     role: 'Content maker',
-    image: '/assets/team/ulugbek-abdimanabov.png',
+    image: '/assets/team/ulugbek-abdimanabov.webp',
   },
 ];
 
@@ -105,16 +105,36 @@ export default function HomePage() {
     <>
       <Seo
         title="cp uz; o‘zbek sport dasturchilari hamjamiyati"
-        description="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlashni o‘zbek tilida o‘rganish uchun ochiq bilim ombori."
+        description="cp.uz — algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha ochiq bilim ombori."
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          '@id': 'https://cp.uz/#website',
-          name: 'cp.uz',
-          alternateName: ['cp uz', 'O‘zbek sport dasturlash hamjamiyati'],
-          url: 'https://cp.uz/',
-          inLanguage: 'uz-Latn',
-          publisher: { '@id': 'https://cp.uz/#organization' },
+          '@graph': [
+            {
+              '@type': 'Organization',
+              '@id': 'https://cp.uz/#organization',
+              name: 'cp.uz',
+              url: 'https://cp.uz/',
+              logo: 'https://cp.uz/assets/brand/cpuz-logo.png',
+            },
+            {
+              '@type': 'WebSite',
+              '@id': 'https://cp.uz/#website',
+              name: 'cp.uz',
+              alternateName: ['cp uz', 'O‘zbek sport dasturlash hamjamiyati'],
+              url: 'https://cp.uz/',
+              inLanguage: 'uz-Latn',
+              publisher: { '@id': 'https://cp.uz/#organization' },
+              description:
+                'Algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha bilim ombori. cp.uz musobaqa o‘tkazmaydi, yechim qabul qilmaydi va ishtirokchilar reytingini yuritmaydi.',
+              keywords: [
+                'sport dasturlash',
+                'algoritmlar',
+                'ma’lumotlar tuzilmalari',
+                'olimpiada masalalari',
+                'O‘zbekiston olimpiada natijalari',
+              ],
+            },
+          ],
         }}
       />
 
@@ -146,8 +166,12 @@ export default function HomePage() {
                 fontWeight: 'fontWeightRegular',
               }}
             >
-              Sport dasturlashdagi murakkab g‘oyalar, isbotlar va kodlar — barchasi o‘zbek tilida,
-              bir-biriga bog‘langan darsliklar ko‘rinishida.
+              Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari, mavsumlar va O‘zbekiston
+              ishtirokchilarining rasmiy natijalari — barchasi o‘zbek tilida.
+            </Typography>
+            <Typography variant="body2" sx={{ mt: 1.5, maxWidth: 720, color: 'text.secondary' }}>
+              cp.uz musobaqa o‘tkazmaydi, yechimlarni qabul qilmaydi va ishtirokchilar reytingini
+              yuritmaydi; masalalar tashqi judge platformalarda ishlanadi.
             </Typography>
 
             <Stack
@@ -327,7 +351,15 @@ export default function HomePage() {
 
       <SeasonPreview />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, bgcolor: 'background.neutral' }}>
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 7, md: 9 },
+          bgcolor: 'background.neutral',
+          contentVisibility: 'auto',
+          containIntrinsicSize: 'auto 900px',
+        }}
+      >
         <Container maxWidth="xl">
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
@@ -413,7 +445,15 @@ export default function HomePage() {
         </Container>
       </Box>
 
-      <Container component="section" maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
+      <Container
+        component="section"
+        maxWidth="xl"
+        sx={{
+          py: { xs: 7, md: 9 },
+          contentVisibility: 'auto',
+          containIntrinsicSize: 'auto 760px',
+        }}
+      >
         <Box
           sx={{
             gap: { xs: 6, md: 8 },
@@ -516,7 +556,14 @@ export default function HomePage() {
         </Box>
       </Container>
 
-      <Box component="section" sx={{ pb: { xs: 7, md: 9 } }}>
+      <Box
+        component="section"
+        sx={{
+          pb: { xs: 7, md: 9 },
+          contentVisibility: 'auto',
+          containIntrinsicSize: 'auto 180px',
+        }}
+      >
         <Container maxWidth="xl">
           <Box
             sx={(theme) => ({
@@ -565,7 +612,12 @@ export default function HomePage() {
       <Box
         component="section"
         aria-labelledby="team-heading"
-        sx={{ py: { xs: 7, md: 9 }, bgcolor: 'background.neutral' }}
+        sx={{
+          py: { xs: 7, md: 9 },
+          bgcolor: 'background.neutral',
+          contentVisibility: 'auto',
+          containIntrinsicSize: 'auto 1700px',
+        }}
       >
         <Container maxWidth="xl">
           <Box sx={{ mb: { xs: 4, md: 5 }, maxWidth: 640 }}>
@@ -597,6 +649,8 @@ export default function HomePage() {
                   component="img"
                   src={member.image}
                   alt={`${member.name} portreti`}
+                  width={640}
+                  height={640}
                   loading="lazy"
                   decoding="async"
                   sx={{

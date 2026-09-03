@@ -174,6 +174,12 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn(r"location ~* \.mjs$", nginx)
         self.assertIn("default_type application/javascript", nginx)
 
+    def test_frontend_serves_llms_txt_as_utf8_plain_text(self) -> None:
+        nginx = (ROOT / "deploy" / "nginx-app.conf").read_text(encoding="utf-8")
+        self.assertIn("location = /llms.txt", nginx)
+        self.assertIn("default_type text/plain", nginx)
+        self.assertIn("charset utf-8", nginx)
+
     def test_both_nginx_layers_allow_the_five_megabyte_feedback_upload(self) -> None:
         host_nginx = (ROOT / "deploy" / "nginx-host-cpuz.conf").read_text(encoding="utf-8")
         app_nginx = (ROOT / "deploy" / "nginx-app.conf").read_text(encoding="utf-8")
@@ -190,7 +196,13 @@ class ComposeContractTests(unittest.TestCase):
         for path in (
             "/boot.css",
             "/loader-facts.js",
+            "/llms.txt",
+            "/assets/brand/cpuz-logo-96.webp",
             "/assets/brand/cpuz-logo.png",
+            "/assets/team/asadullo-ganiev.webp",
+            "/assets/team/dilshodbek-khujaev.webp",
+            "/assets/team/dilyorbek-valijanov.webp",
+            "/assets/team/ulugbek-abdimanabov.webp",
             "/assets/team/asadullo-ganiev.png",
             "/assets/team/dilshodbek-khujaev.png",
             "/assets/team/dilyorbek-valijanov.png",

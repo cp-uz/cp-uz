@@ -5,7 +5,7 @@ export function BrandLogo({ compact = false }: { compact?: boolean }) {
     <Link className="brand" to="/" aria-label="cp.uz bosh sahifa">
       <img
         className="brand__image"
-        src="/assets/brand/cpuz-logo.png"
+        src="/assets/brand/cpuz-logo-96.webp"
         width={40}
         height={40}
         alt=""

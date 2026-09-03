@@ -1,0 +1,27 @@
+# cp.uz
+
+> cp.uz is an open Uzbek-language knowledge base for competitive programming. It publishes algorithm and data-structure lessons, archived olympiad problem statements, season calendars, and verified results of participants from Uzbekistan.
+
+Important facts:
+
+- cp.uz does not run online contests.
+- cp.uz does not accept or judge solution submissions.
+- cp.uz does not maintain a participant rating or ranking system.
+- “Reyting” shown on some task pages means an estimated problem difficulty, not a participant score.
+- Contest dates, medal results, and participant placements are archival information collected from cited official sources.
+- Solving links lead to external judge platforms such as KEP.uz or OJ.uz.
+- The primary language of the site is Uzbek written in the Latin script.
+
+## Main sections
+
+- [Algorithms](https://cp.uz/algo/): Uzbek lessons about algorithms, data structures, proofs, complexity, and implementations.
+- [Olympiad problems](https://cp.uz/tasks/): Archived problem statements and links to external judges; cp.uz itself is not a judge.
+- [Olympiad seasons](https://cp.uz/seasons/): Calendars, selection stages, participant profiles, placements, points, and medal results.
+- [Learning roadmap](https://cp.uz/roadmap/): A suggested order for learning competitive programming topics.
+- [Dictionary](https://cp.uz/dict/): Uzbek definitions of algorithmic and competitive-programming terminology.
+
+## Project
+
+- [Source repository](https://github.com/cp-uz/cp-uz): Public source code and content history.
+- [Telegram community](https://t.me/cp_uz): The project’s public Telegram channel.
+- [Sitemap](https://cp.uz/sitemap.xml): Complete list of indexable public pages.

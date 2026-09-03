@@ -23,7 +23,6 @@ function RouteTransitionOverlay() {
   const viewKey = routeViewKey(pathname);
   const [settledPath, setSettledPath] = useState<string | null>(null);
   const previousPath = useRef(viewKey);
-  const initialPath = useRef(viewKey);
   const [loadingVariant, setLoadingVariant] = useState<'fact' | 'simple'>(() =>
     document.documentElement.dataset.loaderExperience === 'fact' ? 'fact' : 'simple'
   );
@@ -37,9 +36,9 @@ function RouteTransitionOverlay() {
 
   useEffect(() => {
     if (viewKey === settledPath) return undefined;
-    const isFirstFact = viewKey === initialPath.current && loadingVariant === 'fact';
-    const minimumVisibleTime = isFirstFact ? 1000 + Math.floor(Math.random() * 1001) : 280;
-    const timer = window.setTimeout(() => setSettledPath(viewKey), minimumVisibleTime);
+    // The boot screen only bridges real startup work; it must never add an artificial
+    // one-to-two second delay after the page is already ready.
+    const timer = window.setTimeout(() => setSettledPath(viewKey), 100);
     return () => window.clearTimeout(timer);
   }, [loadingVariant, settledPath, viewKey]);
 

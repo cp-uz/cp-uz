@@ -85,7 +85,11 @@ export function FeedbackSection() {
       component="section"
       id="feedback"
       aria-labelledby="feedback-heading"
-      sx={{ py: { xs: 7, md: 9 } }}
+      sx={{
+        py: { xs: 7, md: 9 },
+        contentVisibility: 'auto',
+        containIntrinsicSize: 'auto 720px',
+      }}
     >
       <Container maxWidth="xl">
         <Box

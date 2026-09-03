@@ -44,17 +44,21 @@ const ProblemPage = lazyWithReload(() =>
 
 function SuspenseOutlet() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<RouteFallback />}>
       <Outlet />
     </Suspense>
   );
+}
+
+function RouteFallback() {
+  return <div aria-hidden="true" style={{ minHeight: 'calc(100svh - 72px)' }} />;
 }
 
 export const routesSection: RouteObject[] = [
   {
     path: appRoutes.login,
     element: (
-      <Suspense fallback={null}>
+      <Suspense fallback={<RouteFallback />}>
         <SignInPage />
       </Suspense>
     ),

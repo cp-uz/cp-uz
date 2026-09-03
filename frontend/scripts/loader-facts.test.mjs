@@ -26,8 +26,10 @@ test('fact loader is limited to the first visit and route transitions stay simpl
   assert.match(html, /cpuz:fact-loader-shown/);
   assert.match(html, /sessionStorage\.getItem\(visitKey\)/);
   assert.match(html, /dataset\.loaderExperience = loaderExperience/);
+  assert.match(html, /loader-facts\.js" defer/);
   assert.match(app, /setLoadingVariant\('simple'\)/);
   assert.match(app, /<LoadingScreen variant=\{loadingVariant\}/);
+  assert.doesNotMatch(app, /1000 \+ Math\.floor/);
 });
 
 test('reader font size setting overrides the boot stylesheet root size', () => {

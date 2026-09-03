@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-title" content="cp.uz" />
     <meta
       name="description"
-      content="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlashni o‘zbek tilida tizimli o‘rganing."
+      content="cp.uz — algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha ochiq bilim ombori."
     />
     <meta
       name="robots"
@@ -25,7 +25,7 @@
     <meta property="og:title" content="cp uz; o‘zbek sport dasturchilari hamjamiyati" />
     <meta
       property="og:description"
-      content="Algoritmlar, ma’lumotlar tuzilmalari, olimpiada masalalari va sport dasturlash bo‘yicha o‘zbekcha ochiq bilim ombori."
+      content="Algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha ochiq bilim ombori."
     />
     <meta property="og:url" content="https://cp.uz" />
     <meta property="og:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
@@ -33,14 +33,15 @@
     <meta name="twitter:title" content="cp uz; o‘zbek sport dasturchilari hamjamiyati" />
     <meta
       name="twitter:description"
-      content="Algoritmlar, olimpiada masalalari va competitive programming bo‘yicha o‘zbekcha bilim ombori."
+      content="Algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha bilim ombori."
     />
     <meta name="twitter:image" content="https://cp.uz/assets/brand/cpuz-logo.png" />
     <link rel="canonical" href="https://cp.uz/" />
+    <link rel="describedby" type="text/plain" href="https://cp.uz/llms.txt" />
     <link rel="icon" type="image/png" href="/assets/brand/cpuz-logo.png" />
     <link rel="apple-touch-icon" href="/assets/brand/cpuz-logo.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <script src="/loader-facts.js"></script>
+    <script src="/loader-facts.js" defer></script>
     <script>
       (() => {
         const visitKey = 'cpuz:fact-loader-shown';
@@ -89,7 +90,9 @@
             "@id": "https://cp.uz/#organization",
             "name": "cp.uz",
             "url": "https://cp.uz/",
-            "logo": "https://cp.uz/assets/brand/cpuz-logo.png"
+            "logo": "https://cp.uz/assets/brand/cpuz-logo.png",
+            "description": "O‘zbek tilidagi ochiq sport dasturlash bilim omborini yurituvchi hamjamiyat.",
+            "sameAs": ["https://github.com/cp-uz/cp-uz", "https://t.me/cp_uz"]
           },
           {
             "@type": "WebSite",
@@ -99,7 +102,8 @@
             "url": "https://cp.uz/",
             "inLanguage": "uz-Latn",
             "publisher": { "@id": "https://cp.uz/#organization" },
-            "description": "Algoritmlar, ma’lumotlar tuzilmalari va sport dasturlash bo‘yicha o‘zbekcha bilim ombori",
+            "description": "Algoritmlar, olimpiada masalalari, mavsumlar va O‘zbekiston ishtirokchilarining rasmiy natijalari jamlangan o‘zbekcha bilim ombori. cp.uz musobaqa o‘tkazmaydi, yechim qabul qilmaydi va ishtirokchilar reytingini yuritmaydi.",
+            "keywords": ["sport dasturlash", "algoritmlar", "ma’lumotlar tuzilmalari", "olimpiada masalalari", "O‘zbekiston olimpiada natijalari"],
             "potentialAction": {
               "@type": "SearchAction",
               "target": "https://cp.uz/algo/?q={search_term_string}",
@@ -130,7 +134,7 @@
           <p id="boot-fact">Algoritmik fakt tayyorlanmoqda…</p>
         </div>
         <div class="boot-brand" aria-hidden="true">
-          <img src="/assets/brand/cpuz-logo.png" width="40" height="40" alt="" />
+          <img src="/assets/brand/cpuz-logo-96.webp" width="40" height="40" alt="" />
           <strong>cp uz;</strong>
         </div>
       </div>

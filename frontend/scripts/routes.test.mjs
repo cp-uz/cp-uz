@@ -47,6 +47,8 @@ test('router uses canonical route constants and exposes no legacy redirects', ()
   assert.match(source, /path: appRoutes\.algorithms/);
   assert.match(source, /path: appRoutePatterns\.algorithmCategory/);
   assert.match(source, /path: appRoutePatterns\.task/);
+  assert.match(source, /minHeight: 'calc\(100svh - 72px\)'/);
+  assert.match(source, /fallback=\{<RouteFallback \/>\}/);
   assert.doesNotMatch(
     source,
     /algoritmlar|masalalar|maqola|yol-xaritasi|lugat|saqlanganlar|SectionRedirect|LegacyRedirect/
