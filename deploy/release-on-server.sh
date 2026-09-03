@@ -273,6 +273,7 @@ SMOKE_ENDPOINTS=(
   /api/v1/health/
   /api/v1/seasons/current/
   /api/v1/problems/
+  /api/v1/problems/2025-2026/izho-2026/little-efnesh-and-monitor/statement.pdf
   /seasons/2026-2027
   /masalalar
   /masalalar/2025-2026/ioi-2026-saralash-4/temir-rom

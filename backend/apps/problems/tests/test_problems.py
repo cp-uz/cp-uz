@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
-from io import StringIO
+from io import BytesIO, StringIO
 from pathlib import Path
+from unittest.mock import patch
 
 from django.core.management import call_command
 from django.test import TestCase
@@ -15,6 +17,7 @@ from apps.seasons.models import Event, PublicationStatus, Season
 class ProblemCatalogTests(TestCase):
     @classmethod
     def setUpTestData(cls):
+        cls.statement_pdf = b"%PDF-1.7\nexample statement\n%%EOF"
         cls.season = Season.objects.create(
             title="2025–2026",
             slug="2025-2026",
@@ -49,8 +52,8 @@ class ProblemCatalogTests(TestCase):
                 "https://raw.githubusercontent.com/cp-uz/problem-statements/"
                 "main/2025-2026/tst4/day-1/namuna/statement.pdf"
             ),
-            statement_pdf_sha256="a" * 64,
-            statement_pdf_size_bytes=1234,
+            statement_pdf_sha256=hashlib.sha256(cls.statement_pdf).hexdigest(),
+            statement_pdf_size_bytes=len(cls.statement_pdf),
             statement_pdf_page_count=2,
             statement_pdf_language="uz",
             statement_pdf_provenance="generated",
@@ -84,12 +87,40 @@ class ProblemCatalogTests(TestCase):
         self.assertEqual(detail.data["statement_markdown"], "Shartda $n$ berilgan.")
         self.assertEqual(detail.data["statement_pdf"]["page_count"], 2)
         self.assertEqual(detail.data["statement_pdf"]["provenance"], "generated")
+        self.assertEqual(
+            detail.data["statement_pdf"]["url"],
+            "/api/v1/problems/2025-2026/ioi-2026-saralash-4/namuna/statement.pdf",
+        )
+        self.assertEqual(detail.data["statement_pdf"]["source_url"], self.problem.statement_pdf_url)
         self.assertEqual(detail.data["links"][0]["kind"], "practice")
         self.assertEqual(detail.data["sets"][0]["problems"][0]["code"], "A")
         self.assertEqual(
             self.client.get("/api/v1/problems/other/ioi-2026-saralash-4/namuna/").status_code,
             404,
         )
+
+    @patch("apps.problems.views.urlopen")
+    def test_statement_pdf_is_served_from_same_origin(self, mocked_urlopen):
+        mocked_urlopen.return_value = BytesIO(self.statement_pdf)
+
+        response = self.client.get(
+            "/api/v1/problems/2025-2026/ioi-2026-saralash-4/namuna/statement.pdf"
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/pdf")
+        self.assertEqual(response["Content-Disposition"], 'inline; filename="namuna.pdf"')
+        self.assertEqual(response.content, self.statement_pdf)
+
+    def test_statement_pdf_is_not_exposed_for_a_draft_problem(self):
+        self.problem.publication_status = PublicationStatus.DRAFT
+        self.problem.save(update_fields=("publication_status",))
+
+        response = self.client.get(
+            "/api/v1/problems/2025-2026/ioi-2026-saralash-4/namuna/statement.pdf"
+        )
+
+        self.assertEqual(response.status_code, 404)
 
     def test_draft_problem_is_not_exposed(self):
         self.problem.publication_status = PublicationStatus.DRAFT

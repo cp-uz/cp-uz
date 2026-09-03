@@ -9,7 +9,7 @@ import type {
   ProblemTranslationStatus,
 } from '../domain';
 
-import { apiUrl } from 'shared/api/http';
+import { apiUrl, resolveApiAssetUrl } from 'shared/api/http';
 
 type JsonRecord = Record<string, unknown>;
 
@@ -150,7 +150,7 @@ export const problemRepository = {
       sourcePath: text(dto.source_path),
       statementPdf: text(statementPdfDto.url)
         ? {
-            url: text(statementPdfDto.url),
+            url: resolveApiAssetUrl(text(statementPdfDto.url)),
             sha256: text(statementPdfDto.sha256),
             sizeBytes: number(statementPdfDto.size_bytes),
             pageCount: number(statementPdfDto.page_count),

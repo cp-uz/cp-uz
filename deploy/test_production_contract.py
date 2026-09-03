@@ -177,6 +177,11 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn('"attachments": 12', release)
         self.assertIn('"statement_pdfs": 35', release)
         self.assertIn("/api/v1/problems/", release)
+        self.assertIn(
+            "/api/v1/problems/2025-2026/izho-2026/"
+            "little-efnesh-and-monitor/statement.pdf",
+            release,
+        )
         self.assertIn("/masalalar/2025-2026/ioi-2026-saralash-4/temir-rom", release)
         self.assertIn("/masalalar/2025-2026/ioi-2026/ball-machine", release)
         self.assertIn("/masalalar/2025-2026/egoi-2026/ferriswheel", release)

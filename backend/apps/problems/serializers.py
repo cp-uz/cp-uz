@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework import serializers
 
 from apps.seasons.serializers import EventGraphSerializer, SeasonLinkSerializer
@@ -142,8 +143,17 @@ class ProblemDetailSerializer(ProblemSummarySerializer):
     def get_statement_pdf(self, obj) -> dict | None:
         if not obj.statement_pdf_url:
             return None
+        proxy_path = reverse(
+            "problems:statement-pdf",
+            kwargs={
+                "season_slug": obj.event.season.slug,
+                "event_slug": obj.event.slug,
+                "problem_slug": obj.slug,
+            },
+        )
         return {
-            "url": obj.statement_pdf_url,
+            "url": proxy_path,
+            "source_url": obj.statement_pdf_url,
             "sha256": obj.statement_pdf_sha256,
             "size_bytes": obj.statement_pdf_size_bytes,
             "page_count": obj.statement_pdf_page_count,
