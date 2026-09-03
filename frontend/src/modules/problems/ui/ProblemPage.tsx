@@ -171,7 +171,7 @@ function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
                       {item.code}
                     </Typography>
                     <Typography variant="body2" sx={{ fontWeight: selected ? 700 : 500 }}>
-                      {item.title}
+                      {item.originalTitle || item.title}
                     </Typography>
                   </ListItemButton>
                 );
@@ -429,11 +429,6 @@ export default function ProblemPage() {
             >
               {displayTitle}
             </Typography>
-            {problem.originalTitle && problem.originalTitle !== problem.title && (
-              <Typography sx={{ mt: 1, color: 'text.secondary' }}>
-                O‘zbekcha nomi: {problem.title}
-              </Typography>
-            )}
 
             <Stack direction="row" spacing={2.5} flexWrap="wrap" useFlexGap sx={{ mt: 2.5 }}>
               {practiceLinks.map((link) => (
@@ -567,7 +562,7 @@ export default function ProblemPage() {
                   to={problemPath(problem, previous.slug)}
                   startIcon={<UiIcon icon="solar:arrow-left-linear" width={18} />}
                 >
-                  {previous.title}
+                  {previous.originalTitle || previous.title}
                 </Button>
               ) : (
                 <span />
@@ -578,7 +573,7 @@ export default function ProblemPage() {
                   to={problemPath(problem, next.slug)}
                   endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
                 >
-                  {next.title}
+                  {next.originalTitle || next.title}
                 </Button>
               )}
             </Stack>
