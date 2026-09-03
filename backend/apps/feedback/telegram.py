@@ -7,7 +7,7 @@ import uuid
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.request import ProxyHandler, Request, build_opener, urlopen
 
 from django.conf import settings
 
@@ -71,7 +71,18 @@ def _api_call(method: str, fields: dict[str, str], file_field=None) -> dict:
 
     request = Request(url, data=body, headers=headers, method="POST")
     try:
-        with urlopen(request, timeout=settings.TELEGRAM_API_TIMEOUT_SECONDS) as response:  # noqa: S310
+        if settings.TELEGRAM_PROXY_URL:
+            proxy_handler = ProxyHandler(
+                {"http": settings.TELEGRAM_PROXY_URL, "https": settings.TELEGRAM_PROXY_URL}
+            )
+            response_context = build_opener(proxy_handler).open(  # noqa: S310
+                request, timeout=settings.TELEGRAM_API_TIMEOUT_SECONDS
+            )
+        else:
+            response_context = urlopen(  # noqa: S310
+                request, timeout=settings.TELEGRAM_API_TIMEOUT_SECONDS
+            )
+        with response_context as response:
             payload = json.loads(response.read().decode("utf-8"))
     except (HTTPError, URLError, TimeoutError, UnicodeError, json.JSONDecodeError) as error:
         raise TelegramAPIError("Telegram API bilan bog‘lanib bo‘lmadi.") from error

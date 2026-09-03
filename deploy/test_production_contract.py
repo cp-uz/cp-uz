@@ -25,6 +25,7 @@ def valid_environment() -> dict[str, str]:
         "TELEGRAM_BOT_TOKEN": "123456789:" + "a" * 35,
         "TELEGRAM_FEEDBACK_CHAT_ID": "1234567890",
         "TELEGRAM_WEBHOOK_SECRET": "s" * 40,
+        "TELEGRAM_PROXY_URL": "",
     }
 
 
@@ -47,17 +48,18 @@ class ProductionEnvironmentTests(unittest.TestCase):
             validate_env(values)
 
     def test_proxy_requires_http_url_and_explicit_port(self) -> None:
-        for invalid in (
-            "socks5://127.0.0.1:1080",
-            "http://127.0.0.1",
-            "http://127.0.0.1:8000/path",
-            "http://127.0.0.1:8000#secret",
-        ):
-            with self.subTest(invalid=invalid):
-                values = valid_environment()
-                values["NPM_PROXY_URL"] = invalid
-                with self.assertRaisesRegex(ValueError, "NPM_PROXY_URL"):
-                    validate_env(values)
+        for proxy_name in ("NPM_PROXY_URL", "TELEGRAM_PROXY_URL"):
+            for invalid in (
+                "socks5://127.0.0.1:1080",
+                "http://127.0.0.1",
+                "http://127.0.0.1:8000/path",
+                "http://127.0.0.1:8000#secret",
+            ):
+                with self.subTest(proxy_name=proxy_name, invalid=invalid):
+                    values = valid_environment()
+                    values[proxy_name] = invalid
+                    with self.assertRaisesRegex(ValueError, proxy_name):
+                        validate_env(values)
 
     def test_env_loader_rejects_duplicate_keys(self) -> None:
         with tempfile.TemporaryDirectory(prefix="cpuz-env-test-") as value:

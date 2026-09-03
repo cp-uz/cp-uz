@@ -72,13 +72,15 @@ def validate_env(values: dict[str, str]) -> None:
     if not re.fullmatch(r"[A-Za-z0-9_-]{32,256}", required("TELEGRAM_WEBHOOK_SECRET")):
         raise ValueError("TELEGRAM_WEBHOOK_SECRET must be a 32-256 character URL-safe value")
 
-    proxy_url = values.get("NPM_PROXY_URL", "").strip()
-    if proxy_url:
+    for proxy_name in ("NPM_PROXY_URL", "TELEGRAM_PROXY_URL"):
+        proxy_url = values.get(proxy_name, "").strip()
+        if not proxy_url:
+            continue
         parsed = urlsplit(proxy_url)
         try:
             port = parsed.port
         except ValueError as error:
-            raise ValueError("NPM_PROXY_URL contains an invalid port") from error
+            raise ValueError(f"{proxy_name} contains an invalid port") from error
         if (
             parsed.scheme not in {"http", "https"}
             or not parsed.hostname
@@ -87,7 +89,9 @@ def validate_env(values: dict[str, str]) -> None:
             or parsed.fragment
             or parsed.path not in {"", "/"}
         ):
-            raise ValueError("NPM_PROXY_URL must be an http(s) proxy URL with an explicit port")
+            raise ValueError(
+                f"{proxy_name} must be an http(s) proxy URL with an explicit port"
+            )
 
 
 def main(argv: list[str]) -> int:

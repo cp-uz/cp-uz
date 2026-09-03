@@ -21,6 +21,7 @@ class FakeResponse(BytesIO):
     TELEGRAM_FEEDBACK_CHAT_ID="123456",
     TELEGRAM_WEBHOOK_SECRET="test_webhook_secret_value_1234567890",
     TELEGRAM_API_TIMEOUT_SECONDS=5,
+    TELEGRAM_PROXY_URL="",
     SITE_URL="https://cp.uz",
 )
 class TelegramServiceTests(SimpleTestCase):
@@ -35,6 +36,18 @@ class TelegramServiceTests(SimpleTestCase):
         self.assertIn("https%3A%2F%2Fcp.uz%2Fapi%2Fv1%2Ftelegram%2Fwebhook%2F", body)
         self.assertIn("secret_token=test_webhook_secret_value_1234567890", body)
         self.assertNotIn("test-token", body)
+
+    @override_settings(TELEGRAM_PROXY_URL="http://proxy.example:8080")
+    @patch("apps.feedback.telegram.build_opener")
+    def test_telegram_proxy_is_used_when_configured(self, build_opener):
+        build_opener.return_value.open.return_value = FakeResponse(
+            json.dumps({"ok": True, "result": {"message_id": 7}}).encode()
+        )
+
+        telegram.send_message("123456", "Test")
+
+        build_opener.assert_called_once()
+        build_opener.return_value.open.assert_called_once()
 
     @patch("apps.feedback.telegram._api_call")
     def test_photo_is_forwarded_as_photo_without_persistence(self, api_call):
