@@ -89,7 +89,10 @@ class ProblemCatalogTests(TestCase):
         self.assertEqual(detail.data["statement_pdf"]["provenance"], "generated")
         self.assertEqual(
             detail.data["statement_pdf"]["url"],
-            "/api/v1/problems/2025-2026/ioi-2026-saralash-4/namuna/statement.pdf",
+            (
+                "/api/v1/problems/2025-2026/ioi-2026-saralash-4/namuna/"
+                f"statement.pdf?v={hashlib.sha256(self.statement_pdf).hexdigest()}"
+            ),
         )
         self.assertEqual(detail.data["statement_pdf"]["source_url"], self.problem.statement_pdf_url)
         self.assertEqual(detail.data["links"][0]["kind"], "practice")

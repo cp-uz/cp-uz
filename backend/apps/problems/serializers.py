@@ -151,6 +151,8 @@ class ProblemDetailSerializer(ProblemSummarySerializer):
                 "problem_slug": obj.slug,
             },
         )
+        if obj.statement_pdf_sha256:
+            proxy_path = f"{proxy_path}?v={obj.statement_pdf_sha256}"
         return {
             "url": proxy_path,
             "source_url": obj.statement_pdf_url,
