@@ -233,6 +233,9 @@ class Release:
                 "--fail",
                 "--silent",
                 "--show-error",
+                "--location",
+                "--max-redirs",
+                "5",
                 "--max-time",
                 "15",
                 "--output",
@@ -241,6 +244,7 @@ class Release:
                 "*",
             ]
             if public:
+                command.extend(("--proto-redir", "=https"))
                 command.extend(("--resolve", "cp.uz:443:127.0.0.1", f"https://cp.uz{endpoint}"))
             else:
                 command.extend(("-H", "Host: cp.uz", f"http://127.0.0.1:{self.port}{endpoint}"))

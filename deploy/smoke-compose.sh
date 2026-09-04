@@ -22,8 +22,9 @@ CPUZ_TEST_CONTAINER_IMAGE="cpuz-web:${CPUZ_RELEASE_TAG}" \
 "${compose[@]}" up -d --wait redis
 "${compose[@]}" run --rm --no-deps --entrypoint sh web /app/prepare-content.sh
 "${compose[@]}" up -d --no-build --wait --wait-timeout 180
-for endpoint in /healthz / /api/v1/health/ /api/v1/problems/ /api/v1/seasons/current/; do
-  curl --fail --silent --show-error --max-time 30 --output /dev/null \
+for endpoint in /healthz / /algo /tasks /seasons /dict /api/v1/health/ /api/v1/problems/ /api/v1/seasons/current/; do
+  curl --fail --silent --show-error --location --max-redirs 5 \
+    --proto-redir '=http' --max-time 30 --output /dev/null \
     -H 'Host: cp.uz' "http://127.0.0.1:${CPUZ_HTTP_PORT}${endpoint}"
 done
 # A repeat import must preserve the same reviewed inventory.
