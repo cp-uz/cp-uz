@@ -66,7 +66,7 @@ const teamMembers: readonly TeamMember[] = [
   },
   {
     name: 'Dilyorbek Valijanov',
-    role: 'Developer',
+    role: 'Developer, Hacker',
     image: '/assets/team/dilyorbek-valijanov.webp?v=20260904-2',
   },
   {
@@ -150,7 +150,7 @@ export default function HomePage() {
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center">
               <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: 'primary.main' }} />
-              <Typography variant="subtitle2" sx={{ color: 'primary.dark' }}>
+              <Typography component="span" variant="subtitle2" sx={{ color: 'primary.dark' }}>
                 Ochiq tekshiruv · O‘zbekcha bilim ombori
               </Typography>
             </Stack>
@@ -158,6 +158,7 @@ export default function HomePage() {
               cp uz; o‘zbek sport dasturchilari hamjamiyati
             </Typography>
             <Typography
+              component="p"
               variant="h6"
               sx={{
                 mt: 2,
@@ -226,7 +227,7 @@ export default function HomePage() {
             >
               {metricItems.map((item) => (
                 <Box key={item.key} sx={{ pr: 3, '&:not(:first-of-type)': { px: 3 } }}>
-                  <Typography variant="h4">
+                  <Typography component="p" variant="h4">
                     {statsLoading || statsError ? '—' : stats[item.key]}
                   </Typography>
                   <Typography variant="body2" sx={{ mt: 0.25, color: 'text.secondary' }}>
@@ -369,12 +370,12 @@ export default function HomePage() {
             sx={{ mb: 4 }}
           >
             <Box>
-              <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+              <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
                 {statsLoading || statsError
                   ? 'Asosiy bo‘limlar'
                   : `${stats.categoryCount} asosiy bo‘lim`}
               </Typography>
-              <Typography variant="h3" sx={{ mt: 1 }}>
+              <Typography component="h2" variant="h3" sx={{ mt: 1 }}>
                 Mavzular bo‘yicha o‘rganing
               </Typography>
               <Typography sx={{ mt: 1, maxWidth: 620, color: 'text.secondary' }}>
@@ -423,7 +424,9 @@ export default function HomePage() {
                     alignItems="baseline"
                     justifyContent="space-between"
                   >
-                    <Typography variant="subtitle1">{category.title}</Typography>
+                    <Typography component="h3" variant="subtitle1">
+                      {category.title}
+                    </Typography>
                     <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       {category.articleCount}
                     </Typography>
@@ -463,10 +466,10 @@ export default function HomePage() {
           }}
         >
           <Box>
-            <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+            <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
               Tavsiya etilgan ketma-ketlik
             </Typography>
-            <Typography variant="h4" sx={{ mt: 1 }}>
+            <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
               Qayerdan boshlash kerak?
             </Typography>
             <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
@@ -475,11 +478,17 @@ export default function HomePage() {
             <Stack divider={<Divider flexItem />} sx={{ mt: 3 }}>
               {roadmapStages.slice(0, 4).map((stage) => (
                 <Stack key={stage.id} direction="row" spacing={2} sx={{ py: 2 }}>
-                  <Typography variant="subtitle2" sx={{ width: 28, color: 'primary.main' }}>
+                  <Typography
+                    component="span"
+                    variant="subtitle2"
+                    sx={{ width: 28, color: 'primary.main' }}
+                  >
                     {String(stage.order).padStart(2, '0')}
                   </Typography>
                   <Box>
-                    <Typography variant="subtitle2">{stage.title}</Typography>
+                    <Typography component="h3" variant="subtitle2">
+                      {stage.title}
+                    </Typography>
                     <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       {stage.duration}
                     </Typography>
@@ -500,10 +509,10 @@ export default function HomePage() {
               sx={{ mb: 2 }}
             >
               <Box>
-                <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
                   Kutubxonadan
                 </Typography>
-                <Typography variant="h4" sx={{ mt: 1 }}>
+                <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
                   O‘qishni boshlash uchun
                 </Typography>
               </Box>
@@ -585,7 +594,9 @@ export default function HomePage() {
               justifyContent="space-between"
             >
               <Box>
-                <Typography variant="subtitle1">Tahrir holati ochiq ko‘rsatiladi</Typography>
+                <Typography component="h2" variant="subtitle1">
+                  Tahrir holati ochiq ko‘rsatiladi
+                </Typography>
                 <Typography
                   variant="body2"
                   sx={{ mt: 0.5, maxWidth: 800, color: 'inherit', opacity: 0.8 }}
@@ -621,7 +632,7 @@ export default function HomePage() {
       >
         <Container maxWidth="xl">
           <Box sx={{ mb: { xs: 4, md: 5 }, maxWidth: 640 }}>
-            <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
+            <Typography component="span" variant="subtitle2" sx={{ color: 'primary.dark' }}>
               Platforma ortidagi insonlar
             </Typography>
             <Typography id="team-heading" component="h2" variant="h3" sx={{ mt: 1 }}>
@@ -638,7 +649,6 @@ export default function HomePage() {
               display: 'grid',
               gridTemplateColumns: {
                 xs: '1fr',
-                sm: 'repeat(2, minmax(0, 1fr))',
                 md: 'repeat(3, minmax(0, 1fr))',
               },
             }}

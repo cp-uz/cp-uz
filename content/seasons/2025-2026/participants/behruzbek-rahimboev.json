@@ -4,6 +4,24 @@
   "country_code": "UZB",
   "platform_accounts": [
     {
+      "platform": "kepuz",
+      "handle": "Behruzbek",
+      "url": "https://kep.uz/users/user/Behruzbek",
+      "is_verified": true
+    },
+    {
+      "platform": "atcoder",
+      "handle": "BehruzbekX",
+      "url": "https://atcoder.jp/users/BehruzbekX",
+      "is_verified": true
+    },
+    {
+      "platform": "codeforces",
+      "handle": "Nasa",
+      "url": "https://codeforces.com/profile/Nasa",
+      "is_verified": true
+    },
+    {
       "platform": "robocontest",
       "handle": "john_constable",
       "url": "https://robocontest.uz/profile/john_constable",

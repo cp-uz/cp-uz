@@ -226,6 +226,7 @@ function PreviewEventLink({
         />
         <Box sx={{ minWidth: 0 }}>
           <Typography
+            component="span"
             variant="subtitle2"
             sx={(theme) => ({
               fontWeight: state === 'live' || state === 'next' ? 700 : 600,
@@ -259,7 +260,7 @@ function PreviewEventLink({
                   ? 'success.dark'
                   : state === 'live'
                     ? presentation.color
-                    : 'text.secondary',
+                    : 'text.primary',
               bgcolor:
                 state === 'completed'
                   ? alpha(theme.palette.success.main, 0.1)
@@ -323,6 +324,7 @@ function PreviewEventLink({
         />
       </Box>
       <Typography
+        component="span"
         variant="subtitle2"
         sx={(theme) => ({
           mt: 0.5,
@@ -493,7 +495,9 @@ export function SeasonPreview() {
           <Box>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ color: 'primary.main' }}>
               <UiIcon icon="solar:calendar-mark-linear" width={19} />
-              <Typography variant="subtitle2">Olimpiada mavsumi</Typography>
+              <Typography component="span" variant="subtitle2">
+                Olimpiada mavsumi
+              </Typography>
             </Stack>
             <Typography id="season-preview-title" component="h2" variant="h3" sx={{ mt: 1 }}>
               {loading ? <Skeleton width={270} /> : season?.title || 'Musobaqalar yo‘li'}
@@ -564,7 +568,9 @@ export function SeasonPreview() {
                     style={{ color: routePresentation.color }}
                   />
                   <Box>
-                    <Typography variant="subtitle2">{primaryRoute.title}</Typography>
+                    <Typography component="h3" variant="subtitle2">
+                      {primaryRoute.title}
+                    </Typography>
                     <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       {completedCount}/{routeEvents.length} bosqich yakunlangan
                     </Typography>

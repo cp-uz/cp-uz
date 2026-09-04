@@ -1,59 +1,35 @@
 import 'app/styles/global.css';
-import 'katex/dist/katex.min.css';
 
-import { appRoutes } from 'shared/config';
 import { useLocation } from 'react-router';
 import { ProgressBar } from 'shared/ui/ProgressBar';
+import { useRef, useState, useEffect } from 'react';
 import { themeConfig, ThemeProvider } from 'app/theme';
-import { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { defaultSettings, SettingsProvider } from 'app/providers/settings';
 import { LoadingScreen, readBootLoadingFactIndex } from 'shared/ui/LoadingScreen';
 
 type AppProps = { children?: React.ReactNode };
 
-function routeViewKey(pathname: string) {
-  const seasonMatch = pathname.match(
-    new RegExp(`^${appRoutes.seasons}/([^/]+)(?:/[^/]+)?/?$`)
-  );
-  return seasonMatch ? appRoutes.season(seasonMatch[1]) : pathname;
-}
-
-function RouteTransitionOverlay() {
-  const { pathname } = useLocation();
-  const viewKey = routeViewKey(pathname);
-  const [settledPath, setSettledPath] = useState<string | null>(null);
-  const previousPath = useRef(viewKey);
-  const [loadingVariant, setLoadingVariant] = useState<'fact' | 'simple'>(() =>
-    document.documentElement.dataset.loaderExperience === 'fact' ? 'fact' : 'simple'
+function BootExperienceOverlay() {
+  const [visible, setVisible] = useState(
+    () => document.documentElement.dataset.loaderExperience === 'fact'
   );
   const factIndex = useRef(readBootLoadingFactIndex());
 
-  useLayoutEffect(() => {
-    if (previousPath.current === viewKey) return;
-    previousPath.current = viewKey;
-    setLoadingVariant('simple');
-  }, [viewKey]);
-
   useEffect(() => {
-    if (viewKey === settledPath) return undefined;
-    // The boot screen only bridges real startup work; it must never add an artificial
-    // one-to-two second delay after the page is already ready.
-    const timer = window.setTimeout(() => setSettledPath(viewKey), 100);
+    if (!visible) return undefined;
+    const timer = window.setTimeout(() => setVisible(false), 2000);
     return () => window.clearTimeout(timer);
-  }, [loadingVariant, settledPath, viewKey]);
+  }, [visible]);
 
-  return viewKey === settledPath ? null : (
-    <LoadingScreen variant={loadingVariant} initialFactIndex={factIndex.current} />
-  );
+  return visible ? <LoadingScreen variant="fact" initialFactIndex={factIndex.current} /> : null;
 }
 
 export default function App({ children }: AppProps) {
   const { pathname } = useLocation();
-  const viewKey = routeViewKey(pathname);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [viewKey]);
+  }, [pathname]);
 
   return (
     <SettingsProvider defaultSettings={defaultSettings}>
@@ -63,7 +39,7 @@ export default function App({ children }: AppProps) {
       >
         <ProgressBar />
         {children}
-        <RouteTransitionOverlay />
+        <BootExperienceOverlay />
       </ThemeProvider>
     </SettingsProvider>
   );

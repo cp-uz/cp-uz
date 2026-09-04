@@ -101,7 +101,7 @@ export function FeedbackSection() {
           }}
         >
           <Box sx={{ maxWidth: 460 }}>
-            <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
+            <Typography component="span" variant="subtitle2" sx={{ color: 'primary.dark' }}>
               Aloqa
             </Typography>
             <Typography id="feedback-heading" component="h2" variant="h3" sx={{ mt: 1 }}>

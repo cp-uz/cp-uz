@@ -1,48 +1,48 @@
-import type { AuthSession } from 'modules/auth';
 import type { FormEvent, MouseEvent } from 'react';
+import type { AuthSession } from 'modules/auth/domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { BrandLogo } from 'shared/ui/BrandLogo';
 import { apiUrl } from 'shared/api/http/api-base';
-import { useMemo, useState, useEffect } from 'react';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
+import { lazy, useMemo, Suspense, useState, useEffect } from 'react';
 import { filterArticles, getArticlePath } from 'modules/learning/domain';
 import { useLocation, useNavigate, Link as RouterLink } from 'react-router';
 import { learningQueries as learningApi } from 'modules/learning/application';
 import { useSettingsContext, FONT_FAMILY_OPTIONS } from 'app/providers/settings';
-import {
-  getAuthSession,
-  logoutAuthSession,
-  GuestUpgradeDialog,
-  subscribeAuthSession,
-} from 'modules/auth';
+import { getAuthSession, logoutAuthSession, subscribeAuthSession } from 'modules/auth/application';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import List from '@mui/material/List';
-import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import Drawer from '@mui/material/Drawer';
-import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
-import Popover from '@mui/material/Popover';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import { useColorScheme } from '@mui/material/styles';
-import InputAdornment from '@mui/material/InputAdornment';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import { MainSection, LayoutSection, HeaderSection } from './core';
+
+const Drawer = lazy(() => import('@mui/material/Drawer'));
+const Menu = lazy(() => import('@mui/material/Menu'));
+const Dialog = lazy(() => import('@mui/material/Dialog'));
+const Popover = lazy(() => import('@mui/material/Popover'));
+const Slider = lazy(() => import('@mui/material/Slider'));
+const TextField = lazy(() => import('@mui/material/TextField'));
+const InputAdornment = lazy(() => import('@mui/material/InputAdornment'));
+const List = lazy(() => import('@mui/material/List'));
+const ListItemText = lazy(() => import('@mui/material/ListItemText'));
+const ListItemIcon = lazy(() => import('@mui/material/ListItemIcon'));
+const GuestUpgradeDialog = lazy(() =>
+  import('modules/auth/ui/components/GuestUpgradeDialog').then((module) => ({
+    default: module.GuestUpgradeDialog,
+  }))
+);
 
 const navItems = [
   { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'solar:library-linear' },
@@ -243,53 +243,48 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
                 Ctrl K
               </Typography>
             </ButtonBase>
-            <Tooltip title="Qidirish">
-              <IconButton
-                aria-label="Sayt bo‘ylab qidirish"
-                onClick={() => setSearchOpen(true)}
-                sx={{ display: { xs: 'inline-flex', xl: 'none' } }}
-              >
-                <UiIcon icon="solar:magnifer-linear" width={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={dark ? 'Yorug‘ mavzu' : 'Qorong‘i mavzu'}>
-              <IconButton
-                aria-label={dark ? 'Yorug‘ mavzuga o‘tish' : 'Qorong‘i mavzuga o‘tish'}
-                onClick={toggleTheme}
-              >
-                <UiIcon icon={dark ? 'solar:sun-2-linear' : 'solar:moon-stars-linear'} width={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Shrift">
-              <IconButton
-                aria-label="O‘qish shriftini tanlash"
-                aria-controls={fontAnchorEl ? 'font-settings-panel' : undefined}
-                aria-expanded={fontAnchorEl ? 'true' : undefined}
-                onClick={(event: MouseEvent<HTMLElement>) => setFontAnchorEl(event.currentTarget)}
-              >
-                <UiIcon icon="solar:text-square-linear" width={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Lug‘at">
-              <IconButton
-                component={RouterLink}
-                to={appRoutes.dictionary}
-                aria-label="Lug‘at"
-                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-              >
-                <UiIcon icon="solar:notebook-bookmark-linear" width={20} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Saqlanganlar">
-              <IconButton
-                component={RouterLink}
-                to={appRoutes.saved}
-                aria-label="Saqlangan maqolalar"
-                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-              >
-                <UiIcon icon="solar:bookmark-linear" width={20} />
-              </IconButton>
-            </Tooltip>
+            <IconButton
+              title="Qidirish"
+              aria-label="Sayt bo‘ylab qidirish"
+              onClick={() => setSearchOpen(true)}
+              sx={{ display: { xs: 'inline-flex', xl: 'none' } }}
+            >
+              <UiIcon icon="solar:magnifer-linear" width={20} />
+            </IconButton>
+            <IconButton
+              title={dark ? 'Yorug‘ mavzu' : 'Qorong‘i mavzu'}
+              aria-label={dark ? 'Yorug‘ mavzuga o‘tish' : 'Qorong‘i mavzuga o‘tish'}
+              onClick={toggleTheme}
+            >
+              <UiIcon icon={dark ? 'solar:sun-2-linear' : 'solar:moon-stars-linear'} width={20} />
+            </IconButton>
+            <IconButton
+              title="Shrift"
+              aria-label="O‘qish shriftini tanlash"
+              aria-controls={fontAnchorEl ? 'font-settings-panel' : undefined}
+              aria-expanded={fontAnchorEl ? 'true' : undefined}
+              onClick={(event: MouseEvent<HTMLElement>) => setFontAnchorEl(event.currentTarget)}
+            >
+              <UiIcon icon="solar:text-square-linear" width={20} />
+            </IconButton>
+            <IconButton
+              title="Lug‘at"
+              component={RouterLink}
+              to={appRoutes.dictionary}
+              aria-label="Lug‘at"
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+            >
+              <UiIcon icon="solar:notebook-bookmark-linear" width={20} />
+            </IconButton>
+            <IconButton
+              title="Saqlanganlar"
+              component={RouterLink}
+              to={appRoutes.saved}
+              aria-label="Saqlangan maqolalar"
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+            >
+              <UiIcon icon="solar:bookmark-linear" width={20} />
+            </IconButton>
             {session ? (
               <Button
                 id="profile-identity-button"
@@ -353,7 +348,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             </Typography>
           </Box>
           <Stack spacing={1.25}>
-            <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+            <Typography component="h2" variant="subtitle2" sx={{ color: 'text.primary' }}>
               O‘rganish
             </Typography>
             {footerItems.map((item) => {
@@ -380,7 +375,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
             })}
           </Stack>
           <Stack spacing={1.25}>
-            <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+            <Typography component="h2" variant="subtitle2" sx={{ color: 'text.primary' }}>
               Loyiha
             </Typography>
             <Button
@@ -466,333 +461,356 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
         {children}
       </MainSection>
 
-      <Drawer
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        slotProps={{ paper: { sx: { width: 300 } } }}
-      >
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
-          <BrandLogo />
-          <IconButton aria-label="Menyuni yopish" onClick={() => setMobileOpen(false)}>
-            <UiIcon icon="solar:close-circle-linear" width={22} />
-          </IconButton>
-        </Stack>
-        <Divider />
-        <List sx={{ p: 1.5 }}>
-          {[...navItems, ...utilityItems].map((item) => (
-            <ListItemButton
-              key={item.to}
-              component={RouterLink}
-              to={item.to}
-              selected={navItemSelected(item.to)}
-              onClick={() => setMobileOpen(false)}
-              sx={(theme) => ({
-                px: 1.5,
-                py: 1.25,
-                borderRadius: 1,
-                fontWeight: 500,
-                color: navItemSelected(item.to) ? 'primary.main' : 'text.primary',
-                '&.Mui-selected': { bgcolor: 'primary.lighter', color: 'primary.main' },
-                '&.Mui-selected:hover': { bgcolor: 'primary.lighter' },
-                ...theme.applyStyles('dark', {
-                  '&.Mui-selected': {
-                    bgcolor: 'primary.darker',
-                    color: 'primary.lighter',
-                    boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary.dark}`,
-                  },
-                  '&.Mui-selected:hover': { bgcolor: 'primary.darker' },
-                }),
-              })}
-            >
-              {'icon' in item && (
-                <ListItemIcon sx={{ minWidth: 20, mr: 1.5, color: 'inherit' }}>
-                  <UiIcon icon={item.icon} width={20} />
-                </ListItemIcon>
-              )}
-              <ListItemText
-                primary={item.label}
-                slotProps={{ primary: { variant: 'body2', fontWeight: 500 } }}
-              />
-            </ListItemButton>
-          ))}
-        </List>
-        <Box sx={{ mt: 'auto', p: 2 }}>
-          {session?.user.isGuest && (
-            <Button
-              fullWidth
-              variant="soft"
-              startIcon={<UiIcon icon="solar:user-plus-linear" width={18} />}
-              onClick={() => {
-                setMobileOpen(false);
-                setGuestUpgradeOpen(true);
-              }}
-              sx={{ mb: 1 }}
-            >
-              Akkauntni saqlash
-            </Button>
-          )}
-          <Button
-            component={RouterLink}
-            to={session ? appRoutes.profile : appRoutes.login}
-            fullWidth
-            variant="contained"
-            startIcon={
-              <UiIcon
-                icon={session ? 'solar:user-circle-linear' : 'solar:login-2-linear'}
-                width={18}
-              />
-            }
-            onClick={() => setMobileOpen(false)}
+      {mobileOpen && (
+        <Suspense fallback={null}>
+          <Drawer
+            open
+            onClose={() => setMobileOpen(false)}
+            slotProps={{ paper: { sx: { width: 300 } } }}
           >
-            {session ? identityLabel : 'Kirish'}
-          </Button>
-          {session && (
-            <Button
-              fullWidth
-              color="inherit"
-              startIcon={<UiIcon icon="solar:logout-2-linear" width={18} />}
-              onClick={logout}
-              sx={{ mt: 1 }}
-            >
-              Akkauntdan chiqish
-            </Button>
-          )}
-        </Box>
-      </Drawer>
-
-      <Menu
-        id="profile-identity-menu"
-        autoFocus={false}
-        disableAutoFocus
-        disableEnforceFocus
-        disableRestoreFocus
-        disableScrollLock
-        anchorEl={identityAnchorEl}
-        open={Boolean(identityAnchorEl)}
-        onClose={closeIdentityMenu}
-        MenuListProps={{ 'aria-labelledby': 'profile-identity-button' }}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      >
-        <MenuItem component={RouterLink} to={appRoutes.profile} onClick={closeIdentityMenu}>
-          <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
-            <UiIcon icon="solar:user-circle-linear" width={19} />
-          </ListItemIcon>
-          <ListItemText primary="Mening profilim" />
-        </MenuItem>
-        {session?.user.isGuest && (
-          <MenuItem
-            onClick={() => {
-              closeIdentityMenu();
-              setGuestUpgradeOpen(true);
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
-              <UiIcon icon="solar:user-plus-linear" width={19} />
-            </ListItemIcon>
-            <ListItemText primary="Akkauntni saqlash" />
-          </MenuItem>
-        )}
-        <Divider />
-        <MenuItem onClick={logout}>
-          <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
-            <UiIcon icon="solar:logout-2-linear" width={19} />
-          </ListItemIcon>
-          <ListItemText primary="Akkauntdan chiqish" />
-        </MenuItem>
-      </Menu>
-
-      <GuestUpgradeDialog
-        open={guestUpgradeOpen}
-        onClose={() => setGuestUpgradeOpen(false)}
-        onUpgraded={(nextSession) => setSession(nextSession)}
-      />
-
-      <Dialog open={searchOpen} onClose={() => setSearchOpen(false)} fullWidth maxWidth="sm">
-        <Box component="form" onSubmit={submitSearch}>
-          <TextField
-            autoFocus
-            fullWidth
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Algoritm, mavzu yoki atama..."
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <UiIcon icon="solar:magnifer-linear" width={22} />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Button
-                      type="button"
-                      size="small"
-                      color="inherit"
-                      onClick={() => setSearchOpen(false)}
-                    >
-                      ESC
-                    </Button>
-                  </InputAdornment>
-                ),
-                sx: { px: 1, '& fieldset': { border: 0 } },
-              },
-            }}
-          />
-          <Divider />
-          <Typography
-            variant="subtitle2"
-            sx={{ display: 'block', px: 2.5, pt: 2, color: 'text.secondary' }}
-          >
-            {query ? `${matches.length} ta natija` : 'Maqolalar'}
-          </Typography>
-          <List sx={{ px: 1, pb: 1.5, maxHeight: 420, overflow: 'auto' }}>
-            {matches.map((article) => (
-              <ListItemButton
-                key={article.sourceId ?? article.slug}
-                component={RouterLink}
-                to={getArticlePath(article)}
-                onClick={() => setSearchOpen(false)}
-                sx={{ borderRadius: 1 }}
-              >
-                <ListItemIcon sx={{ minWidth: 40 }}>
-                  <UiIcon icon="solar:document-text-linear" width={20} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={article.title}
-                  secondary={`${article.category} · ${article.readTime} daqiqa`}
-                  slotProps={{
-                    primary: { variant: 'subtitle2' },
-                    secondary: { variant: 'caption' },
+            <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
+              <BrandLogo />
+              <IconButton aria-label="Menyuni yopish" onClick={() => setMobileOpen(false)}>
+                <UiIcon icon="solar:close-circle-linear" width={22} />
+              </IconButton>
+            </Stack>
+            <Divider />
+            <List sx={{ p: 1.5 }}>
+              {[...navItems, ...utilityItems].map((item) => (
+                <ListItemButton
+                  key={item.to}
+                  component={RouterLink}
+                  to={item.to}
+                  selected={navItemSelected(item.to)}
+                  onClick={() => setMobileOpen(false)}
+                  sx={(theme) => ({
+                    px: 1.5,
+                    py: 1.25,
+                    borderRadius: 1,
+                    fontWeight: 500,
+                    color: navItemSelected(item.to) ? 'primary.main' : 'text.primary',
+                    '&.Mui-selected': { bgcolor: 'primary.lighter', color: 'primary.main' },
+                    '&.Mui-selected:hover': { bgcolor: 'primary.lighter' },
+                    ...theme.applyStyles('dark', {
+                      '&.Mui-selected': {
+                        bgcolor: 'primary.darker',
+                        color: 'primary.lighter',
+                        boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary.dark}`,
+                      },
+                      '&.Mui-selected:hover': { bgcolor: 'primary.darker' },
+                    }),
+                  })}
+                >
+                  {'icon' in item && (
+                    <ListItemIcon sx={{ minWidth: 20, mr: 1.5, color: 'inherit' }}>
+                      <UiIcon icon={item.icon} width={20} />
+                    </ListItemIcon>
+                  )}
+                  <ListItemText
+                    primary={item.label}
+                    slotProps={{ primary: { variant: 'body2', fontWeight: 500 } }}
+                  />
+                </ListItemButton>
+              ))}
+            </List>
+            <Box sx={{ mt: 'auto', p: 2 }}>
+              {session?.user.isGuest && (
+                <Button
+                  fullWidth
+                  variant="soft"
+                  startIcon={<UiIcon icon="solar:user-plus-linear" width={18} />}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setGuestUpgradeOpen(true);
                   }}
-                />
-                <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
-              </ListItemButton>
-            ))}
-            {articleLoadError && (
-              <Typography variant="body2" sx={{ py: 5, textAlign: 'center', color: 'error.main' }}>
-                Kutubxonani yuklab bo‘lmadi. Server bilan ulanishni tekshiring.
-              </Typography>
-            )}
-            {!articleLoadError && !matches.length && (
-              <Typography
-                variant="body2"
-                sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}
+                  sx={{ mb: 1 }}
+                >
+                  Akkauntni saqlash
+                </Button>
+              )}
+              <Button
+                component={RouterLink}
+                to={session ? appRoutes.profile : appRoutes.login}
+                fullWidth
+                variant="contained"
+                startIcon={
+                  <UiIcon
+                    icon={session ? 'solar:user-circle-linear' : 'solar:login-2-linear'}
+                    width={18}
+                  />
+                }
+                onClick={() => setMobileOpen(false)}
               >
-                Bu so‘rov bo‘yicha hech narsa topilmadi.
-              </Typography>
-            )}
-          </List>
-          <Divider />
-          <Stack direction="row" justifyContent="flex-end" sx={{ p: 1.5 }}>
-            <Button
-              type="submit"
-              variant="contained"
-              endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
-            >
-              Barcha natijalarni ko‘rish
-            </Button>
-          </Stack>
-        </Box>
-      </Dialog>
+                {session ? identityLabel : 'Kirish'}
+              </Button>
+              {session && (
+                <Button
+                  fullWidth
+                  color="inherit"
+                  startIcon={<UiIcon icon="solar:logout-2-linear" width={18} />}
+                  onClick={logout}
+                  sx={{ mt: 1 }}
+                >
+                  Akkauntdan chiqish
+                </Button>
+              )}
+            </Box>
+          </Drawer>
+        </Suspense>
+      )}
 
-      <Popover
-        id="font-settings-panel"
-        anchorEl={fontAnchorEl}
-        open={Boolean(fontAnchorEl)}
-        onClose={() => setFontAnchorEl(null)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        slotProps={{
-          paper: {
-            sx: {
-              mt: 1,
-              p: 2.5,
-              width: 328,
-              bgcolor: 'background.paper',
-              backgroundImage: 'none',
-              backdropFilter: 'none',
-            },
-          },
-        }}
-      >
-        <Typography variant="subtitle2">Shrift turi</Typography>
-        <Box
-          sx={{
-            mt: 1,
-            p: 1,
-            gap: 1,
-            display: 'grid',
-            bgcolor: 'background.neutral',
-            borderRadius: 1.5,
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          }}
-        >
-          {FONT_FAMILY_OPTIONS.map((option) => {
-            const selected = settings.state.fontFamily === option.value;
-            return (
-              <ButtonBase
-                key={option.value}
-                onClick={() => settings.setField('fontFamily', option.value)}
-                sx={{
-                  p: 1.5,
-                  gap: 0.75,
-                  minHeight: 84,
-                  minWidth: 0,
-                  borderRadius: 1.25,
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  bgcolor: selected ? 'background.paper' : 'transparent',
-                  boxShadow: selected ? (theme) => theme.vars.customShadows.z4 : 'none',
+      {identityAnchorEl && (
+        <Suspense fallback={null}>
+          <Menu
+            id="profile-identity-menu"
+            autoFocus={false}
+            disableAutoFocus
+            disableEnforceFocus
+            disableRestoreFocus
+            disableScrollLock
+            anchorEl={identityAnchorEl}
+            open={Boolean(identityAnchorEl)}
+            onClose={closeIdentityMenu}
+            MenuListProps={{ 'aria-labelledby': 'profile-identity-button' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            <MenuItem component={RouterLink} to={appRoutes.profile} onClick={closeIdentityMenu}>
+              <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
+                <UiIcon icon="solar:user-circle-linear" width={19} />
+              </ListItemIcon>
+              <ListItemText primary="Mening profilim" />
+            </MenuItem>
+            {session?.user.isGuest && (
+              <MenuItem
+                onClick={() => {
+                  closeIdentityMenu();
+                  setGuestUpgradeOpen(true);
                 }}
               >
-                <Typography
-                  component="span"
-                  sx={{
-                    color: selected ? 'primary.main' : 'text.secondary',
-                    fontFamily: `'${option.value}', sans-serif`,
-                    fontSize: 28,
-                    lineHeight: 1,
-                  }}
+                <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
+                  <UiIcon icon="solar:user-plus-linear" width={19} />
+                </ListItemIcon>
+                <ListItemText primary="Akkauntni saqlash" />
+              </MenuItem>
+            )}
+            <Divider />
+            <MenuItem onClick={logout}>
+              <ListItemIcon sx={{ minWidth: 19, mr: 1.25 }}>
+                <UiIcon icon="solar:logout-2-linear" width={19} />
+              </ListItemIcon>
+              <ListItemText primary="Akkauntdan chiqish" />
+            </MenuItem>
+          </Menu>
+        </Suspense>
+      )}
+
+      {guestUpgradeOpen && (
+        <Suspense fallback={null}>
+          <GuestUpgradeDialog
+            open
+            onClose={() => setGuestUpgradeOpen(false)}
+            onUpgraded={(nextSession) => setSession(nextSession)}
+          />
+        </Suspense>
+      )}
+
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <Dialog open onClose={() => setSearchOpen(false)} fullWidth maxWidth="sm">
+            <Box component="form" onSubmit={submitSearch}>
+              <TextField
+                autoFocus
+                fullWidth
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Algoritm, mavzu yoki atama..."
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <UiIcon icon="solar:magnifer-linear" width={22} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Button
+                          type="button"
+                          size="small"
+                          color="inherit"
+                          onClick={() => setSearchOpen(false)}
+                        >
+                          ESC
+                        </Button>
+                      </InputAdornment>
+                    ),
+                    sx: { px: 1, '& fieldset': { border: 0 } },
+                  },
+                }}
+              />
+              <Divider />
+              <Typography
+                variant="subtitle2"
+                sx={{ display: 'block', px: 2.5, pt: 2, color: 'text.secondary' }}
+              >
+                {query ? `${matches.length} ta natija` : 'Maqolalar'}
+              </Typography>
+              <List sx={{ px: 1, pb: 1.5, maxHeight: 420, overflow: 'auto' }}>
+                {matches.map((article) => (
+                  <ListItemButton
+                    key={article.sourceId ?? article.slug}
+                    component={RouterLink}
+                    to={getArticlePath(article)}
+                    onClick={() => setSearchOpen(false)}
+                    sx={{ borderRadius: 1 }}
+                  >
+                    <ListItemIcon sx={{ minWidth: 40 }}>
+                      <UiIcon icon="solar:document-text-linear" width={20} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={article.title}
+                      secondary={`${article.category} · ${article.readTime} daqiqa`}
+                      slotProps={{
+                        primary: { variant: 'subtitle2' },
+                        secondary: { variant: 'caption' },
+                      }}
+                    />
+                    <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
+                  </ListItemButton>
+                ))}
+                {articleLoadError && (
+                  <Typography
+                    variant="body2"
+                    sx={{ py: 5, textAlign: 'center', color: 'error.main' }}
+                  >
+                    Kutubxonani yuklab bo‘lmadi. Server bilan ulanishni tekshiring.
+                  </Typography>
+                )}
+                {!articleLoadError && !matches.length && (
+                  <Typography
+                    variant="body2"
+                    sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}
+                  >
+                    Bu so‘rov bo‘yicha hech narsa topilmadi.
+                  </Typography>
+                )}
+              </List>
+              <Divider />
+              <Stack direction="row" justifyContent="flex-end" sx={{ p: 1.5 }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
                 >
-                  Aa
-                </Typography>
-                <Typography
-                  component="span"
-                  variant="caption"
-                  sx={{
-                    fontFamily: `'${option.value}', sans-serif`,
-                    color: selected ? 'text.primary' : 'text.secondary',
-                    textAlign: 'center',
-                  }}
-                >
-                  {option.label}
-                </Typography>
-              </ButtonBase>
-            );
-          })}
-        </Box>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="subtitle2" sx={{ mt: 2.5 }}>
-            O‘lcham
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {settings.state.fontSize}px
-          </Typography>
-        </Stack>
-        <Slider
-          min={14}
-          max={20}
-          step={1}
-          value={settings.state.fontSize}
-          valueLabelDisplay="on"
-          valueLabelFormat={(value) => `${value}px`}
-          onChange={(_, value) => settings.setField('fontSize', value as number)}
-          aria-label="Matn o‘lchami"
-          sx={{ mt: 4, mb: 0.5, '& .MuiSlider-thumb::before': { backgroundImage: 'none' } }}
-        />
-      </Popover>
+                  Barcha natijalarni ko‘rish
+                </Button>
+              </Stack>
+            </Box>
+          </Dialog>
+        </Suspense>
+      )}
+
+      {fontAnchorEl && (
+        <Suspense fallback={null}>
+          <Popover
+            id="font-settings-panel"
+            anchorEl={fontAnchorEl}
+            open={Boolean(fontAnchorEl)}
+            onClose={() => setFontAnchorEl(null)}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            slotProps={{
+              paper: {
+                sx: {
+                  mt: 1,
+                  p: 2.5,
+                  width: 328,
+                  bgcolor: 'background.paper',
+                  backgroundImage: 'none',
+                  backdropFilter: 'none',
+                },
+              },
+            }}
+          >
+            <Typography variant="subtitle2">Shrift turi</Typography>
+            <Box
+              sx={{
+                mt: 1,
+                p: 1,
+                gap: 1,
+                display: 'grid',
+                bgcolor: 'background.neutral',
+                borderRadius: 1.5,
+                gridTemplateColumns: 'repeat(2, 1fr)',
+              }}
+            >
+              {FONT_FAMILY_OPTIONS.map((option) => {
+                const selected = settings.state.fontFamily === option.value;
+                return (
+                  <ButtonBase
+                    key={option.value}
+                    onClick={() => settings.setField('fontFamily', option.value)}
+                    sx={{
+                      p: 1.5,
+                      gap: 0.75,
+                      minHeight: 84,
+                      minWidth: 0,
+                      borderRadius: 1.25,
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      bgcolor: selected ? 'background.paper' : 'transparent',
+                      boxShadow: selected ? (theme) => theme.vars.customShadows.z4 : 'none',
+                    }}
+                  >
+                    <Typography
+                      component="span"
+                      sx={{
+                        color: selected ? 'primary.main' : 'text.secondary',
+                        fontFamily: `'${option.value}', sans-serif`,
+                        fontSize: 28,
+                        lineHeight: 1,
+                      }}
+                    >
+                      Aa
+                    </Typography>
+                    <Typography
+                      component="span"
+                      variant="caption"
+                      sx={{
+                        fontFamily: `'${option.value}', sans-serif`,
+                        color: selected ? 'text.primary' : 'text.secondary',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {option.label}
+                    </Typography>
+                  </ButtonBase>
+                );
+              })}
+            </Box>
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <Typography variant="subtitle2" sx={{ mt: 2.5 }}>
+                O‘lcham
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                {settings.state.fontSize}px
+              </Typography>
+            </Stack>
+            <Slider
+              min={14}
+              max={20}
+              step={1}
+              value={settings.state.fontSize}
+              valueLabelDisplay="on"
+              valueLabelFormat={(value) => `${value}px`}
+              onChange={(_, value) => settings.setField('fontSize', value as number)}
+              aria-label="Matn o‘lchami"
+              sx={{ mt: 4, mb: 0.5, '& .MuiSlider-thumb::before': { backgroundImage: 'none' } }}
+            />
+          </Popover>
+        </Suspense>
+      )}
     </LayoutSection>
   );
 }

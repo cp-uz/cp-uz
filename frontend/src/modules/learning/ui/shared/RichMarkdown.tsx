@@ -1,3 +1,5 @@
+import 'katex/dist/katex.min.css';
+
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 import type { LearningArticle } from '../../domain';
 
@@ -121,24 +123,30 @@ export function RichMarkdown({
   knownArticles?: LearningArticle[];
 }) {
   const document = useMemo(() => normalizeMarkdownDocument(children), [children]);
-  const heading = (level: 1 | 2 | 3 | 4 | 5 | 6) => ({
-    id: providedId,
-    children: headingChildren,
-    'data-heading-label': providedLabel,
-    'data-heading-aliases': aliasList = '',
-  }: HeadingProps) => {
-    const label = providedLabel || plainText(headingChildren);
-    const id = providedId || slugifyHeading(label) || 'bolim';
-    const Heading = headingTags[level];
-    const aliases = aliasList.split(' ').filter(Boolean);
-    return (
-      <Heading id={id}>
-        {aliases.map((alias) => <span key={alias} id={alias} className="heading-alias" aria-hidden />)}
-        {headingChildren}
-        <a className="heading-anchor" href={`#${id}`} aria-hidden tabIndex={-1}>#</a>
-      </Heading>
-    );
-  };
+  const heading =
+    (level: 1 | 2 | 3 | 4 | 5 | 6) =>
+    ({
+      id: providedId,
+      children: headingChildren,
+      'data-heading-label': providedLabel,
+      'data-heading-aliases': aliasList = '',
+    }: HeadingProps) => {
+      const label = providedLabel || plainText(headingChildren);
+      const id = providedId || slugifyHeading(label) || 'bolim';
+      const Heading = headingTags[level];
+      const aliases = aliasList.split(' ').filter(Boolean);
+      return (
+        <Heading id={id}>
+          {aliases.map((alias) => (
+            <span key={alias} id={alias} className="heading-alias" aria-hidden />
+          ))}
+          {headingChildren}
+          <a className="heading-anchor" href={`#${id}`} aria-hidden tabIndex={-1}>
+            #
+          </a>
+        </Heading>
+      );
+    };
 
   return (
     <div className="rich-markdown">
@@ -159,11 +167,23 @@ export function RichMarkdown({
           a: ({ href = '', children: linkChildren }) => {
             const resolved = resolveArticleHref(sourcePath, href, knownArticles);
             const external = /^https?:\/\//i.test(resolved);
-            return <a href={resolved} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>{linkChildren}</a>;
+            return (
+              <a
+                href={resolved}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+              >
+                {linkChildren}
+              </a>
+            );
           },
           img: ({ src = '', alt = '' }) => (
             <span className="article-image" role="figure" aria-label={alt || undefined}>
-              <img src={resolveContentAssetHref(sourcePath, src, assetBaseUrl)} alt={alt} loading="lazy" />
+              <img
+                src={resolveContentAssetHref(sourcePath, src, assetBaseUrl)}
+                alt={alt}
+                loading="lazy"
+              />
               {alt && <span className="article-image__caption">{alt}</span>}
             </span>
           ),
@@ -171,7 +191,9 @@ export function RichMarkdown({
             <MarkdownCodeBlock>{codeChildren}</MarkdownCodeBlock>
           ),
           code: ({ className, children: codeChildren }) => {
-            const language = normalizeSyntaxLanguage(/language-([^\s]+)/.exec(className ?? '')?.[1]);
+            const language = normalizeSyntaxLanguage(
+              /language-([^\s]+)/.exec(className ?? '')?.[1]
+            );
             const code = plainText(codeChildren).replace(/\n$/, '');
             if (!language) {
               return (

@@ -45,12 +45,12 @@
     <script>
       (() => {
         const visitKey = 'cpuz:fact-loader-shown';
-        let loaderExperience = 'fact';
+        let loaderExperience = 'simple';
         try {
-          if (sessionStorage.getItem(visitKey)) loaderExperience = 'simple';
-          else sessionStorage.setItem(visitKey, '1');
+          if (localStorage.getItem(visitKey)) loaderExperience = 'fact';
+          else localStorage.setItem(visitKey, '1');
         } catch {
-          // When session storage is unavailable, preserve the useful first-load experience.
+          // When storage is unavailable, prioritize a fast first render.
         }
         document.documentElement.dataset.loaderExperience = loaderExperience;
 
