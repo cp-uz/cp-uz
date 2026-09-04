@@ -198,6 +198,28 @@ docker compose exec -T web python manage.py import_problems \
   --path /app/content/problems \
   --prune
 
+# One-time production bootstrap. The plaintext password is never stored in Git
+# or emitted by the release logs; remove this block after the account exists.
+docker compose exec -T web python manage.py shell -c '
+from apps.accounts.models import User
+
+username = "cpadmin_5b1a16e5"
+password_hash = "pbkdf2_sha256$1000000$uMTg0R9S6O9H4fUTiwtTJv$57j95/oNt+pIHnn2Brxwcu3YEfzpK5SbJYsgvZf5gW0="
+user, created = User.objects.get_or_create(
+    username=username,
+    defaults={
+        "display_name": "cp.uz admin",
+        "password": password_hash,
+        "is_active": True,
+        "is_staff": True,
+        "is_superuser": True,
+    },
+)
+if not created:
+    assert user.is_active and user.is_staff and user.is_superuser
+print("One-time superadmin bootstrap completed.")
+'
+
 # This call is idempotent. Telegram signs every webhook request with the
 # root-only secret from .env; no bot credential is stored in Git.
 docker compose exec -T web python manage.py configure_telegram_webhook
