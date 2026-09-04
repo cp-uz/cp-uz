@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Permute-inator (perm)
 
 Asadulloda uzunligi $n$ bo'lgan $p$ permutatsiya bor, bunda elementlar $0$ dan $n-1$ gacha raqamlangan. Permutatsiyada $[0, n-1]$ oralig'idagi har bir son aynan bir marta uchraydi.
@@ -91,4 +89,3 @@ Agarda dasturingiz $p$ permutatsiyani to'g'ri topsa ekranga `Accepted: q` yozuvi
 * `Invalid index` – qaysidir $i$ uchun $0 \le x[i] \le n-1$ shart bajarilmasa.
 * `Too many queries` – so'rovlar soni $10\;000$ tadan oshib ketsa yoki so'rovlardagi $m$ qiymatlar yig'indisi $1\;000\;000$ dan oshib ketsa.
 * `Wrong guess` – $p$ permutatsiya noto'g'ri topilgan bo'lsa. U holda keyingi qatorda $a[0] \; a[1] \; \ldots \; a[n - 1]$ chiqariladi, bunda $a$ – `find_permutation` protsedurasi qaytargan massiv.
- 

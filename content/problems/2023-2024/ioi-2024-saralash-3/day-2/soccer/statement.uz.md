@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Soccer (soccer)
 
 QPFL — Qiziqarli Professional Futbol Ligasida jami $2 \cdot n$ ta jamoa o'ynaydi, bunda jamoalar $0$ dan $2 \cdot n-1$ gacha raqamlangan.

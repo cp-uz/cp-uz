@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Frequency (freq)
 
 $f(b)$ deganda $b$ massivda eng ko'p uchragan sonni nechi marta borligiga aytaylik. Masalan, $f([3, 1, 3, 3, 3]) = 4$ va $f(1, 2, 3) = 1$. $b$ massiv go'zal deyilishi uchun, $x \le f(b) \le y$ shart bajarilishi kerak, bu yerda $x$ va $y$ – berilgan sonlar.

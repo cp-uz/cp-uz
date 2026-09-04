@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-1",
+  "title": "1-kun",
+  "description": "Uzbekistan IOI 2024 saralashining III bosqichi — 1-kun masalalari.",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "kep",
+    "perm",
+    "reno"
+  ]
+}

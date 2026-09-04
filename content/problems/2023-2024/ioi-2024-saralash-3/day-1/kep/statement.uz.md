@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Kepuz Arena (kep)
 
 `kep.uz` dasturlash platformasida Arena turidagi musobaqalar o'tqaziladi. Bu arenada Anvar $n$ ta bellashuvda qatnashdi, bellashuvlar $0$ dan $n-1$ gacha raqamlangan.

@@ -1,0 +1,33 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "tmex",
+  "code": "C",
+  "title": "Tree MEX",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-3/tmex/statement.pdf",
+    "sha256": "71efd85b467b52ac81c786a84ad88c81d5814f71236375e4075166fd275e4343",
+    "size_bytes": 114476,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "GitHub’dagi o‘zbekcha shart",
+      "url": "https://github.com/cp-uz/cp-uz/blob/main/content/problems/2023-2024/ioi-2024-saralash-3/day-3/tmex/statement.uz.md",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    }
+  ]
+}

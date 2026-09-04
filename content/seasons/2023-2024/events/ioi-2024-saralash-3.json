@@ -1,0 +1,88 @@
+{
+  "code": "TST3",
+  "slug": "ioi-2024-saralash-3",
+  "title": "IOI 2024 saralashi — III bosqich",
+  "short_title": "IOI 2024 saralash III",
+  "summary": "To‘rt kunlik saralash to‘plamidan saqlangan 12 ta o‘zbekcha masala.",
+  "description": "To‘rt kunning original o‘zbekcha PDF shartlari saqlangan. Dastlabki ikki kun masalalari mualliflar Codeforces Gym’ga joylagan Uzbekistan IOI 2024 Team Selection Test to‘plamlariga mos. 3–4-kunlar uchun ochiq judge havolasi aniqlanmagan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "pending",
+  "date_precision": "tba",
+  "start_date": null,
+  "end_date": null,
+  "date_label": "2024-yil, aniq sana tasdiqlanmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "platform": "CMS / Codeforces Gym",
+  "organizer": "O‘zbekiston IOI saralash jamoasi",
+  "is_featured": false,
+  "order": 100,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 10,
+      "node_style": "default",
+      "label": "III"
+    }
+  ],
+  "resources": [
+    {
+      "type": "platform",
+      "title": "Codeforces Gym — 1-kun",
+      "url": "https://codeforces.com/gym/105186",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "platform",
+      "title": "Codeforces Gym — 2-kun",
+      "url": "https://codeforces.com/gym/105187",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "announcement",
+      "title": "Uzbekistan IOI 2024 TST e’loni",
+      "url": "https://codeforces.com/blog/entry/129888",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "other",
+      "title": "O‘zbekcha shartlar yuborilgan PR",
+      "url": "https://github.com/cp-uz/cp-uz/pull/1",
+      "is_official": false,
+      "order": 40
+    },
+    {
+      "type": "other",
+      "title": "Competitive Programming Uz Telegram arxivi",
+      "url": "https://t.me/cp_uz",
+      "is_official": false,
+      "order": 50
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "Uzbekistan IOI 2024 TST on Gym",
+      "url": "https://codeforces.com/blog/entry/129888",
+      "publisher": "Masalalar mualliflari",
+      "accessed_on": "2026-09-04",
+      "is_primary": true,
+      "notes": "Ochiq Gym nusxasidagi dastlabki ikki kun va mualliflik ma’lumotlari."
+    },
+    {
+      "type": "community_report",
+      "title": "O‘zbekcha statementlar PR #1",
+      "url": "https://github.com/cp-uz/cp-uz/pull/1",
+      "publisher": "cp-uz contributor",
+      "accessed_on": "2026-09-04",
+      "is_primary": true,
+      "notes": "To‘rt kun uchun 12 ta o‘zbekcha fayl. PR’dagi noto‘liq Gnomes fayli Telegram arxividagi original PDF asosida tiklandi."
+    }
+  ],
+  "results": []
+}

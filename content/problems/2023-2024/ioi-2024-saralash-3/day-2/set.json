@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "Uzbekistan IOI 2024 saralashining III bosqichi — 2-kun masalalari.",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "meet",
+    "soccer",
+    "tri"
+  ]
+}

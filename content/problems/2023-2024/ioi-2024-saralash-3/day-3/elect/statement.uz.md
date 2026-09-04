@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Elections (elect)
 
 Yaqinda Dadorlandtiria mamlakatida deputatlar saylovi bo'lib o'tadi. Saylovda jami $n$ ta saylovchi bor va ular $0$ dan $n-1$ gacha raqamlangan. Shuningdek, saylovda jami $k$ ta nomzod bo'lib, ular $0$ dan $k-1$ gacha raqamlangan. E'tibor bering, nomzodlarning o'zlari saylovda qatnashishmaydi, ya'ni jami $n+k$ ta odam bor. 

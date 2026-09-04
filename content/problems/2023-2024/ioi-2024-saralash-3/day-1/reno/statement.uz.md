@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Renovations (reno)
 
 Dadorlandtiria mamlakatida $n$ ta shahar bor va ular $0$ dan $n-1$ gacha raqamlangan. Mamlakatni $m$ ta ikki tomonli yo'l bog'lab turadi, yo'llar ham $0$ dan $m-1$ gacha raqamlangan. Bunda $i$-raqamli yo'l $u[i]$ va $v[i]$ raqamli shaharlarni bog'lab turadi.

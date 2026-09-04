@@ -1,0 +1,42 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "perm",
+  "code": "B",
+  "title": "Permute-inator",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-1/perm/statement.pdf",
+    "sha256": "c6af1011c6effb5fdc38f2e98600e9c87989735e22093c745d586c073dbc5809",
+    "size_bytes": 99969,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "interactive",
+  "max_score": 100,
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "Codeforces Gym’dagi rasmiy shart",
+      "url": "https://codeforces.com/gym/105186/problem/B",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Codeforces Gym’da ishlash",
+      "url": "https://codeforces.com/gym/105186/problem/B",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 1
+    }
+  ]
+}

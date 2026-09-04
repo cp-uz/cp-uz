@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Tree MEX (tmex)
 
 Gagorlandtiria mamlakatida $n$ ta shahar bor, bunda shaharlar $0$ dan $n-1$ gacha raqamlangan. Barcha $0 \le i \le n-2$ uchun $u[i]$ va $v[i]$  raqamli shaharlar o'rtasida ikki tomonli yo'l bor hamda yo'lning uzunligi $w[i]$ metr.

@@ -1,0 +1,42 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "tri",
+  "code": "C",
+  "title": "Triangles",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-2/tri/statement.pdf",
+    "sha256": "970f4a206b8c9e5d51e246795ac76eda71c53a7ac8035522911175f7798e3f29",
+    "size_bytes": 96807,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "Codeforces Gym’dagi rasmiy shart",
+      "url": "https://codeforces.com/gym/105187/problem/C",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Codeforces Gym’da ishlash",
+      "url": "https://codeforces.com/gym/105187/problem/C",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 1
+    }
+  ]
+}

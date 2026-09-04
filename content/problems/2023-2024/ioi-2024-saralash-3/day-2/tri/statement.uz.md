@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Triangles (tri)
 
 Ulug'bekda $n$ dona tayoqcha bor, bunda tayoqchalar $0$ dan $n-1$ gacha raqamlangan hamda $i$-tayoqning uzunligi $a[i]$ metr. 

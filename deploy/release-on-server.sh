@@ -235,13 +235,13 @@ actual = {
     "statement_pdfs": Problem.objects.exclude(statement_pdf_url="").count(),
 }
 expected = {
-    "sets": 11,
-    "public_sets": 11,
-    "problems": 35,
-    "public_problems": 35,
-    "links": 64,
+    "sets": 15,
+    "public_sets": 15,
+    "problems": 47,
+    "public_problems": 47,
+    "links": 82,
     "attachments": 12,
-    "statement_pdfs": 35,
+    "statement_pdfs": 47,
 }
 assert actual == expected, f"Imported problem catalog mismatch: {actual} != {expected}"
 print(actual)
@@ -259,11 +259,11 @@ actual = {
     "local_results": ResultEntry.objects.filter(is_local=True).count(),
 }
 expected = {
-    "seasons": 2,
-    "public_seasons": 2,
-    "routes": 12,
-    "events": 50,
-    "public_events": 50,
+    "seasons": 3,
+    "public_seasons": 3,
+    "routes": 13,
+    "events": 51,
+    "public_events": 51,
     "edges": 42,
     "local_results": 73,
 }

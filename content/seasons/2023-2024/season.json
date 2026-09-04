@@ -1,0 +1,25 @@
+{
+  "slug": "2023-2024",
+  "title": "2023–2024 sport dasturlash mavsumi",
+  "summary": "O‘zbekistonning IOI 2024 terma jamoasi saralashidan saqlangan masalalar to‘plami.",
+  "start_date": "2023-09-01",
+  "end_date": "2024-08-31",
+  "publication_status": "published",
+  "verification_status": "pending",
+  "is_featured": false,
+  "order": 0,
+  "routes": [
+    {
+      "code": "main",
+      "title": "IOI saralash yo‘li",
+      "description": "IOI 2024 terma jamoasini shakllantirish bosqichlari.",
+      "kind": "selection",
+      "color": "blue",
+      "line_style": "solid",
+      "icon": "solar:diploma-linear",
+      "order": 10,
+      "is_visible": true
+    }
+  ],
+  "edges": []
+}

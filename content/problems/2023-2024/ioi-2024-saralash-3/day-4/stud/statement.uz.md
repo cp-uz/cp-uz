@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Students (stud)
 
 Sinfda $n$ ta o'quvchi bor, o'quvchilar $0$ dan $n-1$ gacha raqamlangan. Har bir o'quvchi faqat $[a[i]; b[i]]$ oralig'idagi kunlarda maktabga kelishi mumkin, qolgan kunlarda esa maktabga aniq kelmaydi. O'quvchi maktabga kelsa sinf yetakchisining kayfiyati $p[i]$ ga ortadi (yoki kamayadi). Shuningdek, har bir o'quvchining o'z reytingi bor, bunda $i$-o'quvchining reytingi $r[i]$.

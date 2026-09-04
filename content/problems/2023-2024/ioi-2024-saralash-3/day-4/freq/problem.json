@@ -1,0 +1,33 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "freq",
+  "code": "A",
+  "title": "Frequency",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-4/freq/statement.pdf",
+    "sha256": "5d93083ee34f68f097e7c3b836f349d833e4e7321a03413ca9147c271cec6f33",
+    "size_bytes": 73290,
+    "page_count": 2,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "GitHub’dagi o‘zbekcha shart",
+      "url": "https://github.com/cp-uz/cp-uz/blob/main/content/problems/2023-2024/ioi-2024-saralash-3/day-4/freq/statement.uz.md",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    }
+  ]
+}

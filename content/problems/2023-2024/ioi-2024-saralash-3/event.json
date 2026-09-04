@@ -1,0 +1,12 @@
+{
+  "document_type": "event",
+  "schema_version": 1,
+  "season_slug": "2023-2024",
+  "event_slug": "ioi-2024-saralash-3",
+  "sets": [
+    "day-1",
+    "day-2",
+    "day-3",
+    "day-4"
+  ]
+}

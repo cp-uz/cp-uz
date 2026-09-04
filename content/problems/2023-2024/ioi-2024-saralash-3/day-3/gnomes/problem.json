@@ -1,0 +1,33 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "gnomes",
+  "code": "B",
+  "title": "Gnomes",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-3/gnomes/statement.pdf",
+    "sha256": "a4c5f43fe7c5fdd72e0ff49400e4df1fd3b7c8054cebb573398e29c8e3c413a3",
+    "size_bytes": 326754,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "two_step",
+  "max_score": 100,
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "GitHub’dagi o‘zbekcha shart",
+      "url": "https://github.com/cp-uz/cp-uz/blob/main/content/problems/2023-2024/ioi-2024-saralash-3/day-3/gnomes/statement.uz.md",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    }
+  ]
+}

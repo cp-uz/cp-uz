@@ -1,0 +1,42 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "reno",
+  "code": "C",
+  "title": "Renovations",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-1/reno/statement.pdf",
+    "sha256": "9239e333d738f0bd71230b59305e71db05611b3f32b9a167657230497fcb346e",
+    "size_bytes": 152982,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "Codeforces Gym’dagi rasmiy shart",
+      "url": "https://codeforces.com/gym/105186/problem/C",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Codeforces Gym’da ishlash",
+      "url": "https://codeforces.com/gym/105186/problem/C",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 1
+    }
+  ]
+}

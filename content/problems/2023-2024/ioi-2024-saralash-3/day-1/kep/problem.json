@@ -1,0 +1,42 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "kep",
+  "code": "A",
+  "title": "KEP.uz Arena",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-3/day-1/kep/statement.pdf",
+    "sha256": "e4c2005d3b96e0c352b300169c750ed14a3be94ce27c82440cd44c7975979c7d",
+    "size_bytes": 93441,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "Codeforces Gym’dagi rasmiy shart",
+      "url": "https://codeforces.com/gym/105186/problem/A",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Codeforces Gym’da ishlash",
+      "url": "https://codeforces.com/gym/105186/problem/A",
+      "platform": "Codeforces Gym",
+      "is_official": true,
+      "is_primary": true,
+      "order": 1
+    }
+  ]
+}

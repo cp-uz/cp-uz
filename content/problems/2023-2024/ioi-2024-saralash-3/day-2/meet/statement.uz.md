@@ -1,5 +1,3 @@
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/JR695Fp/IOI-2024-Wide-Colored-on-White-BG.png" alt="IOI-2024-Wide-Colored-on-White-BG" style="float: right;" width="200" border="0"></a>
-
 # Meetings (meet)
 
 Dadorlandtiria mamlakatida $n$ ta shahar bor va ular $0$ dan $n-1$ gacha raqamlangan. Mamlakatni $n-1$ ta ikki tomonli yo'l bog'lab turadi, bunda barcha $0 \le i \le n-2$ uchun $u[i]$ va $v[i]$ shaharlar to'g'ridan-to'g'ri yo'l bilan bog'langan va bu yo'ldan o'tish uchun $w[i]$ dador dollari to'lash kerak. Dadorlandtiria mamlakatida ixtiyoriy shahardan boshqasiga yetib borish mumkin.
