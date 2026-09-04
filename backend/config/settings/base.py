@@ -125,7 +125,10 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "config.exceptions.api_exception_handler",
     "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%SZ",
+    "NUM_PROXIES": 2,
     "DEFAULT_THROTTLE_RATES": {
+        "login": os.getenv("LOGIN_THROTTLE", "5/min"),
+        "login_ip": os.getenv("LOGIN_IP_THROTTLE", "30/min"),
         "guest_session": os.getenv("GUEST_SESSION_THROTTLE", "20/hour"),
         "guest_upgrade": os.getenv("GUEST_UPGRADE_THROTTLE", "5/hour"),
         "glossary_quiz": os.getenv("GLOSSARY_QUIZ_THROTTLE", "600/hour"),

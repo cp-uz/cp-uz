@@ -34,6 +34,7 @@ from .serializers import (
     UserProfileSerializer,
     UserSummarySerializer,
 )
+from .throttling import LoginIdentityRateThrottle, LoginIpRateThrottle
 
 INVALID_GUEST_HASH = make_password("invalid-guest-session-placeholder")
 UPGRADE_PASSWORD_ALPHABET = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%_-"
@@ -72,6 +73,7 @@ def _generate_one_time_password(user):
 
 class CpuzTokenObtainPairView(TokenObtainPairView):
     serializer_class = CpuzTokenObtainPairSerializer
+    throttle_classes = [LoginIdentityRateThrottle, LoginIpRateThrottle]
 
 
 @extend_schema(
