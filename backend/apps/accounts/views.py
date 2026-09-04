@@ -72,6 +72,8 @@ def _generate_one_time_password(user):
 
 class CpuzTokenObtainPairView(TokenObtainPairView):
     serializer_class = CpuzTokenObtainPairSerializer
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "login"
 
 
 @extend_schema(
