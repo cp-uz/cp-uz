@@ -9,6 +9,24 @@
       "handle": "Shakuu",
       "url": "https://kep.uz/users/user/Shakuu",
       "is_verified": true
+    },
+    {
+      "platform": "codeforces",
+      "handle": "Shakuu",
+      "url": "https://codeforces.com/profile/Shakuu",
+      "is_verified": true
+    },
+    {
+      "platform": "atcoder",
+      "handle": "Shakuu",
+      "url": "https://atcoder.jp/users/Shakuu",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "shakuu003",
+      "url": "https://robocontest.uz/profile/shakuu003",
+      "is_verified": true
     }
   ]
 }

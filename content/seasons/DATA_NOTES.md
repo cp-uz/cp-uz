@@ -110,7 +110,6 @@ Rasmiy portret manbalari:
   Ulug‘bek Rakhmatullaev (`8464`), Timur Kadirbergenov (`8810`) va Sardor Salimov (`8809`);
 - EGOI Statistics: Oysha Mirzatillaeva (`709`) va Raykhona Sanakulova (`1215`).
 - EGOI Statistics: Malika Khojamuratova (`708`).
-- RoboContest: Temurbek Ubaydullayevning tasdiqlangan `temur_ubaydullayev` profili.
 - Ixtisoslashtirilgan ta’lim muassasalari agentligi: Umar Xayyom xalqaro olimpiadasi
   natijalari kollajida ism bilan belgilangan Shahruz Erkinov portreti.
 
