@@ -156,6 +156,8 @@ SIMPLE_JWT = {
 }
 
 SPECTACULAR_SETTINGS = {
+    # Avoid OS-dependent prefix inference (Windows and POSIX commonpath differ).
+    "SCHEMA_PATH_PREFIX": "",
     "TITLE": "cp.uz Knowledge API",
     "DESCRIPTION": "O‘zbek tilidagi sport dasturlash bilim platformasi API si.",
     "VERSION": "1.0.0",
