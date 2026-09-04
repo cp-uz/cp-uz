@@ -178,7 +178,9 @@ class Release:
                 "--entrypoint",
                 "python",
                 "--volume",
-                f"{self.previous[key]}:/source:ro",
+                # SQLite opens the DB with mode=ro, but WAL readers may need
+                # to create the shared-memory sidecar on a writable mount.
+                f"{self.previous[key]}:/source" + (":ro" if mode == "media" else ""),
                 "--volume",
                 f"{self.project}_{target}:/target",
                 self.images["web"],

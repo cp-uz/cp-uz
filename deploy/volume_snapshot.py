@@ -1,7 +1,9 @@
 """Copy a release volume while retaining the previous release for rollback.
 
-Invoked in a one-shot container, with source read-only and target writable.
-Only the database online-backup operation may run while the source is serving.
+Invoked in a one-shot container with the media source mounted read-only.
+SQLite uses a read-only connection on a writable source mount so WAL readers
+can create shared-memory sidecars. Only the database online-backup operation
+may run while the source is serving.
 """
 
 from __future__ import annotations

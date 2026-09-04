@@ -17,6 +17,8 @@ cleanup() {
 }
 trap cleanup EXIT
 "${compose[@]}" build
+CPUZ_TEST_CONTAINER_IMAGE="cpuz-web:${CPUZ_RELEASE_TAG}" \
+  python3 -m unittest discover -s deploy -p 'test_container_snapshot.py' -v
 "${compose[@]}" up -d --wait redis
 "${compose[@]}" run --rm --no-deps --entrypoint sh web /app/prepare-content.sh
 "${compose[@]}" up -d --no-build --wait --wait-timeout 180

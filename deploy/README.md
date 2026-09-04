@@ -104,6 +104,12 @@ configuration validation, still recover the previous deployment automatically.
 
 ## Verification without deployment
 
+SQLite snapshots open the source database with `mode=ro`. Its Docker mount is
+writable because WAL readers may need to create shared-memory sidecar files;
+no migrations or SQL writes run against the source. Media sources stay mounted
+read-only. Container CI checks snapshots with both an active WAL writer and a
+closed WAL database whose sidecars have been removed.
+
 ```bash
 python -m unittest discover -s deploy -p 'test_*.py' -v
 shellcheck deploy/*.sh
