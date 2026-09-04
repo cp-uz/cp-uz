@@ -18,6 +18,7 @@ from pathlib import Path
 
 import pymupdf
 import pymupdf4llm
+from problem_staging import stage_catalog
 
 ARCHIVE_ROOT = "https://raw.githubusercontent.com/ioi/task-archive/master/2026"
 OFFICIAL_ROOT = "https://ioinformatics.org/files"
@@ -42,9 +43,7 @@ class Task:
 
 
 TASKS = (
-    Task(
-        1, 1, "ballmachine", "A", "Koptok mashinasi", "Ball Machine", "communication", 1
-    ),
+    Task(1, 1, "ballmachine", "A", "Koptok mashinasi", "Ball Machine", "communication", 1),
     Task(1, 2, "monuments", "B", "Yodgorliklar", "Monuments", "standard", 2),
     Task(1, 3, "tiling", "C", "Plitkalar o‘yini", "Tiling Game", "communication", 3),
     Task(2, 1, "classroom", "D", "Sinf o‘yini", "Classroom Game", "two_step", 4),
@@ -144,7 +143,8 @@ def clean_pdf_text(
         flags=re.DOTALL,
     )
     body = re.sub(
-        rf"^\s*(?:{re.escape(task.archive_slug)}(?:\s+\(\d+ of \d+\))?|\d+\s*/\s*\d+\s*-\s*sahifa)\s*$",
+        rf"^\s*(?:{re.escape(task.archive_slug)}(?:\s+\(\d+ of \d+\))?"
+        r"|\d+\s*/\s*\d+\s*-\s*sahifa)\s*$",
         "",
         body,
         flags=re.MULTILINE | re.IGNORECASE,
@@ -223,16 +223,12 @@ def clean_pdf_text(
     body = re.sub(r"\$([^$\n]+)-\$(?=[A-Za-z])", r"$\1$-", body)
     body = re.sub(
         r"\$([^$\n]+)\$\s*=\s*([−-]?\d+)",
-        lambda match: (
-            f"${match.group(1).strip()} = {match.group(2).replace('−', '-')}$"
-        ),
+        lambda match: f"${match.group(1).strip()} = {match.group(2).replace('−', '-')}$",
         body,
     )
     body = re.sub(r"\[\s*([+-])\s*\]", r"`\1`", body)
     body = re.sub(r"^Figure\s+(\d+):\s*", r"**\1-rasm.** ", body, flags=re.MULTILINE)
-    body = re.sub(
-        r"^(#{2,4})\s+Example\s+(\d+)\s*$", r"\1 \2-misol", body, flags=re.MULTILINE
-    )
+    body = re.sub(r"^(#{2,4})\s+Example\s+(\d+)\s*$", r"\1 \2-misol", body, flags=re.MULTILINE)
     body = re.sub(
         r"^(#{2,4})\s+Subtask\s+(\d+)\s+\((\d+)\s+points\)\s*$",
         r"\1 \2-qism masala (\3 ball)",
@@ -295,22 +291,15 @@ def _merge_latex_comparison(match: re.Match[str]) -> str:
 
 
 def _merge_latex_number_comparison(match: re.Match[str]) -> str:
-    return (
-        f"${match.group(1).strip()} {_latex_operator(match.group(2))} {match.group(3)}$"
-    )
+    return f"${match.group(1).strip()} {_latex_operator(match.group(2))} {match.group(3)}$"
 
 
 def _merge_number_latex_comparison(match: re.Match[str]) -> str:
-    return (
-        f"${match.group(1)} {_latex_operator(match.group(2))} {match.group(3).strip()}$"
-    )
+    return f"${match.group(1)} {_latex_operator(match.group(2))} {match.group(3).strip()}$"
 
 
 def _merge_split_latex_comparison(match: re.Match[str]) -> str:
-    return (
-        f"${match.group(1).strip()} {_latex_operator(match.group(2))} "
-        f"{match.group(3).strip()}$"
-    )
+    return f"${match.group(1).strip()} {_latex_operator(match.group(2))} {match.group(3).strip()}$"
 
 
 def _merge_adjacent_latex_comparison(match: re.Match[str]) -> str:
@@ -421,10 +410,10 @@ def main() -> None:
     parser.add_argument(
         "--output-root",
         type=Path,
-        default=Path(__file__).resolve().parents[1] / "content" / "problems",
+        default=Path(__file__).resolve().parents[1] / "tmp" / "candidates" / "ioi-2026",
     )
     args = parser.parse_args()
-    write_catalog(args.output_root.resolve())
+    stage_catalog(args.output_root, write_catalog)
     print(f"IOI 2026: {len(TASKS)} ta rasmiy o‘zbekcha shart yangilandi.")
 
 

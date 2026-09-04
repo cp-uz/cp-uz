@@ -23,5 +23,8 @@ export const subscribeAuthSession = (
 ) => authRepository.subscribeSession(listener);
 export const ensureAuthSession = ensureSession;
 export const ensureGuestSession = ensureSession;
-export const authenticatedRequest = <T>(path: string, init?: RequestInit) =>
-  requestWithSession<T>(path, init);
+export const authenticatedRequest = <T>(
+  path: string,
+  init?: RequestInit,
+  options?: { expectedUserId?: number | string }
+) => requestWithSession<T>(path, init, options);

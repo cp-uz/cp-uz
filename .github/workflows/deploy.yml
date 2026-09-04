@@ -21,6 +21,8 @@ concurrency:
 jobs:
   deploy:
     name: Deploy exact revision
+    permissions:
+      actions: read
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event.workflow_run.conclusion == 'success' &&
@@ -35,6 +37,24 @@ jobs:
       CPUZ_DEPLOY_USER: ${{ secrets.CPUZ_DEPLOY_USER }}
       DEPLOY_SHA: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || inputs.sha }}
     steps:
+      - name: Require successful CI for the exact manual revision
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$DEPLOY_SHA" =~ ^[0-9a-f]{40}$ ]] || {
+            echo "Deploy SHA must contain exactly 40 lowercase hexadecimal characters." >&2
+            exit 2
+          }
+          conclusion=$(gh api --method GET \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f head_sha="$DEPLOY_SHA" -f branch=main -f event=push \
+            --jq '.workflow_runs[0].conclusion // "missing"')
+          test "$conclusion" = success || {
+            echo "The requested main revision must have successful CI before deployment." >&2
+            exit 1
+          }
       - name: Configure restricted SSH identity
         env:
           CPUZ_DEPLOY_KEY: ${{ secrets.CPUZ_DEPLOY_KEY }}

@@ -106,9 +106,7 @@ class GlossaryImportTests(TestCase):
         stats = Counter()
         Command()._import_glossary(glossary_path, stats)
 
-        self.assertEqual(
-            GlossaryTerm.objects.filter(is_published=True).count(), expected_count
-        )
+        self.assertEqual(GlossaryTerm.objects.filter(is_published=True).count(), expected_count)
         response = APIClient().get("/api/v1/glossary/all/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.data), expected_count)

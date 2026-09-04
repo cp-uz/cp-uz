@@ -1,13 +1,13 @@
 import type { LearningArticle } from 'modules/learning/domain';
 
+import { useState } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
-import { useState, useEffect } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router';
 import { roadmapStages, getArticlePath } from 'modules/learning/domain';
-import { authApi, getAuthSession, subscribeAuthSession } from 'modules/auth/application';
+import { authApi, getAuthSession, useAuthSession } from 'modules/auth/application';
 import {
   clearGlossaryQuizLocalData,
   learningQueries as learningApi,
@@ -28,7 +28,12 @@ import DialogContent from '@mui/material/DialogContent';
 import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { useLocalStorageList, clearLocalEngagementData } from '../../../application';
+import {
+  engagementOwner,
+  engagementIdentity,
+  useLocalStorageList,
+  clearLocalEngagementData,
+} from '../../../application';
 
 const roadmapSlugs = roadmapStages.flatMap((stage) => stage.articleSlugs);
 
@@ -86,8 +91,12 @@ function ReadingList({ items }: { items: LearningArticle[] }) {
 }
 
 export default function ProfilePage() {
+  const session = useAuthSession();
+  return <ProfileScreen key={engagementIdentity(session)} session={session} />;
+}
+
+function ProfileScreen({ session }: { session: ReturnType<typeof useAuthSession> }) {
   const navigate = useNavigate();
-  const [session, setSession] = useState(() => getAuthSession());
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState('');
   const [deletePassword, setDeletePassword] = useState('');
@@ -115,8 +124,6 @@ export default function ProfilePage() {
       : `@${session.user.username}`
     : 'Mahalliy o‘qish holati';
 
-  useEffect(() => subscribeAuthSession(setSession), []);
-
   const closeDelete = () => {
     if (deletePending) return;
     setDeleteOpen(false);
@@ -127,6 +134,8 @@ export default function ProfilePage() {
 
   const deleteAccount = async () => {
     if (
+      engagementIdentity(getAuthSession()) !== engagementIdentity(session) ||
+      deletePending ||
       deleteConfirmation !== 'O‘CHIRISH' ||
       (session && !session.user.isGuest && !deletePassword)
     ) {
@@ -134,13 +143,15 @@ export default function ProfilePage() {
     }
     setDeletePending(true);
     setDeleteError('');
+    const deletingOwner = engagementOwner(session);
+    const deletingUserId = session?.user.id;
     try {
       await authApi.deleteAccount({
         confirmation: 'O‘CHIRISH',
         ...(deletePassword ? { password: deletePassword } : {}),
       });
-      clearLocalEngagementData();
-      clearGlossaryQuizLocalData();
+      clearLocalEngagementData(deletingOwner);
+      clearGlossaryQuizLocalData(deletingUserId);
       navigate('/', { replace: true });
     } catch (reason) {
       setDeleteError(reason instanceof Error ? reason.message : 'Akkauntni o‘chirib bo‘lmadi.');

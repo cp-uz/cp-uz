@@ -3,7 +3,7 @@
 These scripts synchronize, validate, and export the Uzbek learning material
 translated and adapted from cp-algorithms sources.
 
-Requirements: Python 3.11+ and `PyYAML>=6,<7`.
+Requirements: Python 3.12 and the locked backend development requirements.
 
 ## Reproduce the checked-in snapshot
 
@@ -28,7 +28,7 @@ python scripts/validate_content.py
 ```
 
 The same command treats `content/articles/glossary.md` as the glossary source
-of truth, validates exactly 174 unique four-column concepts, and regenerates
+of truth, validates unique four-column concepts and A–Z coverage, and regenerates
 `content/metadata/glossary.json`, `.yml`, and `.csv` before refreshing the
 checksum manifest. Each generated row contains `source`, `uzbek`, `note`, and
 an additional `aliases` string list.
@@ -84,36 +84,64 @@ The output is published in `cp-uz/problem-statements`; `problem.json` files may
 only reference that repository's raw URLs. Run `python scripts/export_content.py`
 afterward to refresh `content/MANIFEST.sha256`.
 
-## Django management-command contract
+## Canonical imports and reviewed releases
 
-The future backend should expose an idempotent command with this interface:
+The supported commands are `import_content`, `import_seasons` and `import_problems`.
+They parse and validate complete source documents before database writes and
+apply persistence in transactions. Ready learning articles become public while
+technical/language review provenance remains unchanged. Prerequisite edits are
+reconciled as sets, including removals, ordering and notes.
 
-```text
-python manage.py import_learning_content \
-  content/exports/articles.v1.json \
-  --checksum-manifest content/MANIFEST.sha256 \
-  --dry-run
+The shared `backend/content_tools` package owns problem catalog validation and
+whole-snapshot integrity. Article export validation and season parsing live in
+their domains' `importing` packages. `content_pipeline.py` is the CLI facade;
+`content_io.py` owns portable serialization and filesystem helpers;
+`glossary_content.py` owns glossary validation and deterministic metadata output.
+
+After article or glossary edits, run `export_content.py`, then
+`release_inventory.py --write`, review the inventory diff, and run
+`validate_content.py` plus `release_inventory.py`. Corpus size is reviewed data
+in `deploy/content-inventory.json`, not a runtime constant. Initial snapshot
+counts in tests remain regression fixtures.
+
+## Upstream problem candidates
+
+IOI, EGOI and KEP synchronizers write a fresh directory under `tmp/candidates` by
+default. They refuse existing output directories and canonical content paths.
+The complete canonical problem tree is copied to staging, then only the upstream
+candidate is refreshed. A network or parsing failure leaves canonical files intact.
+
+Finish/review problem metadata, generate missing print PDFs, and run the PDF
+builder against the candidate using `--content-root tmp/candidates/<event>` and
+`--update-content`. Official source attachments are retained. Existing official
+mirrors can also rebuild without their old attachments: their hash, size and
+page count are verified before reuse. Canonical metadata is updated only after
+the entire PDF corpus succeeds.
+
+Then promote the reviewed, schema-valid candidate:
+
+```bash
+python scripts/promote_problem_catalog.py tmp/candidates/ioi-2026
+python scripts/validate_content.py
+python scripts/release_inventory.py
 ```
 
-Importer requirements:
+Promotion validates every event/set/problem, event-level unique problem slugs,
+URLs, files and PDF metadata before swapping the problem directory. Checksum and
+release inventory updates are rolled back together if publication fails. The
+original snapshot is retained under `.cpuz-promote-*` with an explicit recovery
+error if filesystem rollback itself fails; automatic cleanup cannot delete it.
+The source candidate remains available for review. Publishing generated PDF binaries
+to the statement repository remains an explicit separate operation.
 
-1. Verify `MANIFEST.sha256`, export schema `cpuz.learning-content.v1`, all
-   `content_sha256` values, unique stable article IDs, paths, and routes before
-   opening a write transaction.
-2. Upsert articles by stable `id`; never key identity from a mutable title.
-3. Store canonical Markdown without converting it to HTML. Rendered/sanitized
-   HTML is a cache and may be rebuilt.
-4. Preserve `source`, `translation`, `upstream`, `reviews`, `review_history`, and
-   `publication` exactly. Map automated `ready` to `in_review`; never turn
-   `pending` into an approval or publish without both current human approvals.
-5. Replace practice-reference child rows for one article as a set keyed by URL.
-   They are outbound lesson references only; do not fetch or copy statements.
-6. Apply the whole import in one database transaction. Any failed hash, stale
-   review invariant, or duplicate must roll back the complete run.
-7. A second import of the same export must produce zero semantic changes.
-8. Keep the attribution and CC BY-SA link visible on every adapted article and
-   on a site-wide attribution page.
+## Tests and dependencies
 
-Suggested command output is a dry-run/import summary with created, updated,
-unchanged, rejected, and practice-link counts. The contract deliberately avoids
-specific Django model or app names so the content snapshot remains portable.
+```bash
+python -m unittest discover -s scripts -p 'test_*.py' -v
+python -m ruff check scripts deploy --config backend/pyproject.toml
+```
+
+The standard dev requirements include the PDF corpus test dependency. PDF archive
+extraction additionally requires the optional maintainer packages `pymupdf` and
+`pymupdf4llm`. Deliberate dependency upgrades use
+`python scripts/lock_dependencies.py`, followed by review and CI on Linux.

@@ -13,7 +13,6 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
-
 from content_pipeline import (
     READINESS_GATE_VERSION,
     assess_article_readiness,
@@ -54,28 +53,24 @@ def run_renderer_audit(repository_root: Path, export_payload: dict) -> str:
             text=True,
             encoding="utf-8",
         )
-    output = "\n".join(part.strip() for part in (completed.stdout, completed.stderr) if part.strip())
+    output = "\n".join(
+        part.strip() for part in (completed.stdout, completed.stderr) if part.strip()
+    )
     if completed.returncode:
         raise RuntimeError(f"frontend Markdown renderer audit failed:\n{output}")
     return output
 
 
 def report_payload(assessments) -> dict:
-    failure_reasons = Counter(
-        reason for assessment in assessments for reason in assessment.reasons
-    )
+    failure_reasons = Counter(reason for assessment in assessments for reason in assessment.reasons)
     return {
         "gate_version": READINESS_GATE_VERSION,
         "article_count": len(assessments),
         "ready_count": sum(assessment.ready for assessment in assessments),
         "not_ready_count": sum(not assessment.ready for assessment in assessments),
-        "practice_link_count": sum(
-            assessment.practice_link_count for assessment in assessments
-        ),
+        "practice_link_count": sum(assessment.practice_link_count for assessment in assessments),
         "failure_reasons": dict(sorted(failure_reasons.items())),
-        "not_ready": [
-            assessment.as_dict() for assessment in assessments if not assessment.ready
-        ],
+        "not_ready": [assessment.as_dict() for assessment in assessments if not assessment.ready],
     }
 
 

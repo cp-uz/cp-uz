@@ -4,17 +4,7 @@ import { readFileSync } from 'node:fs';
 
 const readSource = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 
-const headerSource = readSource('../src/app/layouts/LearningLayout.tsx');
 const profileSource = readSource('../src/modules/engagement/ui/pages/ProfilePage/ProfilePage.tsx');
-
-test('authenticated header identity opens a profile dropdown with logout', () => {
-  assert.match(headerSource, /logoutAuthSession/);
-  assert.match(headerSource, /id="profile-identity-button"/);
-  assert.match(headerSource, /id="profile-identity-menu"/);
-  assert.match(headerSource, /<MenuItem onClick=\{logout\}>/);
-  assert.match(headerSource, /Akkauntdan chiqish/);
-  assert.match(headerSource, /logoutAuthSession\(\)/);
-});
 
 test('profile hard-delete requires explicit confirmation and a real account password', () => {
   assert.match(profileSource, /deleteConfirmation !== 'O‘CHIRISH'/);
@@ -29,8 +19,8 @@ test('profile hard-delete requires explicit confirmation and a real account pass
 
 test('profile clears device engagement only after account deletion succeeds', () => {
   const deletion = profileSource.indexOf('await authApi.deleteAccount');
-  const engagementClear = profileSource.indexOf('clearLocalEngagementData()', deletion);
-  const quizClear = profileSource.indexOf('clearGlossaryQuizLocalData()', deletion);
+  const engagementClear = profileSource.indexOf('clearLocalEngagementData(deletingOwner)', deletion);
+  const quizClear = profileSource.indexOf('clearGlossaryQuizLocalData(deletingUserId)', deletion);
   const errorHandler = profileSource.indexOf('} catch (reason)', deletion);
 
   assert.notEqual(deletion, -1);

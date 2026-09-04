@@ -232,16 +232,14 @@ class GuestSessionTests(TestCase):
         )
         self.assertEqual(too_long.status_code, 400)
         self.assertIn("first_name", too_long.data["error"]["detail"])
-        self.assertTrue(
-            GuestSession.objects.filter(user_id=long_guest.data["user"]["id"]).exists()
-        )
+        self.assertTrue(GuestSession.objects.filter(user_id=long_guest.data["user"]["id"]).exists())
 
     def test_guest_upgrade_schema_exposes_optional_profile_names(self):
         response = APIClient().get("/api/schema/?format=json")
         self.assertEqual(response.status_code, 200)
-        request_ref = response.data["paths"]["/api/v1/auth/guest/upgrade/"]["post"][
-            "requestBody"
-        ]["content"]["application/json"]["schema"]["$ref"]
+        request_ref = response.data["paths"]["/api/v1/auth/guest/upgrade/"]["post"]["requestBody"][
+            "content"
+        ]["application/json"]["schema"]["$ref"]
         request_schema = response.data["components"]["schemas"][request_ref.rsplit("/", 1)[-1]]
         self.assertEqual(request_schema["properties"]["first_name"]["maxLength"], 150)
         self.assertEqual(request_schema["properties"]["last_name"]["maxLength"], 150)

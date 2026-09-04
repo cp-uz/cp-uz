@@ -39,8 +39,8 @@ def validate_env(values: dict[str, str]) -> None:
             raise ValueError(f"Placeholder remains in .env: {name}")
         return value
 
-    if required("DJANGO_SETTINGS_MODULE") != "config.settings.production":
-        raise ValueError("DJANGO_SETTINGS_MODULE must be config.settings.production")
+    if required("DJANGO_SETTINGS_MODULE") != "core.settings.production":
+        raise ValueError("DJANGO_SETTINGS_MODULE must be core.settings.production")
     if not re.fullmatch(r"[A-Za-z0-9_-]{50,}", required("DJANGO_SECRET_KEY")):
         raise ValueError("DJANGO_SECRET_KEY must be a 50+ character URL-safe value")
     if not re.fullmatch(
@@ -55,9 +55,7 @@ def validate_env(values: dict[str, str]) -> None:
     allowed_hosts = {item.strip() for item in required("DJANGO_ALLOWED_HOSTS").split(",")}
     if not {"cp.uz", "www.cp.uz"}.issubset(allowed_hosts):
         raise ValueError("DJANGO_ALLOWED_HOSTS must contain cp.uz and www.cp.uz")
-    trusted_origins = {
-        item.strip() for item in required("DJANGO_CSRF_TRUSTED_ORIGINS").split(",")
-    }
+    trusted_origins = {item.strip() for item in required("DJANGO_CSRF_TRUSTED_ORIGINS").split(",")}
     if not {"https://cp.uz", "https://www.cp.uz"}.issubset(trusted_origins):
         raise ValueError("DJANGO_CSRF_TRUSTED_ORIGINS is missing a production origin")
 
@@ -93,9 +91,7 @@ def validate_env(values: dict[str, str]) -> None:
             or parsed.fragment
             or parsed.path not in {"", "/"}
         ):
-            raise ValueError(
-                f"{proxy_name} must be an http(s) proxy URL with an explicit port"
-            )
+            raise ValueError(f"{proxy_name} must be an http(s) proxy URL with an explicit port")
 
 
 def main(argv: list[str]) -> int:

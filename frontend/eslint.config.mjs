@@ -6,6 +6,7 @@ import importPlugin from 'eslint-plugin-import';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
+import architecture from './eslint-architecture.mjs';
 
 // ----------------------------------------------------------------------
 
@@ -201,4 +202,9 @@ export default [
   ...eslintTs.configs.recommended,
   reactPlugin.configs.flat.recommended,
   customConfig,
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    plugins: { architecture },
+    rules: { 'architecture/boundaries': 'error' },
+  },
 ];

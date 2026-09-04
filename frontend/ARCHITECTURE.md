@@ -20,7 +20,7 @@ Murakkab modulda oqim bir yo‘nalishda yuradi:
 - `application` — UI ishlatadigan use-case va hooklar. U DTO tafsilotlarini bilmaydi.
 - `ui` — sahifa va komponentlar. Sahifa asosan kompozitsiya qiladi; to‘g‘ridan-to‘g‘ri `fetch` chaqirmaydi.
 
-Har bir modul faqat kichik va ataylab tanlangan `index.ts` barrel orqali tashqi API beradi. Modul ichida hali qayta ishlatilmaydigan komponent page yonida qoladi; 2+ sahifada kerak bo‘lsa `ui/shared`ga ko‘chadi. Bir nechta modul ishlatadigan, biznes ma’nosiga ega bo‘lmagan kodgina global `shared`ga chiqadi.
+Har bir modul `application`, `domain` va ataylab tanlangan kichik public entrypointlar orqali tashqi API beradi. Router `pages/<page>.ts` entrypointlarini alohida lazy import qiladi. `markdown`, `article-card`, `sync-status`, `guest-upgrade-dialog` va `preview` qayta ishlatiladigan imkoniyatlar uchun aniq chegaralardir. Modul ichidagi komponent page yonida qoladi; bir necha sahifada kerak bo‘lsa `ui/shared`ga ko‘chadi. Biznes ma’nosiga ega bo‘lmagan primitivlargina global `shared`ga chiqadi.
 
 ## Modullar
 
@@ -28,14 +28,26 @@ Har bir modul faqat kichik va ataylab tanlangan `index.ts` barrel orqali tashqi 
 - `auth` — foydalanuvchi/mehmon sessiyasi va kirish oqimi.
 - `engagement` — bookmark, o‘qish progressi, qayd va profil statistikasi.
 - `landing` — bosh sahifa kompozitsiyasi; learning modulining public application APIidan foydalanadi.
+- `problems` — masalalar katalogi, detail va kech yuklanadigan PDF renderer.
+- `seasons` — mavsum, bosqich, natija va ishtirokchi ko‘rinishlari.
 
 ## App chegarasi
 
-`app` biznes logikasini saqlamaydi. U faqat providerlarni ulaydi, route va layoutlarni yig‘adi, tema/global uslub/config ni beradi. Route konfiguratsiyasi modul sahifalarini modul barrelidan import qiladi.
+`app` providerlarni ulaydi, route va layoutlarni yig‘adi, tema/global uslub/config ni beradi. Route konfiguratsiyasi sahifalarni alohida entrypointdan import qiladi; katalog ochilganda Markdown va PDF kodi yuklanmaydi.
 
 ## Importlar
 
-Aliaslar yuqori qatlamlarni ko‘rsatadi: `app/*`, `modules/*`, `shared/*`. Eski `src/cp/*` compatibility importlari qaytarilmaydi. Deep import faqat ayni modul ichida ishlatiladi; tashqaridan modulning public barrel APIi ishlatiladi.
+Aliaslar yuqori qatlamlarni ko‘rsatadi: `app/*`, `modules/*`, `shared/*`. Deep import faqat ayni modul ichida ishlatiladi. `eslint-architecture.mjs` alias, relative va dynamic importlarda qatlam chegaralarini tekshiradi: shared mahsulot modullarini bilmaydi, modul appga qaram emas, domain React/HTTP’dan mustaqil, UI HTTP’ni data-access orqali chaqiradi.
+
+## API va sessiya
+
+`shared/api/http` JSON xatolari, public GET cache va cache invalidation primitivlarini beradi. Auth moduli bitta parallel refresh, sessiya avlodi, AbortSignal va foydalanuvchi identifikatori orqali kech javoblarning boshqa sessiyaga o‘tishini to‘sadi. Har mutation oldidan va tugagach private cache bekor qilinadi. Engagement va quiz navbatlari foydalanuvchi IDsi bilan saqlanadi; yangi loginning vaqtinchalik sessionKey qiymati eski callbacklarni ajratadi.
+
+`npm run api:generate` Django OpenAPI sxemasidan `shared/api/generated/schema.d.ts` yaratadi. `npm run api:check` CI’da farq bo‘lsa yiqiladi. Backend `.venv` avtomatik topiladi; boshqa Python uchun `CPUZ_PYTHON` qo‘llanadi. Mapperlar generated DTOlarni domen obyektlariga aylantiradi; buzilgan muvaffaqiyatli javob bo‘sh obyektga yashirilmaydi.
+
+## Test va build
+
+`npm test` sof funksiyalar, haqiqiy React/store lifecycle ssenariylari va Markdown korpusini tekshiradi. `npm run test:bundle` build manifestdagi static import grafiga qarab kataloglarga renderer kirib qolishini va boshlang‘ich JS hajmining oshishini to‘sadi. PDF sahifalari viewport yaqinida render qilinadi, text layer va havolalar alohida DOMda; to‘liq Markdown matni muqobil ko‘rinishdir.
 
 ## Yangi feature uchun tekshiruv
 
@@ -44,4 +56,4 @@ Aliaslar yuqori qatlamlarni ko‘rsatadi: `app/*`, `modules/*`, `shared/*`. Eski
 3. UI repository/use-case orqali ishlayaptimi?
 4. `Page.tsx` render va orchestration bilan cheklanganmi?
 5. Yangi global helper haqiqatan bir nechta modulga kerakmi?
-6. `npm run lint`, `npm run build` va `npm run test:markdown` o‘tyaptimi?
+6. `npm run lint`, `npm run api:check`, `npm test`, `npm run build`, `npm run test:pwa` va `npm run test:bundle` o‘tyaptimi?

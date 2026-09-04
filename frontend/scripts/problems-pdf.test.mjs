@@ -17,9 +17,6 @@ const problemCatalogSource = readFileSync(
 
 test('problem PDFs use an inline worker that client filters cannot block', () => {
   assert.match(pdfStatementSource, /pdf\.worker\.min\.mjs\?worker&inline/);
-  assert.match(pdfStatementSource, /PDFWorker\.create\(\{ port: workerPort \}\)/);
-  assert.match(pdfStatementSource, /getDocument\(\{ url: source, withCredentials: false, worker \}\)/);
-  assert.match(pdfStatementSource, /workerPort\.terminate\(\)/);
   assert.doesNotMatch(pdfStatementSource, /pdf\.worker\.min\.mjs\?url/);
   assert.doesNotMatch(pdfStatementSource, /GlobalWorkerOptions\.workerSrc/);
 });

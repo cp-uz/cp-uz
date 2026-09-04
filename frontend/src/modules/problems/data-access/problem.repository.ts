@@ -1,3 +1,4 @@
+import type { ApiSchema } from 'shared/api/generated';
 import type {
   ProblemSet,
   ProblemEvent,
@@ -6,129 +7,146 @@ import type {
   ProblemCatalog,
   ProblemSummary,
   ProblemEventDetail,
-  ProblemTranslationStatus,
 } from '../domain';
 
-import { apiUrl, resolveApiAssetUrl } from 'shared/api/http';
+import { publicRequest, resolveApiAssetUrl, optionalPublicRequest } from 'shared/api/http';
 
-type JsonRecord = Record<string, unknown>;
-
-function record(value: unknown): JsonRecord {
-  return value && typeof value === 'object' && !Array.isArray(value) ? (value as JsonRecord) : {};
+function mapSeason(dto: ApiSchema<'SeasonLink'>): ProblemSeason {
+  return { title: dto.title, slug: dto.slug, startDate: dto.start_date, endDate: dto.end_date };
 }
 
-function text(value: unknown): string {
-  return typeof value === 'string' ? value : '';
-}
-
-function number(value: unknown): number | undefined {
-  return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
-}
-
-function list(value: unknown): unknown[] {
-  return Array.isArray(value) ? value : [];
-}
-
-function mapSeason(value: unknown): ProblemSeason {
-  const dto = record(value);
+function mapEvent(
+  dto: ApiSchema<'EventGraph'> | ApiSchema<'ProblemCatalogEventLink'>
+): ProblemEvent {
+  const graph = 'id' in dto ? dto : undefined;
   return {
-    title: text(dto.title),
-    slug: text(dto.slug),
-    startDate: text(dto.start_date) || undefined,
-    endDate: text(dto.end_date) || undefined,
+    code: dto.code,
+    slug: dto.slug,
+    title: dto.title,
+    shortTitle: dto.short_title || undefined,
+    summary: dto.summary || undefined,
+    description: graph?.description || undefined,
+    status: dto.event_status || undefined,
+    startDate: dto.start_date || undefined,
+    endDate: dto.end_date || undefined,
+    dateLabel: dto.date_label || undefined,
+    location: graph?.location || undefined,
+    venue: graph?.venue || undefined,
+    mode: graph?.mode || undefined,
+    organizer: graph?.organizer || undefined,
   };
 }
 
-function mapEvent(value: unknown): ProblemEvent {
-  const dto = record(value);
+export function mapProblemSummary(dto: ApiSchema<'ProblemSummary'>): ProblemSummary {
   return {
-    code: text(dto.code),
-    slug: text(dto.slug),
-    title: text(dto.title),
-    shortTitle: text(dto.short_title) || undefined,
-    summary: text(dto.summary) || undefined,
-    description: text(dto.description) || undefined,
-    status: text(dto.event_status) || undefined,
-    startDate: text(dto.start_date) || undefined,
-    endDate: text(dto.end_date) || undefined,
-    dateLabel: text(dto.date_label) || undefined,
-    location: text(dto.location) || undefined,
-    venue: text(dto.venue) || undefined,
-    mode: text(dto.mode) || undefined,
-    organizer: text(dto.organizer) || undefined,
+    id: dto.id,
+    slug: dto.slug,
+    code: dto.code,
+    title: dto.title,
+    originalTitle: dto.original_title || undefined,
+    translationStatus: dto.translation_status ?? 'ai_translation',
+    translationStatusLabel: dto.translation_status_label,
+    problemType: dto.problem_type ?? 'standard',
+    problemTypeLabel: dto.problem_type_label,
+    rating: dto.rating ?? undefined,
+    difficultyLabel: dto.difficulty_label || undefined,
+    order: dto.order ?? 0,
   };
 }
 
-function mapProblemSummary(value: unknown): ProblemSummary {
-  const dto = record(value);
+function mapSet(dto: ApiSchema<'ProblemSet'>): ProblemSet {
   return {
-    id: text(dto.id),
-    slug: text(dto.slug),
-    code: text(dto.code),
-    title: text(dto.title),
-    originalTitle: text(dto.original_title) || undefined,
-    translationStatus: (text(dto.translation_status) || 'ai_translation') as ProblemTranslationStatus,
-    translationStatusLabel: text(dto.translation_status_label),
-    problemType: text(dto.problem_type),
-    problemTypeLabel: text(dto.problem_type_label),
-    rating: number(dto.rating),
-    difficultyLabel: text(dto.difficulty_label) || undefined,
-    order: number(dto.order) ?? 0,
+    id: dto.id,
+    slug: dto.slug,
+    title: dto.title,
+    description: dto.description || undefined,
+    dateLabel: dto.date_label || undefined,
+    order: dto.order ?? 0,
+    problems: dto.problems.map(mapProblemSummary),
   };
 }
 
-function mapSet(value: unknown): ProblemSet {
-  const dto = record(value);
+export function mapProblemDetail(dto: ApiSchema<'ProblemDetail'>): ProblemDetail {
+  const pdf = dto.statement_pdf;
   return {
-    id: text(dto.id),
-    slug: text(dto.slug),
-    title: text(dto.title),
-    description: text(dto.description) || undefined,
-    dateLabel: text(dto.date_label) || undefined,
-    order: number(dto.order) ?? 0,
-    problems: list(dto.problems).map(mapProblemSummary),
+    ...mapProblemSummary(dto),
+    statementMarkdown: dto.statement_markdown,
+    sourcePath: dto.source_path,
+    statementPdf: pdf
+      ? {
+          url: resolveApiAssetUrl(pdf.url),
+          sha256: pdf.sha256,
+          sizeBytes: pdf.size_bytes ?? undefined,
+          pageCount: pdf.page_count ?? undefined,
+          language: pdf.language === 'uz' || pdf.language === 'en' ? pdf.language : undefined,
+          provenance: pdf.provenance || undefined,
+          provenanceLabel: pdf.provenance_label || undefined,
+        }
+      : undefined,
+    timeLimitMs: dto.time_limit_ms ?? undefined,
+    memoryLimitMb: dto.memory_limit_mb ?? undefined,
+    maxScore: dto.max_score ?? undefined,
+    tags: dto.tags,
+    lastVerifiedOn: dto.last_verified_on || undefined,
+    links: dto.links.map((link) => ({
+      id: link.id,
+      kind: link.kind,
+      kindLabel: link.kind_label,
+      title: link.title,
+      url: link.url,
+      platform: link.platform || undefined,
+      official: link.is_official ?? false,
+      primary: link.is_primary ?? false,
+      order: link.order ?? 0,
+    })),
+    attachments: dto.attachments.map((attachment) => ({
+      id: attachment.id,
+      title: attachment.title,
+      url: attachment.url,
+      contentType: attachment.content_type || undefined,
+      sizeBytes: attachment.size_bytes ?? undefined,
+      order: attachment.order ?? 0,
+    })),
+    problemSet: {
+      slug: dto.problem_set.slug,
+      title: dto.problem_set.title,
+      dateLabel: dto.problem_set.date_label || undefined,
+      order: dto.problem_set.order,
+    },
+    season: mapSeason(dto.season),
+    event: mapEvent(dto.event),
+    sets: dto.sets.map(mapSet),
   };
-}
-
-async function requestJson(path: string): Promise<unknown | null> {
-  const response = await fetch(apiUrl(path), {
-    credentials: 'include',
-    headers: { Accept: 'application/json' },
-  });
-  if (response.status === 404) return null;
-  if (!response.ok) throw new Error(`Masalalar API xatosi: ${response.status}`);
-  return response.json() as Promise<unknown>;
 }
 
 export const problemRepository = {
   async catalog(seasonSlug?: string): Promise<ProblemCatalog> {
-    const suffix = seasonSlug ? `?season=${encodeURIComponent(seasonSlug)}` : '';
-    const dto = record(await requestJson(`/api/v1/problems/${suffix}`));
+    const suffix = seasonSlug ? '?season=' + encodeURIComponent(seasonSlug) : '';
+    const dto = await publicRequest<ApiSchema<'ProblemCatalogResponse'>>(
+      '/api/v1/problems/' + suffix
+    );
     return {
-      seasons: list(dto.seasons).map(mapSeason),
-      events: list(dto.events).map((value) => {
-        const item = record(value);
-        return {
-          season: mapSeason(item.season),
-          event: mapEvent(item.event),
-          sets: list(item.sets).map(mapSet),
-          problemCount: number(item.problem_count) ?? 0,
-        };
-      }),
+      seasons: dto.seasons.map(mapSeason),
+      events: dto.events.map((item) => ({
+        season: mapSeason(item.season),
+        event: mapEvent(item.event),
+        sets: item.sets.map(mapSet),
+        problemCount: item.problem_count,
+      })),
     };
   },
 
   async event(seasonSlug: string, eventSlug: string): Promise<ProblemEventDetail | null> {
-    const payload = await requestJson(
-      `/api/v1/problems/${encodeURIComponent(seasonSlug)}/${encodeURIComponent(eventSlug)}/`
+    const dto = await optionalPublicRequest<ApiSchema<'ProblemEventResponse'>>(
+      '/api/v1/problems/' +
+        encodeURIComponent(seasonSlug) +
+        '/' +
+        encodeURIComponent(eventSlug) +
+        '/'
     );
-    if (!payload) return null;
-    const dto = record(payload);
-    return {
-      season: mapSeason(dto.season),
-      event: mapEvent(dto.event),
-      sets: list(dto.sets).map(mapSet),
-    };
+    return dto
+      ? { season: mapSeason(dto.season), event: mapEvent(dto.event), sets: dto.sets.map(mapSet) }
+      : null;
   },
 
   async detail(
@@ -136,74 +154,15 @@ export const problemRepository = {
     eventSlug: string,
     problemSlug: string
   ): Promise<ProblemDetail | null> {
-    const payload = await requestJson(
-      `/api/v1/problems/${encodeURIComponent(seasonSlug)}/${encodeURIComponent(eventSlug)}/${encodeURIComponent(problemSlug)}/`
+    const dto = await optionalPublicRequest<ApiSchema<'ProblemDetail'>>(
+      '/api/v1/problems/' +
+        encodeURIComponent(seasonSlug) +
+        '/' +
+        encodeURIComponent(eventSlug) +
+        '/' +
+        encodeURIComponent(problemSlug) +
+        '/'
     );
-    if (!payload) return null;
-    const dto = record(payload);
-    const summary = mapProblemSummary(dto);
-    const setDto = record(dto.problem_set);
-    const statementPdfDto = record(dto.statement_pdf);
-    return {
-      ...summary,
-      statementMarkdown: text(dto.statement_markdown),
-      sourcePath: text(dto.source_path),
-      statementPdf: text(statementPdfDto.url)
-        ? {
-            url: resolveApiAssetUrl(text(statementPdfDto.url)),
-            sha256: text(statementPdfDto.sha256),
-            sizeBytes: number(statementPdfDto.size_bytes),
-            pageCount: number(statementPdfDto.page_count),
-            language: (text(statementPdfDto.language) || undefined) as
-              | 'uz'
-              | 'en'
-              | undefined,
-            provenance: (text(statementPdfDto.provenance) || undefined) as
-              | 'official'
-              | 'generated'
-              | undefined,
-            provenanceLabel: text(statementPdfDto.provenance_label) || undefined,
-          }
-        : undefined,
-      timeLimitMs: number(dto.time_limit_ms),
-      memoryLimitMb: number(dto.memory_limit_mb),
-      maxScore: dto.max_score == null ? undefined : text(dto.max_score),
-      tags: list(dto.tags).map(text).filter(Boolean),
-      lastVerifiedOn: text(dto.last_verified_on) || undefined,
-      links: list(dto.links).map((value) => {
-        const item = record(value);
-        return {
-          id: text(item.id),
-          kind: text(item.kind) as ProblemDetail['links'][number]['kind'],
-          kindLabel: text(item.kind_label),
-          title: text(item.title),
-          url: text(item.url),
-          platform: text(item.platform) || undefined,
-          official: Boolean(item.is_official),
-          primary: Boolean(item.is_primary),
-          order: number(item.order) ?? 0,
-        };
-      }),
-      attachments: list(dto.attachments).map((value) => {
-        const item = record(value);
-        return {
-          id: text(item.id),
-          title: text(item.title),
-          url: text(item.url),
-          contentType: text(item.content_type) || undefined,
-          sizeBytes: number(item.size_bytes),
-          order: number(item.order) ?? 0,
-        };
-      }),
-      problemSet: {
-        slug: text(setDto.slug),
-        title: text(setDto.title),
-        dateLabel: text(setDto.date_label) || undefined,
-        order: number(setDto.order) ?? 0,
-      },
-      season: mapSeason(dto.season),
-      event: mapEvent(dto.event),
-      sets: list(dto.sets).map(mapSet),
-    };
+    return dto ? mapProblemDetail(dto) : null;
   },
 };

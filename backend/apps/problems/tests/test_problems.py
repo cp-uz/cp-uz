@@ -102,7 +102,7 @@ class ProblemCatalogTests(TestCase):
             404,
         )
 
-    @patch("apps.problems.views.urlopen")
+    @patch("apps.problems.services.statement_pdf.urlopen")
     def test_statement_pdf_is_served_from_same_origin(self, mocked_urlopen):
         mocked_urlopen.return_value = BytesIO(self.statement_pdf)
 

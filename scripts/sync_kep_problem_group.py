@@ -12,6 +12,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
+from problem_staging import stage_catalog
+
 API_ROOT = "https://kep.uz/api/problems"
 PROBLEM_ROOT = "https://kep.uz/problems"
 TST_DAYS = (
@@ -178,7 +180,9 @@ def statement_markdown(payload: dict[str, Any]) -> str:
     if samples:
         output += "\n## Namunalar\n"
         for index, sample in enumerate(samples, start=1):
-            output += f"\n### {index}-namuna\n\n**Kirish:**\n\n```text\n{sample['input'].rstrip()}\n```\n"
+            output += (
+                f"\n### {index}-namuna\n\n**Kirish:**\n\n```text\n{sample['input'].rstrip()}\n```\n"
+            )
             output += f"\n**Chiqish:**\n\n```text\n{sample['output'].rstrip()}\n```\n"
     return output
 
@@ -300,10 +304,10 @@ def main() -> int:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path(__file__).resolve().parents[1] / "content" / "problems",
+        default=Path(__file__).resolve().parents[1] / "tmp" / "candidates" / "ioi-2026-saralash-4",
     )
     args = parser.parse_args()
-    write_snapshot(args.output.resolve())
+    stage_catalog(args.output, write_snapshot)
     print("Uzbekistan TST 2026: 4 set va 12 masala canonical contentga yozildi.")
     return 0
 

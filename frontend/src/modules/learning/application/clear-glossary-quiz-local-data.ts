@@ -1,9 +1,7 @@
-const GLOSSARY_QUIZ_LOCAL_KEYS = [
-  'cpuz:glossary-quiz-stats',
-  'cpuz:glossary-quiz-history',
-  'cpuz:glossary-quiz-outbox',
-];
+import { safeStorage } from 'shared/storage';
+import { getAuthSession } from 'modules/auth/application';
 
-export function clearGlossaryQuizLocalData() {
-  GLOSSARY_QUIZ_LOCAL_KEYS.forEach((key) => localStorage.removeItem(key));
+export function clearGlossaryQuizLocalData(owner: number | string = getAuthSession()?.user.id ?? 'anonymous') {
+  safeStorage.removeItem(`cpuz:glossary-practice:v2:${owner}`);
+  safeStorage.removeItem(`cpuz:glossary-quiz-outbox:v2:${owner}`);
 }

@@ -1,0 +1,31 @@
+# Resolved 2026-09-05 for Python 3.12 from requirements/dev.txt.
+# Regenerate deliberately with scripts/lock_dependencies.py after changing inputs.
+asgiref==3.12.1
+attrs==26.1.0
+cffi==2.1.1
+coverage==7.16.0
+cryptography==46.0.7
+dj-database-url==2.3.0
+django==5.2.17
+django-cors-headers==4.9.0
+django-filter==25.2
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+drf-spectacular==0.28.0
+gunicorn==23.0.0
+inflection==0.5.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+packaging==26.3
+pycparser==3.0
+pyjwt==2.13.0
+pypdf==6.17.0
+pyyaml==6.0.3
+redis==7.4.1
+referencing==0.37.0
+rpds-py==2026.6.3
+ruff==0.16.5
+sqlparse==0.6.0
+typing-extensions==4.16.0
+tzdata==2026.3
+uritemplate==4.2.0

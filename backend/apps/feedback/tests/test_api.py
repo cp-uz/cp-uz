@@ -16,7 +16,7 @@ from apps.feedback.telegram import TelegramAPIError
     TELEGRAM_WEBHOOK_SECRET="test_webhook_secret_value_1234567890",
     REST_FRAMEWORK={
         "DEFAULT_THROTTLE_RATES": {"feedback": "1000/hour"},
-        "EXCEPTION_HANDLER": "config.exceptions.api_exception_handler",
+        "EXCEPTION_HANDLER": "common.exceptions.api_exception_handler",
     },
 )
 class FeedbackAPITests(TestCase):
@@ -29,7 +29,7 @@ class FeedbackAPITests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data["max_attachment_bytes"], MAX_ATTACHMENT_SIZE)
 
-    @patch("apps.feedback.views.telegram.send_feedback", return_value=812)
+    @patch("apps.feedback.telegram.send_feedback", return_value=812)
     def test_submission_is_saved_without_attachment_and_delivered(self, send_feedback):
         attachment = SimpleUploadedFile("proof.pdf", b"%PDF-example", "application/pdf")
 
@@ -51,7 +51,7 @@ class FeedbackAPITests(TestCase):
         self.assertFalse(any(field.name == "attachment" for field in submission._meta.fields))
         send_feedback.assert_called_once()
 
-    @patch("apps.feedback.views.telegram.send_feedback", return_value=813)
+    @patch("apps.feedback.telegram.send_feedback", return_value=813)
     def test_contact_is_optional(self, _send_feedback):
         response = self.client.post(
             reverse("feedback:create"),
@@ -65,7 +65,7 @@ class FeedbackAPITests(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(FeedbackSubmission.objects.get().contact, "")
 
-    @patch("apps.feedback.views.telegram.send_feedback")
+    @patch("apps.feedback.telegram.send_feedback")
     def test_attachment_over_five_megabytes_is_rejected(self, send_feedback):
         attachment = SimpleUploadedFile(
             "too-large.pdf",
@@ -89,7 +89,7 @@ class FeedbackAPITests(TestCase):
         send_feedback.assert_not_called()
 
     @patch(
-        "apps.feedback.views.telegram.send_feedback",
+        "apps.feedback.telegram.send_feedback",
         side_effect=TelegramAPIError("unavailable"),
     )
     def test_failed_delivery_is_recorded(self, _send_feedback):
@@ -108,7 +108,7 @@ class FeedbackAPITests(TestCase):
         self.assertEqual(submission.delivery_status, FeedbackSubmission.DeliveryStatus.FAILED)
         self.assertNotEqual(submission.delivery_error, "")
 
-    @patch("apps.feedback.views.telegram.send_message")
+    @patch("apps.feedback.telegram.send_message")
     def test_webhook_requires_secret_header_and_handles_admin_command(self, send_message):
         url = reverse("feedback:telegram-webhook")
         update = {"message": {"chat": {"id": 123456}, "text": "/start"}}
@@ -125,7 +125,7 @@ class FeedbackAPITests(TestCase):
         self.assertEqual(accepted.status_code, 200)
         send_message.assert_called_once()
 
-    @patch("apps.feedback.views.telegram.send_message")
+    @patch("apps.feedback.telegram.send_message")
     def test_webhook_ignores_commands_from_other_chats(self, send_message):
         response = self.client.post(
             reverse("feedback:telegram-webhook"),

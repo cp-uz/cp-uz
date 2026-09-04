@@ -74,9 +74,7 @@ class SeasonApiTests(TestCase):
         self.assertEqual(season.status_code, 404)
 
     def test_participant_profile_contains_public_accounts_and_season_results(self):
-        response = self.client.get(
-            "/api/v1/seasons/2025-2026/participants/jahonali-xaydaraliyev/"
-        )
+        response = self.client.get("/api/v1/seasons/2025-2026/participants/jahonali-xaydaraliyev/")
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data["full_name"], "Jahonali Xaydaraliyev")

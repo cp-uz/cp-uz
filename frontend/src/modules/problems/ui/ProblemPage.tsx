@@ -1,12 +1,11 @@
-import type { ProblemLink, ProblemDetail } from '../domain';
+import type { ProblemLink } from '../domain';
 
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
-import { formatUzbekDate } from 'shared/lib/i18n';
+import { lazyWithReload } from 'shared/pwa';
 import { useMemo, useState, useEffect } from 'react';
-import { RichMarkdown } from 'modules/learning/ui/shared';
 import { useParams, useNavigate, useSearchParams, Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -18,31 +17,19 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ListItemButton from '@mui/material/ListItemButton';
 
-import { PdfStatement } from './PdfStatement';
 import { problemQueries } from '../application';
+import { ProblemStatement } from './ProblemStatement';
+import { problemPath, ProblemNavigation } from './ProblemNavigation';
 
-function problemPath(problem: ProblemDetail, slug: string) {
-  return appRoutes.task(problem.season.slug, problem.event.slug, slug);
-}
-
-function formatEventDate(event: ProblemDetail['event']) {
-  if (event.dateLabel) return event.dateLabel;
-  if (!event.startDate) return '';
-  const start = formatUzbekDate(event.startDate);
-  if (!event.endDate || event.endDate === event.startDate) return start;
-  return `${start} — ${formatUzbekDate(event.endDate)}`;
-}
+const ProblemPrint = lazyWithReload(() => import('./ProblemPrint'));
 
 function comparableUrl(value: string) {
   try {
@@ -94,97 +81,6 @@ function ProblemLinkLogo({ link, eventSlug }: { link: ProblemLink; eventSlug: st
   );
 }
 
-function ProblemNavigation({ problem }: { problem: ProblemDetail }) {
-  return (
-    <Box component="nav" aria-label="Event masalalari">
-      <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
-        <Box>
-          <Typography variant="overline" sx={{ color: 'primary.main' }}>
-            {problem.season.title}
-          </Typography>
-          <Typography variant="h6">{problem.event.shortTitle || problem.event.title}</Typography>
-        </Box>
-        <Tooltip title="Mavsum sahifasini ochish">
-          <Button
-            component={RouterLink}
-            to={appRoutes.seasonEvent(problem.season.slug, problem.event.slug)}
-            color="inherit"
-            aria-label="Mavsumdagi event tafsilotlarini ochish"
-            sx={{ minWidth: 40, p: 1 }}
-          >
-            <UiIcon icon="solar:calendar-search-linear" width={21} />
-          </Button>
-        </Tooltip>
-      </Stack>
-      {problem.event.summary && (
-        <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-          {problem.event.summary}
-        </Typography>
-      )}
-      <Stack spacing={0.75} sx={{ mt: 2 }}>
-        {formatEventDate(problem.event) && (
-          <Stack direction="row" spacing={1} alignItems="center">
-            <UiIcon icon="solar:calendar-date-linear" width={17} />
-            <Typography variant="caption">{formatEventDate(problem.event)}</Typography>
-          </Stack>
-        )}
-        {(problem.event.venue || problem.event.location) && (
-          <Stack direction="row" spacing={1} alignItems="center">
-            <UiIcon icon="solar:map-point-linear" width={17} />
-            <Typography variant="caption">
-              {[problem.event.venue, problem.event.location].filter(Boolean).join(' · ')}
-            </Typography>
-          </Stack>
-        )}
-      </Stack>
-
-      <Divider sx={{ my: 2.5 }} />
-      <Typography variant="subtitle2">Barcha masalalar</Typography>
-      <Stack spacing={2} sx={{ mt: 1.5 }}>
-        {problem.sets.map((set) => (
-          <Box key={set.slug}>
-            <Typography variant="caption" sx={{ px: 1, color: 'text.secondary', fontWeight: 700 }}>
-              {set.title}
-            </Typography>
-            <Stack sx={{ mt: 0.5 }}>
-              {set.problems.map((item) => {
-                const selected = item.slug === problem.slug;
-                return (
-                  <ListItemButton
-                    key={item.slug}
-                    component={RouterLink}
-                    to={problemPath(problem, item.slug)}
-                    selected={selected}
-                    aria-current={selected ? 'page' : undefined}
-                    sx={{
-                      px: 1,
-                      py: 0.75,
-                      gap: 1,
-                      minHeight: 42,
-                      borderRadius: 1,
-                      '&.Mui-selected': { bgcolor: 'primary.lighter', color: 'primary.dark' },
-                    }}
-                  >
-                    <Typography
-                      variant="caption"
-                      sx={{ width: 20, flexShrink: 0, color: 'primary.main', fontWeight: 700 }}
-                    >
-                      {item.code}
-                    </Typography>
-                    <Typography variant="body2" sx={{ fontWeight: selected ? 700 : 500 }}>
-                      {item.originalTitle || item.title}
-                    </Typography>
-                  </ListItemButton>
-                );
-              })}
-            </Stack>
-          </Box>
-        ))}
-      </Stack>
-    </Box>
-  );
-}
-
 export default function ProblemPage() {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -232,7 +128,7 @@ export default function ProblemPage() {
   const loading = problemSlug ? problemLoading : eventLoading;
   const error = problemSlug ? problemError : eventError;
 
-  if (loading || (!problemSlug && eventDetail)) {
+  if (loading || (!problemSlug && eventDetail?.sets.some((set) => set.problems.length > 0))) {
     return (
       <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Skeleton width={260} />
@@ -259,92 +155,7 @@ export default function ProblemPage() {
   const displayTitle = problem.originalTitle || problem.title;
   const showDifficulty = problem.event.slug !== 'ioi-2026-saralash-4';
 
-  if (searchParams.get('pdf-export') === '1') {
-    return (
-      <>
-        <Seo
-          title={`${displayTitle} · ${problem.event.shortTitle || problem.event.title}`}
-          description={`${problem.event.shortTitle || problem.event.title}: ${problem.title} masalasi.`}
-          path={appRoutes.task(problem.season.slug, problem.event.slug, problem.slug)}
-        />
-        <GlobalStyles
-          styles={{
-            '@page': { size: 'A4', margin: '14mm 15mm 16mm' },
-            '@media print': {
-              'html, body, #root': { backgroundColor: '#fff !important' },
-              'body > #root header, body > #root footer': { display: 'none !important' },
-              'body > #root main': { minHeight: '0 !important', padding: '0 !important' },
-            },
-          }}
-        />
-        <Box
-          id="problem-pdf-export"
-          data-ready="true"
-          sx={{
-            width: '100%',
-            mx: 'auto',
-            color: '#17202a',
-            bgcolor: '#fff',
-            fontFamily: 'Inter, Arial, sans-serif',
-          }}
-        >
-          <Box sx={{ pb: '6mm', mb: '9mm', borderBottom: '2px solid #0877e1' }}>
-            <Typography
-              sx={{ color: '#0877e1', fontSize: 13, fontWeight: 800, letterSpacing: '.04em' }}
-            >
-              cp.uz
-            </Typography>
-            <Typography
-              sx={{
-                mt: '2mm',
-                color: '#657786',
-                fontSize: 9,
-                fontWeight: 700,
-                letterSpacing: '.08em',
-              }}
-            >
-              {problem.season.title.toUpperCase()}
-            </Typography>
-            <Typography
-              component="h1"
-              sx={{ mt: '4mm', mb: '2mm', fontSize: 27, fontWeight: 800, lineHeight: 1.15 }}
-            >
-              {displayTitle}
-            </Typography>
-            <Typography sx={{ m: 0, color: '#657786', fontSize: 11 }}>
-              {problem.event.shortTitle || problem.event.title} · {problem.problemSet.title} ·{' '}
-              {problem.code}
-            </Typography>
-          </Box>
-          <Box
-            id="problem-statement"
-            sx={{
-              '& p, & li': { fontSize: '11.2px !important', lineHeight: '1.55 !important' },
-              '& h2': {
-                mt: '7mm !important',
-                mb: '3mm !important',
-                fontSize: '19px !important',
-                breakAfter: 'avoid',
-              },
-              '& h3': {
-                mt: '5mm !important',
-                mb: '2mm !important',
-                fontSize: '15px !important',
-                breakAfter: 'avoid',
-              },
-              '& img, & svg': { maxWidth: '100% !important', height: 'auto !important' },
-              '& pre, & table, & blockquote': { breakInside: 'avoid' },
-              '& table': { fontSize: '9.5px !important' },
-              '& button': { display: 'none !important' },
-              '& a': { color: 'inherit !important', textDecoration: 'none !important' },
-            }}
-          >
-            <RichMarkdown sourcePath={problem.sourcePath}>{problem.statementMarkdown}</RichMarkdown>
-          </Box>
-        </Box>
-      </>
-    );
-  }
+  if (searchParams.get('pdf-export') === '1') return <ProblemPrint problem={problem} />;
 
   const practiceLinks = problem.links.filter((link) => link.kind === 'practice');
   const practiceUrls = new Set(practiceLinks.map((link) => comparableUrl(link.url)));
@@ -509,19 +320,13 @@ export default function ProblemPage() {
               )}
             </Stack>
 
-            {statementPdf ? (
-              <PdfStatement source={statementPdf.url} title={displayTitle} />
-            ) : (
-              <Paper
-                id="problem-statement"
-                variant="outlined"
-                sx={{ mt: 4, p: { xs: 2.25, sm: 3.5, md: 5 }, borderRadius: 2 }}
-              >
-                <RichMarkdown sourcePath={problem.sourcePath}>
-                  {problem.statementMarkdown}
-                </RichMarkdown>
-              </Paper>
-            )}
+            <ProblemStatement
+              key={problem.id}
+              pdfUrl={statementPdf?.url}
+              title={displayTitle}
+              markdown={problem.statementMarkdown}
+              sourcePath={problem.sourcePath}
+            />
 
             {supplementalAttachments.length > 0 && (
               <Paper variant="outlined" sx={{ mt: 3, p: { xs: 2, sm: 3 } }}>

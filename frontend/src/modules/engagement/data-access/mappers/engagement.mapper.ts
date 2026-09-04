@@ -33,7 +33,8 @@ export function mapProgress(value: unknown, fallbackSlug = '', fallbackPercent =
     id: id(value),
     articleSlug: articleSlug(value) || fallbackSlug,
     percent,
-    status: typeof dto.status === 'string' ? dto.status : percent >= 100 ? 'completed' : 'in_progress',
+    status:
+      typeof dto.status === 'string' ? dto.status : percent >= 100 ? 'completed' : 'in_progress',
   };
 }
 

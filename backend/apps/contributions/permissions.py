@@ -15,7 +15,5 @@ class ProposalEditable(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return request.user.is_staff or obj.submitter_id == request.user.id
         return (
-            request.user.is_staff
-            or obj.submitter_id == request.user.id
-            and obj.status in self.editable_statuses
-        )
+            request.user.is_staff or obj.submitter_id == request.user.id
+        ) and obj.status in self.editable_statuses

@@ -10,12 +10,7 @@ import {
   isQuizAnswerCorrect,
   buildGlossaryQuizQuestions,
 } from '../src/modules/learning/application/glossary-quiz.js';
-import {
-  enqueueGlossaryScore,
-  pendingGlossaryScoreCount,
-  flushGlossaryScoreOutbox,
-  GLOSSARY_QUIZ_OUTBOX_STORAGE_KEY,
-} from '../src/modules/learning/application/glossary-score-outbox.ts';
+
 
 const glossaryTerms = Array.from({ length: 12 }, (_, index) => ({
   term: `O‘zbekcha ${index + 1}`,
@@ -114,78 +109,4 @@ test('malformed persisted cumulative stats reset safely', () => {
     }),
     { attempts: 4, correct: 3, streak: 2, bestStreak: 2, updatedAt: '2026-08-31T08:00:00.000Z' }
   );
-});
-
-class MemoryStorage {
-  values = new Map();
-
-  getItem(key) {
-    return this.values.get(key) ?? null;
-  }
-
-  setItem(key, value) {
-    this.values.set(key, String(value));
-  }
-
-  removeItem(key) {
-    this.values.delete(key);
-  }
-}
-
-test('glossary score outbox deduplicates answers by client id', () => {
-  const originalLocalStorage = globalThis.localStorage;
-  const storage = new MemoryStorage();
-  globalThis.localStorage = storage;
-  try {
-    assert.equal(enqueueGlossaryScore({ id: 'answer-1', isCorrect: true }), true);
-    assert.equal(enqueueGlossaryScore({ id: 'answer-1', isCorrect: false }), true);
-
-    assert.equal(pendingGlossaryScoreCount(), 1);
-    assert.deepEqual(JSON.parse(storage.getItem(GLOSSARY_QUIZ_OUTBOX_STORAGE_KEY)), [
-      { id: 'answer-1', isCorrect: true },
-    ]);
-  } finally {
-    if (originalLocalStorage === undefined) delete globalThis.localStorage;
-    else globalThis.localStorage = originalLocalStorage;
-  }
-});
-
-test('glossary score outbox retains failed answers and removes each successful delivery', async () => {
-  const originalLocalStorage = globalThis.localStorage;
-  const storage = new MemoryStorage();
-  globalThis.localStorage = storage;
-  try {
-    enqueueGlossaryScore({ id: 'answer-ok', isCorrect: true });
-    enqueueGlossaryScore({ id: 'answer-retry', isCorrect: false });
-    const firstAttempt = [];
-
-    await assert.rejects(
-      flushGlossaryScoreOutbox(async (answer) => {
-        firstAttempt.push(answer.id);
-        if (answer.id === 'answer-retry') throw new Error('offline');
-        return { revision: 1 };
-      }),
-      /offline/
-    );
-
-    assert.deepEqual(firstAttempt, ['answer-ok', 'answer-retry']);
-    assert.deepEqual(JSON.parse(storage.getItem(GLOSSARY_QUIZ_OUTBOX_STORAGE_KEY)), [
-      { id: 'answer-retry', isCorrect: false },
-    ]);
-    assert.equal(pendingGlossaryScoreCount(), 1);
-
-    const retried = [];
-    const result = await flushGlossaryScoreOutbox(async (answer) => {
-      retried.push(answer.id);
-      return { revision: 2 };
-    });
-
-    assert.deepEqual(retried, ['answer-retry']);
-    assert.deepEqual(result, { revision: 2 });
-    assert.equal(pendingGlossaryScoreCount(), 0);
-    assert.deepEqual(JSON.parse(storage.getItem(GLOSSARY_QUIZ_OUTBOX_STORAGE_KEY)), []);
-  } finally {
-    if (originalLocalStorage === undefined) delete globalThis.localStorage;
-    else globalThis.localStorage = originalLocalStorage;
-  }
 });

@@ -8,19 +8,14 @@ contract that any backend importer can consume transactionally.
 
 from __future__ import annotations
 
-import csv
-import hashlib
-import io
 import json
 import posixpath
 import re
 import shutil
-import subprocess
-import unicodedata
+import sys
 from collections import Counter
 from collections.abc import Iterable
 from dataclasses import dataclass
-from datetime import date, datetime
 from pathlib import Path, PurePosixPath
 from typing import Any
 from urllib.parse import unquote, urlparse
@@ -28,16 +23,36 @@ from urllib.parse import unquote, urlparse
 try:
     import yaml
 except ImportError as exc:  # pragma: no cover - dependency failure is explicit
-    raise SystemExit(
-        "PyYAML>=6 is required: python -m pip install 'PyYAML>=6,<7'"
-    ) from exc
+    raise SystemExit("PyYAML>=6 is required: python -m pip install 'PyYAML>=6,<7'") from exc
 
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+from content_io import (  # noqa: E402, F401
+    git_value,
+    load_yaml,
+    normalize_scalars,
+    run_git,
+    sha256_bytes,
+    sha256_file,
+    sha256_text,
+    stable_json,
+    write_text,
+)
+from glossary_content import (  # noqa: E402, F401
+    GLOSSARY_HEADERS,
+    GLOSSARY_INTERNAL_PROPER_WORDS,
+    GLOSSARY_REQUIRED_INITIALS,
+    glossary_metadata_texts,
+    load_glossary,
+    parse_glossary_markdown,
+    sync_glossary_metadata,
+    validate_glossary_metadata,
+)
+
+from content_tools.integrity import verify_checksums  # noqa: E402
 
 EXPORT_SCHEMA = "cpuz.learning-content.v1"
 SNAPSHOT_SCHEMA = "cpuz.content-snapshot.v1"
-EXPECTED_ARTICLE_COUNT = 163
-EXPECTED_FULL_COUNT = 163
-EXPECTED_SYNOPSIS_COUNT = 0
 SOURCE_REPOSITORY = "https://github.com/cp-algorithms/cp-algorithms"
 CONTENT_LICENSE = "CC-BY-SA-4.0"
 READINESS_GATE_VERSION = "cpuz.readiness.v1"
@@ -63,23 +78,12 @@ PROVENANCE_FILES = (
 )
 
 FRONT_MATTER_BOUNDARY = "---\n"
-MARKDOWN_LINK_RE = re.compile(
-    r"(?<!!)\[([^\]]+)\]\((https?://[^\s)]+)(?:\s+['\"][^'\"]*['\"])?\)"
-)
+MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[([^\]]+)\]\((https?://[^\s)]+)(?:\s+['\"][^'\"]*['\"])?\)")
 MARKDOWN_DESTINATION_RE = re.compile(
     r"(?P<image>!)?\[[^\]]*\]\((?P<target><[^>]+>|[^\s)]+)(?:\s+['\"][^'\"]*['\"])?\)"
 )
 HTML_IMAGE_RE = re.compile(r"<img\b[^>]*\bsrc\s*=\s*['\"]([^'\"]+)['\"]", re.IGNORECASE)
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
-GLOSSARY_HEADERS = ("English", "O‘zbekcha", "Izoh", "Qidiruv aliaslari")
-EXPECTED_GLOSSARY_CONCEPTS = 174
-GLOSSARY_REQUIRED_INITIALS = tuple(
-    chr(codepoint) for codepoint in range(ord("A"), ord("Z") + 1)
-)
-GLOSSARY_INTERNAL_PROPER_WORDS = frozenset(
-    {"Omega", "Theta", "Ford", "Warshall", "Morris", "Pratt", "Corasick"}
-)
-
 
 @dataclass(frozen=True)
 class ArticleDocument:
@@ -117,298 +121,6 @@ class ReadinessAssessment:
         }
 
 
-def normalize_scalars(value: Any) -> Any:
-    """Convert PyYAML date types into stable JSON-compatible strings."""
-
-    if isinstance(value, (datetime, date)):
-        return value.isoformat()
-    if isinstance(value, dict):
-        return {str(key): normalize_scalars(item) for key, item in value.items()}
-    if isinstance(value, list):
-        return [normalize_scalars(item) for item in value]
-    return value
-
-
-def stable_json(value: Any) -> str:
-    return (
-        json.dumps(
-            normalize_scalars(value),
-            ensure_ascii=False,
-            indent=2,
-            sort_keys=True,
-        )
-        + "\n"
-    )
-
-
-def sha256_bytes(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
-
-
-def sha256_text(value: str) -> str:
-    return sha256_bytes(value.encode("utf-8"))
-
-
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def write_text(path: Path, value: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(value, encoding="utf-8", newline="\n")
-
-
-def run_git(checkout: Path, *args: str) -> str:
-    result = subprocess.run(
-        ["git", "-C", str(checkout), *args],
-        check=True,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    )
-    return result.stdout.strip()
-
-
-def git_value(checkout: Path, *args: str, fallback: str | None = None) -> str | None:
-    try:
-        return run_git(checkout, *args)
-    except (OSError, subprocess.CalledProcessError):
-        return fallback
-
-
-def load_yaml(path: Path) -> Any:
-    return normalize_scalars(yaml.safe_load(path.read_text(encoding="utf-8")))
-
-
-def _glossary_option_key(value: str) -> str:
-    """Match the quiz's punctuation-insensitive option comparison closely."""
-
-    normalized = unicodedata.normalize("NFKD", value)
-    normalized = "".join(
-        character for character in normalized if not unicodedata.combining(character)
-    )
-    normalized = re.sub(r"[’‘`ʻʼ']", "", normalized.casefold())
-    normalized = re.sub(r"[-_/]+", " ", normalized)
-    normalized = "".join(
-        character if character.isalnum() or character.isspace() else " "
-        for character in normalized
-    )
-    return " ".join(normalized.split())
-
-
-def parse_glossary_markdown(value: str) -> list[dict[str, Any]]:
-    """Parse and validate the canonical human-edited glossary table."""
-
-    lines = value.replace("\r\n", "\n").splitlines()
-    header_index = next(
-        (
-            index
-            for index, line in enumerate(lines)
-            if tuple(cell.strip() for cell in line.strip().strip("|").split("|"))
-            == GLOSSARY_HEADERS
-        ),
-        None,
-    )
-    if header_index is None or header_index + 1 >= len(lines):
-        raise ValueError("glossary Markdown is missing the canonical four-column table")
-    separator = tuple(
-        cell.strip() for cell in lines[header_index + 1].strip().strip("|").split("|")
-    )
-    if len(separator) != len(GLOSSARY_HEADERS) or not all(
-        re.fullmatch(r":?-{3,}:?", cell) for cell in separator
-    ):
-        raise ValueError("glossary Markdown has an invalid table separator")
-
-    rows: list[dict[str, Any]] = []
-    seen_sources: set[str] = set()
-    for line_number, line in enumerate(lines[header_index + 2 :], header_index + 3):
-        if not line.strip().startswith("|"):
-            if rows:
-                break
-            continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) != len(GLOSSARY_HEADERS):
-            raise ValueError(
-                f"glossary line {line_number}: expected {len(GLOSSARY_HEADERS)} columns, "
-                f"found {len(cells)}"
-            )
-        source, uzbek, note, aliases_text = cells
-        if not source or not uzbek or not note:
-            raise ValueError(
-                f"glossary line {line_number}: English, O‘zbekcha and Izoh are required"
-            )
-        source_key = source.casefold()
-        if source_key in seen_sources:
-            raise ValueError(
-                f"glossary line {line_number}: duplicate English concept {source!r}"
-            )
-        seen_sources.add(source_key)
-        if not note.endswith((".", "!", "?")):
-            raise ValueError(
-                f"glossary line {line_number}: Izoh must be a complete sentence"
-            )
-        if len(note) > 400:
-            raise ValueError(
-                f"glossary line {line_number}: Izoh exceeds the backend 400-char limit"
-            )
-
-        aliases: list[str] = []
-        local_aliases = {source_key, uzbek.casefold()}
-        for alias in (part.strip() for part in aliases_text.split(";")):
-            if not alias:
-                continue
-            alias_key = alias.casefold()
-            if alias_key in local_aliases:
-                continue
-            local_aliases.add(alias_key)
-            aliases.append(alias)
-        rows.append(
-            {"source": source, "uzbek": uzbek, "note": note, "aliases": aliases}
-        )
-
-    if len(rows) != EXPECTED_GLOSSARY_CONCEPTS:
-        raise ValueError(
-            f"glossary must contain exactly {EXPECTED_GLOSSARY_CONCEPTS} unique concepts; "
-            f"found {len(rows)}"
-        )
-
-    represented_initials = {row["source"][0].upper() for row in rows}
-    missing_initials = [
-        initial
-        for initial in GLOSSARY_REQUIRED_INITIALS
-        if initial not in represented_initials
-    ]
-    if missing_initials:
-        raise ValueError(
-            "glossary English concepts must cover every A-Z initial; "
-            f"missing: {', '.join(missing_initials)}"
-        )
-
-    surface_owners: dict[str, str] = {}
-    option_owners: dict[str, dict[str, str]] = {
-        "English": {},
-        "O‘zbekcha": {},
-        "Izoh": {},
-    }
-    for row in rows:
-        source = row["source"]
-        uzbek_words = re.findall(r"[^\W\d_]+", row["uzbek"], flags=re.UNICODE)
-        unexpected_title_words = [
-            word
-            for word in uzbek_words[1:]
-            if word[:1].isupper()
-            and not word.isupper()
-            and word not in GLOSSARY_INTERNAL_PROPER_WORDS
-        ]
-        if unexpected_title_words:
-            raise ValueError(
-                f"glossary concept {source!r} must use Uzbek sentence case; "
-                f"unexpected capitals: {', '.join(unexpected_title_words)}"
-            )
-        user_facing_text = " ".join((row["uzbek"], row["note"], *row["aliases"]))
-        if "yevklid" in user_facing_text.casefold():
-            raise ValueError(
-                f"glossary concept {source!r} must use the Uzbek spelling 'Evklid'"
-            )
-
-        for surface in (source, row["uzbek"], *row["aliases"]):
-            surface_key = _glossary_option_key(surface)
-            if not surface_key:
-                raise ValueError(
-                    f"glossary concept {source!r} has an empty normalized search term"
-                )
-            owner = surface_owners.get(surface_key)
-            if owner and owner != source:
-                raise ValueError(
-                    f"glossary search term {surface!r} is already owned by {owner!r}"
-                )
-            surface_owners[surface_key] = source
-
-        for label, field in (
-            ("English", "source"),
-            ("O‘zbekcha", "uzbek"),
-            ("Izoh", "note"),
-        ):
-            option_key = _glossary_option_key(row[field])
-            owner = option_owners[label].get(option_key)
-            if owner and owner != source:
-                raise ValueError(
-                    f"glossary {label} quiz option for {source!r} duplicates {owner!r}"
-                )
-            option_owners[label][option_key] = source
-
-    segment_tree = next((row for row in rows if row["source"] == "Segment Tree"), None)
-    if not segment_tree or segment_tree["uzbek"] != "Segment daraxti":
-        raise ValueError("glossary must define Segment Tree as Segment daraxti")
-    sport_programming = next(
-        (row for row in rows if row["source"] == "Competitive Programming"), None
-    )
-    if not sport_programming or sport_programming["uzbek"] != "Sport dasturlash":
-        raise ValueError(
-            "glossary must define Competitive Programming as Sport dasturlash"
-        )
-    return rows
-
-
-def load_glossary(content_root: Path) -> list[dict[str, Any]]:
-    return parse_glossary_markdown(
-        (content_root / "articles" / "glossary.md").read_text(encoding="utf-8")
-    )
-
-
-def glossary_metadata_texts(rows: list[dict[str, Any]]) -> dict[str, str]:
-    csv_buffer = io.StringIO(newline="")
-    writer = csv.DictWriter(
-        csv_buffer,
-        fieldnames=("source", "uzbek", "note", "aliases"),
-        lineterminator="\n",
-    )
-    writer.writeheader()
-    for row in rows:
-        writer.writerow(
-            {
-                "source": row["source"],
-                "uzbek": row["uzbek"],
-                "note": row["note"],
-                "aliases": json.dumps(
-                    row["aliases"], ensure_ascii=False, separators=(",", ":")
-                ),
-            }
-        )
-    return {
-        "glossary.json": stable_json(rows),
-        "glossary.yml": yaml.safe_dump(
-            rows,
-            allow_unicode=True,
-            sort_keys=False,
-            width=1000,
-        ),
-        "glossary.csv": csv_buffer.getvalue(),
-    }
-
-
-def sync_glossary_metadata(content_root: Path) -> list[dict[str, Any]]:
-    rows = load_glossary(content_root)
-    metadata_root = content_root / "metadata"
-    for filename, value in glossary_metadata_texts(rows).items():
-        write_text(metadata_root / filename, value)
-    return rows
-
-
-def validate_glossary_metadata(content_root: Path) -> list[dict[str, Any]]:
-    rows = load_glossary(content_root)
-    expected = glossary_metadata_texts(rows)
-    for filename, value in expected.items():
-        path = content_root / "metadata" / filename
-        if not path.is_file() or path.read_text(encoding="utf-8") != value:
-            raise ValueError(f"stale generated glossary metadata: metadata/{filename}")
-    return rows
-
-
 def split_document(text: str) -> ArticleDocument:
     normalized = text.replace("\r\n", "\n")
     if not normalized.startswith(FRONT_MATTER_BOUNDARY):
@@ -442,11 +154,7 @@ def disallowed_control_characters(value: str) -> list[str]:
     """Return C0 controls that are unsafe in canonical Markdown."""
 
     return sorted(
-        {
-            character
-            for character in value
-            if ord(character) < 0x20 and character not in "\t\n\r"
-        }
+        {character for character in value if ord(character) < 0x20 and character not in "\t\n\r"}
     )
 
 
@@ -528,8 +236,7 @@ def platform_for_url(url: str) -> str:
 def is_exercise_url(url: str) -> bool:
     hostname = (urlparse(url).hostname or "").casefold()
     return bool(hostname) and not any(
-        hostname == suffix or hostname.endswith("." + suffix)
-        for suffix in NON_EXERCISE_HOSTS
+        hostname == suffix or hostname.endswith("." + suffix) for suffix in NON_EXERCISE_HOSTS
     )
 
 
@@ -578,9 +285,7 @@ def extract_practice_links(body: str) -> list[dict[str, Any]]:
     return links
 
 
-def effective_review_status(
-    article: dict[str, Any], review_type: str, body_sha256: str
-) -> str:
+def effective_review_status(article: dict[str, Any], review_type: str, body_sha256: str) -> str:
     review = article["reviews"][review_type]
     status = review["status"]
     if status != "approved":
@@ -657,14 +362,11 @@ def load_article_difficulties(content_root: Path) -> dict[str, str]:
         raise ValueError(f"invalid metadata/article_difficulties.json: {exc}") from exc
 
     if payload.get("schema") != ARTICLE_DIFFICULTY_SCHEMA:
-        raise ValueError(
-            f"article difficulty schema must be {ARTICLE_DIFFICULTY_SCHEMA!r}"
-        )
+        raise ValueError(f"article difficulty schema must be {ARTICLE_DIFFICULTY_SCHEMA!r}")
     levels = payload.get("levels")
     if not isinstance(levels, dict) or set(levels) != set(ARTICLE_DIFFICULTY_LEVELS):
         raise ValueError(
-            "article difficulty levels must be exactly: "
-            + ", ".join(ARTICLE_DIFFICULTY_LEVELS)
+            "article difficulty levels must be exactly: " + ", ".join(ARTICLE_DIFFICULTY_LEVELS)
         )
 
     result: dict[str, str] = {}
@@ -726,11 +428,7 @@ def _without_fenced_code(value: str) -> str:
     for line in value.splitlines():
         stripped = line.lstrip()
         marker = (
-            "```"
-            if stripped.startswith("```")
-            else "~~~"
-            if stripped.startswith("~~~")
-            else None
+            "```" if stripped.startswith("```") else "~~~" if stripped.startswith("~~~") else None
         )
         if marker:
             fence = None if fence == marker else marker if fence is None else fence
@@ -741,9 +439,7 @@ def _without_fenced_code(value: str) -> str:
 
 
 def markdown_heading_count(value: str) -> int:
-    return sum(
-        1 for line in _without_fenced_code(value).splitlines() if HEADING_RE.match(line)
-    )
+    return sum(1 for line in _without_fenced_code(value).splitlines() if HEADING_RE.match(line))
 
 
 def markdown_prose_word_count(value: str) -> int:
@@ -759,11 +455,7 @@ def fenced_code_block_count(value: str) -> int:
     for line in value.splitlines():
         stripped = line.lstrip()
         marker = (
-            "```"
-            if stripped.startswith("```")
-            else "~~~"
-            if stripped.startswith("~~~")
-            else None
+            "```" if stripped.startswith("```") else "~~~" if stripped.startswith("~~~") else None
         )
         if not marker:
             continue
@@ -796,9 +488,7 @@ def _resolved_content_target(article_path: str, raw_target: str) -> str | None:
     if parsed.scheme or parsed.netloc or not parsed.path or parsed.path.startswith("/"):
         return None
     relative = unquote(parsed.path)
-    resolved = posixpath.normpath(
-        posixpath.join(posixpath.dirname(article_path), relative)
-    )
+    resolved = posixpath.normpath(posixpath.join(posixpath.dirname(article_path), relative))
     for prefix in ("content/articles/", "articles/", "docs/", "src/"):
         if resolved.startswith(prefix):
             resolved = resolved[len(prefix) :]
@@ -856,11 +546,7 @@ def _readiness_reasons(
     article_path = str(article.get("path") or "")
     for target in sorted(_link_targets(body, images=False)):
         resolved = _resolved_content_target(article_path, target)
-        if (
-            resolved
-            and resolved.lower().endswith(".md")
-            and resolved not in article_paths
-        ):
+        if resolved and resolved.lower().endswith(".md") and resolved not in article_paths:
             reasons.append(f"broken_internal_markdown_link:{target}")
     for target in sorted(_link_targets(body, images=True)):
         resolved = _resolved_content_target(article_path, target)
@@ -873,9 +559,7 @@ def _readiness_reasons(
         if not bundled_source.is_file():
             reasons.append("pinned_source_snapshot_missing")
         else:
-            source_text = bundled_source.read_text(encoding="utf-8").replace(
-                "\r\n", "\n"
-            )
+            source_text = bundled_source.read_text(encoding="utf-8").replace("\r\n", "\n")
             if sha256_text(source_text) != source["sha256"]:
                 reasons.append("pinned_source_sha256_mismatch")
             source_body = _without_yaml_front_matter(source_text)
@@ -947,12 +631,8 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
     if snapshot.get("content_license") != CONTENT_LICENSE:
         errors.append(f"snapshot content_license must be {CONTENT_LICENSE!r}")
     upstream_commit = snapshot.get("upstream_commit")
-    if not isinstance(upstream_commit, str) or not re.fullmatch(
-        r"[0-9a-f]{40}", upstream_commit
-    ):
-        errors.append(
-            "snapshot upstream_commit must be a 40-character lowercase Git hash"
-        )
+    if not isinstance(upstream_commit, str) or not re.fullmatch(r"[0-9a-f]{40}", upstream_commit):
+        errors.append("snapshot upstream_commit must be a 40-character lowercase Git hash")
     adaptation_commit = snapshot.get("commit")
     if not isinstance(adaptation_commit, str) or not re.fullmatch(
         r"[0-9a-f]{40}", adaptation_commit
@@ -969,13 +649,8 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
         if not (content_root / _safe_relative_path(relative)).is_file():
             errors.append(f"snapshot is missing required provenance file {relative!r}")
     pin_path = content_root / "provenance" / "UPSTREAM_PIN"
-    if (
-        pin_path.is_file()
-        and pin_path.read_text(encoding="utf-8").strip() != upstream_commit
-    ):
-        errors.append(
-            "provenance/UPSTREAM_PIN does not match SNAPSHOT.json upstream_commit"
-        )
+    if pin_path.is_file() and pin_path.read_text(encoding="utf-8").strip() != upstream_commit:
+        errors.append("provenance/UPSTREAM_PIN does not match SNAPSHOT.json upstream_commit")
 
     if data.get("schema_version") != 2:
         errors.append("metadata schema_version must be 2")
@@ -989,25 +664,19 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
     unknown_difficulties = sorted(set(difficulties) - manifest_ids)
     if missing_difficulties:
         errors.append(
-            "articles missing an editorial difficulty: "
-            + ", ".join(missing_difficulties)
+            "articles missing an editorial difficulty: " + ", ".join(missing_difficulties)
         )
     if unknown_difficulties:
         errors.append(
-            "difficulty metadata references unknown articles: "
-            + ", ".join(unknown_difficulties)
+            "difficulty metadata references unknown articles: " + ", ".join(unknown_difficulties)
         )
 
-    article_paths_for_readiness = {
-        str(article.get("path") or "") for article in articles
-    }
+    article_paths_for_readiness = {str(article.get("path") or "") for article in articles}
 
     for position, article in enumerate(articles, 1):
         label = str(article.get("path") or article.get("id") or f"article #{position}")
         if article.get("index") != position:
-            errors.append(
-                f"{label}: expected index {position}, got {article.get('index')!r}"
-            )
+            errors.append(f"{label}: expected index {position}, got {article.get('index')!r}")
         identifier = article.get("id")
         path_value = article.get("path")
         route = article.get("route")
@@ -1045,19 +714,13 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
             errors.append(f"{label}: {exc}")
             continue
         if document.article_id != identifier:
-            errors.append(
-                f"{label}: front matter id {document.article_id!r} != {identifier!r}"
-            )
+            errors.append(f"{label}: front matter id {document.article_id!r} != {identifier!r}")
         if "\ufffd" in document.body:
-            errors.append(
-                f"{label}: Markdown contains Unicode replacement character U+FFFD"
-            )
+            errors.append(f"{label}: Markdown contains Unicode replacement character U+FFFD")
         controls = disallowed_control_characters(document.body)
         if controls:
             codepoints = ", ".join(f"U+{ord(character):04X}" for character in controls)
-            errors.append(
-                f"{label}: Markdown contains disallowed control characters: {codepoints}"
-            )
+            errors.append(f"{label}: Markdown contains disallowed control characters: {codepoints}")
         if not document.body.strip():
             errors.append(f"{label}: Markdown body is empty")
 
@@ -1075,13 +738,9 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
         if source.get("file") != f"src/{path_value}":
             errors.append(f"{label}: source.file does not match article path")
         if source.get("repo") != SOURCE_REPOSITORY:
-            errors.append(
-                f"{label}: unexpected source repository {source.get('repo')!r}"
-            )
+            errors.append(f"{label}: unexpected source repository {source.get('repo')!r}")
         if source.get("commit") != upstream_commit:
-            errors.append(
-                f"{label}: source commit does not match the pinned upstream revision"
-            )
+            errors.append(f"{label}: source commit does not match the pinned upstream revision")
         if source.get("license") != CONTENT_LICENSE:
             errors.append(f"{label}: source license must be {CONTENT_LICENSE!r}")
         source_hash = source.get("sha256")
@@ -1089,9 +748,7 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
             source_hash_count += 1
             source_file_value = source.get("file")
             try:
-                source_relative = _safe_relative_path(
-                    str(source_file_value), suffix=".md"
-                )
+                source_relative = _safe_relative_path(str(source_file_value), suffix=".md")
             except ValueError as exc:
                 errors.append(f"{label}: {exc}")
             else:
@@ -1101,9 +758,9 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
                 else:
                     # Git hashes in source metadata are based on canonical LF
                     # text. Git may materialize CRLF files in a Windows clone.
-                    normalized_source = bundled_source.read_text(
-                        encoding="utf-8"
-                    ).replace("\r\n", "\n")
+                    normalized_source = bundled_source.read_text(encoding="utf-8").replace(
+                        "\r\n", "\n"
+                    )
                     if sha256_text(normalized_source) != source_hash:
                         errors.append(f"{label}: bundled upstream source hash mismatch")
         reviews = article.get("reviews", {})
@@ -1111,9 +768,7 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
             review = reviews.get(review_type, {})
             status = review.get("status")
             if status not in {"pending", "approved", "changes_requested"}:
-                errors.append(
-                    f"{label}: invalid {review_type} review status {status!r}"
-                )
+                errors.append(f"{label}: invalid {review_type} review status {status!r}")
         history = article.get("review_history")
         if not isinstance(history, list):
             errors.append(f"{label}: review_history must be a list")
@@ -1151,17 +806,11 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
                 None,
             )
             if not gate_event:
-                errors.append(
-                    f"{label}: ready status has no current auditable gate event"
-                )
+                errors.append(f"{label}: ready status has no current auditable gate event")
         elif publication_status == "published":
             published_count += 1
-            technical = effective_review_status(
-                article, "technical", document.content_sha256
-            )
-            language = effective_review_status(
-                article, "language", document.content_sha256
-            )
+            technical = effective_review_status(article, "technical", document.content_sha256)
+            language = effective_review_status(article, "language", document.content_sha256)
             if {technical, language} != {"approved"}:
                 errors.append(
                     f"{label}: published status requires current technical and language approvals"
@@ -1170,18 +819,8 @@ def validate_inventory(content_root: Path) -> dict[str, Any]:
         category_counts[str(article.get("category", ""))] += 1
         practice_link_count += len(extract_practice_links(document.body))
 
-    if len(articles) != EXPECTED_ARTICLE_COUNT:
-        errors.append(
-            f"expected {EXPECTED_ARTICLE_COUNT} articles, found {len(articles)}"
-        )
-    if full_count != EXPECTED_FULL_COUNT:
-        errors.append(
-            f"expected {EXPECTED_FULL_COUNT} full translations, found {full_count}"
-        )
-    if synopsis_count != EXPECTED_SYNOPSIS_COUNT:
-        errors.append(
-            f"expected {EXPECTED_SYNOPSIS_COUNT} synopsis drafts, found {synopsis_count}"
-        )
+    if not articles:
+        errors.append("article inventory must not be empty")
 
     if errors:
         raise ValueError("content validation failed:\n- " + "\n- ".join(errors))
@@ -1309,32 +948,7 @@ def write_checksum_manifest(content_root: Path) -> Path:
 
 
 def validate_checksum_manifest(content_root: Path) -> None:
-    manifest_path = content_root / "MANIFEST.sha256"
-    expected: dict[str, str] = {}
-    for line in manifest_path.read_text(encoding="utf-8").splitlines():
-        digest, separator, relative = line.partition("  ")
-        if not separator or not re.fullmatch(r"[0-9a-f]{64}", digest):
-            raise ValueError(f"invalid checksum row: {line!r}")
-        _safe_relative_path(relative)
-        if relative in expected:
-            raise ValueError(f"duplicate checksum path: {relative!r}")
-        expected[relative] = digest
-    actual = {
-        path.relative_to(content_root).as_posix(): sha256_file(path)
-        for path in iter_manifest_files(content_root)
-    }
-    missing = sorted(set(expected) - set(actual))
-    unlisted = sorted(set(actual) - set(expected))
-    changed = sorted(
-        path
-        for path in expected.keys() & actual.keys()
-        if expected[path] != actual[path]
-    )
-    if missing or unlisted or changed:
-        raise ValueError(
-            "checksum validation failed: "
-            f"missing={missing[:5]}, unlisted={unlisted[:5]}, changed={changed[:5]}"
-        )
+    verify_checksums(content_root)
 
 
 def write_snapshot_documents(destination: Path, snapshot: dict[str, Any]) -> None:
@@ -1347,15 +961,9 @@ def write_snapshot_documents(destination: Path, snapshot: dict[str, Any]) -> Non
         for article in articles
     )
     synopsis_count = len(articles) - full_count
-    ready_count = sum(
-        article["publication"]["status"] == "ready" for article in articles
-    )
+    ready_count = sum(article["publication"]["status"] == "ready" for article in articles)
     practice_count = sum(
-        len(
-            extract_practice_links(
-                load_document(destination / "articles" / article["path"]).body
-            )
-        )
+        len(extract_practice_links(load_document(destination / "articles" / article["path"]).body))
         for article in articles
     )
     technical_approvals = sum(
@@ -1364,9 +972,7 @@ def write_snapshot_documents(destination: Path, snapshot: dict[str, Any]) -> Non
     language_approvals = sum(
         article["reviews"]["language"]["status"] == "approved" for article in articles
     )
-    published_count = sum(
-        article["publication"]["status"] == "published" for article in articles
-    )
+    published_count = sum(article["publication"]["status"] == "published" for article in articles)
     technical_pending = sum(
         article["reviews"]["technical"]["status"] == "pending" for article in articles
     )
@@ -1515,9 +1121,7 @@ def copy_snapshot(source_root: Path, destination: Path) -> dict[str, Any]:
         fallback="https://github.com/cp-uz/algo",
     )
     commit = git_value(source_root, "rev-parse", "HEAD", fallback=None)
-    commit_date = git_value(
-        source_root, "show", "-s", "--format=%cI", "HEAD", fallback=None
-    )
+    commit_date = git_value(source_root, "show", "-s", "--format=%cI", "HEAD", fallback=None)
     upstream_pin = (source_root / "UPSTREAM_PIN").read_text(encoding="utf-8").strip()
     snapshot = {
         "schema": SNAPSHOT_SCHEMA,

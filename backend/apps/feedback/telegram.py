@@ -52,9 +52,11 @@ def _api_call(method: str, fields: dict[str, str], file_field=None) -> dict:
                 ]
             )
         filename = Path(upload.name).name.replace('"', "") or "attachment"
-        content_type = (getattr(upload, "content_type", "") or "application/octet-stream").replace(
-            "\r", ""
-        ).replace("\n", "")
+        content_type = (
+            (getattr(upload, "content_type", "") or "application/octet-stream")
+            .replace("\r", "")
+            .replace("\n", "")
+        )
         upload.seek(0)
         chunks.extend(
             [
@@ -102,18 +104,13 @@ def send_message(chat_id: str, text: str) -> dict:
     )["result"]
 
 
-def _feedback_text(
-    submission: FeedbackSubmission, *, max_visible_length: int | None = None
-) -> str:
+def _feedback_text(submission: FeedbackSubmission, *, max_visible_length: int | None = None) -> str:
     contact_line = (
         f"\n<b>Aloqa:</b> {html.escape(submission.contact)}" if submission.contact else ""
     )
     visible_contact_line = f"\nAloqa: {submission.contact}" if submission.contact else ""
     visible_prefix = (
-        "cp.uz — yangi murojaat\n\n"
-        f"Ism: {submission.full_name}"
-        f"{visible_contact_line}\n\n"
-        "Izoh:\n"
+        f"cp.uz — yangi murojaat\n\nIsm: {submission.full_name}{visible_contact_line}\n\nIzoh:\n"
     )
     note = submission.note
     if max_visible_length is not None and len(visible_prefix) + len(note) > max_visible_length:

@@ -105,6 +105,7 @@ def build_corpus(
     update_content: bool,
 ) -> list[dict[str, Any]]:
     manifest: list[dict[str, Any]] = []
+    content_updates: dict[Path, dict[str, Any]] = {}
     problem_files = sorted(content_root.glob("*/*/*/*/problem.json"))
     if not problem_files:
         raise RuntimeError(f"Masala fayllari topilmadi: {content_root}")
@@ -126,6 +127,18 @@ def build_corpus(
                     write_page_range(downloaded, output_pdf, *IZHO_PAGE_RANGES[relative_problem])
                 else:
                     shutil.copyfile(downloaded, output_pdf)
+                provenance = "official"
+            elif data.get("statement_pdf", {}).get("provenance") == "official":
+                # Older snapshots removed official attachments after mirroring.
+                # The verified mirror is still an immutable rebuild input; it is
+                # already split and must not receive the booklet transform again.
+                original = data["statement_pdf"]
+                source_url = original["url"]
+                downloaded = cached_download(source_url, cache_root)
+                actual = file_metadata(downloaded)
+                if any(actual[key] != original[key] for key in actual):
+                    raise RuntimeError(f"Official mirrored PDF metadata mismatch: {source_url}")
+                shutil.copyfile(downloaded, output_pdf)
                 provenance = "official"
             else:
                 source_pdf = generated_root / relative_problem / "statement.pdf"
@@ -158,14 +171,9 @@ def build_corpus(
 
             if update_content:
                 data["statement_pdf"] = pdf_record
-                data["attachments"] = [
-                    item
-                    for item in data.get("attachments", [])
-                    if item.get("content_type", "").lower() != "application/pdf"
-                ]
-                if not data["attachments"]:
-                    data.pop("attachments")
-                write_json(problem_file, data)
+                # Keep source attachments so a refresh remains reproducible.
+                # Delay every canonical write until the complete corpus passes.
+                content_updates[problem_file] = data
 
     write_json(
         output_root / "manifest.json",
@@ -176,6 +184,14 @@ def build_corpus(
             "statements": manifest,
         },
     )
+    originals = {path: path.read_bytes() for path in content_updates}
+    try:
+        for path, data in content_updates.items():
+            write_json(path, data)
+    except Exception:
+        for path, value in originals.items():
+            path.write_bytes(value)
+        raise
     return manifest
 
 

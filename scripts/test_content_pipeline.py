@@ -9,7 +9,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from content_pipeline import (
-    EXPECTED_GLOSSARY_CONCEPTS,
     EXPORT_SCHEMA,
     GLOSSARY_REQUIRED_INITIALS,
     READINESS_GATE_VERSION,
@@ -58,9 +57,7 @@ class ContentPipelineTests(unittest.TestCase):
 """
         links = extract_practice_links(body)
         self.assertEqual([item["title"] for item in links], ["A", "B"])
-        self.assertEqual(
-            [item["platform"] for item in links], ["Codeforces", "AtCoder"]
-        )
+        self.assertEqual([item["platform"] for item in links], ["Codeforces", "AtCoder"])
         self.assertEqual(links[1]["note"], "boshlang‘ich")
 
     def test_checked_in_snapshot_contract(self) -> None:
@@ -85,14 +82,9 @@ class ContentPipelineTests(unittest.TestCase):
             {article["difficulty"] for article in export["articles"]},
             {"beginner", "intermediate", "advanced"},
         )
+        self.assertTrue(all(article["content_sha256"] for article in export["articles"]))
         self.assertTrue(
-            all(article["content_sha256"] for article in export["articles"])
-        )
-        self.assertTrue(
-            all(
-                article["publication"]["status"] == "ready"
-                for article in export["articles"]
-            )
+            all(article["publication"]["status"] == "ready" for article in export["articles"])
         )
         self.assertTrue(
             all(
@@ -102,17 +94,14 @@ class ContentPipelineTests(unittest.TestCase):
         )
         self.assertTrue(
             all(
-                article["effective_reviews"]
-                == {"technical": "pending", "language": "pending"}
+                article["effective_reviews"] == {"technical": "pending", "language": "pending"}
                 for article in export["articles"]
             )
         )
 
     def test_checked_in_export_is_current_and_deterministic(self) -> None:
         expected = stable_json(build_export(CONTENT))
-        checked_in = (CONTENT / "exports" / "articles.v1.json").read_text(
-            encoding="utf-8"
-        )
+        checked_in = (CONTENT / "exports" / "articles.v1.json").read_text(encoding="utf-8")
         self.assertEqual(checked_in, expected)
 
     def test_export_is_learning_content_only(self) -> None:
@@ -134,8 +123,7 @@ class ContentPipelineTests(unittest.TestCase):
         self.assertTrue(forbidden_structural_keys.isdisjoint(article_keys))
         self.assertTrue(
             all(
-                set(article) == article_keys
-                and forbidden_structural_keys.isdisjoint(article)
+                set(article) == article_keys and forbidden_structural_keys.isdisjoint(article)
                 for article in export["articles"]
             )
         )
@@ -143,9 +131,7 @@ class ContentPipelineTests(unittest.TestCase):
     def test_difficulty_metadata_covers_each_article_exactly_once(self) -> None:
         manifest = load_manifest(CONTENT)
         difficulties = load_article_difficulties(CONTENT)
-        self.assertEqual(
-            set(difficulties), {article["id"] for article in manifest["articles"]}
-        )
+        self.assertEqual(set(difficulties), {article["id"] for article in manifest["articles"]})
         self.assertEqual(
             Counter(difficulties.values()),
             Counter({"beginner": 58, "intermediate": 67, "advanced": 38}),
@@ -154,13 +140,9 @@ class ContentPipelineTests(unittest.TestCase):
     def test_e_maxx_sources_are_upstream_confirmed_and_exported(self) -> None:
         sources = load_e_maxx_sources(CONTENT)
         self.assertEqual(len(sources), 127)
-        self.assertTrue(
-            all(url.startswith("http://e-maxx.ru/algo/") for url in sources.values())
-        )
+        self.assertTrue(all(url.startswith("http://e-maxx.ru/algo/") for url in sources.values()))
 
-        exported = {
-            article["id"]: article for article in build_export(CONTENT)["articles"]
-        }
+        exported = {article["id"]: article for article in build_export(CONTENT)["articles"]}
         for article_id, url in sources.items():
             self.assertEqual(exported[article_id]["source"]["russian_url"], url)
         self.assertNotIn(
@@ -170,9 +152,7 @@ class ContentPipelineTests(unittest.TestCase):
 
     def test_practice_links_exclude_explanatory_references(self) -> None:
         export = build_export(CONTENT)
-        links = [
-            link for article in export["articles"] for link in article["practice_links"]
-        ]
+        links = [link for article in export["articles"] for link in article["practice_links"]]
         self.assertEqual(len(links), 885)
         self.assertFalse(any("wikipedia.org" in link["url"] for link in links))
         self.assertFalse(any("e-maxx.ru" in link["url"] for link in links))
@@ -248,10 +228,7 @@ articles:
         article_files = list((CONTENT / "articles").rglob("*.md"))
         self.assertTrue(article_files)
         self.assertTrue(
-            all(
-                "\ufffd" not in path.read_text(encoding="utf-8")
-                for path in article_files
-            )
+            all("\ufffd" not in path.read_text(encoding="utf-8") for path in article_files)
         )
         self.assertTrue(
             all(
@@ -264,7 +241,7 @@ articles:
 
     def test_glossary_is_production_ready(self) -> None:
         rows = load_glossary(CONTENT)
-        self.assertEqual(len(rows), EXPECTED_GLOSSARY_CONCEPTS)
+        self.assertEqual(len(rows), 174)
         self.assertEqual(len(rows), len({row["source"].casefold() for row in rows}))
         self.assertEqual(len(rows), len({row["uzbek"].casefold() for row in rows}))
         self.assertEqual(
@@ -275,21 +252,15 @@ articles:
         segment_tree = next(row for row in rows if row["source"] == "Segment Tree")
         self.assertEqual(segment_tree["uzbek"], "Segment daraxti")
         self.assertIn("Kesma daraxti", segment_tree["aliases"])
-        sport_programming = next(
-            row for row in rows if row["source"] == "Competitive Programming"
-        )
+        sport_programming = next(row for row in rows if row["source"] == "Competitive Programming")
         self.assertEqual(sport_programming["uzbek"], "Sport dasturlash")
-        euclidean_algorithm = next(
-            row for row in rows if row["source"] == "Euclidean Algorithm"
-        )
+        euclidean_algorithm = next(row for row in rows if row["source"] == "Euclidean Algorithm")
         self.assertEqual(euclidean_algorithm["uzbek"], "Evklid algoritmi")
         self.assertNotIn("Yevklid", " ".join(euclidean_algorithm["aliases"]))
 
     def test_glossary_parser_rejects_alias_owned_by_another_concept(self) -> None:
         canonical = (CONTENT / "articles" / "glossary.md").read_text(encoding="utf-8")
-        poisoned = canonical.replace(
-            "| Algorithm | Algoritm |", "| Algorithm | Graph |", 1
-        )
+        poisoned = canonical.replace("| Algorithm | Algoritm |", "| Algorithm | Graph |", 1)
         with self.assertRaisesRegex(ValueError, "already owned"):
             parse_glossary_markdown(poisoned)
 

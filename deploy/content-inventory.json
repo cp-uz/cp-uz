@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "articles": 163,
+    "attachments": 12,
+    "edges": 42,
+    "events": 51,
+    "glossary_terms": 174,
+    "links": 82,
+    "local_results": 73,
+    "practice_references": 885,
+    "problems": 47,
+    "public_events": 51,
+    "public_problems": 47,
+    "public_seasons": 3,
+    "public_sets": 15,
+    "published_articles": 163,
+    "root_categories": 10,
+    "routes": 13,
+    "seasons": 3,
+    "sets": 15,
+    "statement_pdfs": 47
+  },
+  "schema": "cpuz.release-inventory.v1",
+  "source_manifest_sha256": "c74068d72fa5a8b5fffdbb0cc870a0c67373a3b1b17465dff72e5ae8e820adb9"
+}

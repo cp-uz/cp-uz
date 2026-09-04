@@ -17,7 +17,9 @@ frontend/
   src/shared/    umumiy API, hook, theme va UI primitive’lari
 backend/
   apps/          accounts, articles, contributions, engagement, search, seasons va problems
-  config/        Django settings, URL va ASGI/WSGI entrypointlar
+  core/          Django settings, URL, ASGI/WSGI va SEO integratsiyasi
+  common/        umumiy model, readiness, route, pagination va xato yordamchilari
+  content_tools/ Django'dan mustaqil content kontrakti va integrity tekshiruvlari
 content/
   articles/      canonical Markdown va media
   seasons/       season, event va participant canonical JSON fayllari
@@ -114,7 +116,11 @@ Remote tomonga faqat `deploy <40-hex-sha>` yuboriladi; server SSH kaliti forced-
 
 ## Production
 
-Docker faqat production release uchun ishlatiladi. Compose tashqi tarmoqqa faqat loopback’dagi application portini chiqaradi; persistent SQLite bazasi va media fayllari Docker volume’larda saqlanadi, Redis hamda Gunicorn host portlariga ochilmaydi. Server talablari, health gate, Nginx almashinuvi va rollback tartibi [deploy/README.md](deploy/README.md) da yozilgan.
+Production va CI smoke tekshiruvlari Docker ishlatadi; lokal Django/Vite ish jarayoni o‘zgarmaydi. Har release Git SHA bo‘yicha alohida katalog va image ID bilan saqlanadi. Kandidat alohida Compose project, SQLite/media volume’lari va navbatdagi `127.0.0.1:18181` yoki `18182` portida tekshiriladi. Redis hamda Gunicorn host portlariga ochilmaydi.
+
+Promote vaqtida cp.uz qisqa maintenance holatiga o‘tadi, eski web jarayonlari to‘xtatiladi va eng so‘nggi baza nusxasi kandidatda migration/importdan o‘tadi. HTTP/TLS tekshiruvlaridan keyin trafik ochiladi. Ungacha xato chiqsa oldingi containerlar va Nginx qaytariladi; eski SQLite sxemasiga tegilmaydi. Trafik ochilgandan keyingi ma’lumotlarni eski backup bilan avtomatik almashtirish taqiqlangan. Oldingi release kataloglari va volume’lari recovery uchun saqlanadi.
+
+Kontent hajmi `deploy/content-inventory.json` manifestida review qilinadi. Canonical o‘zgarishlardan so‘ng `python scripts/release_inventory.py --write` bilan uni yangilang va `python scripts/release_inventory.py` bilan tekshiring. Ishlayotgan release haqidagi state `/home/cp_uz/.release/active.json` da saqlanadi. Server talablari, immutable checkout, health gate va recovery tartibi [deploy/README.md](deploy/README.md) da berilgan.
 
 ## Hamkorlik va siyosatlar
 

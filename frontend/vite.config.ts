@@ -40,4 +40,5 @@ export default defineConfig({
     },
   },
   preview: { port: PORT, host: true },
+  build: { manifest: true },
 });

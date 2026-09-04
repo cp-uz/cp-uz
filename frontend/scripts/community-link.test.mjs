@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const layoutSource = readFileSync(
-  new URL('../src/app/layouts/LearningLayout.tsx', import.meta.url),
+  new URL('../src/app/layouts/learning/LearningFooter.tsx', import.meta.url),
   'utf8'
 );
 

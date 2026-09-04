@@ -10,6 +10,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from problem_staging import stage_catalog
 from pypdf import PdfReader
 from sync_ioi_2026_archive import clean_pdf_text, fetch
 
@@ -61,11 +62,7 @@ def parse_limits(payload: bytes) -> tuple[int | None, int | None]:
     text = PdfReader(io.BytesIO(payload)).pages[0].extract_text() or ""
     time_match = re.search(r"Vaqt cheklovi:\s*([\d.,]+)\s*soniya", text)
     memory_match = re.search(r"Xotira cheklovi:\s*(\d+)\s*MiB", text)
-    time_limit = (
-        round(float(time_match.group(1).replace(",", ".")) * 1000)
-        if time_match
-        else None
-    )
+    time_limit = round(float(time_match.group(1).replace(",", ".")) * 1000) if time_match else None
     memory_limit = int(memory_match.group(1)) if memory_match else None
     return time_limit, memory_limit
 
@@ -92,15 +89,9 @@ def replace_standard_examples(markdown: str, task: Task) -> str:
     examples = ["## Misollar"]
     for index in range(task.sample_count):
         root = f"{REPOSITORY_ROOT}/day{task.day}/{task.archive_slug}/statement"
-        sample_input = (
-            fetch(f"{root}/{task.archive_slug}.input{index}.txt")
-            .decode("utf-8")
-            .strip()
-        )
+        sample_input = fetch(f"{root}/{task.archive_slug}.input{index}.txt").decode("utf-8").strip()
         sample_output = (
-            fetch(f"{root}/{task.archive_slug}.output{index}.txt")
-            .decode("utf-8")
-            .strip()
+            fetch(f"{root}/{task.archive_slug}.output{index}.txt").decode("utf-8").strip()
         )
         examples.extend(
             (
@@ -237,10 +228,10 @@ def main() -> None:
     parser.add_argument(
         "--output-root",
         type=Path,
-        default=Path(__file__).resolve().parents[1] / "content" / "problems",
+        default=Path(__file__).resolve().parents[1] / "tmp" / "candidates" / "egoi-2026",
     )
     args = parser.parse_args()
-    write_catalog(args.output_root.resolve())
+    stage_catalog(args.output_root, write_catalog)
     print(f"EGOI 2026: {len(TASKS)} ta rasmiy o‘zbekcha shart yangilandi.")
 
 

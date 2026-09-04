@@ -1,34 +1,41 @@
+import type { LearningArticle } from '../../../domain';
+
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { formatUzbekDate } from 'shared/lib/i18n';
+import { useMemo, useState, useEffect } from 'react';
 import { useAuthSession } from 'modules/auth/application';
-import { useRef, useMemo, useState, useEffect } from 'react';
 import { useParams, Link as RouterLink } from 'react-router';
-import { engagementApi, useLocalStorageList } from 'modules/engagement/application';
+import {
+  useArticleNote,
+  engagementIdentity,
+  useArticleProgress,
+  useLocalStorageList,
+} from 'modules/engagement/application';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
-import TextField from '@mui/material/TextField';
 import Accordion from '@mui/material/Accordion';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import LinearProgress from '@mui/material/LinearProgress';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import { getArticlePath } from '../../../domain';
+import { useArticleShare } from './use-article-share';
+import { ArticleNoteDrawer } from './ArticleNoteDrawer';
+import { articleProvenance } from './article-provenance';
+import { ArticleShareDialog } from './ArticleShareDialog';
+import { ArticleRevisionDialog } from './ArticleRevisionDialog';
 import { learningQueries as learningApi } from '../../../application';
 import { CodeBlock, RichMarkdown, extractMarkdownHeadings } from '../../shared';
 
@@ -80,43 +87,58 @@ Vaqt murakkabligi $O(\\log n)$, qo‘shimcha xotira esa $O(1)$. Eng ko‘p uchra
 - katta sonlarda **(l + r) / 2** son turining sig‘imidan oshishini unutish.
 `;
 
-function displayContributorName(name: string) {
-  const automatedActor = /^(import[-_]|pipeline[-_])|openai|gpt[-_\d]|translation[-_]bot/i;
-  return automatedActor.test(name.trim()) ? 'cp.uz tarjima jamoasi' : name;
-}
-
 export default function ArticlePage() {
   const session = useAuthSession();
-  const hasSession = Boolean(session);
-  const sessionUserId = session?.user.id;
   const { slug = 'binary-search', category } = useParams();
   const {
     data: article,
-    loading: articleLoading,
-    error: articleLoadError,
+    loading,
+    error,
   } = useAsyncData(() => learningApi.getArticle(slug, category), null, [category, slug]);
   const { data: allArticles } = useAsyncData(learningApi.listArticles, [], []);
+  if (loading || error || !article) {
+    return (
+      <Container maxWidth="sm" sx={{ py: { xs: 8, md: 12 }, textAlign: 'center' }}>
+        <UiIcon
+          icon={error ? 'solar:server-square-cloud-linear' : 'solar:document-text-linear'}
+          width={44}
+        />
+        <Typography component="h1" variant="h4" sx={{ mt: 2 }}>
+          {loading ? 'Darslik yuklanmoqda…' : 'Darslikni yuklab bo‘lmadi'}
+        </Typography>
+        {error && (
+          <Typography sx={{ mt: 1 }}>
+            Server bilan ulanishni yoki manzil to‘g‘riligini tekshiring.
+          </Typography>
+        )}
+      </Container>
+    );
+  }
+  return (
+    <ArticleReader
+      key={`${engagementIdentity(session)}:${article.sourceId ?? article.slug}`}
+      article={article}
+      allArticles={allArticles}
+    />
+  );
+}
+
+function ArticleReader({
+  article,
+  allArticles,
+}: {
+  article: LearningArticle;
+  allArticles: LearningArticle[];
+}) {
+  const session = useAuthSession();
   const bookmarks = useLocalStorageList('cpuz:bookmarks', []);
-  const completed = useLocalStorageList('cpuz:completed', []);
-  const [viewportProgress, setViewportProgress] = useState(0);
-  const [readingProgress, setReadingProgress] = useState(0);
-  const [progressHydrated, setProgressHydrated] = useState(false);
-  const [hydratedArticleKey, setHydratedArticleKey] = useState('');
-  const progressWriteQueue = useRef<Promise<unknown>>(Promise.resolve());
-  const lastQueuedProgress = useRef(0);
-  const completionSyncedFor = useRef('');
-  const [activeSection, setActiveSection] = useState('');
-  const [notesOpen, setNotesOpen] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
-  const [shareCopied, setShareCopied] = useState(false);
   const [revisionsOpen, setRevisionsOpen] = useState(false);
-  const [note, setNote] = useState(() => localStorage.getItem(`cpuz:note:${slug}`) ?? '');
-  const [noteId, setNoteId] = useState<number | string>();
-  const [noteSaving, setNoteSaving] = useState(false);
-  const [noteError, setNoteError] = useState('');
   const isBinaryFallback = article?.slug === 'binary-search' && !article.content;
-  const articleKey = article?.sourceId ?? article?.slug ?? slug;
-  const canNativeShare = Reflect.has(navigator, 'share');
+  const articleKey = article.sourceId ?? article.slug;
+  const notes = useArticleNote(articleKey);
+  const { note, setNotesOpen } = notes;
+  const share = useArticleShare(article.title);
+  const { requestShare } = share;
 
   const readerContent = useMemo(() => {
     const content = article?.content?.replace(/^#\s+.+(?:\r?\n)+/, '').trim();
@@ -134,194 +156,31 @@ export default function ArticlePage() {
       : headings;
   }, [practices.length, readerContent]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const main = document.getElementById('reader-content');
-      if (!main) return;
-      const available = Math.max(1, main.offsetHeight - window.innerHeight);
-      const currentProgress = Math.max(
-        0,
-        Math.min(100, ((window.scrollY - main.offsetTop) / available) * 100)
-      );
-      setViewportProgress(currentProgress);
-      setReadingProgress((previous) => Math.max(previous, currentProgress));
-      let current = tocItems[0]?.id ?? '';
-      tocItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element && element.getBoundingClientRect().top <= 160) current = item.id;
-      });
-      setActiveSection(current);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [tocItems]);
+  const {
+    readingProgress,
+    viewportProgress,
+    activeSection,
+    progressReady,
+    isArticleCompleted,
+    setReadingProgress,
+  } = useArticleProgress(articleKey, tocItems);
+  const { isHumanReviewed, reviewLabel, sourceLinks, contributors, revisions } =
+    articleProvenance(article);
 
   useEffect(() => {
-    if (!article || !window.location.hash) return undefined;
-    const targetId = decodeURIComponent(window.location.hash.slice(1));
+    if (!window.location.hash) return undefined;
+    let targetId: string;
+    try {
+      targetId = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      return undefined;
+    }
     const frame = window.requestAnimationFrame(() => {
       document.getElementById(targetId)?.scrollIntoView({ block: 'start' });
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [article, articleKey, readerContent]);
+  }, [articleKey, readerContent]);
 
-  useEffect(() => {
-    let active = true;
-    const storageKey = `cpuz:reading-progress:${articleKey}`;
-    const stored = Number(localStorage.getItem(storageKey) ?? 0);
-    let locallyCompleted = false;
-    try {
-      const values = JSON.parse(localStorage.getItem('cpuz:completed') ?? '[]');
-      locallyCompleted = Array.isArray(values) && values.includes(articleKey);
-    } catch {
-      locallyCompleted = false;
-    }
-    const initialProgress = Math.max(
-      Number.isFinite(stored) ? Math.min(100, Math.max(0, stored)) : 0,
-      locallyCompleted ? 100 : 0
-    );
-
-    setViewportProgress(0);
-    setReadingProgress(initialProgress);
-    setProgressHydrated(false);
-    setHydratedArticleKey('');
-    lastQueuedProgress.current = 0;
-    completionSyncedFor.current = locallyCompleted ? articleKey : '';
-
-    if (!hasSession) {
-      setProgressHydrated(true);
-      setHydratedArticleKey(articleKey);
-      return () => {
-        active = false;
-      };
-    }
-
-    engagementApi
-      .listProgress()
-      .then((entries) => {
-        if (!active) return;
-        const saved = entries.find((item) => item.articleSlug === articleKey)?.percent ?? 0;
-        lastQueuedProgress.current = saved;
-        setReadingProgress((previous) => Math.max(previous, saved));
-      })
-      .catch(() => {
-        // The anonymous/local high-water mark remains available while offline.
-      })
-      .finally(() => {
-        if (active) {
-          setProgressHydrated(true);
-          setHydratedArticleKey(articleKey);
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, [articleKey, hasSession, sessionUserId]);
-
-  useEffect(() => {
-    const rounded = Math.min(100, Math.max(0, Math.floor(readingProgress)));
-    localStorage.setItem(`cpuz:reading-progress:${articleKey}`, String(rounded));
-    if (!progressHydrated || hydratedArticleKey !== articleKey) return;
-
-    const throttled = rounded >= 100 ? 100 : Math.floor(rounded / 5) * 5;
-    if (throttled <= lastQueuedProgress.current) return;
-    lastQueuedProgress.current = throttled;
-    progressWriteQueue.current = progressWriteQueue.current
-      .catch(() => undefined)
-      .then(() => engagementApi.setProgress(articleKey, throttled));
-  }, [articleKey, hydratedArticleKey, progressHydrated, readingProgress]);
-
-  useEffect(() => {
-    if (readingProgress < 100 || completed.has(articleKey)) return;
-    if (completionSyncedFor.current === articleKey) return;
-    completionSyncedFor.current = articleKey;
-    completed.toggle(articleKey);
-  }, [articleKey, completed, readingProgress]);
-
-  useEffect(() => {
-    let active = true;
-    const localNote =
-      localStorage.getItem(`cpuz:note:${articleKey}`) ??
-      localStorage.getItem(`cpuz:note:${slug}`) ??
-      '';
-    setNote(localNote);
-    setNoteId(undefined);
-    setNoteError('');
-
-    if (hasSession) {
-      engagementApi
-        .listNotes()
-        .then((entries) => {
-          if (!active) return;
-          const entry = entries.find((item) => item.articleSlug === articleKey);
-          if (entry) {
-            setNote(entry.body);
-            setNoteId(entry.id);
-          }
-        })
-        .catch(() => {
-          // The local note remains editable while the API is unavailable.
-        });
-    }
-
-    return () => {
-      active = false;
-    };
-  }, [articleKey, hasSession, sessionUserId, slug]);
-
-  if (!article) {
-    return (
-      <Container maxWidth="sm" sx={{ py: { xs: 8, md: 12 }, textAlign: 'center' }}>
-        <UiIcon
-          icon={
-            articleLoadError ? 'solar:server-square-cloud-linear' : 'solar:document-text-linear'
-          }
-          width={44}
-        />
-        <Typography component="h1" variant="h4" sx={{ mt: 2 }}>
-          {articleLoading ? 'Darslik yuklanmoqda…' : 'Darslikni yuklab bo‘lmadi'}
-        </Typography>
-        {articleLoadError && (
-          <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-            Server bilan ulanishni yoki manzil to‘g‘riligini tekshiring.
-          </Typography>
-        )}
-      </Container>
-    );
-  }
-
-  const isHumanReviewed =
-    article.reviewState?.technical === 'approved' && article.reviewState?.language === 'approved';
-  const reviewLabel = isHumanReviewed ? 'Tekshiruvdan o‘tgan tarjima' : 'AI-tarjima';
-  const sourceLinks = [
-    article.sourceUrl
-      ? {
-          label: 'Original maqola',
-          site: 'cp-algorithms.com',
-          href: article.sourceUrl,
-        }
-      : null,
-    article.russianSourceUrl
-      ? {
-          label: 'Ruscha',
-          site: 'e-maxx.ru',
-          href: article.russianSourceUrl,
-        }
-      : null,
-  ].filter((item): item is { label: string; site: string; href: string } => Boolean(item));
-  const contributors = (article.contributors ?? [])
-    .map((item) => ({ ...item, name: displayContributorName(item.name) }))
-    .filter(
-      (item, index, items) => items.findIndex((candidate) => candidate.name === item.name) === index
-    );
-  const revisions = (article.revisions ?? []).map((revision) => ({
-    ...revision,
-    author: displayContributorName(revision.author),
-  }));
-  const progressReady = progressHydrated && hydratedArticleKey === articleKey;
-  const isArticleCompleted = progressReady && (readingProgress >= 100 || completed.has(articleKey));
   const related = allArticles
     .filter(
       (item) =>
@@ -330,61 +189,6 @@ export default function ArticlePage() {
           item.tags.some((tag) => article.tags.includes(tag)))
     )
     .slice(0, 4);
-
-  const saveNote = async () => {
-    setNoteSaving(true);
-    setNoteError('');
-    try {
-      if (note.trim()) localStorage.setItem(`cpuz:note:${articleKey}`, note);
-      else localStorage.removeItem(`cpuz:note:${articleKey}`);
-
-      if (note.trim()) {
-        const saved = await engagementApi.saveNote(articleKey, note, noteId);
-        setNoteId(saved.id);
-      } else if (noteId !== undefined) {
-        await engagementApi.removeNote(noteId);
-        setNoteId(undefined);
-      }
-      setNotesOpen(false);
-    } catch (reason) {
-      setNoteError(reason instanceof Error ? reason.message : 'Qaydni saqlab bo‘lmadi.');
-    } finally {
-      setNoteSaving(false);
-    }
-  };
-
-  const openShare = () => {
-    setShareCopied(false);
-    setShareOpen(true);
-  };
-
-  const copyShareLink = async () => {
-    await navigator.clipboard.writeText(window.location.href);
-    setShareCopied(true);
-  };
-
-  const shareArticle = async () => {
-    if (!canNativeShare) return;
-    try {
-      await navigator.share({ title: article.title, url: window.location.href });
-    } catch (reason) {
-      if (!(reason instanceof DOMException && reason.name === 'AbortError')) throw reason;
-    }
-  };
-
-  const requestShare = async () => {
-    const prefersNativeShare =
-      canNativeShare && (window.innerWidth < 900 || window.matchMedia('(pointer: coarse)').matches);
-    if (prefersNativeShare) {
-      try {
-        await shareArticle();
-        return;
-      } catch {
-        // Fall back to the in-site copy dialog when the platform share UI fails.
-      }
-    }
-    openShare();
-  };
 
   return (
     <>
@@ -1047,167 +851,13 @@ export default function ArticlePage() {
         </Box>
       )}
 
-      <Drawer
-        anchor="right"
-        open={notesOpen}
-        onClose={() => setNotesOpen(false)}
-        slotProps={{
-          paper: {
-            sx: {
-              width: { xs: 1, sm: 440 },
-              display: 'flex',
-              bgcolor: 'background.paper',
-              backgroundImage: 'none',
-              backdropFilter: 'none',
-            },
-          },
-        }}
-      >
-        <Stack
-          direction="row"
-          alignItems="flex-start"
-          justifyContent="space-between"
-          spacing={2}
-          sx={{ p: 3 }}
-        >
-          <Box sx={{ minWidth: 0 }}>
-            <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
-              Shaxsiy qayd
-            </Typography>
-            <Typography variant="h5" sx={{ mt: 0.75 }}>
-              {article.title}
-            </Typography>
-          </Box>
-          <IconButton aria-label="Qaydni yopish" onClick={() => setNotesOpen(false)}>
-            <UiIcon icon="solar:close-circle-linear" />
-          </IconButton>
-        </Stack>
-        <Divider />
-        <Box sx={{ p: 3, minHeight: 0, flexGrow: 1, overflowY: 'auto' }}>
-          <Stack
-            direction="row"
-            spacing={1}
-            alignItems="flex-start"
-            sx={{ color: 'text.secondary' }}
-          >
-            <UiIcon
-              icon={note.trim() ? 'solar:check-circle-linear' : 'solar:shield-user-linear'}
-              width={19}
-            />
-            <Typography variant="body2" sx={{ color: 'inherit' }}>
-              {note.trim()
-                ? 'Saqlangan qaydni tahrirlayapsiz.'
-                : session
-                  ? 'Bu qayd profilingizda saqlanadi va faqat sizga ko‘rinadi.'
-                  : 'Bu qayd shu brauzerda saqlanadi va faqat sizga ko‘rinadi.'}
-            </Typography>
-          </Stack>
-          {noteError && (
-            <Typography variant="body2" sx={{ mt: 2, color: 'error.main' }}>
-              {noteError}
-            </Typography>
-          )}
-          <TextField
-            fullWidth
-            multiline
-            minRows={12}
-            value={note}
-            onChange={(event) => setNote(event.target.value)}
-            placeholder="Savol, formula yoki qisqa xulosa..."
-            slotProps={{ htmlInput: { 'aria-label': 'Shaxsiy qayd matni' } }}
-            sx={{ mt: 3 }}
-          />
-        </Box>
-        <Divider />
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          spacing={2}
-          sx={{ p: 2.5 }}
-        >
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            {note.length} belgi
-          </Typography>
-          <Button variant="contained" disabled={noteSaving} onClick={() => void saveNote()}>
-            {noteSaving ? 'Saqlanmoqda…' : 'Qaydni saqlash'}
-          </Button>
-        </Stack>
-      </Drawer>
-
-      <Dialog open={shareOpen} onClose={() => setShareOpen(false)} fullWidth maxWidth="sm">
-        <DialogTitle
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-        >
-          Maqolani ulashish
-          <IconButton aria-label="Ulashishni yopish" onClick={() => setShareOpen(false)}>
-            <UiIcon icon="solar:close-circle-linear" />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent sx={{ pb: 3 }}>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Doimiy havolani nusxalang yoki qurilmangizdagi ulashish oynasini oching.
-          </Typography>
-          <TextField
-            fullWidth
-            value={window.location.href}
-            slotProps={{
-              htmlInput: { readOnly: true, 'aria-label': 'Maqolaning doimiy havolasi' },
-            }}
-            sx={{ mt: 2.5 }}
-          />
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.25} sx={{ mt: 2 }}>
-            <Button
-              variant="contained"
-              onClick={() => void copyShareLink()}
-              startIcon={
-                <UiIcon
-                  icon={shareCopied ? 'solar:check-circle-bold' : 'solar:copy-linear'}
-                  width={18}
-                />
-              }
-            >
-              {shareCopied ? 'Havola nusxalandi' : 'Havolani nusxalash'}
-            </Button>
-            {canNativeShare && (
-              <Button
-                color="inherit"
-                onClick={() => void shareArticle()}
-                startIcon={<UiIcon icon="solar:share-linear" width={18} />}
-              >
-                Qurilmada ulashish
-              </Button>
-            )}
-          </Stack>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={revisionsOpen} onClose={() => setRevisionsOpen(false)} fullWidth maxWidth="sm">
-        <DialogTitle>Versiyalar tarixi</DialogTitle>
-        <DialogContent>
-          <Stack divider={<Divider flexItem />}>
-            {revisions.map((revision) => (
-              <Box key={`${revision.version}-${revision.date}`} sx={{ py: 2 }}>
-                <Stack direction="row" justifyContent="space-between">
-                  <Typography variant="subtitle2">{revision.version}</Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                    {formatUzbekDate(revision.date)}
-                  </Typography>
-                </Stack>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  {revision.note}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ mt: 0.5, display: 'block', color: 'text.secondary' }}
-                >
-                  {revision.author}
-                </Typography>
-              </Box>
-            ))}
-          </Stack>
-        </DialogContent>
-      </Dialog>
+      <ArticleNoteDrawer title={article.title} hasSession={Boolean(session)} state={notes} />
+      <ArticleShareDialog state={share} />
+      <ArticleRevisionDialog
+        revisions={revisions}
+        open={revisionsOpen}
+        onClose={() => setRevisionsOpen(false)}
+      />
     </>
   );
 }

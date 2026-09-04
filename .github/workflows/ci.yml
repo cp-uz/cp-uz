@@ -22,7 +22,7 @@ jobs:
       run:
         working-directory: backend
     env:
-      DJANGO_SETTINGS_MODULE: config.settings.development
+      DJANGO_SETTINGS_MODULE: core.settings.development
       DJANGO_SECRET_KEY: ci-only-secret-key-not-for-production
       DJANGO_DEBUG: "false"
     steps:
@@ -36,10 +36,11 @@ jobs:
           cache-dependency-path: |
             backend/requirements/base.txt
             backend/requirements/dev.txt
+            backend/requirements/constraints.txt
       - name: Install development dependencies
         run: python -m pip install -r requirements/dev.txt
       - name: Lint Python
-        run: python -m ruff check .
+        run: python -m ruff check --config pyproject.toml . ../scripts ../deploy
       - name: Run Django system checks
         run: python manage.py check
       - name: Check for missing migrations
@@ -49,7 +50,9 @@ jobs:
       - name: Validate OpenAPI schema
         run: python manage.py spectacular --validate --fail-on-warn --file /tmp/cpuz-openapi.yml
       - name: Run backend tests
-        run: python manage.py test --verbosity 2
+        run: |
+          python -m coverage run manage.py test --verbosity 2
+          python -m coverage report --fail-under=80
 
   frontend:
     name: Frontend checks
@@ -69,6 +72,16 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - name: Install locked dependencies
         run: npm ci
+      - name: Set up Python for API contract generation
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements/*.txt
+      - name: Install API schema dependencies
+        run: python -m pip install -r ../backend/requirements/dev.txt
+      - name: Check generated API contract
+        run: npm run api:check
       - name: Lint frontend
         run: npm run lint
       - name: Type-check frontend
@@ -77,6 +90,8 @@ jobs:
         run: npm test
       - name: Build production frontend
         run: npm run build
+      - name: Verify PWA and route bundle boundaries
+        run: npm run test:pwa && npm run test:bundle
 
   content-and-deploy-contracts:
     name: Content and deploy contracts
@@ -93,19 +108,22 @@ jobs:
           cache-dependency-path: |
             backend/requirements/base.txt
             backend/requirements/dev.txt
+            backend/requirements/constraints.txt
       - name: Install validation dependencies
         run: python -m pip install -r backend/requirements/dev.txt
       - name: Lint deployment shell scripts
         run: shellcheck deploy/*.sh
       - name: Validate canonical content and checksums
-        run: python scripts/validate_content.py
+        run: |
+          python scripts/validate_content.py
+          python scripts/release_inventory.py --check
       - name: Run content pipeline tests
-        run: python -m unittest scripts/test_content_pipeline.py -v
+        run: python -m unittest discover -s scripts -p "test_*.py" -v
       - name: Run deployment contract tests
         run: python -m unittest discover -s deploy -p "test_*.py" -v
 
   container:
-    name: Production container build
+    name: Production container runtime smoke
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: [backend, frontend, content-and-deploy-contracts]
@@ -118,5 +136,5 @@ jobs:
           sed -i 's/CHANGE_ME_generate_a_long_random_value/ci-only-secret-value-0000000000000000000000000000000000000000/g' .env
       - name: Validate Compose configuration
         run: docker compose config --quiet
-      - name: Build production containers
-        run: docker compose build
+      - name: Build, migrate, import, and smoke-test isolated production containers
+        run: bash deploy/smoke-compose.sh

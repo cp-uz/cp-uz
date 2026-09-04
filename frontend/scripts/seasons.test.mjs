@@ -54,6 +54,7 @@ const payload = {
       order: 20,
       route_memberships: [{ route_code: 'ioi', order: 20, node_style: 'final' }],
       resources: [{ id: 1, type: 'official_page', title: 'IOI', url: 'https://ioi2027.de' }],
+      sources: [],
       results: [],
     },
     {
@@ -68,9 +69,10 @@ const payload = {
       order: 1,
       route_memberships: [{ route_code: 'ioi', order: 1, node_style: 'default' }],
       resources: [],
+      sources: [],
       results: [
         {
-          id: 1,
+          id: 'result-1',
           rank: 1,
           score: '493.100',
           score_label: 'A: 120.0 · B: 173.1 · C: 200',
@@ -81,21 +83,37 @@ const payload = {
             slug: 'test-ishtirokchi',
             full_name: 'Test Ishtirokchi',
             country_code: 'UZB',
+            aliases: [],
           },
+          team: null,
         },
         {
-          id: 2,
+          id: 'result-2',
           rank: 2,
           medal: 'none',
           is_local: true,
-          participant: { full_name: 'Medalsiz Ishtirokchi', country_code: 'UZB' },
+          participant: {
+            id: 'person-2',
+            slug: 'medalsiz',
+            full_name: 'Medalsiz Ishtirokchi',
+            country_code: 'UZB',
+            aliases: [],
+          },
+          team: null,
         },
         {
-          id: 3,
+          id: 'result-3',
           rank: 3,
           medal: 'honourable_mention',
           is_local: true,
-          participant: { full_name: 'Faxriy Ishtirokchi', country_code: 'UZB' },
+          participant: {
+            id: 'person-3',
+            slug: 'faxriy',
+            full_name: 'Faxriy Ishtirokchi',
+            country_code: 'UZB',
+            aliases: [],
+          },
+          team: null,
         },
       ],
     },
@@ -284,27 +302,6 @@ test('shared season selector owns season labels and both dropdown consumers use 
   assert.match(selectorSource, /formatSeasonLabel\(season\.slug\)/);
 });
 
-test('global navigation starts with algorithms and moves glossary beside saved items', () => {
-  const source = readFileSync(
-    new URL('../src/app/layouts/LearningLayout.tsx', import.meta.url),
-    'utf8'
-  );
-  const navItemsSource = source.match(/const navItems = \[([\s\S]*?)\];/)?.[1] || '';
-  const utilityItemsSource = source.match(/const utilityItems = \[([\s\S]*?)\];/)?.[1] || '';
-
-  assert.match(navItemsSource, /to: appRoutes\.seasons/);
-  assert.match(navItemsSource, /label: 'Olimpiada mavsumi'/);
-  assert.ok(
-    navItemsSource.indexOf('to: appRoutes.algorithms') <
-      navItemsSource.indexOf('to: appRoutes.seasons')
-  );
-  assert.doesNotMatch(navItemsSource, /to: appRoutes\.dictionary/);
-  assert.match(utilityItemsSource, /glossaryItem/);
-  assert.match(source, /title="Lug‘at"[\s\S]*?to=\{appRoutes\.dictionary\}/);
-  assert.ok(source.indexOf('title="Lug‘at"') < source.indexOf('title="Saqlanganlar"'));
-  assert.match(source, /const footerItems = \[\.\.\.navItems, glossaryItem\]/);
-});
-
 test('selected timeline nodes keep an opaque surface above route lines', () => {
   const source = readFileSync(
     new URL('../src/modules/seasons/ui/shared/SeasonEventNode.tsx', import.meta.url),
@@ -369,6 +366,7 @@ test('participant profile normalizes public accounts and season results', () => 
     slug: 'test-ishtirokchi',
     full_name: 'Test Ishtirokchi',
     country_code: 'UZB',
+    aliases: [],
     bio: 'Olimpiada ishtirokchisi.',
     platform_accounts: [
       {
@@ -385,6 +383,9 @@ test('participant profile normalizes public accounts and season results', () => 
         id: 'result-1',
         event_slug: 'ioi-2026',
         event_title: 'IOI 2026',
+        event_short_title: 'IOI',
+        event_start_date: null,
+        event_end_date: null,
         rank: 12,
         score: '303.480',
         medal: 'silver',

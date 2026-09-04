@@ -11,8 +11,12 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from content_pipeline import copy_snapshot, export_content, validate_inventory, write_checksum_manifest
-
+from content_pipeline import (
+    copy_snapshot,
+    export_content,
+    validate_inventory,
+    write_checksum_manifest,
+)
 
 DEFAULT_REPOSITORY = "https://github.com/cp-uz/algo.git"
 

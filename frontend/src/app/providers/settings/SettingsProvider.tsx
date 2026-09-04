@@ -1,5 +1,6 @@
 import type { SettingsState, SettingsProviderProps } from './settings.types';
 
+import { safeStorage, readStoredJson } from 'shared/storage';
 import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import { SettingsContext } from './settings-context';
@@ -13,11 +14,42 @@ const optionalFontLoaders: Record<string, () => Promise<unknown>> = {
 
 function readSettings(storageKey: string, defaults: SettingsState) {
   try {
-    const stored = JSON.parse(
-      localStorage.getItem(storageKey) ?? 'null'
-    ) as Partial<SettingsState> | null;
+    const stored = readStoredJson(safeStorage, storageKey) as Partial<SettingsState> | null;
     if (!stored || stored.version !== defaults.version) return defaults;
-    const next = { ...defaults, ...stored };
+    const next: SettingsState = {
+      ...defaults,
+      mode: stored.mode === 'light' || stored.mode === 'dark' ? stored.mode : defaults.mode,
+      direction:
+        stored.direction === 'ltr' || stored.direction === 'rtl'
+          ? stored.direction
+          : defaults.direction,
+      contrast:
+        stored.contrast === 'default' || stored.contrast === 'high'
+          ? stored.contrast
+          : defaults.contrast,
+      navLayout:
+        stored.navLayout === 'vertical' ||
+        stored.navLayout === 'horizontal' ||
+        stored.navLayout === 'mini'
+          ? stored.navLayout
+          : defaults.navLayout,
+      navColor:
+        stored.navColor === 'integrate' || stored.navColor === 'apparent'
+          ? stored.navColor
+          : defaults.navColor,
+      compactLayout:
+        typeof stored.compactLayout === 'boolean' ? stored.compactLayout : defaults.compactLayout,
+      primaryColor:
+        typeof stored.primaryColor === 'string' &&
+        /^(default|preset[1-5])$/.test(stored.primaryColor)
+          ? stored.primaryColor
+          : defaults.primaryColor,
+      fontFamily: typeof stored.fontFamily === 'string' ? stored.fontFamily : defaults.fontFamily,
+      fontSize:
+        typeof stored.fontSize === 'number' && Number.isFinite(stored.fontSize)
+          ? Math.min(22, Math.max(14, stored.fontSize))
+          : defaults.fontSize,
+    };
     return FONT_FAMILY_OPTIONS.some((option) => option.value === next.fontFamily)
       ? next
       : { ...next, fontFamily: defaults.fontFamily };
@@ -36,7 +68,7 @@ export function SettingsProvider({
   );
 
   useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(state));
+    safeStorage.setItem(storageKey, JSON.stringify(state));
   }, [state, storageKey]);
 
   useEffect(() => {
@@ -44,7 +76,7 @@ export function SettingsProvider({
   }, [state.fontSize]);
 
   useEffect(() => {
-    void optionalFontLoaders[state.fontFamily]?.();
+    void optionalFontLoaders[state.fontFamily]?.().catch(() => undefined);
   }, [state.fontFamily]);
 
   const setState = useCallback((updateValue: Partial<SettingsState>) => {

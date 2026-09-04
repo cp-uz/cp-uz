@@ -23,7 +23,7 @@ import { authApi } from '../../../application';
 type GuestUpgradeDialogProps = {
   open: boolean;
   onClose: () => void;
-  onUpgraded: (session: AuthSession) => void;
+  onUpgraded?: (session: AuthSession) => void;
 };
 
 export function GuestUpgradeDialog({ open, onClose, onUpgraded }: GuestUpgradeDialogProps) {
@@ -55,7 +55,7 @@ export function GuestUpgradeDialog({ open, onClose, onUpgraded }: GuestUpgradeDi
     try {
       const upgraded = await authApi.upgradeGuest({ username, firstName, lastName });
       setResult(upgraded);
-      onUpgraded(upgraded.session);
+      onUpgraded?.(upgraded.session);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Akkauntni saqlab bo‘lmadi.');
     } finally {

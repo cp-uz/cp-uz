@@ -1,0 +1,85 @@
+from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+
+from apps.articles.models import Article
+from common.models import TimeStampedModel
+
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="bookmarks"
+    )
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="bookmarked_by")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("-created_at",)
+        constraints = [
+            models.UniqueConstraint(fields=("user", "article"), name="unique_user_bookmark")
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.user} → {self.article}"
+
+
+class ReadingProgress(TimeStampedModel):
+    class Status(models.TextChoices):
+        NOT_STARTED = "not_started", "Boshlanmagan"
+        IN_PROGRESS = "in_progress", "O‘qilmoqda"
+        COMPLETED = "completed", "Tugallangan"
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reading_progress"
+    )
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="reader_progress")
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.NOT_STARTED)
+    percent = models.PositiveSmallIntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(100)]
+    )
+    last_heading = models.CharField(max_length=300, blank=True)
+    last_read_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ("-last_read_at",)
+        constraints = [
+            models.UniqueConstraint(
+                fields=("user", "article"), name="unique_user_reading_progress"
+            ),
+            models.CheckConstraint(
+                condition=models.Q(percent__gte=0, percent__lte=100),
+                name="reading_progress_valid_percent",
+            ),
+        ]
+
+    def save(self, *args, **kwargs):
+        if self.percent >= 100:
+            self.percent = 100
+            self.status = self.Status.COMPLETED
+        elif self.percent > 0 and self.status == self.Status.NOT_STARTED:
+            self.status = self.Status.IN_PROGRESS
+        super().save(*args, **kwargs)
+
+    def __str__(self) -> str:
+        return f"{self.user}: {self.article} ({self.percent}%)"
+
+
+class PersonalNote(TimeStampedModel):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="personal_notes"
+    )
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="personal_notes")
+    body = models.TextField()
+    anchor = models.CharField(
+        max_length=300,
+        blank=True,
+        help_text="Maqoladagi sarlavha identifikatori yoki boshqa stabil belgi.",
+    )
+    quote = models.CharField(max_length=500, blank=True)
+
+    class Meta:
+        ordering = ("-updated_at",)
+        indexes = [models.Index(fields=("user", "article"), name="note_user_article_idx")]
+
+    def __str__(self) -> str:
+        return f"{self.user}: {self.article}"

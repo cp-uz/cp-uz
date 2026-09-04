@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import EditProposal, ProposalStatusEvent, ReviewRecord
+from .services import EDITABLE_STATUSES, update_proposal
 
 
 class ReviewInline(admin.TabularInline):
@@ -29,8 +30,46 @@ class EditProposalAdmin(admin.ModelAdmin):
     list_filter = ("status", "created_at")
     search_fields = ("article__title", "submitter__username", "change_summary")
     autocomplete_fields = ("article", "submitter")
-    readonly_fields = ("base_content_hash", "proposal_hash", "submitted_at", "resolved_at")
+    readonly_fields = (
+        "status",
+        "base_content_hash",
+        "proposal_hash",
+        "submitted_at",
+        "resolved_at",
+    )
     inlines = (ReviewInline, StatusEventInline)
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = self.readonly_fields
+        if obj is not None:
+            fields += ("article", "submitter")
+            if obj.status not in EDITABLE_STATUSES:
+                fields += (
+                    "proposed_title",
+                    "proposed_summary",
+                    "proposed_content",
+                    "change_summary",
+                )
+        return fields
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            return super().save_model(request, obj, form, change)
+        if obj.status not in EDITABLE_STATUSES:
+            return
+        saved = update_proposal(
+            obj,
+            {
+                field: getattr(obj, field)
+                for field in (
+                    "proposed_title",
+                    "proposed_summary",
+                    "proposed_content",
+                    "change_summary",
+                )
+            },
+        )
+        obj.proposal_hash = saved.proposal_hash
 
 
 @admin.register(ReviewRecord)

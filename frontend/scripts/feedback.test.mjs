@@ -1,23 +1,17 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { readFileSync } from 'node:fs';
+import { validateFeedback, MAX_ATTACHMENT_SIZE, ACCEPTED_ATTACHMENT_TYPES } from '../src/modules/landing/domain/feedback.ts';
 
-const source = readFileSync(
-  new URL('../src/modules/landing/ui/pages/HomePage/FeedbackSection.tsx', import.meta.url),
-  'utf8'
-);
-
-test('landing feedback form posts multipart data to the canonical API endpoint', () => {
-  assert.match(source, /new FormData\(\)/);
-  assert.match(source, /apiUrl\('\/api\/v1\/feedback\/'\)/);
-  assert.match(source, /body\.append\('full_name'/);
-  assert.match(source, /body\.append\('contact'/);
-  assert.match(source, /body\.append\('note'/);
+test('feedback validation requires nonblank author and note while keeping contact optional', () => {
+  assert.equal(validateFeedback({ fullName: 'Ali', contact: '', note: 'Xato topdim', attachment: null }), '');
+  assert.notEqual(validateFeedback({ fullName: '  ', contact: '', note: 'Xato', attachment: null }), '');
+  assert.notEqual(validateFeedback({ fullName: 'Ali', contact: '', note: '  ', attachment: null }), '');
 });
 
-test('attachment UX enforces five megabytes without exposing implementation notes', () => {
-  assert.match(source, /5 \* 1024 \* 1024/);
-  assert.match(source, /\.jpg,\.jpeg,\.png,\.webp,\.pdf,\.doc,\.docx,\.txt/);
-  assert.doesNotMatch(source, /Telegram orqali yetkaziladi|Fayl serverda saqlanmaydi/);
-  assert.match(source, /Aloqa \(ixtiyoriy\)/);
+test('feedback attachment and text limits reject oversize requests', () => {
+  const input = { fullName: 'Ali', contact: '', note: 'Xato', attachment: null };
+  assert.equal(MAX_ATTACHMENT_SIZE, 5 * 1024 * 1024);
+  assert.ok(ACCEPTED_ATTACHMENT_TYPES.includes('.pdf'));
+  assert.notEqual(validateFeedback({ ...input, attachment: { size: MAX_ATTACHMENT_SIZE + 1 } }), '');
+  assert.notEqual(validateFeedback({ ...input, note: 'a'.repeat(3001) }), '');
 });

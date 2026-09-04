@@ -8,6 +8,7 @@ export type AuthUser = {
 };
 
 export type AuthSession = {
+  sessionKey?: string;
   access: string;
   refresh: string;
   sessionToken?: string;

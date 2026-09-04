@@ -4,7 +4,7 @@ import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
-import { ArticleCard } from 'modules/learning/ui/shared';
+import { ArticleCard } from 'modules/learning/article-card';
 import { learningQueries as learningApi } from 'modules/learning/application';
 
 import Box from '@mui/material/Box';

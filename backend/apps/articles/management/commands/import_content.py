@@ -15,10 +15,11 @@ from django.db.models import Max
 from django.utils.dateparse import parse_datetime
 from django.utils.text import slugify
 
+from apps.articles.importing.prerequisites import reconcile_prerequisites
+from apps.articles.importing.validation import validate_export, verify_manifest
 from apps.articles.models import (
     Article,
     ArticleContributor,
-    ArticlePrerequisite,
     ArticleRevision,
     Category,
     ExternalPracticeReference,
@@ -92,9 +93,7 @@ def article_difficulty_from_export(row):
 
     value = row.get("difficulty")
     if value not in Article.Difficulty.values:
-        raise CommandError(
-            f"{row.get('id', '<unknown>')}: noto‘g‘ri difficulty qiymati: {value!r}"
-        )
+        raise CommandError(f"{row.get('id', '<unknown>')}: noto‘g‘ri difficulty qiymati: {value!r}")
     return value
 
 
@@ -269,82 +268,8 @@ class Command(BaseCommand):
             if not row.get(key):
                 raise CommandError(f"Maqola qatorida '{key}' yo‘q: {row.get('id', '<unknown>')}")
 
-    def _validate_export(self, payload, export_path):
-        if payload.get("schema") != "cpuz.learning-content.v1":
-            raise CommandError(f"Qo‘llab-quvvatlanmaydigan schema: {payload.get('schema')!r}")
-
-        content_root = export_path.parent.parent.resolve()
-        snapshot = payload.get("source_snapshot") or {}
-        license_meta = payload.get("license") or {}
-        required_snapshot = (
-            "schema",
-            "commit",
-            "repository",
-            "upstream_commit",
-            "upstream_repository",
-            "content_license",
-        )
-        missing_snapshot = [key for key in required_snapshot if not snapshot.get(key)]
-        if missing_snapshot:
-            raise CommandError(f"Snapshot metadata yetishmaydi: {', '.join(missing_snapshot)}")
-        if license_meta.get("content") != snapshot.get("content_license"):
-            raise CommandError("Export license va snapshot license qiymatlari mos emas.")
-
-        required_files = [
-            content_root / str(license_meta.get("license_file", "")),
-            content_root / str(license_meta.get("attribution_file", "")),
-            content_root / "MANIFEST.sha256",
-            content_root / "SNAPSHOT.json",
-            content_root / "provenance" / "UPSTREAM_PIN",
-        ]
-        missing_files = [str(path) for path in required_files if not path.is_file()]
-        if missing_files:
-            raise CommandError(f"Provenance fayllari yetishmaydi: {', '.join(missing_files)}")
-
-        pin = (content_root / "provenance" / "UPSTREAM_PIN").read_text(encoding="utf-8").strip()
-        if pin != snapshot["upstream_commit"]:
-            raise CommandError("UPSTREAM_PIN snapshot upstream commit bilan mos emas.")
-
-        snapshot_file = json.loads((content_root / "SNAPSHOT.json").read_text(encoding="utf-8"))
-        if snapshot_file != snapshot:
-            raise CommandError("SNAPSHOT.json export source_snapshot bilan mos emas.")
-
-        rows = payload["articles"]
-        for field in ("id", "path", "route"):
-            values = [row.get(field) for row in rows]
-            if any(not value for value in values) or len(set(values)) != len(values):
-                raise CommandError(f"Maqolalarning '{field}' qiymatlari bo‘sh yoki takrorlangan.")
-
-        for row in rows:
-            document_hash = str(row.get("document_sha256") or "")
-            if len(document_hash) != 64:
-                raise CommandError(f"document_sha256 mavjud emas: {row['id']}")
-            markdown_file = (content_root / str(row.get("markdown_file") or "")).resolve()
-            if not markdown_file.is_relative_to(content_root) or not markdown_file.is_file():
-                raise CommandError(f"Maqola hujjati topilmadi yoki xavfli: {row['id']}")
-            normalized = markdown_file.read_text(encoding="utf-8")
-            actual_document_hash = sha256(normalized.encode("utf-8")).hexdigest()
-            if actual_document_hash != document_hash:
-                raise CommandError(f"document_sha256 mos emas: {row['id']}")
-
-        self._verify_manifest(content_root)
-
-    def _verify_manifest(self, content_root):
-        manifest = content_root / "MANIFEST.sha256"
-        for line_number, line in enumerate(
-            manifest.read_text(encoding="utf-8").splitlines(), start=1
-        ):
-            if not line.strip():
-                continue
-            try:
-                expected, relative = line.strip().split(maxsplit=1)
-            except ValueError as exc:
-                raise CommandError(f"MANIFEST formati noto‘g‘ri, qator {line_number}") from exc
-            target = (content_root / relative).resolve()
-            if not target.is_relative_to(content_root) or not target.is_file():
-                raise CommandError(f"MANIFEST fayli topilmadi yoki xavfli: {relative}")
-            if self._file_hash(target) != expected:
-                raise CommandError(f"MANIFEST hash mos emas: {relative}")
+    _validate_export = staticmethod(validate_export)
+    _verify_manifest = staticmethod(verify_manifest)
 
     def _category_for(self, row, stats):
         root_slug = slugify(row["category"])
@@ -460,23 +385,7 @@ class Command(BaseCommand):
             ReviewRecord.objects.filter(pk=review.pk).update(created_at=reviewed_at)
         stats["reviews_created" if created else "reviews_reused"] += 1
 
-    def _import_prerequisites(self, rows, article_map, stats):
-        for row in rows:
-            article = article_map[row["id"]]
-            for order, raw in enumerate(row.get("prerequisites") or []):
-                key = raw.get("id") or raw.get("path") if isinstance(raw, dict) else raw
-                prerequisite = article_map.get(key)
-                if not prerequisite or prerequisite == article:
-                    continue
-                _, created = ArticlePrerequisite.objects.get_or_create(
-                    article=article,
-                    prerequisite=prerequisite,
-                    defaults={
-                        "order": order,
-                        "note": raw.get("note", "") if isinstance(raw, dict) else "",
-                    },
-                )
-                stats["prerequisites_created" if created else "prerequisites_reused"] += 1
+    _import_prerequisites = staticmethod(reconcile_prerequisites)
 
     def _copy_assets(self, assets_root, stats, dry_run=False):
         if not assets_root.is_dir():
@@ -503,9 +412,7 @@ class Command(BaseCommand):
 
     def _import_glossary(self, glossary_path, stats):
         if not glossary_path.is_file():
-            self.stderr.write(
-                self.style.WARNING(f"Glossary fayli topilmadi: {glossary_path}")
-            )
+            self.stderr.write(self.style.WARNING(f"Glossary fayli topilmadi: {glossary_path}"))
             return
 
         try:
@@ -543,8 +450,10 @@ class Command(BaseCommand):
         for term, data in grouped.items():
             aliases = data["aliases"]
             notes = data["notes"]
-            definition = "\n\n".join(notes) if notes else (
-                f"Sport dasturlashda “{', '.join(aliases)}” deb ishlatiladigan atama."
+            definition = (
+                "\n\n".join(notes)
+                if notes
+                else (f"Sport dasturlashda “{', '.join(aliases)}” deb ishlatiladigan atama.")
             )
             short_definition = notes[0] if notes else f"English: {', '.join(aliases)}."
             slug = slugify(term) or f"term-{sha256(term.encode('utf-8')).hexdigest()[:12]}"

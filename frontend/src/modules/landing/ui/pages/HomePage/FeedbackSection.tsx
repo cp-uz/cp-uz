@@ -1,7 +1,3 @@
-import type { FormEvent, ChangeEvent } from 'react';
-
-import { useRef, useState } from 'react';
-import { apiUrl } from 'shared/api/http';
 import { UiIcon } from 'shared/ui/UiIcon';
 
 import Box from '@mui/material/Box';
@@ -12,74 +8,26 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024;
-const ACCEPTED_ATTACHMENT_TYPES = '.jpg,.jpeg,.png,.webp,.pdf,.doc,.docx,.txt';
-
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
-
-function errorMessage(payload: unknown): string | null {
-  if (!payload || typeof payload !== 'object') return null;
-  const error = 'error' in payload ? payload.error : null;
-  if (!error || typeof error !== 'object' || !('detail' in error)) return null;
-  return typeof error.detail === 'string' ? error.detail : null;
-}
+import { ACCEPTED_ATTACHMENT_TYPES } from '../../../domain/feedback';
+import { useFeedbackForm } from '../../../application/use-feedback-form';
 
 export function FeedbackSection() {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [fullName, setFullName] = useState('');
-  const [contact, setContact] = useState('');
-  const [note, setNote] = useState('');
-  const [attachment, setAttachment] = useState<File | null>(null);
-  const [attachmentError, setAttachmentError] = useState('');
-  const [status, setStatus] = useState<FormStatus>('idle');
-  const [submitError, setSubmitError] = useState('');
-
-  const selectAttachment = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] ?? null;
-    if (file && file.size > MAX_ATTACHMENT_SIZE) {
-      setAttachment(null);
-      setAttachmentError('Fayl hajmi 5 MB dan oshmasligi kerak.');
-      event.target.value = '';
-      return;
-    }
-    setAttachment(file);
-    setAttachmentError('');
-  };
-
-  const removeAttachment = () => {
-    setAttachment(null);
-    setAttachmentError('');
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (attachmentError) return;
-
-    setStatus('submitting');
-    setSubmitError('');
-    const body = new FormData();
-    body.append('full_name', fullName.trim());
-    body.append('contact', contact.trim());
-    body.append('note', note.trim());
-    if (attachment) body.append('attachment', attachment);
-
-    try {
-      const response = await fetch(apiUrl('/api/v1/feedback/'), { method: 'POST', body });
-      const payload: unknown = await response.json().catch(() => null);
-      if (!response.ok) throw new Error(errorMessage(payload) ?? 'Murojaatni yuborib bo‘lmadi.');
-
-      setFullName('');
-      setContact('');
-      setNote('');
-      removeAttachment();
-      setStatus('success');
-    } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : 'Murojaatni yuborib bo‘lmadi.');
-      setStatus('error');
-    }
-  };
-
+  const {
+    fileInputRef,
+    fullName,
+    setFullName,
+    contact,
+    setContact,
+    note,
+    setNote,
+    attachment,
+    attachmentError,
+    status,
+    submitError,
+    selectAttachment,
+    removeAttachment,
+    submit,
+  } = useFeedbackForm();
   return (
     <Box
       component="section"
@@ -122,6 +70,7 @@ export function FeedbackSection() {
               }}
             >
               <TextField
+                disabled={status === 'submitting'}
                 required
                 fullWidth
                 label="Ism-familiya"
@@ -130,6 +79,7 @@ export function FeedbackSection() {
                 slotProps={{ htmlInput: { maxLength: 160 } }}
               />
               <TextField
+                disabled={status === 'submitting'}
                 fullWidth
                 label="Aloqa (ixtiyoriy)"
                 placeholder="Telegram, telefon yoki email"
@@ -138,6 +88,7 @@ export function FeedbackSection() {
                 slotProps={{ htmlInput: { maxLength: 255 } }}
               />
               <TextField
+                disabled={status === 'submitting'}
                 required
                 fullWidth
                 multiline
@@ -155,6 +106,7 @@ export function FeedbackSection() {
                 ref={fileInputRef}
                 hidden
                 type="file"
+                disabled={status === 'submitting'}
                 accept={ACCEPTED_ATTACHMENT_TYPES}
                 onChange={selectAttachment}
               />
@@ -164,13 +116,19 @@ export function FeedbackSection() {
                   <Typography variant="body2" sx={{ minWidth: 0, flexGrow: 1 }} noWrap>
                     {attachment.name}
                   </Typography>
-                  <Button color="inherit" size="small" onClick={removeAttachment}>
+                  <Button
+                    color="inherit"
+                    size="small"
+                    disabled={status === 'submitting'}
+                    onClick={removeAttachment}
+                  >
                     Olib tashlash
                   </Button>
                 </Stack>
               ) : (
                 <Button
                   color="inherit"
+                  disabled={status === 'submitting'}
                   onClick={() => fileInputRef.current?.click()}
                   startIcon={<UiIcon icon="solar:paperclip-linear" width={20} />}
                 >

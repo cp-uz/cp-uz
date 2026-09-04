@@ -58,11 +58,29 @@ if ! git merge-base --is-ancestor "${DEPLOY_SHA}" refs/remotes/origin/main; then
   exit 1
 fi
 
-# .env and .release are ignored, root-only server state. No git clean is used.
-git reset --hard "${DEPLOY_SHA}"
-if [[ "$(git rev-parse HEAD)" != "${DEPLOY_SHA}" ]]; then
-  echo "Checked out revision does not match the requested SHA." >&2
+# Export into a distinct release directory; never reset the live content tree.
+RELEASES_DIR="${APP_DIR}/.release/releases"
+RELEASE_DIR="${RELEASES_DIR}/${DEPLOY_SHA}"
+if [[ "$(realpath -m "${RELEASES_DIR}")" != "${RELEASES_DIR}" ]]; then
+  echo "Release storage resolved unexpectedly." >&2
   exit 1
 fi
-
-bash deploy/release-on-server.sh
+install -d -m 0700 "${RELEASES_DIR}"
+if [[ ! -d "${RELEASE_DIR}" ]]; then
+  staged="$(mktemp -d "${RELEASES_DIR}/.staged.XXXXXXXX")"
+  trap 'rm -rf -- "${staged}"' EXIT
+  git archive "${DEPLOY_SHA}" | tar -x -C "${staged}"
+  if find "${staged}" -type l -print -quit | grep -q .; then
+    echo "Release trees must not contain symbolic links." >&2
+    exit 1
+  fi
+  find "${staged}" -type d -exec chmod 0755 {} +
+  find "${staged}" -type f -exec chmod 0644 {} +
+  mv -T "${staged}" "${RELEASE_DIR}"
+  trap - EXIT
+fi
+if [[ "$(realpath -e "${RELEASE_DIR}")" != "${RELEASE_DIR}" ]]; then
+  echo "Release directory resolved unexpectedly." >&2
+  exit 1
+fi
+CPUZ_RELEASE_LOCK_HELD=1 bash "${RELEASE_DIR}/deploy/release-on-server.sh" "${DEPLOY_SHA}"

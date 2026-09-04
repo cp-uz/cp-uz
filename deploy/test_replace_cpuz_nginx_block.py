@@ -4,7 +4,6 @@ import unittest
 
 from replace_cpuz_nginx_block import replace_cpuz_block
 
-
 OLD = """
 server {
     listen 80;

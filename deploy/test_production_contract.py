@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def valid_environment() -> dict[str, str]:
     return {
-        "DJANGO_SETTINGS_MODULE": "config.settings.production",
+        "DJANGO_SETTINGS_MODULE": "core.settings.production",
         "DJANGO_SECRET_KEY": "s" * 64,
         "DISCORD_INVITE_URL_ENCRYPTED": "gAAAAA" + "a" * 90 + "==",
         "DJANGO_ALLOWED_HOSTS": "cp.uz,www.cp.uz,localhost",
@@ -155,9 +155,7 @@ class ComposeContractTests(unittest.TestCase):
         directory_mode_index = dockerfile.index(
             "find /usr/share/nginx/html -type d -exec chmod 0755"
         )
-        file_mode_index = dockerfile.index(
-            "find /usr/share/nginx/html -type f -exec chmod 0644"
-        )
+        file_mode_index = dockerfile.index("find /usr/share/nginx/html -type f -exec chmod 0644")
         self.assertIn(
             "find /usr/share/nginx/html -type d -exec chmod 0755",
             dockerfile,
@@ -191,90 +189,27 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn("if ($host = www.cp.uz)", host_nginx)
         self.assertIn("return 301 https://cp.uz$request_uri;", host_nginx)
 
-    def test_release_smokes_boot_and_team_assets_before_and_after_cutover(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        for path in (
-            "/boot.css",
-            "/loader-facts.js",
-            "/llms.txt",
-            "/assets/brand/cpuz-logo-96.webp",
-            "/assets/brand/cpuz-logo.png",
-            "/assets/team/asadullo-ganiev.webp",
-            "/assets/team/dilshodbek-khujaev.webp",
-            "/assets/team/dilyorbek-valijanov.webp",
-            "/assets/team/ulugbek-abdimanabov.webp",
-            "/assets/team/asadullo-ganiev.png",
-            "/assets/team/dilshodbek-khujaev.png",
-            "/assets/team/dilyorbek-valijanov.png",
-            "/assets/team/ulugbek-abdimanabov.png",
+    def test_entrypoint_serves_without_mutating_the_database(self):
+        entrypoint = (ROOT / "deploy/backend-entrypoint.sh").read_text()
+        self.assertNotIn("manage.py migrate", entrypoint)
+        self.assertIn("exec gunicorn", entrypoint)
+
+    def test_outer_proxy_discards_untrusted_forwarded_chain(self):
+        nginx = (ROOT / "deploy/nginx-host-cpuz.conf").read_text()
+        self.assertIn("proxy_set_header X-Forwarded-For $remote_addr;", nginx)
+        self.assertNotIn("$proxy_add_x_forwarded_for", nginx)
+
+    def test_candidate_preparation_runs_all_imports_and_reviewed_inventory(self):
+        script = (ROOT / "deploy/prepare-content.sh").read_text()
+        for command in (
+            "migrate",
+            "collectstatic",
+            "import_content",
+            "import_seasons",
+            "import_problems",
+            "verify_release_content",
         ):
-            with self.subTest(path=path):
-                self.assertIn(path, release)
-        self.assertIn('for endpoint in "${SMOKE_ENDPOINTS[@]}"', release)
-
-    def test_release_imports_and_smokes_canonical_season_data(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        self.assertIn("python manage.py import_seasons", release)
-        self.assertIn("/app/content/seasons", release)
-        self.assertIn('"seasons": 3', release)
-        self.assertIn('"events": 51', release)
-        self.assertIn('"local_results": 73', release)
-        self.assertIn("/api/v1/seasons/current/", release)
-        self.assertIn("/seasons/2026-2027", release)
-
-    def test_release_imports_and_smokes_canonical_problem_catalog(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        self.assertIn("python manage.py import_problems", release)
-        self.assertIn("/app/content/problems", release)
-        self.assertIn('"problems": 47', release)
-        self.assertIn('"links": 82', release)
-        self.assertIn('"attachments": 12', release)
-        self.assertIn('"statement_pdfs": 47', release)
-        self.assertIn("/api/v1/problems/", release)
-        self.assertIn(
-            "/api/v1/problems/2025-2026/izho-2026/"
-            "little-efnesh-and-monitor/statement.pdf",
-            release,
-        )
-        self.assertIn("/tasks/2025-2026/ioi-2026-saralash-4/temir-rom", release)
-        for route in (
-            "/algo",
-            "/article/algebra--binary-exp",
-            "/tasks",
-            "/seasons",
-            "/saved",
-            "/roadmap",
-            "/dict",
-            "/login",
-            "/profile",
-        ):
-            self.assertIn(route, release)
-        self.assertIn("/tasks/2025-2026/ioi-2026/ball-machine", release)
-        self.assertIn("/tasks/2025-2026/egoi-2026/ferriswheel", release)
-        self.assertIn(
-            "/tasks/2025-2026/izho-2026/little-efnesh-and-monitor", release
-        )
-        self.assertIn("/tasks/2025-2026/apio-2026/apio-bike", release)
-
-    def test_release_configures_telegram_webhook_and_smokes_feedback_endpoint(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        self.assertIn("python manage.py configure_telegram_webhook", release)
-        self.assertIn("/api/v1/feedback/", release)
-
-    def test_release_backs_up_sqlite_and_never_invokes_postgres(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        self.assertIn("cpuz_sqlite_data", release)
-        self.assertIn("backup_sqlite.py", release)
-        self.assertIn("sqlite.sqlite3", release)
-        self.assertNotIn("pg_dump", release)
-        self.assertNotIn("postgres.dump", release)
-
-    def test_release_makes_only_the_canonical_content_tree_container_readable(self) -> None:
-        release = (ROOT / "deploy" / "release-on-server.sh").read_text(encoding="utf-8")
-        self.assertIn('realpath -e content', release)
-        self.assertIn('find content -type l', release)
-        self.assertIn('find content -type d -exec chmod 0755', release)
-        self.assertIn('find content -type f -exec chmod 0644', release)
+            self.assertIn(f"python manage.py {command}", script)
 
 
 if __name__ == "__main__":

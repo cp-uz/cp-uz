@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   redis:
-    image: redis:7.4-alpine
+    image: redis:7.4-alpine@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf
     restart: unless-stopped
     logging: *default-logging
     command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
@@ -21,6 +21,7 @@ services:
       - cpuz_internal
 
   web:
+    image: cpuz-web:${CPUZ_RELEASE_TAG:-local}
     build:
       context: .
       dockerfile: deploy/backend.Dockerfile
@@ -28,9 +29,9 @@ services:
     init: true
     logging: *default-logging
     env_file:
-      - .env
+      - ${CPUZ_ENV_FILE:-.env}
     environment:
-      DJANGO_SETTINGS_MODULE: config.settings.production
+      DJANGO_SETTINGS_MODULE: core.settings.production
       DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/db.sqlite3}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/1}
     depends_on:
@@ -42,7 +43,7 @@ services:
       - media_data:/app/media
       - ./content:/app/content:ro
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/', timeout=3)"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen(urllib.request.Request('http://127.0.0.1:8000/api/v1/health/', headers={'Host': 'cp.uz'}), timeout=3)"]
       interval: 10s
       timeout: 5s
       retries: 20
@@ -51,6 +52,7 @@ services:
       - cpuz_internal
 
   frontend:
+    image: cpuz-frontend:${CPUZ_RELEASE_TAG:-local}
     build:
       context: .
       dockerfile: deploy/frontend.Dockerfile

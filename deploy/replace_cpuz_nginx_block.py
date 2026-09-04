@@ -13,10 +13,7 @@ import argparse
 import re
 from pathlib import Path
 
-
-TARGET_SERVER_NAME = re.compile(
-    r"(?m)^\s*server_name\s+cp\.uz\s+www\.cp\.uz\s*;\s*(?:#.*)?$"
-)
+TARGET_SERVER_NAME = re.compile(r"(?m)^\s*server_name\s+cp\.uz\s+www\.cp\.uz\s*;\s*(?:#.*)?$")
 TLS_LISTEN = re.compile(r"(?m)^\s*listen\s+(?:\[::\]:)?443\s+[^;]*\bssl\b[^;]*;")
 SERVER_START = re.compile(r"(?m)^\s*server\s*\{")
 
@@ -71,10 +68,7 @@ def replace_cpuz_block(source: str, replacement: str) -> str:
             matches.append((start.start(), end))
 
     if len(matches) != 1:
-        raise ValueError(
-            "Expected exactly one exact cp.uz TLS server block; "
-            f"found {len(matches)}"
-        )
+        raise ValueError(f"Expected exactly one exact cp.uz TLS server block; found {len(matches)}")
 
     replacement = replacement.strip() + "\n"
     if not TARGET_SERVER_NAME.search(replacement):
