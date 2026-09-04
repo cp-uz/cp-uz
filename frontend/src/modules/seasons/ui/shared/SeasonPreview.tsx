@@ -192,7 +192,6 @@ function PreviewEventLink({
         component={RouterLink}
         to={appRoutes.seasonEvent(seasonSlug, event.slug)}
         preventScrollReset
-        aria-label={`${event.title}. ${compactDate}. ${stateLabel}`}
         sx={(theme) => ({
           gap: 1.25,
           width: '100%',
@@ -289,7 +288,6 @@ function PreviewEventLink({
       component={RouterLink}
       to={appRoutes.seasonEvent(seasonSlug, event.slug)}
       preventScrollReset
-      aria-label={`${event.title}. ${compactDate}. ${stateLabel}`}
       sx={(theme) => ({
         mx: 0.5,
         px: 0.75,

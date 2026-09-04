@@ -300,10 +300,8 @@ test('global navigation starts with algorithms and moves glossary beside saved i
   );
   assert.doesNotMatch(navItemsSource, /to: appRoutes\.dictionary/);
   assert.match(utilityItemsSource, /glossaryItem/);
-  assert.match(source, /<Tooltip title="Lug‘at">[\s\S]*?to=\{appRoutes\.dictionary\}/);
-  assert.ok(
-    source.indexOf('<Tooltip title="Lug‘at">') < source.indexOf('<Tooltip title="Saqlanganlar">')
-  );
+  assert.match(source, /title="Lug‘at"[\s\S]*?to=\{appRoutes\.dictionary\}/);
+  assert.ok(source.indexOf('title="Lug‘at"') < source.indexOf('title="Saqlanganlar"'));
   assert.match(source, /const footerItems = \[\.\.\.navItems, glossaryItem\]/);
 });
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 
 export function BrandLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <Link className="brand" to="/" aria-label="cp.uz bosh sahifa">
+    <Link className="brand" to="/">
       <img
         className="brand__image"
         src="/assets/brand/cpuz-logo-96.webp"

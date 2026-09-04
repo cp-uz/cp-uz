@@ -19,16 +19,18 @@ test('boot and React use one sizeable, clean loading-fact catalogue', () => {
   });
 });
 
-test('fact loader is limited to the first visit and route transitions stay simple', () => {
+test('first visit stays fast and later visits may show the fact loader', () => {
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const app = readFileSync(new URL('../src/app/App.tsx', import.meta.url), 'utf8');
 
   assert.match(html, /cpuz:fact-loader-shown/);
-  assert.match(html, /sessionStorage\.getItem\(visitKey\)/);
+  assert.match(html, /localStorage\.getItem\(visitKey\)/);
+  assert.match(html, /localStorage\.setItem\(visitKey, '1'\)/);
   assert.match(html, /dataset\.loaderExperience = loaderExperience/);
   assert.match(html, /loader-facts\.js" defer/);
-  assert.match(app, /setLoadingVariant\('simple'\)/);
-  assert.match(app, /<LoadingScreen variant=\{loadingVariant\}/);
+  assert.match(app, /dataset\.loaderExperience === 'fact'/);
+  assert.match(app, /<LoadingScreen variant="fact"/);
+  assert.match(app, /setTimeout\(\(\) => setVisible\(false\), 2000\)/);
   assert.doesNotMatch(app, /1000 \+ Math\.floor/);
 });
 
