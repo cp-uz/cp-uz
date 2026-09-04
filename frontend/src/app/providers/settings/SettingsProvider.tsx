@@ -5,6 +5,12 @@ import { useMemo, useState, useEffect, useCallback } from 'react';
 import { SettingsContext } from './settings-context';
 import { FONT_FAMILY_OPTIONS, SETTINGS_STORAGE_KEY } from './settings-config';
 
+const optionalFontLoaders: Record<string, () => Promise<unknown>> = {
+  'Inter Variable': () => import('@fontsource-variable/inter/index.css'),
+  'IBM Plex Sans Variable': () => import('@fontsource-variable/ibm-plex-sans/index.css'),
+  'Source Sans 3 Variable': () => import('@fontsource-variable/source-sans-3/index.css'),
+};
+
 function readSettings(storageKey: string, defaults: SettingsState) {
   try {
     const stored = JSON.parse(
@@ -36,6 +42,10 @@ export function SettingsProvider({
   useEffect(() => {
     document.documentElement.style.setProperty('--boot-font-size', `${state.fontSize}px`);
   }, [state.fontSize]);
+
+  useEffect(() => {
+    void optionalFontLoaders[state.fontFamily]?.();
+  }, [state.fontFamily]);
 
   const setState = useCallback((updateValue: Partial<SettingsState>) => {
     setStateValue((current) => ({ ...current, ...updateValue }));

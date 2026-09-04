@@ -1,13 +1,12 @@
-import type { FormEvent } from 'react';
+import type { FormEvent, ReactNode } from 'react';
 import type { LearningStats } from 'modules/learning/domain';
 
-import { useState } from 'react';
 import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
-import { SeasonPreview } from 'modules/seasons';
 import { useNavigate, Link as RouterLink } from 'react-router';
+import { lazy, useRef, Suspense, useState, useEffect } from 'react';
 import { learningQueries as learningApi } from 'modules/learning/application';
 import { roadmapStages, getArticlePath, presentRootCategories } from 'modules/learning/domain';
 
@@ -21,7 +20,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { FeedbackSection } from './FeedbackSection';
+const SeasonPreview = lazy(() =>
+  import('modules/seasons/ui/shared/SeasonPreview').then((module) => ({
+    default: module.SeasonPreview,
+  }))
+);
+const FeedbackSection = lazy(() =>
+  import('./FeedbackSection').then((module) => ({ default: module.FeedbackSection }))
+);
 
 const emptyStats: LearningStats = {
   articleCount: 0,
@@ -75,6 +81,42 @@ const teamMembers: readonly TeamMember[] = [
     image: '/assets/team/ulugbek-abdimanabov.webp',
   },
 ];
+
+function DeferredViewport({
+  children,
+  minHeight,
+}: {
+  children: () => ReactNode;
+  minHeight: number;
+}) {
+  const hostRef = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host || !('IntersectionObserver' in window)) {
+      setVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setVisible(true);
+        observer.disconnect();
+      },
+      { rootMargin: '120px 0px' }
+    );
+    observer.observe(host);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Box ref={hostRef} sx={{ minHeight: visible ? 0 : minHeight }}>
+      {visible ? children() : null}
+    </Box>
+  );
+}
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -350,340 +392,367 @@ export default function HomePage() {
         </Container>
       )}
 
-      <SeasonPreview />
+      <DeferredViewport minHeight={760}>
+        {() => (
+          <Suspense fallback={<Box sx={{ minHeight: 760 }} />}>
+            <SeasonPreview />
+          </Suspense>
+        )}
+      </DeferredViewport>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 7, md: 9 },
-          bgcolor: 'background.neutral',
-          contentVisibility: 'auto',
-          containIntrinsicSize: 'auto 900px',
-        }}
-      >
-        <Container maxWidth="xl">
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-            alignItems={{ sm: 'flex-end' }}
-            justifyContent="space-between"
-            sx={{ mb: 4 }}
-          >
-            <Box>
-              <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-                {statsLoading || statsError
-                  ? 'Asosiy bo‘limlar'
-                  : `${stats.categoryCount} asosiy bo‘lim`}
-              </Typography>
-              <Typography component="h2" variant="h3" sx={{ mt: 1 }}>
-                Mavzular bo‘yicha o‘rganing
-              </Typography>
-              <Typography sx={{ mt: 1, maxWidth: 620, color: 'text.secondary' }}>
-                Poydevor tushunchalaridan graf va sonli algoritmlargacha barcha materiallar yagona
-                mavzular tizimida jamlangan.
-              </Typography>
-            </Box>
-            <Button
-              component={RouterLink}
-              to={appRoutes.algorithms}
-              endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
+      <DeferredViewport minHeight={2600}>
+        {() => (
+          <>
+            <Box
+              component="section"
+              sx={{
+                py: { xs: 7, md: 9 },
+                bgcolor: 'background.neutral',
+                contentVisibility: 'auto',
+                containIntrinsicSize: 'auto 900px',
+              }}
             >
-              Barcha maqolalar
-            </Button>
-          </Stack>
+              <Container maxWidth="xl">
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={2}
+                  alignItems={{ sm: 'flex-end' }}
+                  justifyContent="space-between"
+                  sx={{ mb: 4 }}
+                >
+                  <Box>
+                    <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                      {statsLoading || statsError
+                        ? 'Asosiy bo‘limlar'
+                        : `${stats.categoryCount} asosiy bo‘lim`}
+                    </Typography>
+                    <Typography component="h2" variant="h3" sx={{ mt: 1 }}>
+                      Mavzular bo‘yicha o‘rganing
+                    </Typography>
+                    <Typography sx={{ mt: 1, maxWidth: 620, color: 'text.secondary' }}>
+                      Poydevor tushunchalaridan graf va sonli algoritmlargacha barcha materiallar
+                      yagona mavzular tizimida jamlangan.
+                    </Typography>
+                  </Box>
+                  <Button
+                    component={RouterLink}
+                    to={appRoutes.algorithms}
+                    endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
+                  >
+                    Barcha maqolalar
+                  </Button>
+                </Stack>
 
-          <Box
-            sx={{
-              gap: { xs: 1, sm: 2 },
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' },
-            }}
-          >
-            {rootCategories.map((category) => (
+                <Box
+                  sx={{
+                    gap: { xs: 1, sm: 2 },
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' },
+                  }}
+                >
+                  {rootCategories.map((category) => (
+                    <Box
+                      key={category.id}
+                      component={RouterLink}
+                      to={appRoutes.algorithmCategory(category.id)}
+                      sx={{
+                        p: 2,
+                        gap: 1.75,
+                        display: 'flex',
+                        color: 'text.primary',
+                        borderRadius: 1.5,
+                        textDecoration: 'none',
+                        '&:hover': { bgcolor: 'background.paper' },
+                      }}
+                    >
+                      <Box sx={{ mt: 0.25, color: 'primary.main' }}>
+                        <UiIcon icon={category.icon} width={22} />
+                      </Box>
+                      <Box sx={{ minWidth: 0 }}>
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          alignItems="baseline"
+                          justifyContent="space-between"
+                        >
+                          <Typography component="h3" variant="subtitle1">
+                            {category.title}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                            {category.articleCount}
+                          </Typography>
+                        </Stack>
+                        <Typography
+                          variant="body2"
+                          sx={(theme) => ({
+                            mt: 0.75,
+                            color: 'text.secondary',
+                            ...theme.mixins.maxLine({ line: 2 }),
+                          })}
+                        >
+                          {category.description}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
+              </Container>
+            </Box>
+
+            <Container
+              component="section"
+              maxWidth="xl"
+              sx={{
+                py: { xs: 7, md: 9 },
+                contentVisibility: 'auto',
+                containIntrinsicSize: 'auto 760px',
+              }}
+            >
               <Box
-                key={category.id}
-                component={RouterLink}
-                to={appRoutes.algorithmCategory(category.id)}
                 sx={{
-                  p: 2,
-                  gap: 1.75,
-                  display: 'flex',
-                  color: 'text.primary',
-                  borderRadius: 1.5,
-                  textDecoration: 'none',
-                  '&:hover': { bgcolor: 'background.paper' },
+                  gap: { xs: 6, md: 8 },
+                  display: 'grid',
+                  alignItems: 'start',
+                  gridTemplateColumns: { xs: '1fr', md: 'minmax(300px, 0.8fr) minmax(0, 1.2fr)' },
                 }}
               >
-                <Box sx={{ mt: 0.25, color: 'primary.main' }}>
-                  <UiIcon icon={category.icon} width={22} />
+                <Box>
+                  <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                    Tavsiya etilgan ketma-ketlik
+                  </Typography>
+                  <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
+                    Qayerdan boshlash kerak?
+                  </Typography>
+                  <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+                    Poydevordan boshlab mavzularni tartib bilan o‘ting.
+                  </Typography>
+                  <Stack divider={<Divider flexItem />} sx={{ mt: 3 }}>
+                    {roadmapStages.slice(0, 4).map((stage) => (
+                      <Stack key={stage.id} direction="row" spacing={2} sx={{ py: 2 }}>
+                        <Typography
+                          component="span"
+                          variant="subtitle2"
+                          sx={{ width: 28, color: 'primary.main' }}
+                        >
+                          {String(stage.order).padStart(2, '0')}
+                        </Typography>
+                        <Box>
+                          <Typography component="h3" variant="subtitle2">
+                            {stage.title}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                            {stage.duration}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    ))}
+                  </Stack>
+                  <Button component={RouterLink} to={appRoutes.roadmap} sx={{ mt: 2, px: 0 }}>
+                    Yo‘l xaritasini ko‘rish
+                  </Button>
                 </Box>
-                <Box sx={{ minWidth: 0 }}>
+
+                <Box>
                   <Stack
                     direction="row"
-                    spacing={1}
-                    alignItems="baseline"
+                    alignItems="flex-end"
+                    justifyContent="space-between"
+                    sx={{ mb: 2 }}
+                  >
+                    <Box>
+                      <Typography
+                        component="p"
+                        variant="subtitle2"
+                        sx={{ color: 'text.secondary' }}
+                      >
+                        Kutubxonadan
+                      </Typography>
+                      <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
+                        O‘qishni boshlash uchun
+                      </Typography>
+                    </Box>
+                    <Button
+                      component={RouterLink}
+                      to={appRoutes.algorithms}
+                      sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+                    >
+                      Hammasi
+                    </Button>
+                  </Stack>
+                  <Stack divider={<Divider flexItem />}>
+                    {liveArticles.slice(0, 5).map((article) => (
+                      <Box
+                        key={article.sourceId ?? article.slug}
+                        component={RouterLink}
+                        to={getArticlePath(article)}
+                        sx={{
+                          py: 2.25,
+                          gap: 2,
+                          display: 'flex',
+                          color: 'text.primary',
+                          textDecoration: 'none',
+                          '&:hover h3': { color: 'primary.main' },
+                        }}
+                      >
+                        <Box sx={{ minWidth: 0, flexGrow: 1 }}>
+                          <Typography component="h3" variant="subtitle1">
+                            {article.title}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={(theme) => ({
+                              mt: 0.5,
+                              color: 'text.secondary',
+                              ...theme.mixins.maxLine({ line: 1 }),
+                            })}
+                          >
+                            {article.summary}
+                          </Typography>
+                        </Box>
+                        <Typography
+                          variant="caption"
+                          sx={{ flexShrink: 0, color: 'text.secondary' }}
+                        >
+                          {article.readTime} daq.
+                        </Typography>
+                        <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
+                      </Box>
+                    ))}
+                  </Stack>
+                </Box>
+              </Box>
+            </Container>
+
+            <Box
+              component="section"
+              sx={{
+                pb: { xs: 7, md: 9 },
+                contentVisibility: 'auto',
+                containIntrinsicSize: 'auto 180px',
+              }}
+            >
+              <Container maxWidth="xl">
+                <Box
+                  sx={(theme) => ({
+                    px: { xs: 2.5, md: 3 },
+                    py: 2.5,
+                    color: 'primary.darker',
+                    bgcolor: 'primary.lighter',
+                    borderRadius: 1.5,
+                    ...theme.applyStyles('dark', {
+                      color: 'primary.lighter',
+                      bgcolor: 'primary.darker',
+                    }),
+                  })}
+                >
+                  <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    spacing={2}
+                    alignItems={{ md: 'center' }}
                     justifyContent="space-between"
                   >
-                    <Typography component="h3" variant="subtitle1">
-                      {category.title}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                      {category.articleCount}
-                    </Typography>
-                  </Stack>
-                  <Typography
-                    variant="body2"
-                    sx={(theme) => ({
-                      mt: 0.75,
-                      color: 'text.secondary',
-                      ...theme.mixins.maxLine({ line: 2 }),
-                    })}
-                  >
-                    {category.description}
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Container>
-      </Box>
-
-      <Container
-        component="section"
-        maxWidth="xl"
-        sx={{
-          py: { xs: 7, md: 9 },
-          contentVisibility: 'auto',
-          containIntrinsicSize: 'auto 760px',
-        }}
-      >
-        <Box
-          sx={{
-            gap: { xs: 6, md: 8 },
-            display: 'grid',
-            alignItems: 'start',
-            gridTemplateColumns: { xs: '1fr', md: 'minmax(300px, 0.8fr) minmax(0, 1.2fr)' },
-          }}
-        >
-          <Box>
-            <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-              Tavsiya etilgan ketma-ketlik
-            </Typography>
-            <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
-              Qayerdan boshlash kerak?
-            </Typography>
-            <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-              Poydevordan boshlab mavzularni tartib bilan o‘ting.
-            </Typography>
-            <Stack divider={<Divider flexItem />} sx={{ mt: 3 }}>
-              {roadmapStages.slice(0, 4).map((stage) => (
-                <Stack key={stage.id} direction="row" spacing={2} sx={{ py: 2 }}>
-                  <Typography
-                    component="span"
-                    variant="subtitle2"
-                    sx={{ width: 28, color: 'primary.main' }}
-                  >
-                    {String(stage.order).padStart(2, '0')}
-                  </Typography>
-                  <Box>
-                    <Typography component="h3" variant="subtitle2">
-                      {stage.title}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                      {stage.duration}
-                    </Typography>
-                  </Box>
-                </Stack>
-              ))}
-            </Stack>
-            <Button component={RouterLink} to={appRoutes.roadmap} sx={{ mt: 2, px: 0 }}>
-              Yo‘l xaritasini ko‘rish
-            </Button>
-          </Box>
-
-          <Box>
-            <Stack
-              direction="row"
-              alignItems="flex-end"
-              justifyContent="space-between"
-              sx={{ mb: 2 }}
-            >
-              <Box>
-                <Typography component="p" variant="subtitle2" sx={{ color: 'text.secondary' }}>
-                  Kutubxonadan
-                </Typography>
-                <Typography component="h2" variant="h4" sx={{ mt: 1 }}>
-                  O‘qishni boshlash uchun
-                </Typography>
-              </Box>
-              <Button
-                component={RouterLink}
-                to={appRoutes.algorithms}
-                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-              >
-                Hammasi
-              </Button>
-            </Stack>
-            <Stack divider={<Divider flexItem />}>
-              {liveArticles.slice(0, 5).map((article) => (
-                <Box
-                  key={article.sourceId ?? article.slug}
-                  component={RouterLink}
-                  to={getArticlePath(article)}
-                  sx={{
-                    py: 2.25,
-                    gap: 2,
-                    display: 'flex',
-                    color: 'text.primary',
-                    textDecoration: 'none',
-                    '&:hover h3': { color: 'primary.main' },
-                  }}
-                >
-                  <Box sx={{ minWidth: 0, flexGrow: 1 }}>
-                    <Typography component="h3" variant="subtitle1">
-                      {article.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={(theme) => ({
-                        mt: 0.5,
-                        color: 'text.secondary',
-                        ...theme.mixins.maxLine({ line: 1 }),
-                      })}
+                    <Box>
+                      <Typography component="h2" variant="subtitle1">
+                        Tahrir holati ochiq ko‘rsatiladi
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ mt: 0.5, maxWidth: 800, color: 'inherit', opacity: 0.8 }}
+                      >
+                        Kutubxonadagi {stats.articleCount || 'barcha'} maqola nashr qilingan.
+                        Hamjamiyat tekshiruvi va tuzatish takliflari doim ochiq.
+                      </Typography>
+                    </Box>
+                    <Button
+                      component="a"
+                      href="https://github.com/cp-uz/cp-uz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={18} />}
                     >
-                      {article.summary}
-                    </Typography>
-                  </Box>
-                  <Typography variant="caption" sx={{ flexShrink: 0, color: 'text.secondary' }}>
-                    {article.readTime} daq.
-                  </Typography>
-                  <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
+                      Hissa qo‘shish
+                    </Button>
+                  </Stack>
                 </Box>
-              ))}
-            </Stack>
-          </Box>
-        </Box>
-      </Container>
+              </Container>
+            </Box>
+          </>
+        )}
+      </DeferredViewport>
 
-      <Box
-        component="section"
-        sx={{
-          pb: { xs: 7, md: 9 },
-          contentVisibility: 'auto',
-          containIntrinsicSize: 'auto 180px',
-        }}
-      >
-        <Container maxWidth="xl">
-          <Box
-            sx={(theme) => ({
-              px: { xs: 2.5, md: 3 },
-              py: 2.5,
-              color: 'primary.darker',
-              bgcolor: 'primary.lighter',
-              borderRadius: 1.5,
-              ...theme.applyStyles('dark', {
-                color: 'primary.lighter',
-                bgcolor: 'primary.darker',
-              }),
-            })}
-          >
-            <Stack
-              direction={{ xs: 'column', md: 'row' }}
-              spacing={2}
-              alignItems={{ md: 'center' }}
-              justifyContent="space-between"
+      <DeferredViewport minHeight={2100}>
+        {() => (
+          <>
+            <Box
+              component="section"
+              aria-labelledby="team-heading"
+              sx={{
+                py: { xs: 7, md: 9 },
+                bgcolor: 'background.neutral',
+                contentVisibility: 'auto',
+                containIntrinsicSize: 'auto 1700px',
+              }}
             >
-              <Box>
-                <Typography component="h2" variant="subtitle1">
-                  Tahrir holati ochiq ko‘rsatiladi
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ mt: 0.5, maxWidth: 800, color: 'inherit', opacity: 0.8 }}
-                >
-                  Kutubxonadagi {stats.articleCount || 'barcha'} maqola nashr qilingan. Hamjamiyat
-                  tekshiruvi va tuzatish takliflari doim ochiq.
-                </Typography>
-              </Box>
-              <Button
-                component="a"
-                href="https://github.com/cp-uz/cp-uz"
-                target="_blank"
-                rel="noopener noreferrer"
-                color="inherit"
-                endIcon={<UiIcon icon="solar:arrow-right-up-linear" width={18} />}
-              >
-                Hissa qo‘shish
-              </Button>
-            </Stack>
-          </Box>
-        </Container>
-      </Box>
+              <Container maxWidth="xl">
+                <Box sx={{ mb: { xs: 4, md: 5 }, maxWidth: 640 }}>
+                  <Typography component="span" variant="subtitle2" sx={{ color: 'primary.dark' }}>
+                    Platforma ortidagi insonlar
+                  </Typography>
+                  <Typography id="team-heading" component="h2" variant="h3" sx={{ mt: 1 }}>
+                    cp uz; jamoasi
+                  </Typography>
+                  <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
+                    O‘zbek sport dasturlash hamjamiyatini birga rivojlantirayotgan jamoa.
+                  </Typography>
+                </Box>
 
-      <Box
-        component="section"
-        aria-labelledby="team-heading"
-        sx={{
-          py: { xs: 7, md: 9 },
-          bgcolor: 'background.neutral',
-          contentVisibility: 'auto',
-          containIntrinsicSize: 'auto 1700px',
-        }}
-      >
-        <Container maxWidth="xl">
-          <Box sx={{ mb: { xs: 4, md: 5 }, maxWidth: 640 }}>
-            <Typography component="span" variant="subtitle2" sx={{ color: 'primary.dark' }}>
-              Platforma ortidagi insonlar
-            </Typography>
-            <Typography id="team-heading" component="h2" variant="h3" sx={{ mt: 1 }}>
-              cp uz; jamoasi
-            </Typography>
-            <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
-              O‘zbek sport dasturlash hamjamiyatini birga rivojlantirayotgan jamoa.
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              gap: { xs: 4, sm: 3, md: 3.5 },
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr',
-                md: 'repeat(3, minmax(0, 1fr))',
-              },
-            }}
-          >
-            {teamMembers.map((member) => (
-              <Box component="article" key={member.name}>
                 <Box
-                  component="img"
-                  src={member.image}
-                  alt={`${member.name} portreti`}
-                  width={640}
-                  height={640}
-                  loading="lazy"
-                  decoding="async"
                   sx={{
-                    width: '100%',
-                    display: 'block',
-                    aspectRatio: '1 / 1',
-                    objectFit: 'cover',
-                    bgcolor: 'background.paper',
+                    gap: { xs: 4, sm: 3, md: 3.5 },
+                    display: 'grid',
+                    gridTemplateColumns: {
+                      xs: '1fr',
+                      md: 'repeat(3, minmax(0, 1fr))',
+                    },
                   }}
-                />
-                <Typography component="h3" variant="h6" sx={{ mt: 2, fontWeight: 600 }}>
-                  {member.name}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
-                  {member.role}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Container>
-      </Box>
+                >
+                  {teamMembers.map((member) => (
+                    <Box component="article" key={member.name}>
+                      <Box
+                        component="img"
+                        src={member.image}
+                        alt={`${member.name} portreti`}
+                        width={640}
+                        height={640}
+                        loading="lazy"
+                        decoding="async"
+                        sx={{
+                          width: '100%',
+                          display: 'block',
+                          aspectRatio: '1 / 1',
+                          objectFit: 'cover',
+                          bgcolor: 'background.paper',
+                        }}
+                      />
+                      <Typography component="h3" variant="h6" sx={{ mt: 2, fontWeight: 600 }}>
+                        {member.name}
+                      </Typography>
+                      <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
+                        {member.role}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </Container>
+            </Box>
 
-      <FeedbackSection />
+            <Suspense fallback={<Box sx={{ minHeight: 520 }} />}>
+              <FeedbackSection />
+            </Suspense>
+          </>
+        )}
+      </DeferredViewport>
     </>
   );
 }

@@ -1,15 +1,12 @@
-import type { FormEvent, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import type { AuthSession } from 'modules/auth/domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { BrandLogo } from 'shared/ui/BrandLogo';
 import { apiUrl } from 'shared/api/http/api-base';
-import { useAsyncData, useDebouncedValue } from 'shared/hooks';
-import { lazy, useMemo, Suspense, useState, useEffect } from 'react';
-import { filterArticles, getArticlePath } from 'modules/learning/domain';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link as RouterLink } from 'react-router';
-import { learningQueries as learningApi } from 'modules/learning/application';
 import { useSettingsContext, FONT_FAMILY_OPTIONS } from 'app/providers/settings';
 import { getAuthSession, logoutAuthSession, subscribeAuthSession } from 'modules/auth/application';
 
@@ -30,14 +27,12 @@ import { MainSection, LayoutSection, HeaderSection } from './core';
 
 const Drawer = lazy(() => import('@mui/material/Drawer'));
 const Menu = lazy(() => import('@mui/material/Menu'));
-const Dialog = lazy(() => import('@mui/material/Dialog'));
 const Popover = lazy(() => import('@mui/material/Popover'));
 const Slider = lazy(() => import('@mui/material/Slider'));
-const TextField = lazy(() => import('@mui/material/TextField'));
-const InputAdornment = lazy(() => import('@mui/material/InputAdornment'));
 const List = lazy(() => import('@mui/material/List'));
 const ListItemText = lazy(() => import('@mui/material/ListItemText'));
 const ListItemIcon = lazy(() => import('@mui/material/ListItemIcon'));
+const SearchDialog = lazy(() => import('./SearchDialog'));
 const GuestUpgradeDialog = lazy(() =>
   import('modules/auth/ui/components/GuestUpgradeDialog').then((module) => ({
     default: module.GuestUpgradeDialog,
@@ -75,15 +70,8 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
   const settings = useSettingsContext();
   const [session, setSession] = useState<AuthSession | null>(() => getAuthSession());
   const { setMode } = useColorScheme();
-  const { data: allArticles, error: articleLoadError } = useAsyncData(
-    learningApi.listArticles,
-    [],
-    []
-  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const debouncedQuery = useDebouncedValue(query, 300);
   const [fontAnchorEl, setFontAnchorEl] = useState<HTMLElement | null>(null);
   const [identityAnchorEl, setIdentityAnchorEl] = useState<HTMLElement | null>(null);
   const [guestUpgradeOpen, setGuestUpgradeOpen] = useState(false);
@@ -98,11 +86,6 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
     : 'anonymous';
 
   const navItemSelected = (to: string) => pathname === to || pathname.startsWith(`${to}/`);
-
-  const matches = useMemo(
-    () => filterArticles(allArticles, debouncedQuery).slice(0, 6),
-    [allArticles, debouncedQuery]
-  );
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -127,12 +110,6 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
     });
     return () => window.cancelAnimationFrame(frame);
   }, [identityAnchorEl]);
-
-  const submitSearch = (event: FormEvent) => {
-    event.preventDefault();
-    navigate(appRoutes.algorithmSearch(query));
-    setSearchOpen(false);
-  };
 
   const toggleTheme = () => {
     const nextMode = dark ? 'light' : 'dark';
@@ -617,96 +594,7 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
 
       {searchOpen && (
         <Suspense fallback={null}>
-          <Dialog open onClose={() => setSearchOpen(false)} fullWidth maxWidth="sm">
-            <Box component="form" onSubmit={submitSearch}>
-              <TextField
-                autoFocus
-                fullWidth
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Algoritm, mavzu yoki atama..."
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <UiIcon icon="solar:magnifer-linear" width={22} />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Button
-                          type="button"
-                          size="small"
-                          color="inherit"
-                          onClick={() => setSearchOpen(false)}
-                        >
-                          ESC
-                        </Button>
-                      </InputAdornment>
-                    ),
-                    sx: { px: 1, '& fieldset': { border: 0 } },
-                  },
-                }}
-              />
-              <Divider />
-              <Typography
-                variant="subtitle2"
-                sx={{ display: 'block', px: 2.5, pt: 2, color: 'text.secondary' }}
-              >
-                {query ? `${matches.length} ta natija` : 'Maqolalar'}
-              </Typography>
-              <List sx={{ px: 1, pb: 1.5, maxHeight: 420, overflow: 'auto' }}>
-                {matches.map((article) => (
-                  <ListItemButton
-                    key={article.sourceId ?? article.slug}
-                    component={RouterLink}
-                    to={getArticlePath(article)}
-                    onClick={() => setSearchOpen(false)}
-                    sx={{ borderRadius: 1 }}
-                  >
-                    <ListItemIcon sx={{ minWidth: 40 }}>
-                      <UiIcon icon="solar:document-text-linear" width={20} />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={article.title}
-                      secondary={`${article.category} · ${article.readTime} daqiqa`}
-                      slotProps={{
-                        primary: { variant: 'subtitle2' },
-                        secondary: { variant: 'caption' },
-                      }}
-                    />
-                    <UiIcon icon="solar:alt-arrow-right-linear" width={18} />
-                  </ListItemButton>
-                ))}
-                {articleLoadError && (
-                  <Typography
-                    variant="body2"
-                    sx={{ py: 5, textAlign: 'center', color: 'error.main' }}
-                  >
-                    Kutubxonani yuklab bo‘lmadi. Server bilan ulanishni tekshiring.
-                  </Typography>
-                )}
-                {!articleLoadError && !matches.length && (
-                  <Typography
-                    variant="body2"
-                    sx={{ py: 5, textAlign: 'center', color: 'text.secondary' }}
-                  >
-                    Bu so‘rov bo‘yicha hech narsa topilmadi.
-                  </Typography>
-                )}
-              </List>
-              <Divider />
-              <Stack direction="row" justifyContent="flex-end" sx={{ p: 1.5 }}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  endIcon={<UiIcon icon="solar:arrow-right-linear" width={18} />}
-                >
-                  Barcha natijalarni ko‘rish
-                </Button>
-              </Stack>
-            </Box>
-          </Dialog>
+          <SearchDialog open onClose={() => setSearchOpen(false)} />
         </Suspense>
       )}
 

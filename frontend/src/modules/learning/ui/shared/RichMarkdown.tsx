@@ -1,4 +1,5 @@
 import 'katex/dist/katex.min.css';
+import '@fontsource-variable/jetbrains-mono';
 
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 import type { LearningArticle } from '../../domain';

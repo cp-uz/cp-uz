@@ -11,6 +11,7 @@ import NotFoundPage from '../ui/NotFoundPage';
 const HomePage = lazyWithReload(() =>
   import('modules/landing').then((module) => ({ default: module.HomePage }))
 );
+
 const CatalogPage = lazyWithReload(() =>
   import('modules/learning').then((module) => ({ default: module.CatalogPage }))
 );
