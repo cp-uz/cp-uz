@@ -34,6 +34,36 @@ class SeasonApiTests(TestCase):
         self.assertEqual(response.data[0]["slug"], "2025-2026")
         self.assertEqual(response.data[0]["event_count"], 2)
 
+    def test_list_orders_seasons_from_oldest_to_newest(self):
+        self.season.is_featured = False
+        self.season.order = 10
+        self.season.save(update_fields=("is_featured", "order"))
+        Season.objects.create(
+            title="2026–2027 mavsumi",
+            slug="2026-2027",
+            start_date="2026-09-01",
+            end_date="2027-08-31",
+            publication_status=PublicationStatus.PUBLISHED,
+            is_featured=True,
+            order=20,
+        )
+        Season.objects.create(
+            title="2023–2024 mavsumi",
+            slug="2023-2024",
+            start_date="2023-09-01",
+            end_date="2024-08-31",
+            publication_status=PublicationStatus.PUBLISHED,
+            order=0,
+        )
+
+        response = self.client.get("/api/v1/seasons/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            [season["slug"] for season in response.data],
+            ["2023-2024", "2025-2026", "2026-2027"],
+        )
+
     def test_graph_is_complete_and_does_not_expose_drafts(self):
         response = self.client.get("/api/v1/seasons/2025-2026/")
         self.assertEqual(response.status_code, 200)

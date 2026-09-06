@@ -34,7 +34,7 @@ class SeasonViewSet(viewsets.ReadOnlyModelViewSet):
                 filter=Q(events__publication_status=PublicationStatus.PUBLISHED),
                 distinct=True,
             )
-        )
+        ).order_by("order", "start_date")
         if self.request.query_params.get("featured", "").lower() in {"1", "true", "yes"}:
             queryset = queryset.filter(is_featured=True)
         return queryset
