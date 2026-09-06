@@ -5,7 +5,7 @@ import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
-import { useParams, useNavigate, useLocation, Link as RouterLink } from 'react-router';
+import { Navigate, useParams, useNavigate, useLocation, Link as RouterLink } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -52,7 +52,7 @@ export default function SeasonPage() {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
-  const { hash } = useLocation();
+  const { hash, search } = useLocation();
   const { seasonSlug = '', eventSlug } = useParams();
   const {
     data: season,
@@ -109,6 +109,12 @@ export default function SeasonPage() {
         </Button>
       </Container>
     );
+  }
+
+  // Resolve the featured season before showing its timeline so selecting an event
+  // does not change the season data key and temporarily replace it with a skeleton.
+  if (!seasonSlug) {
+    return <Navigate to={`${appRoutes.season(season.slug)}${search}${hash}`} replace />;
   }
 
   return (

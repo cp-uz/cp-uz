@@ -1,9 +1,10 @@
 import 'app/styles/global.css';
 
-import { useLocation } from 'react-router';
 import { ProgressBar } from 'shared/ui/ProgressBar';
 import { useRef, useState, useEffect } from 'react';
+import { matchPath, useLocation } from 'react-router';
 import { themeConfig, ThemeProvider } from 'app/theme';
+import { appRoutes, appRoutePatterns } from 'shared/config';
 import { defaultSettings, SettingsProvider } from 'app/providers/settings';
 import { LoadingScreen, readBootLoadingFactIndex } from 'shared/ui/LoadingScreen';
 
@@ -26,10 +27,17 @@ function BootExperienceOverlay() {
 
 export default function App({ children }: AppProps) {
   const { pathname } = useLocation();
+  const seasonMatch =
+    matchPath(appRoutePatterns.seasonEvent, pathname) ??
+    matchPath(appRoutePatterns.season, pathname);
+  // Event details belong to the same timeline, including when closed or reached via Back.
+  const scrollKey = seasonMatch?.params.seasonSlug
+    ? appRoutes.season(seasonMatch.params.seasonSlug)
+    : pathname;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+  }, [scrollKey]);
 
   return (
     <SettingsProvider defaultSettings={defaultSettings}>
