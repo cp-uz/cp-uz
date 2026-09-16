@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "stbz",
+  "code": "B",
+  "title": "Stabilizatsiya",
+  "original_title": "STBZ",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2024-2025/ioi-2025-saralash-2/day-2/stbz/statement.pdf",
+    "sha256": "1c40b1eeb0224f25247923b3d9a6ac6e682b446da1127a9f2418209348fd3457",
+    "size_bytes": 128872,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Milliy saralash",
+  "tags": [
+    "IOI saralashi"
+  ],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-16",
+  "links": [
+    {
+      "kind": "original",
+      "title": "RoboContest e’loni",
+      "url": "https://t.me/robocontest/1476",
+      "platform": "RoboContest",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "package",
+      "title": "GitHub taskidagi original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284929/tst_2025.zip",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": false,
+      "order": 10
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "code": "TST2",
+  "slug": "ioi-2025-saralash-2",
+  "title": "IOI 2025 saralashi — II bosqich",
+  "short_title": "IOI 2025 saralash II",
+  "summary": "Ikki turdagi saralashning 6 ta original o‘zbekcha masalasi.",
+  "description": "1-kun 16-fevralda, 2-kun 20-fevralda o‘tkazilgan. Har bir tur uchun uchta original o‘zbekcha PDF va RoboContest e’loni saqlangan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-02-16",
+  "end_date": "2025-02-20",
+  "date_label": "2025-yil 16 va 20-fevral",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "mode": "onsite",
+  "platform": "CMS",
+  "organizer": "O‘zbekiston IOI saralash jamoasi",
+  "is_featured": false,
+  "order": 100,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 10,
+      "node_style": "default",
+      "label": "II"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "1-kun natijalari e’loni",
+      "url": "https://t.me/robocontest/1475",
+      "is_official": false,
+      "order": 10
+    },
+    {
+      "type": "announcement",
+      "title": "2-kun natijalari e’loni",
+      "url": "https://t.me/robocontest/1476",
+      "is_official": false,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "Original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284929/tst_2025.zip",
+      "is_official": false,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2025 saralash II masalalari",
+      "url": "https://github.com/cp-uz/cp-uz/issues/4",
+      "publisher": "cp-uz",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ikki kun uchun 6 ta original o‘zbekcha PDF."
+    },
+    {
+      "type": "community_report",
+      "title": "IOI 2025 saralash II — 1-kun",
+      "url": "https://t.me/robocontest/1475",
+      "publisher": "RoboContest.UZ",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "1-kun sanasi va jonli natijalar havolasi."
+    },
+    {
+      "type": "community_report",
+      "title": "IOI 2025 saralash II — 2-kun",
+      "url": "https://t.me/robocontest/1476",
+      "publisher": "RoboContest.UZ",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "2-kun sanasi va jonli natijalar havolasi."
+    }
+  ],
+  "results": []
+}

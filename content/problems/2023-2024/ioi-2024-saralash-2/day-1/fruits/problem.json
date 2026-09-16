@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "fruits",
+  "code": "B",
+  "title": "Mevalar",
+  "original_title": "Fruits",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-2/day-1/fruits/statement.pdf",
+    "sha256": "1e11f39c6f6a137fd4b0e957f99dc912cf3dd97fdbb238c292281b3416f892b9",
+    "size_bytes": 99399,
+    "page_count": 2,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Milliy saralash",
+  "tags": [
+    "IOI saralashi"
+  ],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-16",
+  "links": [
+    {
+      "kind": "practice",
+      "title": "RoboContest mirrori",
+      "url": "https://robocontest.uz/olympiads/1282",
+      "platform": "RoboContest",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "package",
+      "title": "GitHub taskidagi original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284097/2024_selection2_day1.zip",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": false,
+      "order": 10
+    }
+  ]
+}

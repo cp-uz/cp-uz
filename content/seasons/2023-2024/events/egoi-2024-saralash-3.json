@@ -1,0 +1,174 @@
+{
+  "code": "EGOI3",
+  "slug": "egoi-2024-saralash-3",
+  "title": "EGOI 2024 saralashi — III bosqich",
+  "short_title": "EGOI 2024 saralash III",
+  "summary": "ICT4Girls yakuniy saralashining 11 nafar nomzod bo‘yicha ochiq natijasi.",
+  "description": "Yandex Contest’da to‘rtta masala bo‘yicha o‘tkazilgan III saralash bosqichining yakuniy jadvali.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2024-06-29",
+  "end_date": "2024-06-29",
+  "date_label": "2024-yil 29-iyun",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "mode": "online",
+  "platform": "Yandex Contest",
+  "organizer": "ICT4Girls / O‘zbekiston EGOI saralash jamoasi",
+  "is_featured": false,
+  "order": 110,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 10,
+      "node_style": "default",
+      "label": "III"
+    }
+  ],
+  "resources": [
+    {
+      "type": "scoreboard",
+      "title": "EGOI 2024 saralash III natijalari",
+      "url": "https://contest.yandex.ru/contest/63594/standings",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer_archive",
+      "title": "ICT4Girls 3-saralash [2024]",
+      "url": "https://contest.yandex.ru/contest/63594/standings",
+      "publisher": "Yandex Contest",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Musobaqa sanasi, masalalar va 11 nafar nomzodning ochiq yakuniy natijasi."
+    }
+  ],
+  "results": [
+    {
+      "participant": "zarnigor-raximova",
+      "rank": 1,
+      "score": 292,
+      "score_label": "292 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 10,
+      "key": "EGOI3:participant:zarnigor-raximova"
+    },
+    {
+      "participant": "oysha-mirzatillayeva",
+      "rank": 2,
+      "score": 221,
+      "score_label": "221 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 20,
+      "key": "EGOI3:participant:oysha-mirzatillayeva"
+    },
+    {
+      "participant": "malika-xojamuratova",
+      "rank": 3,
+      "score": 214,
+      "score_label": "214 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 30,
+      "key": "EGOI3:participant:malika-xojamuratova"
+    },
+    {
+      "participant": "solixa-dagarova",
+      "rank": 4,
+      "score": 164,
+      "score_label": "164 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 40,
+      "key": "EGOI3:participant:solixa-dagarova"
+    },
+    {
+      "participant": "mushtariy-xusnidinova",
+      "rank": 5,
+      "score": 157,
+      "score_label": "157 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 50,
+      "key": "EGOI3:participant:mushtariy-xusnidinova"
+    },
+    {
+      "participant": "jasmina-tarmasheva",
+      "rank": 6,
+      "score": 131,
+      "score_label": "131 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 60,
+      "key": "EGOI3:participant:jasmina-tarmasheva"
+    },
+    {
+      "participant": "ruhsora-pardayeva",
+      "rank": 7,
+      "score": 114,
+      "score_label": "114 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 70,
+      "key": "EGOI3:participant:ruhsora-pardayeva"
+    },
+    {
+      "participant": "gulchiroy-raxmatullayeva",
+      "rank": 8,
+      "score": 100,
+      "score_label": "100 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 80,
+      "key": "EGOI3:participant:gulchiroy-raxmatullayeva"
+    },
+    {
+      "participant": "dilafruz-joraboyeva",
+      "rank": 9,
+      "score": 100,
+      "score_label": "100 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 90,
+      "key": "EGOI3:participant:dilafruz-joraboyeva"
+    },
+    {
+      "participant": "durdonaxon-toxtaqoziyeva",
+      "rank": 10,
+      "score": 20,
+      "score_label": "20 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 100,
+      "key": "EGOI3:participant:durdonaxon-toxtaqoziyeva"
+    },
+    {
+      "participant": "parvina-nurulloyeva",
+      "rank": 11,
+      "score": 5,
+      "score_label": "5 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://contest.yandex.ru/contest/63594/standings",
+      "order": 110,
+      "key": "EGOI3:participant:parvina-nurulloyeva"
+    }
+  ]
+}

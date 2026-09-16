@@ -1,0 +1,82 @@
+{
+  "code": "TST2",
+  "slug": "ioi-2024-saralash-2",
+  "title": "IOI 2024 saralashi — II bosqich",
+  "short_title": "IOI 2024 saralash II",
+  "summary": "Ikki kunlik saralashning 10 ta original o‘zbekcha masalasi.",
+  "description": "20–21-fevral kunlari o‘tkazilgan bosqichning har kuni beshtadan masalasi va ochiq RoboContest mirrorlari saqlangan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2024-02-20",
+  "end_date": "2024-02-21",
+  "date_label": "2024-yil 20–21-fevral",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "mode": "onsite",
+  "platform": "CMS / RoboContest mirror",
+  "organizer": "O‘zbekiston IOI saralash jamoasi",
+  "is_featured": false,
+  "order": 90,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 5,
+      "node_style": "default",
+      "label": "II"
+    }
+  ],
+  "resources": [
+    {
+      "type": "mirror",
+      "title": "1-kun RoboContest mirrori",
+      "url": "https://robocontest.uz/olympiads/1282",
+      "is_official": false,
+      "order": 10
+    },
+    {
+      "type": "mirror",
+      "title": "2-kun RoboContest mirrori",
+      "url": "https://robocontest.uz/olympiads/1283",
+      "is_official": false,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "1-kun original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284097/2024_selection2_day1.zip",
+      "is_official": false,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "2-kun original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284101/2024_selection2_day2.zip",
+      "is_official": false,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2024 saralash II masalalari",
+      "url": "https://github.com/cp-uz/algo/issues/1",
+      "publisher": "cp-uz/algo",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ikki kun uchun 10 ta original o‘zbekcha PDF."
+    },
+    {
+      "type": "community_report",
+      "title": "IOI 2024 saralash II RoboContest mirrorlari",
+      "url": "https://robocontest.uz/olympiads/1282",
+      "publisher": "RoboContest",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Mirror nomi, sanasi va beshta masalali birinchi kun."
+    }
+  ],
+  "results": []
+}

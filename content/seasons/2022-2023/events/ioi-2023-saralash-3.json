@@ -1,0 +1,221 @@
+{
+  "code": "TST3",
+  "slug": "ioi-2023-saralash-3",
+  "title": "IOI 2023 saralashi — III bosqich",
+  "short_title": "IOI 2023 saralash III",
+  "summary": "Ikki kunlik yakuniy saralashning 12 nafar ishtirokchi bo‘yicha umumiy natijasi.",
+  "description": "29–30-aprel kunlari Yandex Contest’da o‘tkazilgan ikki turning ballari rasmiy e’lon qilingan umumiy jadval asosida jamlangan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2023-04-29",
+  "end_date": "2023-04-30",
+  "date_label": "2023-yil 29–30-aprel",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "mode": "online",
+  "platform": "Yandex Contest",
+  "organizer": "O‘zbekiston IOI saralash jamoasi",
+  "is_featured": false,
+  "order": 100,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 10,
+      "node_style": "default",
+      "label": "III"
+    }
+  ],
+  "resources": [
+    {
+      "type": "scoreboard",
+      "title": "1-kun natijalari",
+      "url": "https://contest.yandex.ru/contest/49291/standings",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "2-kun natijalari",
+      "url": "https://contest.yandex.ru/contest/49312/standings",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "Umumiy natijalar",
+      "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "is_official": true,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2023 saralash III umumiy natijalari",
+      "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "publisher": "O‘zbekiston IOI saralash jamoasi",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ikki kun ballari, umumiy o‘rin va jarima ko‘rsatkichlari berilgan."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "IOI 2023 saralash III — 1-kun",
+      "url": "https://contest.yandex.ru/contest/49291/standings",
+      "publisher": "Yandex Contest",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ochiq yakuniy jadval va musobaqa vaqti."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "IOI 2023 saralash III — 2-kun",
+      "url": "https://contest.yandex.ru/contest/49312/standings",
+      "publisher": "Yandex Contest",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ochiq yakuniy jadval va musobaqa vaqti."
+    }
+  ],
+  "results": [
+    {
+      "participant": "dilyorbek-valijonov",
+      "rank": 1,
+      "score": 535,
+      "score_label": "535 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 10,
+      "award_title": "IOI 2023 terma jamoasiga saralangan",
+      "key": "TST3:participant:dilyorbek-valijonov"
+    },
+    {
+      "participant": "dilshodbek-xojayev",
+      "rank": 2,
+      "score": 490,
+      "score_label": "490 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 20,
+      "award_title": "IOI 2023 terma jamoasiga saralangan",
+      "key": "TST3:participant:dilshodbek-xojayev"
+    },
+    {
+      "participant": "asilbek-sunnatov",
+      "rank": 3,
+      "score": 364,
+      "score_label": "364 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 30,
+      "award_title": "IOI 2023 terma jamoasiga saralangan",
+      "key": "TST3:participant:asilbek-sunnatov"
+    },
+    {
+      "participant": "otabek-jurabekov",
+      "rank": 4,
+      "score": 320,
+      "score_label": "320 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 40,
+      "award_title": "IOI 2023 terma jamoasiga saralangan",
+      "key": "TST3:participant:otabek-jurabekov"
+    },
+    {
+      "participant": "muhammadayubxon-erkinov",
+      "rank": 5,
+      "score": 317,
+      "score_label": "317 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 50,
+      "key": "TST3:participant:muhammadayubxon-erkinov"
+    },
+    {
+      "participant": "husanboy-mansuraliyev",
+      "rank": 6,
+      "score": 246,
+      "score_label": "246 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 60,
+      "key": "TST3:participant:husanboy-mansuraliyev"
+    },
+    {
+      "participant": "murat-yangabayev",
+      "rank": 7,
+      "score": 233,
+      "score_label": "233 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 70,
+      "key": "TST3:participant:murat-yangabayev"
+    },
+    {
+      "participant": "mardon-hazratov",
+      "rank": 8,
+      "score": 191,
+      "score_label": "191 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 80,
+      "key": "TST3:participant:mardon-hazratov"
+    },
+    {
+      "participant": "izzat-sotimqulov",
+      "rank": 9,
+      "score": 161,
+      "score_label": "161 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 90,
+      "key": "TST3:participant:izzat-sotimqulov"
+    },
+    {
+      "participant": "yaxyobek-abdunazarov",
+      "rank": 10,
+      "score": 95,
+      "score_label": "95 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 100,
+      "key": "TST3:participant:yaxyobek-abdunazarov"
+    },
+    {
+      "participant": "shohruh-rahmatillayev",
+      "rank": 11,
+      "score": 70,
+      "score_label": "70 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 110,
+      "key": "TST3:participant:shohruh-rahmatillayev"
+    },
+    {
+      "participant": "artyom-ivanov",
+      "rank": 12,
+      "score": 0,
+      "score_label": "0 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Plwu7lZtyPB-ppvynsNKZyeYxkv1z2bGx-fsHsjYCcW4sj8dllfj23oT_HwFFYdUlejxQWL4xGla/pubhtml",
+      "order": 120,
+      "key": "TST3:participant:artyom-ivanov"
+    }
+  ]
+}

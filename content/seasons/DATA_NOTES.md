@@ -19,6 +19,27 @@ yakuniy tuguni hisoblanadi.
   terma jamoasi saralashining I bosqichi.
 - Oltin rang alohida route emas: `G1–G5` o‘z yo‘nalishining `node_style: final` tuguni.
 
+## 2022–2025 tarixiy saralash arxivi
+
+GitHub Project backlogidagi ochiq manbalar asosida quyidagi tarixiy tugunlar tiklandi:
+
+- IOI 2023 saralash III — 2023-yil 29–30-apreldagi ikki Yandex Contest turi va
+  tashkilotchilar e’lon qilgan 12 kishilik umumiy jadval;
+- IOI 2024 saralash II — 2024-yil 20–21-fevraldagi ikki kun, 10 ta original
+  o‘zbekcha PDF va RoboContest mirrorlari;
+- IOI 2024 saralash III — to‘rt kunlik umumiy jadvaldagi 12 ishtirokchi;
+- EGOI 2024 saralash III — 2024-yil 29-iyundagi Yandex Contest yakuniy jadvali;
+- IOI 2025 saralash II — 2025-yil 16 va 20-fevraldagi ikki tur hamda 6 ta original
+  o‘zbekcha PDF;
+- EGOI 2025 yakuniy saralashi — ikki kunlik jadvaldagi 12 ishtirokchi;
+- EGOI 2026 saralash II — ikki kunlik jadvaldagi 15 nomzod. Manba faylidagi Baxora
+  Xayrullayeva uchun takrorlangan, sana formatiga aylangan texnik qator olib tashlanib,
+  to‘g‘ri `13`-o‘rinli qator saqlandi.
+
+Tarixiy natijalarda manbada faqat o‘rin va ball bo‘lsa, medal taxmin qilinmaydi.
+Terma jamoaga tanlangani boshqa ochiq manbada tasdiqlangan birinchi to‘rtlikka esa
+`award_title` yozildi.
+
 ## 2025–2026 qamrovi
 
 Quyidagi mahalliy natijalar rasmiy jadvaldan kiritilgan:

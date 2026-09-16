@@ -1,0 +1,25 @@
+{
+  "slug": "2022-2023",
+  "title": "2022–2023 sport dasturlash mavsumi",
+  "summary": "IOI 2023 O‘zbekiston terma jamoasi saralashining tekshirilgan natijalar arxivi.",
+  "start_date": "2022-09-01",
+  "end_date": "2023-08-31",
+  "publication_status": "published",
+  "verification_status": "verified",
+  "is_featured": false,
+  "order": 0,
+  "routes": [
+    {
+      "code": "main",
+      "title": "IOI saralash yo‘li",
+      "description": "IOI 2023 terma jamoasini shakllantirish bosqichlari.",
+      "kind": "selection",
+      "color": "blue",
+      "line_style": "solid",
+      "icon": "solar:diploma-linear",
+      "order": 10,
+      "is_visible": true
+    }
+  ],
+  "edges": []
+}

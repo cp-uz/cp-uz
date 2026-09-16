@@ -1,0 +1,10 @@
+{
+  "document_type": "event",
+  "schema_version": 1,
+  "season_slug": "2024-2025",
+  "event_slug": "ioi-2025-saralash-2",
+  "sets": [
+    "day-1",
+    "day-2"
+  ]
+}

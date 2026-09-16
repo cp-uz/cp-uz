@@ -36,6 +36,13 @@
       "url": "https://t.me/s/Fan_olimpiadalari_M/8749",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "results",
+      "title": "EGOI 2026 saralash II reyting jadvali",
+      "url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "is_official": true,
+      "order": 20
     }
   ],
   "sources": [
@@ -47,7 +54,197 @@
       "accessed_on": "2026-09-01",
       "is_primary": true,
       "notes": "Ikki tur va keyingi bosqichga o‘tgan 15 nafar nomzod tasdiqlangan."
+    },
+    {
+      "type": "archive",
+      "title": "EGOI 2026 saralash II reyting jadvali",
+      "url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "15 nafar nomzodning ikki kunlik ballari; takrorlangan texnik qator chiqarib tashlandi."
     }
   ],
-  "results": []
+  "results": [
+    {
+      "participant": "oysha-mirzatillayeva",
+      "rank": 1,
+      "score": 656,
+      "score_label": "656 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 10,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:oysha-mirzatillayeva"
+    },
+    {
+      "participant": "rayxona-sanakulova",
+      "rank": 2,
+      "score": 600,
+      "score_label": "600 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 20,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:rayxona-sanakulova"
+    },
+    {
+      "participant": "malika-xojamuratova",
+      "rank": 3,
+      "score": 491,
+      "score_label": "491 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 30,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:malika-xojamuratova"
+    },
+    {
+      "participant": "durdona-akramova",
+      "rank": 4,
+      "score": 450,
+      "score_label": "450 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 40,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:durdona-akramova"
+    },
+    {
+      "participant": "diyora-babadjanova",
+      "rank": 5,
+      "score": 356,
+      "score_label": "356 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 50,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:diyora-babadjanova"
+    },
+    {
+      "participant": "gozal-nurilloyeva",
+      "rank": 6,
+      "score": 274,
+      "score_label": "274 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 60,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:gozal-nurilloyeva"
+    },
+    {
+      "participant": "nafisa-arslanova",
+      "rank": 7,
+      "score": 263,
+      "score_label": "263 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 70,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:nafisa-arslanova"
+    },
+    {
+      "participant": "mushtariy-xusnidinova",
+      "rank": 8,
+      "score": 257,
+      "score_label": "257 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 80,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:mushtariy-xusnidinova"
+    },
+    {
+      "participant": "durdona-abdusattorova",
+      "rank": 9,
+      "score": 166,
+      "score_label": "166 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 90,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:durdona-abdusattorova"
+    },
+    {
+      "participant": "yulduzxon-abdusamatova",
+      "rank": 10,
+      "score": 128,
+      "score_label": "128 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 100,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:yulduzxon-abdusamatova"
+    },
+    {
+      "participant": "nafosat-mamirova",
+      "rank": 11,
+      "score": 110,
+      "score_label": "110 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 110,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:nafosat-mamirova"
+    },
+    {
+      "participant": "marjona-qodirova",
+      "rank": 12,
+      "score": 100,
+      "score_label": "100 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 120,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:marjona-qodirova"
+    },
+    {
+      "participant": "baxora-xayrullayeva",
+      "rank": 13,
+      "score": 78,
+      "score_label": "78 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 130,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:baxora-xayrullayeva"
+    },
+    {
+      "participant": "durdonaxon-toxtaqoziyeva",
+      "rank": 14,
+      "score": 0,
+      "score_label": "0 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 140,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:durdonaxon-toxtaqoziyeva"
+    },
+    {
+      "participant": "mohlaroyim-tursunaliyeva",
+      "rank": 15,
+      "score": 0,
+      "score_label": "0 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284152/EGOI2026_selection.xlsx",
+      "order": 150,
+      "award_title": "Keyingi intensiv tayyorgarlikka saralangan",
+      "key": "12:participant:mohlaroyim-tursunaliyeva"
+    }
+  ]
 }

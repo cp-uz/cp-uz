@@ -1,0 +1,15 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-1",
+  "title": "1-kun",
+  "description": "IOI 2025 saralashining II bosqichi masalalari.",
+  "date_label": "2025-02-16",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "bookshelf",
+    "diameter",
+    "tvstore"
+  ]
+}

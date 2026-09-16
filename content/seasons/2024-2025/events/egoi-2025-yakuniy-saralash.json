@@ -1,0 +1,188 @@
+{
+  "code": "EGOIF",
+  "slug": "egoi-2025-yakuniy-saralash",
+  "title": "EGOI 2025 yakuniy saralashi",
+  "short_title": "EGOI 2025 saralash",
+  "summary": "Ikki kunlik saralashning 12 nafar ishtirokchi bo‘yicha umumiy natijasi.",
+  "description": "To‘rttadan masalali ikki kun yakunida eng yuqori natija ko‘rsatgan to‘rt ishtirokchi EGOI 2025 terma jamoasiga saralangan.",
+  "type": "selection",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "tba",
+  "start_date": null,
+  "end_date": null,
+  "date_label": "2025-yil, aniq sana manbada ko‘rsatilmagan",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston",
+  "mode": "onsite",
+  "organizer": "Fan olimpiadalari markazi",
+  "is_featured": false,
+  "order": 110,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 10,
+      "node_style": "default",
+      "label": "Yakuniy"
+    }
+  ],
+  "resources": [
+    {
+      "type": "results",
+      "title": "EGOI 2025 saralash natijalari",
+      "url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "is_official": true,
+      "order": 10
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "EGOI 2025 saralash natijalari",
+      "url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "publisher": "O‘zbekiston EGOI saralash jamoasi",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "Ikki kun ballari, umumiy o‘rin va hudud/maktab ma’lumotlari."
+    }
+  ],
+  "results": [
+    {
+      "participant": "oysha-mirzatillayeva",
+      "rank": 1,
+      "score": 721,
+      "score_label": "721 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 10,
+      "award_title": "EGOI 2025 terma jamoasiga saralangan",
+      "key": "EGOIF:participant:oysha-mirzatillayeva"
+    },
+    {
+      "participant": "malika-xojamuratova",
+      "rank": 2,
+      "score": 644,
+      "score_label": "644 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 20,
+      "award_title": "EGOI 2025 terma jamoasiga saralangan",
+      "key": "EGOIF:participant:malika-xojamuratova"
+    },
+    {
+      "participant": "solixa-dagarova",
+      "rank": 3,
+      "score": 607,
+      "score_label": "607 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 30,
+      "award_title": "EGOI 2025 terma jamoasiga saralangan",
+      "key": "EGOIF:participant:solixa-dagarova"
+    },
+    {
+      "participant": "durdona-akramova",
+      "rank": 4,
+      "score": 457,
+      "score_label": "457 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 40,
+      "award_title": "EGOI 2025 terma jamoasiga saralangan",
+      "key": "EGOIF:participant:durdona-akramova"
+    },
+    {
+      "participant": "bekzodaxon-sultonmurodova",
+      "rank": 5,
+      "score": 434,
+      "score_label": "434 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 50,
+      "key": "EGOIF:participant:bekzodaxon-sultonmurodova"
+    },
+    {
+      "participant": "jasmina-tarmasheva",
+      "rank": 6,
+      "score": 396,
+      "score_label": "396 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 60,
+      "key": "EGOIF:participant:jasmina-tarmasheva"
+    },
+    {
+      "participant": "mushtariy-xusnidinova",
+      "rank": 7,
+      "score": 345,
+      "score_label": "345 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 70,
+      "key": "EGOIF:participant:mushtariy-xusnidinova"
+    },
+    {
+      "participant": "gozal-nurilloyeva",
+      "rank": 8,
+      "score": 279,
+      "score_label": "279 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 80,
+      "key": "EGOIF:participant:gozal-nurilloyeva"
+    },
+    {
+      "participant": "yulduzxon-abdusamatova",
+      "rank": 9,
+      "score": 289,
+      "score_label": "289 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 90,
+      "key": "EGOIF:participant:yulduzxon-abdusamatova"
+    },
+    {
+      "participant": "durdonaxon-toxtaqoziyeva",
+      "rank": 10,
+      "score": 287,
+      "score_label": "287 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 100,
+      "key": "EGOIF:participant:durdonaxon-toxtaqoziyeva"
+    },
+    {
+      "participant": "diyora-babadjanova",
+      "rank": 11,
+      "score": 141,
+      "score_label": "141 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 110,
+      "key": "EGOIF:participant:diyora-babadjanova"
+    },
+    {
+      "participant": "rayxona-sanakulova",
+      "rank": 12,
+      "score": 0,
+      "score_label": "0 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
+      "order": 120,
+      "key": "EGOIF:participant:rayxona-sanakulova"
+    }
+  ]
+}

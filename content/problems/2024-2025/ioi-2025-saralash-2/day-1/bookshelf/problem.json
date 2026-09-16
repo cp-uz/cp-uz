@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "bookshelf",
+  "code": "A",
+  "title": "Kitob javoni",
+  "original_title": "Bookshelf",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2024-2025/ioi-2025-saralash-2/day-1/bookshelf/statement.pdf",
+    "sha256": "2c6befb74315ab222ce86bf1eaab940ddf4c39c521efb1ba624e667f7ddabf05",
+    "size_bytes": 125740,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Milliy saralash",
+  "tags": [
+    "IOI saralashi"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-16",
+  "links": [
+    {
+      "kind": "original",
+      "title": "RoboContest e’loni",
+      "url": "https://t.me/robocontest/1475",
+      "platform": "RoboContest",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "package",
+      "title": "GitHub taskidagi original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284929/tst_2025.zip",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": false,
+      "order": 10
+    }
+  ]
+}

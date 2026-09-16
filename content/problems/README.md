@@ -58,6 +58,13 @@ olingan; yechish havolalari QOJ’dagi mos mirrorlarga olib boradi. Rasmiy arxiv
 submission tizimi ochiq qolmagan bo‘lsa, `original` havolaning o‘zi public katalog
 uchun yetarli: mavjud bo‘lmagan `practice` URL taxmin qilinmaydi.
 
+Tarixiy katalogda IOI 2024 saralash II bosqichining 10 ta va IOI 2025 saralash II
+bosqichining 6 ta original o‘zbekcha PDF’i ham saqlanadi. PDF paketlari GitHub Project
+tasklariga biriktirilgan arxivlardan olingan; IOI 2024 to‘plamida RoboContest’dagi
+ochiq mirrorlar ham practice manbasi sifatida ko‘rsatilgan. IOI 2025 natijalarining
+vaqtinchalik live domenlari endi DNS’da mavjud bo‘lmagani sababli ular practice link
+sifatida kiritilmadi.
+
 JSON hujjatlari [`schema/problem-content.schema.json`](schema/problem-content.schema.json)
 bilan tekshiriladi. Yangi masala qo‘shilganda avval `problem.json` va
 `statement.uz.md` yaratiladi, so‘ng uning papkasi tegishli `set.json` dagi `problems`

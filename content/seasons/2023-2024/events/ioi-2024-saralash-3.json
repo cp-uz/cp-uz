@@ -8,7 +8,7 @@
   "type": "selection",
   "publication_status": "published",
   "event_status": "completed",
-  "verification_status": "pending",
+  "verification_status": "verified",
   "date_precision": "tba",
   "start_date": null,
   "end_date": null,
@@ -28,6 +28,13 @@
     }
   ],
   "resources": [
+    {
+      "type": "results",
+      "title": "IOI 2024 saralash III umumiy natijalari",
+      "url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "is_official": true,
+      "order": 5
+    },
     {
       "type": "platform",
       "title": "Codeforces Gym — 1-kun",
@@ -82,7 +89,153 @@
       "accessed_on": "2026-09-04",
       "is_primary": true,
       "notes": "To‘rt kun uchun 12 ta o‘zbekcha fayl. PR’dagi noto‘liq Gnomes fayli Telegram arxividagi original PDF asosida tiklandi."
+    },
+    {
+      "type": "archive",
+      "title": "IOI 2024 saralash III natijalari",
+      "url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "publisher": "O‘zbekiston IOI saralash jamoasi",
+      "accessed_on": "2026-09-16",
+      "is_primary": true,
+      "notes": "To‘rt kun bo‘yicha umumiy ballar va kunlik natijalar."
     }
   ],
-  "results": []
+  "results": [
+    {
+      "participant": "asilbek-sunnatov",
+      "rank": 1,
+      "score": 841,
+      "score_label": "841 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 10,
+      "award_title": "IOI 2024 terma jamoasiga saralangan",
+      "key": "TST3:participant:asilbek-sunnatov"
+    },
+    {
+      "participant": "husanboy-mansuraliyev",
+      "rank": 2,
+      "score": 820.28,
+      "score_label": "820.28 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 20,
+      "award_title": "IOI 2024 terma jamoasiga saralangan",
+      "key": "TST3:participant:husanboy-mansuraliyev"
+    },
+    {
+      "participant": "ulugbek-rahmatullayev",
+      "rank": 3,
+      "score": 640,
+      "score_label": "640 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 30,
+      "award_title": "IOI 2024 terma jamoasiga saralangan",
+      "key": "TST3:participant:ulugbek-rahmatullayev"
+    },
+    {
+      "participant": "mardon-hazratov",
+      "rank": 4,
+      "score": 637.28,
+      "score_label": "637.28 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 40,
+      "award_title": "IOI 2024 terma jamoasiga saralangan",
+      "key": "TST3:participant:mardon-hazratov"
+    },
+    {
+      "participant": "javohir-toshtemirov",
+      "rank": 5,
+      "score": 578,
+      "score_label": "578 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 50,
+      "key": "TST3:participant:javohir-toshtemirov"
+    },
+    {
+      "participant": "ismoilmirzo-inoyatov",
+      "rank": 6,
+      "score": 540.28,
+      "score_label": "540.28 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 60,
+      "key": "TST3:participant:ismoilmirzo-inoyatov"
+    },
+    {
+      "participant": "shohruh-rahmatillayev",
+      "rank": 7,
+      "score": 477.14,
+      "score_label": "477.14 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 70,
+      "key": "TST3:participant:shohruh-rahmatillayev"
+    },
+    {
+      "participant": "nuraziz-ungboyev",
+      "rank": 8,
+      "score": 433,
+      "score_label": "433 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 80,
+      "key": "TST3:participant:nuraziz-ungboyev"
+    },
+    {
+      "participant": "ozodbek-xaydaraliyev",
+      "rank": 9,
+      "score": 379,
+      "score_label": "379 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 90,
+      "key": "TST3:participant:ozodbek-xaydaraliyev"
+    },
+    {
+      "participant": "mirzosharif-habibov",
+      "rank": 10,
+      "score": 299,
+      "score_label": "299 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 100,
+      "key": "TST3:participant:mirzosharif-habibov"
+    },
+    {
+      "participant": "eldor-anvarov",
+      "rank": 11,
+      "score": 237,
+      "score_label": "237 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 110,
+      "key": "TST3:participant:eldor-anvarov"
+    },
+    {
+      "participant": "ozodbek-dalaboyev",
+      "rank": 12,
+      "score": 188,
+      "score_label": "188 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://github.com/user-attachments/files/32284154/IOI2024_selection.xlsx",
+      "order": 120,
+      "key": "TST3:participant:ozodbek-dalaboyev"
+    }
+  ]
 }

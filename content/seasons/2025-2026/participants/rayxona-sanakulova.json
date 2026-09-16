@@ -3,7 +3,7 @@
   "slug": "rayxona-sanakulova",
   "photo_url": "/assets/seasons/participants/rayxona-sanakulova.jpg",
   "country_code": "UZB",
-  "school": "Navoiy shahridagi Prezident maktabi",
+  "school": "Navoiy shahar Prezident maktabi, 9-sinf",
   "platform_accounts": [
     {
       "platform": "codeforces",
@@ -13,6 +13,8 @@
     }
   ],
   "aliases": [
-    "Raykhona Sanakulova"
-  ]
+    "Raykhona Sanakulova",
+    "Rayxona Sanaqulova"
+  ],
+  "region": "Navoiy viloyati"
 }

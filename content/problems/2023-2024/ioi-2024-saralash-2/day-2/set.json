@@ -1,0 +1,17 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "IOI 2024 saralashining II bosqichi masalalari.",
+  "date_label": "2024-02-21",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "two-strings",
+    "transport",
+    "cards",
+    "thanos-sort",
+    "two-trees"
+  ]
+}

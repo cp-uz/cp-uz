@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "cards",
+  "code": "C",
+  "title": "Kartalar",
+  "original_title": "Cards",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-2/day-2/cards/statement.pdf",
+    "sha256": "2363b8e57932c830f485e21c1d85dc83cdc24a999059b0f6ce276ba260c3ee8d",
+    "size_bytes": 129641,
+    "page_count": 2,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "interactive",
+  "max_score": 100,
+  "difficulty_label": "Milliy saralash",
+  "tags": [
+    "IOI saralashi"
+  ],
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-16",
+  "links": [
+    {
+      "kind": "practice",
+      "title": "RoboContest mirrori",
+      "url": "https://robocontest.uz/olympiads/1283",
+      "platform": "RoboContest",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "package",
+      "title": "GitHub taskidagi original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284101/2024_selection2_day2.zip",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": false,
+      "order": 10
+    }
+  ]
+}

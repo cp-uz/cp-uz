@@ -1,0 +1,47 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "thanos-sort",
+  "code": "D",
+  "title": "Thanos sort",
+  "original_title": "Thanos sort",
+  "statement_file": "statement.uz.md",
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/ioi-2024-saralash-2/day-2/thanos-sort/statement.pdf",
+    "sha256": "12104341465b1d23bb09488796ef2658c2c8fda1a76b84e48d612ef8dad33ca7",
+    "size_bytes": 146093,
+    "page_count": 2,
+    "language": "uz",
+    "provenance": "official"
+  },
+  "translation_status": "original_uzbek",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Milliy saralash",
+  "tags": [
+    "IOI saralashi"
+  ],
+  "order": 4,
+  "publication_status": "published",
+  "last_verified_on": "2026-09-16",
+  "links": [
+    {
+      "kind": "practice",
+      "title": "RoboContest mirrori",
+      "url": "https://robocontest.uz/olympiads/1283",
+      "platform": "RoboContest",
+      "is_official": false,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "package",
+      "title": "GitHub taskidagi original PDF to‘plami",
+      "url": "https://github.com/user-attachments/files/32284101/2024_selection2_day2.zip",
+      "platform": "GitHub",
+      "is_official": false,
+      "is_primary": false,
+      "order": 10
+    }
+  ]
+}
