@@ -44,6 +44,13 @@
       "url": "https://t.me/s/Fan_olimpiadalari_M/9225",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IOI saralash III — to‘liq natijalar jadvali",
+      "url": "https://sites.google.com/view/ioi-3/",
+      "is_official": true,
+      "order": 20
     }
   ],
   "sources": [
@@ -64,7 +71,317 @@
       "accessed_on": "2026-09-01",
       "is_primary": true,
       "notes": ""
+    },
+    {
+      "type": "official",
+      "title": "IOI 2026 saralashining III bosqichi natijalari",
+      "url": "https://sites.google.com/view/ioi-3/",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Ikki tur ballari, umumiy o‘rin, hudud va maktab ma’lumotlari berilgan rasmiy jadval."
     }
   ],
-  "results": []
+  "results": [
+    {
+      "participant": "jahongirshoh-avazxonov",
+      "rank": 1,
+      "score": 568,
+      "score_label": "568 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 10,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:jahongirshoh-avazxonov"
+    },
+    {
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 2,
+      "score": 542,
+      "score_label": "542 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 20,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:ulugbek-raxmatullayev"
+    },
+    {
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 3,
+      "score": 485,
+      "score_label": "485 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 30,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:jahonali-xaydaraliyev"
+    },
+    {
+      "participant": "sardor-salimov",
+      "rank": 4,
+      "score": 441,
+      "score_label": "441 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 40,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:sardor-salimov"
+    },
+    {
+      "participant": "timur-kadirbergenov",
+      "rank": 5,
+      "score": 391,
+      "score_label": "391 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 50,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:timur-kadirbergenov"
+    },
+    {
+      "participant": "humoyun-abduraufov",
+      "rank": 6,
+      "score": 383,
+      "score_label": "383 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 60,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:humoyun-abduraufov"
+    },
+    {
+      "participant": "muhammadqodir-muhammadov",
+      "rank": 7,
+      "score": 327,
+      "score_label": "327 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 70,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:muhammadqodir-muhammadov"
+    },
+    {
+      "participant": "oysha-mirzatillayeva",
+      "rank": 8,
+      "score": 315,
+      "score_label": "315 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 80,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:oysha-mirzatillayeva"
+    },
+    {
+      "participant": "ulugbek-kamalov",
+      "rank": 9,
+      "score": 299,
+      "score_label": "299 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 90,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:ulugbek-kamalov"
+    },
+    {
+      "participant": "shahruz-erkinov",
+      "rank": 10,
+      "score": 293,
+      "score_label": "293 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 100,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:shahruz-erkinov"
+    },
+    {
+      "participant": "shohjahon-bazarov",
+      "rank": 11,
+      "score": 286,
+      "score_label": "286 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 110,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:shohjahon-bazarov"
+    },
+    {
+      "participant": "ozodbek-xaydaraliyev",
+      "rank": 12,
+      "score": 285,
+      "score_label": "285 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 120,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:ozodbek-xaydaraliyev"
+    },
+    {
+      "participant": "temurbek-ubaydullayev",
+      "rank": 13,
+      "score": 281,
+      "score_label": "281 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 130,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:temurbek-ubaydullayev"
+    },
+    {
+      "participant": "behruz-suyunov",
+      "rank": 14,
+      "score": 266,
+      "score_label": "266 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 140,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:behruz-suyunov"
+    },
+    {
+      "participant": "isamatdin-baybolov",
+      "rank": 15,
+      "score": 263,
+      "score_label": "263 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 150,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:isamatdin-baybolov"
+    },
+    {
+      "participant": "hasilbek-komekbayev",
+      "rank": 16,
+      "score": 262,
+      "score_label": "262 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 160,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:hasilbek-komekbayev"
+    },
+    {
+      "participant": "dilmurod-olimov",
+      "rank": 17,
+      "score": 248,
+      "score_label": "248 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 170,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:dilmurod-olimov"
+    },
+    {
+      "participant": "behruzbek-rahimboev",
+      "rank": 18,
+      "score": 248,
+      "score_label": "248 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 180,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:behruzbek-rahimboev"
+    },
+    {
+      "participant": "malika-xojamuratova",
+      "rank": 19,
+      "score": 245,
+      "score_label": "245 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 190,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:malika-xojamuratova"
+    },
+    {
+      "participant": "eldor-anvarov",
+      "rank": 20,
+      "score": 243,
+      "score_label": "243 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 200,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:eldor-anvarov"
+    },
+    {
+      "participant": "umidjon-qobiljonov",
+      "rank": 21,
+      "score": 243,
+      "score_label": "243 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 210,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:umidjon-qobiljonov"
+    },
+    {
+      "participant": "rayxona-sanakulova",
+      "rank": 22,
+      "score": 240,
+      "score_label": "240 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 220,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:rayxona-sanakulova"
+    },
+    {
+      "participant": "ravshan-rahmiddinov",
+      "rank": 23,
+      "score": 238,
+      "score_label": "238 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 230,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:ravshan-rahmiddinov"
+    },
+    {
+      "participant": "erkin-karimov",
+      "rank": 24,
+      "score": 236,
+      "score_label": "236 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 240,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:erkin-karimov"
+    },
+    {
+      "participant": "muhammadaziz-usmonov",
+      "rank": 25,
+      "score": 236,
+      "score_label": "236 ball",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://sites.google.com/view/ioi-3/",
+      "order": 250,
+      "award_title": "IOI yakuniy saralash sikliga o‘tgan",
+      "key": "6:participant:muhammadaziz-usmonov"
+    }
+  ]
 }

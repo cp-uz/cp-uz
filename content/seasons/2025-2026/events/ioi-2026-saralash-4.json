@@ -54,10 +54,17 @@
     },
     {
       "type": "results",
-      "title": "IOI 2026 terma jamoasi",
-      "url": "https://t.me/s/Fan_olimpiadalari_M?q=%23IOI",
+      "title": "IOI 2026 asosiy terma jamoasi",
+      "url": "https://t.me/Fan_olimpiadalari_M/10010",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IOI 2026 mezbon qo‘shimcha jamoasi",
+      "url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "is_official": true,
+      "order": 20
     }
   ],
   "sources": [
@@ -90,13 +97,103 @@
     },
     {
       "type": "official",
-      "title": "IOI 2026 terma jamoasi aniqlangani",
-      "url": "https://t.me/s/Fan_olimpiadalari_M?q=%23IOI",
+      "title": "IOI 2026 asosiy terma jamoasi aniqlangani",
+      "url": "https://t.me/Fan_olimpiadalari_M/10010",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-09-17",
       "is_primary": true,
-      "notes": ""
+      "notes": "To‘rt nafar asosiy terma jamoa a’zosi e’lon qilingan."
+    },
+    {
+      "type": "official",
+      "title": "IOI 2026 mezbon qo‘shimcha jamoasi aniqlangani",
+      "url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "To‘rt nafar mezbonning norasmiy qo‘shimcha jamoasi e’lon qilingan."
     }
   ],
-  "results": []
+  "results": [
+    {
+      "participant": "jahongirshoh-avazxonov",
+      "medal": "none",
+      "category": "Asosiy terma jamoa",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10010",
+      "order": 10,
+      "award_title": "IOI 2026 asosiy terma jamoasiga saralangan",
+      "key": "7:participant:jahongirshoh-avazxonov:asosiy-jamoa"
+    },
+    {
+      "participant": "ulugbek-raxmatullayev",
+      "medal": "none",
+      "category": "Asosiy terma jamoa",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10010",
+      "order": 20,
+      "award_title": "IOI 2026 asosiy terma jamoasiga saralangan",
+      "key": "7:participant:ulugbek-raxmatullayev:asosiy-jamoa"
+    },
+    {
+      "participant": "jahonali-xaydaraliyev",
+      "medal": "none",
+      "category": "Asosiy terma jamoa",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10010",
+      "order": 30,
+      "award_title": "IOI 2026 asosiy terma jamoasiga saralangan",
+      "key": "7:participant:jahonali-xaydaraliyev:asosiy-jamoa"
+    },
+    {
+      "participant": "timur-kadirbergenov",
+      "medal": "none",
+      "category": "Asosiy terma jamoa",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10010",
+      "order": 40,
+      "award_title": "IOI 2026 asosiy terma jamoasiga saralangan",
+      "key": "7:participant:timur-kadirbergenov:asosiy-jamoa"
+    },
+    {
+      "participant": "ulugbek-kamalov",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "order": 50,
+      "award_title": "IOI 2026 mezbon qo‘shimcha jamoasiga saralangan",
+      "key": "7:participant:ulugbek-kamalov:qoshimcha-jamoa"
+    },
+    {
+      "participant": "sardor-salimov",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "order": 60,
+      "award_title": "IOI 2026 mezbon qo‘shimcha jamoasiga saralangan",
+      "key": "7:participant:sardor-salimov:qoshimcha-jamoa"
+    },
+    {
+      "participant": "humoyun-abduraufov",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "order": 70,
+      "award_title": "IOI 2026 mezbon qo‘shimcha jamoasiga saralangan",
+      "key": "7:participant:humoyun-abduraufov:qoshimcha-jamoa"
+    },
+    {
+      "participant": "ravshan-rahmiddinov",
+      "medal": "none",
+      "category": "Mezbonning qo‘shimcha jamoasi",
+      "is_local": true,
+      "result_url": "https://t.me/Fan_olimpiadalari_M/10011",
+      "order": 80,
+      "award_title": "IOI 2026 mezbon qo‘shimcha jamoasiga saralangan",
+      "key": "7:participant:ravshan-rahmiddinov:qoshimcha-jamoa"
+    }
+  ]
 }

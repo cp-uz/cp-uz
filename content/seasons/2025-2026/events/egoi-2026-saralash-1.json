@@ -4,14 +4,15 @@
   "title": "EGOI 2026 saralashi — I bosqich",
   "short_title": "EGOI saralash I",
   "summary": "Xalqaro qizlar informatika olimpiadasiga milliy dastlabki saralash.",
-  "description": "Informatika fanidan xalqaro qizlar olimpiadasiga saralashning I bosqichi o‘tkazildi. Dastlabki jarayon 2025-yil dekabrida yakunlangan, informatika bo‘yicha yakuniy natijalar 2026-yil 8-yanvarda e’lon qilingan.",
+  "description": "Informatika fanidan xalqaro qizlar olimpiadasiga saralashning I bosqichi 29–30-noyabr reja-grafigi doirasida o‘tkazildi. Informatika bo‘yicha yakuniy natijalar 2026-yil 8-yanvarda e’lon qilingan.",
   "type": "selection",
   "publication_status": "published",
   "event_status": "completed",
   "verification_status": "verified",
-  "date_precision": "month",
-  "start_date": "2025-12-01",
-  "date_label": "2025-yil dekabr; yakuniy natija 8-yanvar, 2026",
+  "date_precision": "range",
+  "start_date": "2025-11-29",
+  "end_date": "2025-11-30",
+  "date_label": "29–30-noyabr, 2025; yakuniy natija 8-yanvar, 2026",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston",
   "venue": "",
@@ -31,6 +32,13 @@
   ],
   "resources": [
     {
+      "type": "announcement",
+      "title": "Nufuzli olimpiadalarga dastlabki saralash reja-grafigi",
+      "url": "https://t.me/Fan_olimpiadalari_M/7929",
+      "is_official": true,
+      "order": 5
+    },
+    {
       "type": "results",
       "title": "Informatika bo‘yicha qizlar saralash I natijalari",
       "url": "https://t.me/s/Fan_olimpiadalari_M/8354",
@@ -39,6 +47,15 @@
     }
   ],
   "sources": [
+    {
+      "type": "official",
+      "title": "Nufuzli olimpiadalarga dastlabki saralash sanalari",
+      "url": "https://t.me/Fan_olimpiadalari_M/7929",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Birinchi bosqich 2025-yil 29–30-noyabr kunlari reja-grafik asosida o‘tkazilishi e’lon qilingan."
+    },
     {
       "type": "official",
       "title": "Informatika bo‘yicha qizlar saralash I natijalari",

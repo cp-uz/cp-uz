@@ -4,15 +4,15 @@
   "title": "EGOI 2025 yakuniy saralashi",
   "short_title": "EGOI 2025 saralash",
   "summary": "Ikki kunlik saralashning 12 nafar ishtirokchi bo‘yicha umumiy natijasi.",
-  "description": "To‘rttadan masalali ikki kun yakunida eng yuqori natija ko‘rsatgan to‘rt ishtirokchi EGOI 2025 terma jamoasiga saralangan.",
+  "description": "Yakuniy saralash 27–28-aprel kunlari o‘tkazilgan. To‘rttadan masalali ikki kun yakunida eng yuqori natija ko‘rsatgan to‘rt ishtirokchi EGOI 2025 terma jamoasiga saralangan.",
   "type": "selection",
   "publication_status": "published",
   "event_status": "completed",
   "verification_status": "verified",
-  "date_precision": "tba",
-  "start_date": null,
-  "end_date": null,
-  "date_label": "2025-yil, aniq sana manbada ko‘rsatilmagan",
+  "date_precision": "range",
+  "start_date": "2025-04-27",
+  "end_date": "2025-04-28",
+  "date_label": "27–28-aprel, 2025",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston",
   "mode": "onsite",
@@ -34,6 +34,27 @@
       "url": "https://github.com/user-attachments/files/32284153/EGOI2025_selection.xlsx",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "EGOI 2025 yakuniy saralash jadvali",
+      "url": "https://docs.google.com/spreadsheets/d/1Vt2Xk7nc5ttUe9dkDj1uEg9Ts1OGKdFqw5xeBulJ33g/edit",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "announcement",
+      "title": "Yakuniy saralash — 1-kun",
+      "url": "https://t.me/cp_uz/154",
+      "is_official": false,
+      "order": 30
+    },
+    {
+      "type": "announcement",
+      "title": "Yakuniy saralash — 2-kun",
+      "url": "https://t.me/cp_uz/155",
+      "is_official": false,
+      "order": 40
     }
   ],
   "sources": [
@@ -45,6 +66,33 @@
       "accessed_on": "2026-09-16",
       "is_primary": true,
       "notes": "Ikki kun ballari, umumiy o‘rin va hudud/maktab ma’lumotlari."
+    },
+    {
+      "type": "community_report",
+      "title": "EGOI 2025 yakuniy saralashining 1-kuni",
+      "url": "https://t.me/cp_uz/154",
+      "publisher": "Competitive Programming Uz",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Postning Telegram vaqti 2025-yil 27-aprelni, matni esa bu yakuniy saralashning 1-kuni ekanini tasdiqlaydi."
+    },
+    {
+      "type": "community_report",
+      "title": "EGOI 2025 yakuniy saralashining 2-kuni",
+      "url": "https://t.me/cp_uz/155",
+      "publisher": "Competitive Programming Uz",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Postning Telegram vaqti 2025-yil 28-aprelni, matni esa bu yakuniy saralashning 2-kuni ekanini tasdiqlaydi."
+    },
+    {
+      "type": "archive",
+      "title": "EGOI 2025 yakuniy saralashining jonli jadvali",
+      "url": "https://docs.google.com/spreadsheets/d/1Vt2Xk7nc5ttUe9dkDj1uEg9Ts1OGKdFqw5xeBulJ33g/edit",
+      "publisher": "O‘zbekiston EGOI saralash jamoasi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "cp_uz kanalidagi bit.ly/egoi2025uz havolasi yo‘naltiradigan ochiq jadval."
     }
   ],
   "results": [
