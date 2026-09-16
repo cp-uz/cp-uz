@@ -1,7 +1,7 @@
 {
   "slug": "2023-2024",
   "title": "2023–2024 sport dasturlash mavsumi",
-  "summary": "IOI 2024 va EGOI 2024 terma jamoalari saralashlarining tekshirilgan natija hamda masalalar arxivi.",
+  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan APIO 2024, EGOI 2024 va IOI 2024 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2023-09-01",
   "end_date": "2024-08-31",
   "publication_status": "published",
@@ -11,9 +11,9 @@
   "routes": [
     {
       "code": "main",
-      "title": "IOI saralash yo‘li",
-      "description": "IOI 2024 terma jamoasini shakllantirish bosqichlari.",
-      "kind": "selection",
+      "title": "IOI yo‘li",
+      "description": "IOI 2024 terma jamoasini shakllantirish va xalqaro final bosqichi.",
+      "kind": "official",
       "color": "blue",
       "line_style": "solid",
       "icon": "solar:diploma-linear",
@@ -30,6 +30,17 @@
       "icon": "solar:medal-ribbon-star-linear",
       "order": 20,
       "is_visible": true
+    },
+    {
+      "code": "apio",
+      "title": "APIO yo‘li",
+      "description": "O‘zbekiston ishtirok etgan APIO 2024 xalqaro onlayn bosqichi.",
+      "kind": "official",
+      "color": "teal",
+      "line_style": "solid",
+      "icon": "solar:global-linear",
+      "order": 30,
+      "is_visible": true
     }
   ],
   "edges": [
@@ -41,6 +52,24 @@
       "line_style": "solid",
       "label": "II bosqichdan III bosqichga",
       "order": 10
+    },
+    {
+      "from_event_code": "TST3",
+      "to_event_code": "IOI24",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Eng yuqori natijali 4 nafar terma jamoaga",
+      "order": 20
+    },
+    {
+      "from_event_code": "EGOI3",
+      "to_event_code": "EGOI24",
+      "route_code": "egoi",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Eng yuqori natijali 4 nafar terma jamoaga",
+      "order": 30
     }
   ]
 }

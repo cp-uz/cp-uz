@@ -1,0 +1,30 @@
+{
+  "full_name": "Timur Kadirbergenov",
+  "slug": "timur-kadirbergenov",
+  "photo_url": "/assets/seasons/participants/timur-kadirbergenov.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "Timosh",
+      "url": "https://codeforces.com/profile/Timosh",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "Timosh",
+      "url": "https://kep.uz/users/user/Timosh",
+      "is_verified": true
+    },
+    {
+      "platform": "robocontest",
+      "handle": "kadirbergenov",
+      "url": "https://robocontest.uz/profile/kadirbergenov",
+      "is_verified": true
+    }
+  ],
+  "school": "Nukus shahridagi Prezident maktabi",
+  "aliases": [
+    "Kadirbergnov Timur Amirovich"
+  ]
+}

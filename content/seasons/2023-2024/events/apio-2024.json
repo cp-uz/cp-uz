@@ -1,0 +1,79 @@
+{
+  "code": "APIO24",
+  "slug": "apio-2024",
+  "title": "XVIII Osiyo-Tinch okeani informatika olimpiadasi — APIO 2024",
+  "short_title": "APIO 2024",
+  "summary": "Xitoy mezbonligidagi onlayn APIO; Asilbek Sunnatov bronza medal oldi.",
+  "description": "APIO 2024 18-may kuni Xitoy mezbonligida onlayn o‘tkazildi. O‘zbekiston vakili Asilbek Sunnatov bronza medalni qo‘lga kiritdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2024-05-18",
+  "end_date": "2024-05-18",
+  "date_label": "18-may, 2024",
+  "timezone": "Asia/Shanghai",
+  "location": "Xitoy mezbonligi; O‘zbekistonda onlayn",
+  "venue": "",
+  "mode": "online",
+  "platform": "APIO 2024 onlayn baholash tizimi",
+  "organizer": "APIO 2024 tashkiliy qo‘mitasi va milliy delegatsiyalar",
+  "eligibility": "Milliy delegatsiya tomonidan rasmiy ishtirokchi sifatida ro‘yxatga olingan maktab o‘quvchilari.",
+  "is_featured": true,
+  "order": 150,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 10,
+      "node_style": "final",
+      "label": "APIO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "scoreboard",
+      "title": "APIO 2024 rasmiy reytingi",
+      "url": "https://apio2024.org/ranking",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning APIO 2024 medali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/4957",
+      "is_official": true,
+      "order": 20
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "APIO 2024da O‘zbekistonning bronza medali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M/4957",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Musobaqa sanasi, Xitoy mezbonligi va Asilbek Sunnatovning bronza medalini tasdiqlaydi."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "APIO 2024 rasmiy reytingi",
+      "url": "https://apio2024.org/ranking",
+      "publisher": "APIO 2024 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Fan olimpiadalari markazi ko‘rsatgan rasmiy natijalar havolasi."
+    }
+  ],
+  "results": [
+    {
+      "key": "APIO24:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://apio2024.org/ranking",
+      "order": 1
+    }
+  ]
+}

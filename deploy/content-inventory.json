@@ -2,24 +2,24 @@
   "counts": {
     "articles": 163,
     "attachments": 12,
-    "edges": 43,
-    "events": 56,
+    "edges": 47,
+    "events": 64,
     "glossary_terms": 174,
     "links": 114,
-    "local_results": 218,
+    "local_results": 246,
     "practice_references": 885,
     "problems": 63,
-    "public_events": 56,
+    "public_events": 64,
     "public_problems": 63,
     "public_seasons": 5,
     "public_sets": 19,
     "published_articles": 163,
     "root_categories": 10,
-    "routes": 17,
+    "routes": 20,
     "seasons": 5,
     "sets": 19,
     "statement_pdfs": 63
   },
   "schema": "cpuz.release-inventory.v1",
-  "source_manifest_sha256": "b0c1fe3e6eb0e0380e90de6b272621d3b72922e1580b86596858ab1a030e920b"
+  "source_manifest_sha256": "e9974cdb1467518c1f300417df93b5233cbb82d846dce1dfe1901ed1f29fc700"
 }

@@ -1,0 +1,125 @@
+{
+  "code": "IOI25",
+  "slug": "ioi-2025",
+  "title": "XXXVII Xalqaro informatika olimpiadasi — IOI 2025",
+  "short_title": "IOI 2025",
+  "summary": "Sucreda o‘tkazilgan IOI; O‘zbekiston 1 kumush, 1 bronza va 1 faxriy yorliq oldi.",
+  "description": "IOI 2025 27-iyuldan 3-avgustgacha Boliviyaning Sucre shahrida o‘tkazildi. 84 delegatsiyadan 330 ishtirokchi qatnashdi; O‘zbekiston bir kumush, bir bronza va bir faxriy yorliq qayd etdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-07-27",
+  "end_date": "2025-08-03",
+  "date_label": "27-iyul – 3-avgust, 2025",
+  "timezone": "America/La_Paz",
+  "location": "Sucre, Boliviya",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "IOI CMS",
+  "organizer": "IOI 2025 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy terma jamoaga saralangan maktab o‘quvchilari; har davlat uchun 4 rasmiy ishtirokchi.",
+  "is_featured": true,
+  "order": 200,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 20,
+      "node_style": "final",
+      "label": "IOI"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IOI 2025 rasmiy sayti",
+      "url": "https://ioi2025.obi.org.bo/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "IOI 2025 yakuniy natijalari",
+      "url": "https://stats.ioinformatics.org/olympiads/2025",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning IOI natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "IOI 2025 masalalari",
+      "url": "https://stats.ioinformatics.org/tasks/2025/",
+      "is_official": true,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2025 rasmiy statistika arxivi",
+      "url": "https://stats.ioinformatics.org/olympiads/2025",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Sana, mezbon shahar, delegatsiyalar va medal chegaralarini tasdiqlaydi."
+    },
+    {
+      "type": "archive",
+      "title": "O‘zbekistonning IOI 2025 natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "To‘rt ishtirokchining ballari, o‘rinlari va mukofotlari."
+    }
+  ],
+  "results": [
+    {
+      "key": "IOI25:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": 58,
+      "score": "378.82",
+      "medal": "silver",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 1
+    },
+    {
+      "key": "IOI25:participant:ulugbek-raxmatullayev",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 111,
+      "score": "308.12",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 2
+    },
+    {
+      "key": "IOI25:participant:timur-kadirbergenov",
+      "participant": "timur-kadirbergenov",
+      "rank": 198,
+      "score": 222,
+      "medal": "honourable_mention",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 3
+    },
+    {
+      "key": "IOI25:participant:sardor-salimov",
+      "participant": "sardor-salimov",
+      "rank": 242,
+      "score": 168,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 4
+    }
+  ]
+}

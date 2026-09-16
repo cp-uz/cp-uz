@@ -1,0 +1,153 @@
+{
+  "code": "APIO25",
+  "slug": "apio-2025",
+  "title": "XIX Osiyo-Tinch okeani informatika olimpiadasi — APIO 2025",
+  "short_title": "APIO 2025",
+  "summary": "O‘zbekiston mezbonligidagi onlayn APIO; milliy delegatsiya 3 bronza medal oldi.",
+  "description": "APIO 2025 17–18-may kunlari O‘zbekiston mezbonligida onlayn o‘tkazildi. 40 dan ortiq davlatdan qariyb 900 o‘quvchi qatnashdi; rasmiy reytingdagi olti o‘zbekistonlikdan Javohir Toshtemirov, Izzat Akbarov va Timur Kadirbergenov bronza medal oldi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-05-17",
+  "end_date": "2025-05-18",
+  "date_label": "17–18-may, 2025",
+  "timezone": "Asia/Tashkent",
+  "location": "O‘zbekiston mezbonligi; xalqaro onlayn",
+  "venue": "",
+  "mode": "online",
+  "platform": "APIO 2025 onlayn baholash tizimi",
+  "organizer": "O‘zbekiston Raqamli texnologiyalar vazirligi va Raqamli ta’limni rivojlantirish markazi",
+  "eligibility": "Milliy delegatsiya tomonidan rasmiy ishtirokchi sifatida ro‘yxatga olingan maktab o‘quvchilari.",
+  "is_featured": true,
+  "order": 150,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 10,
+      "node_style": "final",
+      "label": "APIO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "APIO 2025 rasmiy sayti",
+      "url": "https://apio2025.uz/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "APIO 2025 rasmiy reytingi",
+      "url": "https://apio2025.uz/ranking",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "other",
+      "title": "APIO 2025 musobaqa qoidalari",
+      "url": "https://apio2025.uz/rules",
+      "is_official": true,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "APIO 2025 rasmiy sayti",
+      "url": "https://apio2025.uz/",
+      "publisher": "APIO 2025 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Mezbon davlat, 17–18-may sanalari va xalqaro delegatsiyalarni tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "APIO 2025 rasmiy reytingi",
+      "url": "https://apio2025.uz/ranking",
+      "publisher": "APIO 2025 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "O‘zbekistonning olti rasmiy ishtirokchisi, o‘rinlari, ballari va medal holati."
+    },
+    {
+      "type": "organizer",
+      "title": "APIO 2025 musobaqa qoidalari",
+      "url": "https://apio2025.uz/rules",
+      "publisher": "APIO 2025 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Besh soatlik uch masalali format va har delegatsiyaning eng yaxshi olti rasmiy natijasi hisoblanishini tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "APIO25:participant:javohir-toshtemirov",
+      "participant": "javohir-toshtemirov",
+      "rank": 82,
+      "score": 131,
+      "score_label": "A: 25 · B: 6 · C: 100",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 1
+    },
+    {
+      "key": "APIO25:participant:izzat-akbarov",
+      "participant": "izzat-akbarov",
+      "rank": 82,
+      "score": 131,
+      "score_label": "A: 25 · B: 6 · C: 100",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 2
+    },
+    {
+      "key": "APIO25:participant:timur-kadirbergenov",
+      "participant": "timur-kadirbergenov",
+      "rank": 84,
+      "score": "130.1",
+      "score_label": "A: 78.1 · B: 36 · C: 16",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 3
+    },
+    {
+      "key": "APIO25:participant:ulugbek-raxmatullayev",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 103,
+      "score": "104.7",
+      "score_label": "A: 76.7 · B: 12 · C: 16",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 4
+    },
+    {
+      "key": "APIO25:participant:ismoilmirzo-inoyatov",
+      "participant": "ismoilmirzo-inoyatov",
+      "rank": 107,
+      "score": 94,
+      "score_label": "A: 8 · B: 12 · C: 74",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 5
+    },
+    {
+      "key": "APIO25:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": 124,
+      "score": "79.4",
+      "score_label": "A: 51.4 · B: 12 · C: 16",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://apio2025.uz/ranking",
+      "order": 6
+    }
+  ]
+}

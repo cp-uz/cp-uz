@@ -1,0 +1,125 @@
+{
+  "code": "EGOI25",
+  "slug": "egoi-2025",
+  "title": "Yevropa qizlar informatika olimpiadasi — EGOI 2025",
+  "short_title": "EGOI 2025",
+  "summary": "Bonnda o‘tkazilgan EGOI; O‘zbekiston 2 bronza medal oldi.",
+  "description": "EGOI 2025 14–20-iyul kunlari Germaniyaning Bonn shahrida o‘tkazildi. 60 delegatsiyadan 226 ishtirokchi qatnashdi; Oysha Mirzatillayeva va Malika Xojamuratova bronza medal oldi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-07-14",
+  "end_date": "2025-07-20",
+  "date_label": "14–20-iyul, 2025",
+  "timezone": "Europe/Berlin",
+  "location": "Bonn, Germaniya",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "CMS",
+  "organizer": "EGOI 2025 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy delegatsiyaga tanlangan maktab o‘quvchi qizlari.",
+  "is_featured": true,
+  "order": 170,
+  "route_memberships": [
+    {
+      "route_code": "egoi",
+      "order": 20,
+      "node_style": "final",
+      "label": "EGOI"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "EGOI 2025 rasmiy sayti",
+      "url": "https://egoi2025.de/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "EGOI 2025 yakuniy natijalari",
+      "url": "https://stats.egoi.org/editions/2025/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning EGOI natijalari",
+      "url": "https://stats.egoi.org/countries/UZB/results/",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "EGOI 2025 masalalari",
+      "url": "https://stats.egoi.org/editions/2025/tasks/",
+      "is_official": true,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "official",
+      "title": "EGOI 2025 rasmiy statistika sahifasi",
+      "url": "https://stats.egoi.org/editions/2025/",
+      "publisher": "EGOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Sana, joy, delegatsiyalar soni va medal chegaralarini tasdiqlaydi."
+    },
+    {
+      "type": "official",
+      "title": "O‘zbekistonning EGOI 2025 natijalari",
+      "url": "https://stats.egoi.org/countries/UZB/results/",
+      "publisher": "EGOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "To‘rt ishtirokchining ballari va o‘rinlari."
+    }
+  ],
+  "results": [
+    {
+      "key": "EGOI25:participant:oysha-mirzatillayeva",
+      "participant": "oysha-mirzatillayeva",
+      "rank": 63,
+      "score": 358,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 1
+    },
+    {
+      "key": "EGOI25:participant:malika-xojamuratova",
+      "participant": "malika-xojamuratova",
+      "rank": 88,
+      "score": 310,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 2
+    },
+    {
+      "key": "EGOI25:participant:solixa-dagarova",
+      "participant": "solixa-dagarova",
+      "rank": 127,
+      "score": 226,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 3
+    },
+    {
+      "key": "EGOI25:participant:durdona-akramova",
+      "participant": "durdona-akramova",
+      "rank": 178,
+      "score": 107,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.egoi.org/countries/UZB/results/",
+      "order": 4
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "code": "APIO23",
+  "slug": "apio-2023",
+  "title": "XVII Osiyo-Tinch okeani informatika olimpiadasi — APIO 2023",
+  "short_title": "APIO 2023",
+  "summary": "Xitoy mezbonligidagi onlayn APIO; Dilshodbek Xo‘jayev O‘zbekiston uchun bronza medal oldi.",
+  "description": "APIO 2023 20-may kuni Xitoy kompyuter federatsiyasi mezbonligida onlayn o‘tkazildi. 37 davlat va hudud delegatsiyasi qatnashgan musobaqada Dilshodbek Xo‘jayev bronza medalni qo‘lga kiritdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2023-05-20",
+  "end_date": "2023-05-20",
+  "date_label": "20-may, 2023",
+  "timezone": "Asia/Shanghai",
+  "location": "Xitoy mezbonligi; O‘zbekistonda onlayn",
+  "venue": "",
+  "mode": "online",
+  "platform": "APIO onlayn baholash tizimi",
+  "organizer": "China Computer Federation va milliy delegatsiyalar",
+  "eligibility": "Milliy delegatsiya tomonidan rasmiy ishtirokchi sifatida ro‘yxatga olingan maktab o‘quvchilari.",
+  "is_featured": true,
+  "order": 150,
+  "route_memberships": [
+    {
+      "route_code": "apio",
+      "order": 10,
+      "node_style": "final",
+      "label": "APIO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "APIO 2023 mezbon tashkilot xabari",
+      "url": "https://www.ccf.org.cn/en/News/2023-05-23/791812.shtml",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning APIO 2023 medali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?before=4118",
+      "is_official": true,
+      "order": 20
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "CCF Host APIO 2023",
+      "url": "https://www.ccf.org.cn/en/News/2023-05-23/791812.shtml",
+      "publisher": "China Computer Federation",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "20-may kuni onlayn o‘tkazilgani va 37 delegatsiya qatnashganini tasdiqlaydi."
+    },
+    {
+      "type": "official",
+      "title": "APIO 2023da O‘zbekistonning bronza medali",
+      "url": "https://t.me/s/Fan_olimpiadalari_M?before=4118",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Dilshodbek Xo‘jayevning bronza medalini va O‘zbekiston delegatsiyasi qatnashganini tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "APIO23:participant:dilshodbek-xojayev",
+      "participant": "dilshodbek-xojayev",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://t.me/s/Fan_olimpiadalari_M?before=4118",
+      "order": 1
+    }
+  ]
+}

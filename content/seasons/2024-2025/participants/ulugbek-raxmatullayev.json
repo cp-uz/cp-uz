@@ -1,0 +1,26 @@
+{
+  "full_name": "Ulug‘bek Raxmatullayev",
+  "slug": "ulugbek-raxmatullayev",
+  "photo_url": "/assets/seasons/participants/ulugbek-raxmatullayev.jpg",
+  "country_code": "UZB",
+  "platform_accounts": [
+    {
+      "platform": "codeforces",
+      "handle": "Ulugbek2008",
+      "url": "https://codeforces.com/profile/Ulugbek2008",
+      "is_verified": true
+    },
+    {
+      "platform": "kepuz",
+      "handle": "ulugbek",
+      "url": "https://kep.uz/users/user/ulugbek",
+      "is_verified": true
+    }
+  ],
+  "aliases": [
+    "Ulugbek Rakhmatullaev",
+    "Ulug'bek Rakhmatullaev",
+    "Ulug‘bek Rakhmatullayev"
+  ],
+  "school": "Namangan shahridagi Prezident maktabi"
+}

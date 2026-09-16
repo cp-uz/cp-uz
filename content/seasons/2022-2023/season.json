@@ -1,7 +1,7 @@
 {
   "slug": "2022-2023",
   "title": "2022–2023 sport dasturlash mavsumi",
-  "summary": "IOI 2023 O‘zbekiston terma jamoasi saralashining tekshirilgan natijalar arxivi.",
+  "summary": "IOI 2023 terma jamoasi saralashi hamda O‘zbekiston qatnashgan APIO 2023 va IOI 2023 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2022-09-01",
   "end_date": "2023-08-31",
   "publication_status": "published",
@@ -11,15 +11,36 @@
   "routes": [
     {
       "code": "main",
-      "title": "IOI saralash yo‘li",
-      "description": "IOI 2023 terma jamoasini shakllantirish bosqichlari.",
-      "kind": "selection",
+      "title": "IOI yo‘li",
+      "description": "IOI 2023 terma jamoasini shakllantirish va xalqaro final bosqichi.",
+      "kind": "official",
       "color": "blue",
       "line_style": "solid",
       "icon": "solar:diploma-linear",
       "order": 10,
       "is_visible": true
+    },
+    {
+      "code": "apio",
+      "title": "APIO yo‘li",
+      "description": "O‘zbekiston ishtirok etgan APIO 2023 xalqaro onlayn bosqichi.",
+      "kind": "official",
+      "color": "teal",
+      "line_style": "solid",
+      "icon": "solar:global-linear",
+      "order": 20,
+      "is_visible": true
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "from_event_code": "TST3",
+      "to_event_code": "IOI23",
+      "route_code": "main",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Eng yuqori natijali 4 nafar terma jamoaga",
+      "order": 10
+    }
+  ]
 }

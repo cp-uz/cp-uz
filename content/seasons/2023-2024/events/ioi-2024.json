@@ -1,0 +1,125 @@
+{
+  "code": "IOI24",
+  "slug": "ioi-2024",
+  "title": "XXXVI Xalqaro informatika olimpiadasi — IOI 2024",
+  "short_title": "IOI 2024",
+  "summary": "Aleksandriyada o‘tkazilgan IOI; O‘zbekiston 1 bronza va 1 faxriy yorliq oldi.",
+  "description": "IOI 2024 1–8-sentabr kunlari Misrning Aleksandriya shahrida o‘tkazildi. 91 delegatsiyadan 362 ishtirokchi, jumladan 9 nafar offsite ishtirokchi qatnashdi; O‘zbekiston bir bronza medal va bir faxriy yorliq qayd etdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2024-09-01",
+  "end_date": "2024-09-08",
+  "date_label": "1–8-sentabr, 2024",
+  "timezone": "Africa/Cairo",
+  "location": "Aleksandriya, Misr",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "IOI CMS",
+  "organizer": "IOI 2024 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy terma jamoaga saralangan maktab o‘quvchilari; har davlat uchun 4 rasmiy ishtirokchi.",
+  "is_featured": true,
+  "order": 200,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 30,
+      "node_style": "final",
+      "label": "IOI"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IOI 2024 rasmiy sayti",
+      "url": "https://www.ioi2024.eg/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "IOI 2024 yakuniy natijalari",
+      "url": "https://stats.ioinformatics.org/olympiads/2024",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning IOI natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "IOI 2024 masalalari",
+      "url": "https://stats.ioinformatics.org/tasks/2024/",
+      "is_official": true,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2024 rasmiy statistika arxivi",
+      "url": "https://stats.ioinformatics.org/olympiads/2024",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Sana, mezbon shahar, delegatsiyalar va medal chegaralarini tasdiqlaydi."
+    },
+    {
+      "type": "archive",
+      "title": "O‘zbekistonning IOI 2024 natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "To‘rt ishtirokchining ballari, o‘rinlari va mukofotlari."
+    }
+  ],
+  "results": [
+    {
+      "key": "IOI24:participant:mardon-hazratov",
+      "participant": "mardon-hazratov",
+      "rank": 166,
+      "score": "227.5",
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 1
+    },
+    {
+      "key": "IOI24:participant:husanboy-mansuraliyev",
+      "participant": "husanboy-mansuraliyev",
+      "rank": 194,
+      "score": 203,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 2
+    },
+    {
+      "key": "IOI24:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": 206,
+      "score": "194.33",
+      "medal": "honourable_mention",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 3
+    },
+    {
+      "key": "IOI24:participant:ulugbek-rahmatullayev",
+      "participant": "ulugbek-rahmatullayev",
+      "rank": 247,
+      "score": "161.5",
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 4
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "code": "IOI23",
+  "slug": "ioi-2023",
+  "title": "XXXV Xalqaro informatika olimpiadasi — IOI 2023",
+  "short_title": "IOI 2023",
+  "summary": "Szegedda o‘tkazilgan IOI; O‘zbekiston 2 bronza va 1 faxriy yorliq oldi.",
+  "description": "IOI 2023 28-avgustdan 4-sentabrgacha Vengriyaning Szeged shahrida o‘tkazildi. 87 delegatsiyadan 351 ishtirokchi qatnashdi; O‘zbekiston jamoasi ikki bronza medal va bir faxriy yorliq qayd etdi.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2023-08-28",
+  "end_date": "2023-09-04",
+  "date_label": "28-avgust – 4-sentabr, 2023",
+  "timezone": "Europe/Budapest",
+  "location": "Szeged, Vengriya",
+  "venue": "",
+  "mode": "onsite",
+  "platform": "IOI CMS",
+  "organizer": "IOI 2023 tashkiliy qo‘mitasi",
+  "eligibility": "Milliy terma jamoaga saralangan maktab o‘quvchilari; har davlat uchun 4 rasmiy ishtirokchi.",
+  "is_featured": true,
+  "order": 200,
+  "route_memberships": [
+    {
+      "route_code": "main",
+      "order": 20,
+      "node_style": "final",
+      "label": "IOI"
+    }
+  ],
+  "resources": [
+    {
+      "type": "official_page",
+      "title": "IOI 2023 rasmiy sayti",
+      "url": "https://ioi2023.hu/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "scoreboard",
+      "title": "IOI 2023 yakuniy natijalari",
+      "url": "https://stats.ioinformatics.org/olympiads/2023",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "results",
+      "title": "O‘zbekistonning IOI natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "IOI 2023 masalalari",
+      "url": "https://stats.ioinformatics.org/tasks/2023/",
+      "is_official": true,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "archive",
+      "title": "IOI 2023 rasmiy statistika arxivi",
+      "url": "https://stats.ioinformatics.org/olympiads/2023",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "Sana, mezbon shahar, delegatsiyalar va medal chegaralarini tasdiqlaydi."
+    },
+    {
+      "type": "archive",
+      "title": "O‘zbekistonning IOI 2023 natijalari",
+      "url": "https://stats.ioinformatics.org/results/UZB",
+      "publisher": "IOI Statistics",
+      "accessed_on": "2026-09-17",
+      "is_primary": true,
+      "notes": "To‘rt ishtirokchining ballari, o‘rinlari va mukofotlari."
+    }
+  ],
+  "results": [
+    {
+      "key": "IOI23:participant:dilyorbek-valijonov",
+      "participant": "dilyorbek-valijonov",
+      "rank": 119,
+      "score": 201,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 1
+    },
+    {
+      "key": "IOI23:participant:dilshodbek-xojayev",
+      "participant": "dilshodbek-xojayev",
+      "rank": 163,
+      "score": 164,
+      "medal": "bronze",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 2
+    },
+    {
+      "key": "IOI23:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": 206,
+      "score": "133.5",
+      "medal": "honourable_mention",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 3
+    },
+    {
+      "key": "IOI23:participant:otabek-jurabekov",
+      "participant": "otabek-jurabekov",
+      "rank": 331,
+      "score": 19,
+      "medal": "none",
+      "is_local": true,
+      "result_url": "https://stats.ioinformatics.org/results/UZB",
+      "order": 4
+    }
+  ]
+}

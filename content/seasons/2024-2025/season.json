@@ -1,7 +1,7 @@
 {
   "slug": "2024-2025",
   "title": "2024–2025 sport dasturlash mavsumi",
-  "summary": "IOI 2025 va EGOI 2025 terma jamoalari saralashlarining tekshirilgan arxivi.",
+  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan APIO 2025, EGOI 2025 va IOI 2025 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2024-09-01",
   "end_date": "2025-08-31",
   "publication_status": "published",
@@ -11,9 +11,9 @@
   "routes": [
     {
       "code": "main",
-      "title": "IOI saralash yo‘li",
-      "description": "IOI 2025 terma jamoasini shakllantirish bosqichlari.",
-      "kind": "selection",
+      "title": "IOI yo‘li",
+      "description": "IOI 2025 terma jamoasini shakllantirish va xalqaro final bosqichi.",
+      "kind": "official",
       "color": "blue",
       "line_style": "solid",
       "icon": "solar:diploma-linear",
@@ -30,7 +30,28 @@
       "icon": "solar:medal-ribbon-star-linear",
       "order": 20,
       "is_visible": true
+    },
+    {
+      "code": "apio",
+      "title": "APIO yo‘li",
+      "description": "O‘zbekiston mezbonlik qilgan APIO 2025 xalqaro onlayn bosqichi.",
+      "kind": "official",
+      "color": "teal",
+      "line_style": "solid",
+      "icon": "solar:global-linear",
+      "order": 30,
+      "is_visible": true
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "from_event_code": "EGOIF",
+      "to_event_code": "EGOI25",
+      "route_code": "egoi",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Eng yuqori natijali 4 nafar terma jamoaga",
+      "order": 10
+    }
+  ]
 }
