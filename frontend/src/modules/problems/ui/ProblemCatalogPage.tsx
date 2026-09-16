@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { useMemo } from 'react';
 import { Seo } from 'shared/ui/Seo';
+import { useMemo, useState } from 'react';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
@@ -11,15 +11,21 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Select from '@mui/material/Select';
 import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
+import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import InputLabel from '@mui/material/InputLabel';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { treeItemClasses, TreeItem as MuiTreeItem } from '@mui/x-tree-view/TreeItem';
 
 import { problemQueries } from '../application';
+
+const ALL_SEASONS = 'all';
 
 function eventLogo(slug: string) {
   if (slug === 'ioi-2026') return '/assets/seasons/ioi.png';
@@ -122,6 +128,7 @@ function TreeLabel({ icon, title, stats = [] }: TreeLabelProps) {
 }
 
 export default function ProblemCatalogPage() {
+  const [selectedSeason, setSelectedSeason] = useState(ALL_SEASONS);
   const { data, loading, error } = useAsyncData(problemQueries.catalog, null, []);
   const seasons = useMemo(
     () =>
@@ -131,14 +138,21 @@ export default function ProblemCatalogPage() {
       })) ?? [],
     [data]
   );
+  const visibleSeasons = useMemo(
+    () =>
+      selectedSeason === ALL_SEASONS
+        ? seasons
+        : seasons.filter(({ season }) => season.slug === selectedSeason),
+    [seasons, selectedSeason]
+  );
   const defaultExpandedItems = useMemo(
     () => [
-      ...seasons.map(({ season }) => `season:${season.slug}`),
-      ...seasons.flatMap(({ season, events }) =>
+      ...visibleSeasons.map(({ season }) => `season:${season.slug}`),
+      ...visibleSeasons.flatMap(({ season, events }) =>
         events.map(({ event }) => `event:${season.slug}:${event.slug}`)
       ),
     ],
-    [seasons]
+    [visibleSeasons]
   );
 
   return (
@@ -150,12 +164,40 @@ export default function ProblemCatalogPage() {
       />
       <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Box sx={{ maxWidth: 1040 }}>
-          <Typography component="h1" variant="h3">
-            Masalalar
-          </Typography>
-          <Typography sx={{ mt: 1, color: 'text.secondary' }}>
-            Olimpiada masalalari mavsum va bosqich bo‘yicha tartiblangan.
-          </Typography>
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 2, sm: 3 }}
+            alignItems={{ xs: 'stretch', sm: 'flex-end' }}
+            justifyContent="space-between"
+          >
+            <Box>
+              <Typography component="h1" variant="h3">
+                Masalalar
+              </Typography>
+              <Typography sx={{ mt: 1, color: 'text.secondary' }}>
+                Olimpiada masalalari mavsum va bosqich bo‘yicha tartiblangan.
+              </Typography>
+            </Box>
+
+            {!loading && !error && seasons.length > 0 && (
+              <FormControl size="small" sx={{ width: { xs: 1, sm: 190 }, flexShrink: 0 }}>
+                <InputLabel id="problem-season-filter-label">Mavsum</InputLabel>
+                <Select
+                  labelId="problem-season-filter-label"
+                  label="Mavsum"
+                  value={selectedSeason}
+                  onChange={(event) => setSelectedSeason(event.target.value)}
+                >
+                  <MenuItem value={ALL_SEASONS}>Barchasi</MenuItem>
+                  {seasons.map(({ season }) => (
+                    <MenuItem key={season.slug} value={season.slug}>
+                      {season.slug}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          </Stack>
 
           {loading && (
             <Stack spacing={1} sx={{ mt: 4 }}>
@@ -180,12 +222,13 @@ export default function ProblemCatalogPage() {
           {!loading && !error && data && seasons.length > 0 && (
             <Box sx={{ mt: 4 }}>
               <SimpleTreeView
+                key={selectedSeason}
                 aria-label="Olimpiada masalalari katalogi"
                 defaultExpandedItems={defaultExpandedItems}
                 slots={{ endIcon: TreeEndIcon }}
                 sx={{ width: 1, overflowX: 'hidden' }}
               >
-                {seasons.map(({ season, events }) => {
+                {visibleSeasons.map(({ season, events }) => {
                   const problemCount = events.reduce((total, item) => total + item.problemCount, 0);
 
                   return (
