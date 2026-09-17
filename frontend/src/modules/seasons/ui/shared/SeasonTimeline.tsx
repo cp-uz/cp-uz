@@ -15,8 +15,9 @@ import { SeasonRouteMark, seasonRouteLogoUrl } from './SeasonRouteMark';
 import {
   sortedSeasonEvents,
   seasonEventMonthKey,
-  SEASON_ROUTE_PRESENTATION,
+  seasonTimelineLaneCenter,
   seasonTimelineSlotIndexes,
+  SEASON_ROUTE_PRESENTATION,
   shouldDeriveSeasonRouteConnections,
 } from '../../domain';
 
@@ -206,7 +207,7 @@ export function SeasonTimeline({ season, selectedMonth, selectedEventSlug }: Sea
       return [
         event.code,
         {
-          x: routeIndex * laneWidth + laneWidth / 2,
+          x: seasonTimelineLaneCenter(routeIndex, routes.length, minGraphWidth),
           y: canvasTop + (slotByEvent.get(event.id) ?? 0) * rowHeight,
         },
       ];
@@ -500,9 +501,9 @@ export function SeasonTimeline({ season, selectedMonth, selectedEventSlug }: Sea
                   <Box
                     component="line"
                     key={`guide-${route.code}`}
-                    x1={index * laneWidth + laneWidth / 2}
+                    x1={seasonTimelineLaneCenter(index, routes.length, minGraphWidth)}
                     y1={canvasTop - 22}
-                    x2={index * laneWidth + laneWidth / 2}
+                    x2={seasonTimelineLaneCenter(index, routes.length, minGraphWidth)}
                     y2={canvasHeight - 18}
                     stroke="currentColor"
                     strokeWidth="1.2"

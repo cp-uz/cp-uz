@@ -239,6 +239,11 @@ export function seasonTimelineSlotIndexes(events: SeasonEvent[]) {
   return { slotByEvent, slotCount: nextSlot };
 }
 
+export function seasonTimelineLaneCenter(routeIndex: number, routeCount: number, graphWidth: number) {
+  const laneWidth = graphWidth / Math.max(routeCount, 1);
+  return routeIndex * laneWidth + laneWidth / 2;
+}
+
 export function findCurrentSeasonEvent(season: SeasonDetail, now = new Date()) {
   const nowKey = [
     now.getFullYear(),

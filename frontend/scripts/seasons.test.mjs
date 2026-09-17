@@ -12,6 +12,7 @@ import {
   formatSeasonNodeDate,
   seasonAwardPresentation,
   seasonEventPresentation,
+  seasonTimelineLaneCenter,
   seasonTimelineSlotIndexes,
   shouldDeriveSeasonRouteConnections,
   sortedSeasonEvents,
@@ -189,6 +190,17 @@ test('events with the same start date share one timeline row while TBA stays sep
   assert.equal(slotByEvent.get(datedEvent.id), slotByEvent.get(sameDateEvent.id));
   assert.notEqual(slotByEvent.get(season.events[1].id), slotByEvent.get(datedEvent.id));
   assert.equal(slotCount, 2);
+});
+
+test('timeline lanes stay centered under two- and three-route headers', () => {
+  assert.deepEqual(
+    [0, 1].map((index) => seasonTimelineLaneCenter(index, 2, 560)),
+    [140, 420]
+  );
+  assert.deepEqual(
+    [0, 1, 2].map((index) => seasonTimelineLaneCenter(index, 3, 600)),
+    [100, 300, 500]
+  );
 });
 
 test('an ended season opens its latest dated completed event instead of stale TBA', () => {
