@@ -1,7 +1,7 @@
 {
   "slug": "2022-2023",
   "title": "2022–2023 sport dasturlash mavsumi",
-  "summary": "IOI 2023 terma jamoasi saralashi hamda O‘zbekiston qatnashgan APIO 2023 va IOI 2023 xalqaro finallarining tekshirilgan arxivi.",
+  "summary": "IOI 2023 terma jamoasi saralashi hamda O‘zbekiston qatnashgan IZhO 2023, APIO 2023 va IOI 2023 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2022-09-01",
   "end_date": "2023-08-31",
   "publication_status": "published",
@@ -29,6 +29,17 @@
       "line_style": "solid",
       "icon": "solar:global-linear",
       "order": 20,
+      "is_visible": true
+    },
+    {
+      "code": "izho",
+      "title": "IZhO yo‘li",
+      "description": "Xalqaro Jautikov olimpiadasining tekshirilgan informatika natijalari va masalalari.",
+      "kind": "official",
+      "color": "brown",
+      "line_style": "solid",
+      "icon": "solar:cup-star-linear",
+      "order": 30,
       "is_visible": true
     }
   ],

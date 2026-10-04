@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "IOI 2024 — 2-musobaqa kuni, rasmiy o‘zbekcha shartlar.",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "hieroglyphs",
+    "mosaic",
+    "sphinx"
+  ]
+}

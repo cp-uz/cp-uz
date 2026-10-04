@@ -67,6 +67,13 @@
         "is_official": { "type": "boolean" },
         "is_primary": { "type": "boolean" },
         "order": { "type": "integer", "minimum": 0, "maximum": 65535 }
+      },
+      "if": {
+        "required": ["is_primary"],
+        "properties": { "is_primary": { "const": true } }
+      },
+      "then": {
+        "properties": { "kind": { "enum": ["original", "practice"] } }
       }
     },
     "attachment": {

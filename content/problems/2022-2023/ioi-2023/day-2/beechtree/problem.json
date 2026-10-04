@@ -1,0 +1,73 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "beechtree",
+  "code": "A",
+  "title": "Olxa daraxti",
+  "original_title": "Beech Tree",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "IOI 2023"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-10-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IOI rasmiy inglizcha sharti",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/day2/Beechtree/d2-beechtree-ISC.pdf",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "OJ.uz’da ishlash",
+      "url": "https://oj.uz/problem/view/IOI23_beechtree",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    },
+    {
+      "kind": "original",
+      "title": "Rasmiy task arxivi va CC BY litsenziyasi",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 2
+    },
+    {
+      "kind": "editorial",
+      "title": "IOI rasmiy yechimlari (ZIP)",
+      "url": "https://ioinformatics.org/files/ioi2023solutions.zip",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 3
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statement (PDF)",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/day2/Beechtree/uz_UZ.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2022-2023/ioi-2023/day-2/beechtree/statement.pdf",
+    "sha256": "08197cab56a1fd84bf8e8bab34138d317b7799ecf7e7acc15fed0336cd911201",
+    "size_bytes": 331779,
+    "page_count": 6,
+    "language": "uz",
+    "provenance": "official"
+  }
+}

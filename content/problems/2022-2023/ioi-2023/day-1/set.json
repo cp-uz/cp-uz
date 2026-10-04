@@ -1,0 +1,14 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-1",
+  "title": "1-kun",
+  "description": "IOI 2023 — 1-musobaqa kuni, rasmiy o‘zbekcha shartlar.",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "closing",
+    "longesttrip",
+    "soccer"
+  ]
+}

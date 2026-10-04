@@ -1,7 +1,7 @@
 {
   "slug": "2024-2025",
   "title": "2024–2025 sport dasturlash mavsumi",
-  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan APIO 2025, EGOI 2025 va IOI 2025 xalqaro finallarining tekshirilgan arxivi.",
+  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan IZhO 2025, KhIMIO 2025, APIO 2025, EGOI 2025 va IOI 2025 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2024-09-01",
   "end_date": "2025-08-31",
   "publication_status": "published",
@@ -40,6 +40,28 @@
       "line_style": "solid",
       "icon": "solar:global-linear",
       "order": 30,
+      "is_visible": true
+    },
+    {
+      "code": "izho",
+      "title": "IZhO yo‘li",
+      "description": "Xalqaro Jautikov olimpiadasining tekshirilgan informatika natijalari va masalalari.",
+      "kind": "official",
+      "color": "brown",
+      "line_style": "solid",
+      "icon": "solar:cup-star-linear",
+      "order": 40,
+      "is_visible": true
+    },
+    {
+      "code": "khimio",
+      "title": "Al-Xorazmiy yo‘li",
+      "description": "Al-Xorazmiy xalqaro matematika va informatika olimpiadasining informatika finali.",
+      "kind": "official",
+      "color": "brown",
+      "line_style": "solid",
+      "icon": "solar:code-square-linear",
+      "order": 50,
       "is_visible": true
     }
   ],

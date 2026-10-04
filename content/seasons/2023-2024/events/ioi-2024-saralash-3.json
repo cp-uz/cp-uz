@@ -4,15 +4,15 @@
   "title": "IOI 2024 saralashi — III bosqich",
   "short_title": "IOI 2024 saralash III",
   "summary": "To‘rt kunlik saralash to‘plamidan saqlangan 12 ta o‘zbekcha masala.",
-  "description": "To‘rt kunning original o‘zbekcha PDF shartlari saqlangan. Dastlabki ikki kun masalalari mualliflar Codeforces Gym’ga joylagan Uzbekistan IOI 2024 Team Selection Test to‘plamlariga mos. 3–4-kunlar uchun ochiq judge havolasi aniqlanmagan.",
+  "description": "Saralash 2024-yil 26, 27, 29 va 30-aprel kunlari o‘tkazilgan. To‘rt kunning original o‘zbekcha PDF shartlari saqlangan. Dastlabki ikki kun masalalari mualliflar Codeforces Gym’ga joylagan Uzbekistan IOI 2024 Team Selection Test to‘plamlariga mos. 3–4-kunlar uchun ochiq judge havolasi aniqlanmagan.",
   "type": "selection",
   "publication_status": "published",
   "event_status": "completed",
   "verification_status": "verified",
-  "date_precision": "tba",
-  "start_date": null,
-  "end_date": null,
-  "date_label": "2024-yil, aniq sana tasdiqlanmagan",
+  "date_precision": "range",
+  "start_date": "2024-04-26",
+  "end_date": "2024-04-30",
+  "date_label": "26–30-aprel, 2024",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston",
   "platform": "CMS / Codeforces Gym",
@@ -28,6 +28,13 @@
     }
   ],
   "resources": [
+    {
+      "type": "announcement",
+      "title": "IOI 2024 saralash III — to‘rt kunlik rasmiy jadval",
+      "url": "https://t.me/cp_uz/58",
+      "is_official": true,
+      "order": 1
+    },
     {
       "type": "results",
       "title": "IOI 2024 saralash III umumiy natijalari",
@@ -72,6 +79,15 @@
     }
   ],
   "sources": [
+    {
+      "type": "organizer",
+      "title": "IOI 2024 terma jamoasi saralashi, 3-bosqich jadvali",
+      "url": "https://t.me/cp_uz/58",
+      "publisher": "Competitive Programming Uz / O‘zbekiston IOI saralash jamoasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "26-apreldagi original e’londa 1-kun — 26-aprel, 2-kun — 27-aprel, 3-kun — 29-aprel, 4-kun — 30-aprel deb ko‘rsatilgan. Postning Telegram vaqt belgisi 2024-04-26T06:10:20+00:00; 2–4-kunlar postlari mos ravishda https://t.me/cp_uz/62, https://t.me/cp_uz/66 va https://t.me/cp_uz/70 sanalarni tasdiqlaydi. Sana oralig‘idagi 28-aprel musobaqa kuni emas."
+    },
     {
       "type": "organizer",
       "title": "Uzbekistan IOI 2024 TST on Gym",

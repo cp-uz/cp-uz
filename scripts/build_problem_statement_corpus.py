@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import shutil
 import tempfile
 import urllib.request
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +30,14 @@ IZHO_PAGE_RANGES = {
     "2025-2026/izho-2026/day-2/greedy-arrays": (2, 4),
     "2025-2026/izho-2026/day-2/light-bulbs": (4, 6),
 }
+IOI_2025_PDF_ARCHIVES = {
+    f"https://ioi.te.lv/locations/ioi25/contest/day{day}/{task}_pdf.zip": "uz_UZ.pdf"
+    for day, tasks in (
+        (1, ("souvenirs", "triples", "worldmap")),
+        (2, ("festival", "migrations", "obstacles")),
+    )
+    for task in tasks
+}
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -39,8 +49,17 @@ def download_pdf(url: str, target: Path) -> None:
         IZHO_DOWNLOADS.get(url, url),
         headers={"User-Agent": "cp.uz problem statement corpus builder"},
     )
-    with urllib.request.urlopen(request, timeout=120) as response, target.open("wb") as output:
-        shutil.copyfileobj(response, output)
+    with urllib.request.urlopen(request, timeout=120) as response:
+        if url in IOI_2025_PDF_ARCHIVES:
+            # Read one known statement, never extract untrusted archive paths.
+            with zipfile.ZipFile(io.BytesIO(response.read())) as archive:
+                payload = archive.read(IOI_2025_PDF_ARCHIVES[url])
+                if not payload.startswith(b"%PDF"):
+                    raise RuntimeError(f"Arxivdagi shart PDF emas: {url}")
+                target.write_bytes(payload)
+        else:
+            with target.open("wb") as output:
+                shutil.copyfileobj(response, output)
     if target.read_bytes()[:4] != b"%PDF":
         raise RuntimeError(f"PDF bo‘lmagan javob olindi: {url}")
 
@@ -84,6 +103,7 @@ def statement_pdf_attachment(data: dict[str, Any]) -> dict[str, Any] | None:
             attachment
             for attachment in data.get("attachments", [])
             if attachment.get("content_type", "").lower() == "application/pdf"
+            or attachment.get("url") in IOI_2025_PDF_ARCHIVES
         ),
         None,
     )

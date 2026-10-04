@@ -4,7 +4,7 @@
   "title": "Butunrossiya maktab jamoaviy dasturlash olimpiadasi — VKOSHP 2025",
   "short_title": "VKOSHP",
   "summary": "Maktab jamoalari uchun muhim norasmiy jamoaviy sport dasturlash musobaqasi.",
-  "description": "2025–2026 siklida internet saralashi 16-noyabrda, final esa 15–16-dekabrda Sankt-Peterburg, Novosibirsk va Sirius markazlarida o‘tkazilgan. O‘zbekiston jamoalarining tasdiqlangan yakuniy natijasi ochiq rasmiy jadvalda aniqlanmagani uchun mahalliy natija kiritilmadi.",
+  "description": "2025–2026 siklida internet saralashi 16-noyabrda, final esa 15–16-dekabrda o‘tkazilgan. Finalning 16-dekabrdagi masalalar to‘plamida Sankt-Peterburg, Novosibirsk, Sirius va Almati markazlari ko‘rsatilgan; tashkilotchi 13 ta masala, rasmiy tahlil va yakuniy jadvalni e’lon qilgan. O‘zbekiston jamoalarining tasdiqlangan yakuniy natijasi ochiq rasmiy jadvalda aniqlanmagani uchun mahalliy natija kiritilmadi.",
   "type": "unofficial",
   "publication_status": "published",
   "event_status": "completed",
@@ -44,6 +44,34 @@
       "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-internet-2025-standings.html",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "official_page",
+      "title": "VKOSHP 2025–2026 rasmiy final arxivi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/archive.html",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "VKOSHP 2025 finali — 13 ta masala (inglizcha PDF)",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-russia-2025-problems-en.pdf",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "editorial",
+      "title": "VKOSHP 2025 finali — rasmiy tahlillar (inglizcha PDF)",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-russia-2025-tutorial-en.pdf",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "scoreboard",
+      "title": "VKOSHP 2025 finali — yakuniy natijalar",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-russia-2025-standings.html",
+      "is_official": true,
+      "order": 50
     }
   ],
   "sources": [
@@ -64,6 +92,33 @@
       "accessed_on": "2026-09-01",
       "is_primary": true,
       "notes": ""
+    },
+    {
+      "type": "organizer_archive",
+      "title": "VKOSHP 2025–2026 finalining rasmiy arxivi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/archive.html",
+      "publisher": "NEERC / VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "2025–2026 bo‘limi finalning 15–16-dekabr sanasini, masalalar, tahlillar va yakuniy natijalar havolalarini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP 2025 finalining rasmiy masalalari",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-russia-2025-problems-en.pdf",
+      "publisher": "VKOSHP hakamlar hay’ati",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "16-dekabr 2025 musobaqasi uchun A–M kodli 13 ta masala; PDF headerida to‘rtta final markazi ko‘rsatilgan."
+    },
+    {
+      "type": "official_results",
+      "title": "VKOSHP 2025 finalining yakuniy natijalari",
+      "url": "https://neerc.ifmo.ru/school/archive/2025-2026/ru-olymp-team-russia-2025-standings.html",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Internet saralashi jadvalidan alohida final jadvali."
     }
   ],
   "results": []

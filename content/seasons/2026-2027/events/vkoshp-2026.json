@@ -4,20 +4,22 @@
   "title": "Butunrossiya maktab jamoaviy dasturlash olimpiadasi — VKOSHP 2026",
   "short_title": "VKOSHP",
   "summary": "2026–2027 siklidagi VKOSHP jamoaviy musobaqasi.",
-  "description": "Saralash va final sanalari ko‘rilgan tashkilotchi arxivida hali e’lon qilinmagan. 2025-yil sanalari taxmin sifatida takrorlanmaydi.",
+  "description": "2026–2027 siklining internet saralashi 15-noyabr kuni soat 12:00 da Moskva vaqti bilan (14:00 Toshkent vaqti) boshlanadi va besh soat davom etadi. Uch nafar maktab o‘quvchisidan tuzilgan jamoa bir joyda, bitta kompyuter va akkreditatsiyadan o‘tgan o‘qituvchi nazorati ostida qatnashadi. Final 11–12-dekabr kunlari Sankt-Peterburg, Novosibirsk, Sirius va Almatida o‘tkaziladi.",
   "type": "unofficial",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
-  "timezone": "Asia/Tashkent",
-  "location": "TBA",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-12-11",
+  "end_date": "2026-12-12",
+  "date_label": "Saralash 15-noyabr; final 11–12-dekabr, 2026",
+  "timezone": "Europe/Moscow",
+  "location": "Onlayn saralash; Sankt-Peterburg, Novosibirsk, Sirius va Almati final markazlari",
   "venue": "",
-  "mode": "tba",
-  "platform": "",
+  "mode": "hybrid",
+  "platform": "PCMS2 Web Client",
   "organizer": "VKOSHP tashkiliy qo‘mitasi",
-  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "eligibility": "Uch nafar maktab o‘quvchisidan tuzilgan jamoalar; tashkilotchining hududiy yoki internet saralashi qoidalariga muvofiq.",
   "is_featured": false,
   "order": 25,
   "route_memberships": [
@@ -35,6 +37,34 @@
       "url": "https://neerc.ifmo.ru/school/",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "schedule",
+      "title": "VKOSHP 2026 saralashi va finali sanalari",
+      "url": "https://neerc.ifmo.ru/school/russia-team/index.html",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "rules",
+      "title": "VKOSHP 2026 saralash qoidalari",
+      "url": "https://neerc.ifmo.ru/school/russia-team/selection.html",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "rules",
+      "title": "Internet saralashi tartibi va boshlanish vaqti",
+      "url": "https://neerc.ifmo.ru/school/russia-team/internet.html",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "registration",
+      "title": "VKOSHP 2026 internet saralashiga ro‘yxatdan o‘tish",
+      "url": "https://neerc.ifmo.ru/school/russia-team/registration.jsp",
+      "is_official": true,
+      "order": 50
     }
   ],
   "sources": [
@@ -43,9 +73,36 @@
       "title": "NEERC maktab musobaqalari arxivi",
       "url": "https://neerc.ifmo.ru/school/",
       "publisher": "NEERC",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-10-04",
       "is_primary": true,
-      "notes": "2026–2027 VKOSHP sanalari TBA."
+      "notes": "2026-yil 11–12-dekabrdagi final sanasi va to‘rtta markaz tashkilotchining bosh sahifasida tasdiqlangan."
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP 2026 saralashi va finali sanalari",
+      "url": "https://neerc.ifmo.ru/school/russia-team/index.html",
+      "publisher": "NEERC / VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Internet saralashi 15-noyabr 2026; final 11–12-dekabr 2026, Sankt-Peterburg, Novosibirsk, Sirius va Almati."
+    },
+    {
+      "type": "official_regulation",
+      "title": "VKOSHP 2026 saralash qoidalari",
+      "url": "https://neerc.ifmo.ru/school/russia-team/selection.html",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Jamoa uch nafar maktab o‘quvchisidan iborat bo‘lishi va saralash tartibini tasdiqlaydi."
+    },
+    {
+      "type": "official_regulation",
+      "title": "VKOSHP 2026 internet saralashini o‘tkazish tartibi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/internet.html",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "15-noyabr soat 12:00 Moskva vaqti, besh soatlik tur, bitta kompyuter va o‘qituvchi nazorati tasdiqlangan."
     }
   ],
   "results": []

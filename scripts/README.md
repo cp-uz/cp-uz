@@ -134,6 +134,14 @@ error if filesystem rollback itself fails; automatic cleanup cannot delete it.
 The source candidate remains available for review. Publishing generated PDF binaries
 to the statement repository remains an explicit separate operation.
 
+Historical finals use `sync_historical_ioi_archives.py` (IOI 2023–2025) and
+`sync_historical_apio_egoi_archives.py` (APIO 2023–2024, EGOI 2024–2025).
+Both stage a full candidate without replacing canonical content. The latter
+pins organizer repository revisions. IOI 2025 provides translation ZIPs: the PDF
+builder allowlists its six source URLs and reads only the exact `uz_UZ.pdf`
+member, without extracting archive paths. That PDF is mirrored byte-for-byte;
+official source attachments remain available for reproducible rebuilds.
+
 ## Tests and dependencies
 
 ```bash

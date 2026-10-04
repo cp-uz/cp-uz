@@ -4,20 +4,22 @@
   "title": "Asosiy olimpiada — maktab bosqichi",
   "short_title": "Maktab bosqichi",
   "summary": "2026–2027 mavsumining maktab bosqichi.",
-  "description": "9–11-sinflar uchun Asosiy olimpiadaning birinchi bosqichi. Sana nashrga xos rasmiy jadval e’lon qilingach yangilanadi.",
+  "description": "2026–2027 mavsumining Asosiy olimpiada maktab bosqichi sentabr oyida davlat va nodavlat maktablarning 9–11-sinf, akademik litsey va kasbiy ta’lim tashkilotlarining 1–2-bosqich o‘quvchilari o‘rtasida o‘tkazildi. Fan olimpiadalari markazi bosqich barcha hududlarda 30-sentabr kuni yakunlanishini tasdiqlagan. Har bir maktab va fan uchun yagona boshlanish kuni ochiq rasmiy e’londa ko‘rsatilmagani sababli sana oy aniqligida saqlandi. Keyingi bosqichga ro‘yxatdan o‘tish 10-oktabrgacha davom etadi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2026-09-01",
+  "end_date": null,
+  "date_label": "Sentabr, 2026; 30-sentabrda yakunlangan",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston maktablari",
   "venue": "",
   "mode": "onsite",
   "platform": "",
   "organizer": "Fan olimpiadalari markazi",
-  "eligibility": "9–11-sinf o‘quvchilari.",
+  "eligibility": "Davlat va nodavlat maktablarning 9–11-sinf, akademik litsey va kasbiy ta’lim tashkilotlarining 1–2-bosqich o‘quvchilari.",
   "grade_min": 9,
   "grade_max": 11,
   "is_featured": false,
@@ -30,16 +32,56 @@
       "label": "1"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "2026 maktab bosqichi bo‘yicha rasmiy tavsiyalar",
+      "url": "https://t.me/s/olympcenteruz/10595",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "announcement",
+      "title": "Maktab bosqichining 30-sentabrda yakunlanishi va ro‘yxatdan o‘tish muddati",
+      "url": "https://t.me/s/olympcenteruz/10667",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "registration",
+      "title": "Asosiy olimpiada ishtirokchilarining rasmiy platformasi",
+      "url": "https://olimpiada.uzedu.uz/",
+      "is_official": true,
+      "order": 30
+    }
+  ],
   "sources": [
     {
       "type": "official",
       "title": "Asosiy olimpiadaning amaldagi bosqichlari",
       "url": "https://olympcenter.uz/uz/olympiads/local",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-10-04",
       "is_primary": true,
-      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+      "notes": "Maktab bosqichi sentabr oyida o‘tkazilishini va qatnashish qamrovini tasdiqlaydi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "2026-yil maktab bosqichi bo‘yicha rasmiy tavsiyalar",
+      "url": "https://t.me/s/olympcenteruz/10595",
+      "publisher": "Fan olimpiadalari markazi | Rasmiy kanal",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "2026-yil 8-sentabrdagi rasmiy post sentabr davomida barcha umumiy o‘rta ta’lim maktablari, akademik litseylar va kasbiy ta’lim tashkilotlarida maktab bosqichi o‘tkazilishini tasdiqlaydi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "2026 maktab bosqichining yakunlanish muddati",
+      "url": "https://t.me/s/olympcenteruz/10667",
+      "publisher": "Fan olimpiadalari markazi | Rasmiy kanal",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "2026-yil 29-sentabrdagi rasmiy post: maktab bosqichi barcha hududlarda 30-sentabrda yakunlanadi; ikkinchi bosqichga ro‘yxatdan o‘tish 10-oktabrgacha davom etadi. Oy aniqligidagi start_date oyning birinchi kuni bo‘lib, individual maktab yoki informatika kuni sifatida talqin qilinmaydi."
     }
   ],
   "results": []

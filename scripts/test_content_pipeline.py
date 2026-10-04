@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import json
 import sys
 import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
+
+from jsonschema import Draft202012Validator
+from jsonschema.exceptions import ValidationError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
@@ -285,16 +289,43 @@ articles:
     def test_checked_in_manifest(self) -> None:
         validate_checksum_manifest(CONTENT)
 
+    def test_problem_schema_limits_primary_link_kinds(self) -> None:
+        schema = json.loads(
+            (CONTENT / "problems/schema/problem-content.schema.json").read_text(encoding="utf-8")
+        )
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator({"$ref": "#/$defs/link", "$defs": schema["$defs"]})
+        for kind in ("original", "practice", "editorial", "package", "solution"):
+            link = {
+                "kind": kind,
+                "title": "Source",
+                "url": "https://example.com/source",
+                "is_primary": True,
+            }
+            with self.subTest(kind=kind, is_primary=True):
+                if kind in {"original", "practice"}:
+                    validator.validate(link)
+                else:
+                    with self.assertRaises(ValidationError):
+                        validator.validate(link)
+            for is_primary in (False, None):
+                with self.subTest(kind=kind, is_primary=is_primary):
+                    if is_primary is None:
+                        link.pop("is_primary")
+                    else:
+                        link["is_primary"] = is_primary
+                    validator.validate(link)
+
     def test_problem_catalog_is_file_granular_and_complete(self) -> None:
         self.assertEqual(
             validate_problem_inventory(CONTENT),
             {
-                "problem_events": 8,
-                "problem_sets": 19,
-                "problems": 63,
-                "problem_links": 114,
-                "problem_attachments": 12,
-                "problem_statement_pdfs": 63,
+                "problem_events": 15,
+                "problem_sets": 31,
+                "problems": 103,
+                "problem_links": 268,
+                "problem_attachments": 52,
+                "problem_statement_pdfs": 103,
             },
         )
 

@@ -1,0 +1,73 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "longesttrip",
+  "code": "B",
+  "title": "Eng uzun sayohat",
+  "original_title": "Longest Trip",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "interactive",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "IOI 2023"
+  ],
+  "order": 2,
+  "publication_status": "published",
+  "last_verified_on": "2026-10-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IOI rasmiy inglizcha sharti",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/day1/Longesttrip/d1-longesttrip-ISC.pdf",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "OJ.uz’da ishlash",
+      "url": "https://oj.uz/problem/view/IOI23_longesttrip",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    },
+    {
+      "kind": "original",
+      "title": "Rasmiy task arxivi va CC BY litsenziyasi",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 2
+    },
+    {
+      "kind": "editorial",
+      "title": "IOI rasmiy yechimlari (ZIP)",
+      "url": "https://ioinformatics.org/files/ioi2023solutions.zip",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 3
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statement (PDF)",
+      "url": "https://ioi.te.lv/locations/ioi23/contest/day1/Longesttrip/uz_UZ.pdf",
+      "content_type": "application/pdf",
+      "order": 0
+    }
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2022-2023/ioi-2023/day-1/longesttrip/statement.pdf",
+    "sha256": "ac2fa297bf8c9c833fbc099c808d26645aea62f540f5191baa20dce228fd16b7",
+    "size_bytes": 184242,
+    "page_count": 6,
+    "language": "uz",
+    "provenance": "official"
+  }
+}

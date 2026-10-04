@@ -61,10 +61,17 @@
     },
     {
       "type": "tasks",
-      "title": "2026 masalalari va tahlillar arxivi",
+      "title": "2026 — 6 ta masala, original PDF va rasmiy C++ yechimlari",
       "url": "https://info1cup.com/files",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "editorial",
+      "title": "InfO(1)Cup 2026 — rasmiy masala tahlillari (inglizcha PDF)",
+      "url": "https://info1cup.com/_app/immutable/assets/info1cup_2026-9ffb0160.pdf",
+      "is_official": true,
+      "order": 20
     }
   ],
   "sources": [
@@ -94,6 +101,24 @@
       "accessed_on": "2026-09-01",
       "is_primary": true,
       "notes": ""
+    },
+    {
+      "type": "organizer_archive",
+      "title": "InfO(1)Cup 2026 — original masalalar va yechimlar arxivi",
+      "url": "https://info1cup.com/files",
+      "publisher": "InfO(1)Cup tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "1-kun (7-fevral): Digit Sum, Training, Triangulation; 2-kun (8-fevral): Grow Gravity, Hearts, Trees. Har biri uchun original PDF va rasmiy C++ yechimi mavjud."
+    },
+    {
+      "type": "organizer",
+      "title": "InfO(1)Cup 2026 rasmiy masala tahlillari",
+      "url": "https://info1cup.com/_app/immutable/assets/info1cup_2026-9ffb0160.pdf",
+      "publisher": "InfO(1)Cup hakamlar hay’ati",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "2026-yilgi oltita masalaning inglizcha tahlillari."
     }
   ],
   "results": [

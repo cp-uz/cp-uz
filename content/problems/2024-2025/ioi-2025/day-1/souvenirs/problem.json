@@ -1,0 +1,73 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "souvenirs",
+  "code": "A",
+  "title": "Suvenirlar",
+  "original_title": "Souvenirs",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "interactive",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "IOI 2025"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-10-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IOI rasmiy inglizcha sharti",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/day1/souvenirs-ISC.pdf",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "OJ.uz’da ishlash",
+      "url": "https://oj.uz/problem/view/IOI25_souvenirs",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    },
+    {
+      "kind": "original",
+      "title": "Rasmiy task arxivi va CC BY litsenziyasi",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 2
+    },
+    {
+      "kind": "editorial",
+      "title": "IOI rasmiy yechimlari (ZIP)",
+      "url": "https://ioinformatics.org/files/ioi2025solutions.zip",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 3
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statementlar (ZIP)",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/day1/souvenirs_pdf.zip",
+      "content_type": "application/zip",
+      "order": 0
+    }
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2024-2025/ioi-2025/day-1/souvenirs/statement.pdf",
+    "sha256": "35861ce8cfa47121cccff400a33a32be6a96c9c9c5534c2473f4859b50684d08",
+    "size_bytes": 155521,
+    "page_count": 4,
+    "language": "uz",
+    "provenance": "official"
+  }
+}

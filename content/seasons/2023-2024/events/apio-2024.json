@@ -21,7 +21,7 @@
   "organizer": "APIO 2024 tashkiliy qo‘mitasi va milliy delegatsiyalar",
   "eligibility": "Milliy delegatsiya tomonidan rasmiy ishtirokchi sifatida ro‘yxatga olingan maktab o‘quvchilari.",
   "is_featured": true,
-  "order": 150,
+  "order": 105,
   "route_memberships": [
     {
       "route_code": "apio",

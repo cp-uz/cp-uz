@@ -95,9 +95,46 @@ tasdiqlangan.
   rasmiy paket ochilsa ular alohida event katalogi sifatida kiritiladi.
 - VKOSHP 2025–2026 jadvalida O‘zbekiston jamoasining ishonchli rasmiy natijasi
   aniqlanmagani uchun mahalliy natija kiritilmadi.
-- 2026–2027 milliy bosqichlar, treninglar, IZhO/KhIMIO/VKOSHP/InfO(1)Cup sanalari TBA.
+- 2026–2027 maktab bosqichi sentabrda o‘tkazilib, 30-sentabrda yakunlangani
+  tashkilotchining [8-sentabr](https://t.me/s/olympcenteruz/10595) va
+  [29-sentabr](https://t.me/s/olympcenteruz/10667) e’lonlari bilan tasdiqlandi;
+  aniq boshlanish kuni ochiq manbada tasdiqlanmagani uchun oy aniqligi saqlandi.
+  VKOSHP 2026 finali [rasmiy jadval](https://neerc.ifmo.ru/school/russia-team/index.html)
+  bo‘yicha 11–12-dekabr; internet saralashi 15-noyabr. Qolgan milliy bosqichlar,
+  treninglar, IZhO/KhIMIO/InfO(1)Cup sanalari TBA.
   Tasdiqlangan xalqaro ma’lumotlar: IOI 2027 — 12–19-sentabr, Potsdam;
   EGOI 2027 — Varshava, sana TBA; APIO 2027 — Suzhou, sana TBA.
+
+## 2026-10-04 tarixiy arxiv kengaytmasi
+
+2022–2023, 2023–2024 va 2024–2025 mavsumlariga IZhO 2023/2024/2025
+hamda KhIMIO 2025 finallari qo‘shildi. Rasmiy natijalardan jami 74 mahalliy
+natija saqlandi: IZhOda 9, 16 va 5; KhIMIOda 44. IZhO 2024ning 14 asosiy
+va 2 onlayn natijasi alohida kategoriyalarda turadi. IZhO 2023/2024 jadvallarida
+o‘rin ustuni bo‘lmagani uchun rank taxmin qilinmadi. IZhO 2023 sanasi
+2–3-fevral musobaqa turlarini anglatadi; to‘liq kelish-ketish oynasi emas.
+KhIMIO 2025 tashkilotchining to‘liq 7–13-may oynasi bilan saqlandi.
+KhIMIO 2024 uchun informatika musobaqasi tasdiqlanmagani sababli event qo‘shilmadi.
+IOI 2024 III saralashining TBA sanasi [tashkilotchi e’loni](https://t.me/cp_uz/58)
+bilan 26–30-aprelga aniqlandi; amaldagi musobaqa kunlari 26, 27, 29 va 30-aprel.
+APIO 2024 may voqeasi iyundagi EGOI saralashidan oldin turishi uchun event tartibi
+moslandi. Yangi IZhO yo‘li alohida ustunda ko‘rinishi uchun timeline qo‘llaydigan
+rang ishlatiladi; u IOI saralashi sifatida bog‘lanmagan.
+
+Masalalar katalogiga IOI 2023–2025ning 18 ta, APIO 2023–2024ning 6 ta va
+EGOI 2024–2025ning 16 ta rasmiy o‘zbekcha sharti kiritildi. IOI tarixiy
+arxivi, APIO tashkilotchilarining repozitoriylari va EGOI texnik qo‘mitalari
+arxivlari asosiy manba; har bir masalada manba va litsenziya havolasi bor.
+IOI 2025 PDFlarining aniq `uz_UZ.pdf` ZIP elementi o‘zgartirilmasdan ajratiladi.
+Rasmiy PDFlar asosiy shartdir; matnli ko‘rinishda diagrammalar PDFga yo‘naltiriladi.
+APIO 2025dagi uchta masalaning rasmiy o‘zbekcha PDF havolalari event resurslariga
+qo‘shildi. Tashkilotchi repozitoriysida ochiq qayta nashr litsenziyasi topilmagani
+uchun to‘liq shartlar va PDFlar katalogga yoki mirror repozitoriyga ko‘chirilmadi.
+
+VKOSHP 2025 rasmiy final masalalari, tahlili va final jadvali qo‘shildi;
+internet saralashi jadvali bilan aralashtirilmadi. InfO(1)Cup 2026 rasmiy
+tahlili va C++ yechimlar arxivi qo‘shildi. Uning o‘zbekcha tarjimasi va ochiq
+qayta nashr litsenziyasi topilmagani uchun to‘liq shartlar ko‘chirilmadi.
 
 Ismlar bir nechta rasmiy manbada turlicha transliteratsiya qilinganida bitta canonical
 `full_name` va qidiruv/import uchun `aliases` ishlatiladi. Ballar JSON float xatosini

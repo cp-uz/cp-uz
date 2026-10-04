@@ -1,0 +1,15 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "contest",
+  "title": "Musobaqa",
+  "description": "APIO 2023 — musobaqaning rasmiy masalalari.",
+  "date_label": "20-may, 2023",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "cyberland",
+    "sequence",
+    "abc"
+  ]
+}

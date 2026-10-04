@@ -51,6 +51,34 @@
       "url": "https://apio2025.uz/rules",
       "is_official": true,
       "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "Hack! — rasmiy o‘zbekcha shart (PDF)",
+      "url": "https://raw.githubusercontent.com/apio2025/apio2025_tasks/3d692780af22d8a0196783365e74df09ae75b482/statements/hack/uz_UZ.pdf",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "tasks",
+      "title": "Permutation Game — rasmiy o‘zbekcha shart (PDF)",
+      "url": "https://raw.githubusercontent.com/apio2025/apio2025_tasks/3d692780af22d8a0196783365e74df09ae75b482/statements/permgame/uz_uz.pdf",
+      "is_official": true,
+      "order": 50
+    },
+    {
+      "type": "tasks",
+      "title": "Rotating Lines — rasmiy o‘zbekcha shart (PDF)",
+      "url": "https://raw.githubusercontent.com/apio2025/apio2025_tasks/3d692780af22d8a0196783365e74df09ae75b482/statements/rotate/uz_UZ.pdf",
+      "is_official": true,
+      "order": 60
+    },
+    {
+      "type": "other",
+      "title": "APIO 2025 masalalar mualliflari va limitlari",
+      "url": "https://github.com/apio2025/apio2025_tasks/blob/3d692780af22d8a0196783365e74df09ae75b482/readme.md",
+      "is_official": true,
+      "order": 70
     }
   ],
   "sources": [
@@ -80,6 +108,15 @@
       "accessed_on": "2026-09-17",
       "is_primary": true,
       "notes": "Besh soatlik uch masalali format va har delegatsiyaning eng yaxshi olti rasmiy natijasi hisoblanishini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "APIO 2025 rasmiy masalalar repozitoriysi",
+      "url": "https://github.com/apio2025/apio2025_tasks/blob/3d692780af22d8a0196783365e74df09ae75b482/readme.md",
+      "publisher": "APIO 2025 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Uch masala nomi, vaqt/xotira limitlari va mualliflari: Hack! — Dilhan Salgado va Matthew Roh; Permutation Game — Ashley Aragorn Khoo va Tan Si Jie; Rotating Lines — Kibeom Kim. O‘zbekcha PDFlar rasmiy statements katalogida mavjud. Repozitoriyda qayta nashr litsenziyasi ko‘rsatilmagan, shuning uchun shartlar ko‘chirilmaydi, original havolalar beriladi."
     }
   ],
   "results": [

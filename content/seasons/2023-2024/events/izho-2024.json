@@ -1,0 +1,277 @@
+{
+  "code": "IZHO24",
+  "slug": "izho-2024",
+  "title": "XX Xalqaro Jautikov olimpiadasi — IZhO 2024",
+  "short_title": "IZhO 2024",
+  "summary": "Matematika, fizika va informatika bo‘yicha maktab jamoalari xalqaro olimpiadasi.",
+  "description": "XX IZhO 2024 8–13-yanvar kunlari Olmaotada o‘tkazildi. Informatikaning asosiy jadvalida O‘zbekistonlik 14 ishtirokchi, alohida onlayn jadvalida esa yana ikki ishtirokchi bor. Asosiy musobaqada Asilbek Sunnatov oltin, Husanboy Mansuraliyev kumush medal oldi. Onlayn natijalar alohida kategoriya sifatida saqlangan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2024-01-08",
+  "end_date": "2024-01-13",
+  "date_label": "8–13-yanvar, 2024",
+  "timezone": "Asia/Almaty",
+  "location": "Olmaota, Qozog‘iston",
+  "venue": "",
+  "mode": "hybrid",
+  "platform": "",
+  "organizer": "Respublika fizika-matematika maktabi va Daryn markazi",
+  "eligibility": "Tashkilotchilar taklif qilgan maktab jamoalari; informatika yo‘nalishi ishtirokchilari.",
+  "is_featured": true,
+  "order": 20,
+  "route_memberships": [
+    {
+      "route_code": "izho",
+      "order": 10,
+      "node_style": "final",
+      "label": "IZhO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "IZhO 2024 rasmiy press-relizi",
+      "url": "https://izho.kz/wp-content/uploads/2023/12/RUS_2.pdf",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IZhO 2024 — asosiy va onlayn informatika natijalari",
+      "url": "https://izho.kz/contest/results-izho-2024/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "IZhO 2024 — 1 va 2-kun masalalari (qozoqcha, inglizcha, ruscha PDF)",
+      "url": "https://izho.kz/wp-content/uploads/2024/12/IZHO_CS_2024.pdf",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "editorial",
+      "title": "IZhO 2024 — rasmiy yechimlar PDF",
+      "url": "https://izho.kz/wp-content/uploads/2024/12/IZHO_CS_2024_sol.pdf",
+      "is_official": true,
+      "order": 40
+    }
+  ],
+  "sources": [
+    {
+      "type": "official_announcement",
+      "title": "IZhO 2024 rasmiy press-relizi",
+      "url": "https://izho.kz/wp-content/uploads/2023/12/RUS_2.pdf",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "8–13-yanvar kunlari va Olmaota mezbonligi."
+    },
+    {
+      "type": "official_results",
+      "title": "IZhO 2024 rasmiy natijalari",
+      "url": "https://izho.kz/contest/results-izho-2024/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Computer science jadvali 14 asosiy va Online Computer science jadvali 2 onlayn O‘zbekiston ishtirokchisini tasdiqlaydi. Har ikkala jadvalda o‘rin ustuni yo‘q; o‘rin taxmin qilinmagan."
+    }
+  ],
+  "results": [
+    {
+      "key": "IZHO24:participant:asilbek-sunnatov:onsite",
+      "participant": "asilbek-sunnatov",
+      "rank": null,
+      "score": 385,
+      "medal": "gold",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Asilbek Sunnatov. Computer science jadvali.",
+      "order": 1
+    },
+    {
+      "key": "IZHO24:participant:husanboy-mansuraliyev:onsite",
+      "participant": "husanboy-mansuraliyev",
+      "rank": null,
+      "score": 260,
+      "medal": "silver",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Husanboy Mansuraliyev. Computer science jadvali.",
+      "order": 2
+    },
+    {
+      "key": "IZHO24:participant:javohir-toshtemirov:onsite",
+      "participant": "javohir-toshtemirov",
+      "rank": null,
+      "score": 166,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Javohir Toshtemirov. Computer science jadvali.",
+      "order": 3
+    },
+    {
+      "key": "IZHO24:participant:ulugbek-rahmatullayev:onsite",
+      "participant": "ulugbek-rahmatullayev",
+      "rank": null,
+      "score": 125,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Ulug`bek Rakhmatullaev. Computer science jadvali.",
+      "order": 4
+    },
+    {
+      "key": "IZHO24:participant:nuraziz-ungboyev:onsite",
+      "participant": "nuraziz-ungboyev",
+      "rank": null,
+      "score": 110,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Nuraziz Ungboyev. Computer science jadvali.",
+      "order": 5
+    },
+    {
+      "key": "IZHO24:participant:muhammadqodir-muhammadov:onsite",
+      "participant": "muhammadqodir-muhammadov",
+      "rank": null,
+      "score": 90,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Muhammadqodir Muxammadov. Computer science jadvali.",
+      "order": 6
+    },
+    {
+      "key": "IZHO24:participant:abdulahad-nabiyev:onsite",
+      "participant": "abdulahad-nabiyev",
+      "rank": null,
+      "score": 90,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Abdulahad Nabiev. Computer science jadvali.",
+      "order": 7
+    },
+    {
+      "key": "IZHO24:participant:izzatbek-akbarov:onsite",
+      "participant": "izzatbek-akbarov",
+      "rank": null,
+      "score": 71,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Izzatbek Akbarov. Computer science jadvali.",
+      "order": 8
+    },
+    {
+      "key": "IZHO24:participant:ozodbek-xaydaraliyev:onsite",
+      "participant": "ozodbek-xaydaraliyev",
+      "rank": null,
+      "score": 71,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Ozodbek Khaydaraliyev. Computer science jadvali.",
+      "order": 9
+    },
+    {
+      "key": "IZHO24:participant:muhammadrasul-karimov:onsite",
+      "participant": "muhammadrasul-karimov",
+      "rank": null,
+      "score": 55,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Muhammadrasul Karimov. Computer science jadvali.",
+      "order": 10
+    },
+    {
+      "key": "IZHO24:participant:dilshod-xamidullayev:onsite",
+      "participant": "dilshod-xamidullayev",
+      "rank": null,
+      "score": 21,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Dilshod Khamidullayev. Computer science jadvali.",
+      "order": 11
+    },
+    {
+      "key": "IZHO24:participant:behruzbek-rahimboev:onsite",
+      "participant": "behruzbek-rahimboev",
+      "rank": null,
+      "score": 19,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Behruzbek Rakhimboyev. Computer science jadvali.",
+      "order": 12
+    },
+    {
+      "key": "IZHO24:participant:sunnatilla-xojiakbarov:onsite",
+      "participant": "sunnatilla-xojiakbarov",
+      "rank": null,
+      "score": 14,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Sunnatilla Xojiakbarov. Computer science jadvali.",
+      "order": 13
+    },
+    {
+      "key": "IZHO24:participant:odiljon-muhammattursunov:onsite",
+      "participant": "odiljon-muhammattursunov",
+      "rank": null,
+      "score": 5,
+      "medal": "none",
+      "category": "Informatika — asosiy",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Odiljon Muhammattursunov. Computer science jadvali.",
+      "order": 14
+    },
+    {
+      "key": "IZHO24:participant:mirzosharif-habibov:online",
+      "participant": "mirzosharif-habibov",
+      "rank": null,
+      "score": 158,
+      "medal": "none",
+      "category": "Informatika — onlayn",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Mirzosharif Habibov. Online Computer science jadvali.",
+      "order": 15
+    },
+    {
+      "key": "IZHO24:participant:bilol-baxrillayev:online",
+      "participant": "bilol-baxrillayev",
+      "rank": null,
+      "score": 90,
+      "medal": "none",
+      "category": "Informatika — onlayn",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2024/",
+      "notes": "Rasmiy jadvaldagi ism: Bilol Bakhrillaev. Online Computer science jadvali.",
+      "order": 16
+    }
+  ]
+}

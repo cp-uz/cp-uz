@@ -1,7 +1,7 @@
 {
   "slug": "2023-2024",
   "title": "2023–2024 sport dasturlash mavsumi",
-  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan APIO 2024, EGOI 2024 va IOI 2024 xalqaro finallarining tekshirilgan arxivi.",
+  "summary": "IOI va EGOI saralashlari, shuningdek O‘zbekiston qatnashgan IZhO 2024, APIO 2024, EGOI 2024 va IOI 2024 xalqaro finallarining tekshirilgan arxivi.",
   "start_date": "2023-09-01",
   "end_date": "2024-08-31",
   "publication_status": "published",
@@ -40,6 +40,17 @@
       "line_style": "solid",
       "icon": "solar:global-linear",
       "order": 30,
+      "is_visible": true
+    },
+    {
+      "code": "izho",
+      "title": "IZhO yo‘li",
+      "description": "Xalqaro Jautikov olimpiadasining tekshirilgan asosiy va onlayn informatika natijalari.",
+      "kind": "official",
+      "color": "brown",
+      "line_style": "solid",
+      "icon": "solar:cup-star-linear",
+      "order": 40,
       "is_visible": true
     }
   ],

@@ -1,0 +1,16 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-1",
+  "title": "1-kun",
+  "description": "EGOI 2025 — 1-kunning rasmiy masalalari.",
+  "date_label": "16-iyul, 2025",
+  "order": 1,
+  "publication_status": "published",
+  "problems": [
+    "giftboxes",
+    "darkride",
+    "monstergo",
+    "windturbines"
+  ]
+}

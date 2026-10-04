@@ -1,0 +1,74 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "teamcoding",
+  "code": "C",
+  "title": "Jamoaviy dasturlash",
+  "original_title": "Team Coding",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "standard",
+  "time_limit_ms": 4000,
+  "memory_limit_mb": 1024,
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "EGOI 2024"
+  ],
+  "order": 3,
+  "publication_status": "published",
+  "last_verified_on": "2026-10-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "Rasmiy inglizcha shart",
+      "url": "https://raw.githubusercontent.com/zehnsechs/egoi-2024-testdata/47fefa0ff64124f7fd8421aa12b77ad689a0fb29/day1/teamcoding/attachments/statement-ISC.pdf",
+      "platform": "EGOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "Onlayn judge’da ishlash",
+      "url": "https://oj.uz/problem/view/EGOI24_teamcoding",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    },
+    {
+      "kind": "package",
+      "title": "Rasmiy testlar, grader va yechimlar",
+      "url": "https://github.com/zehnsechs/egoi-2024-testdata/tree/47fefa0ff64124f7fd8421aa12b77ad689a0fb29",
+      "platform": "GitHub",
+      "is_official": true,
+      "order": 2
+    },
+    {
+      "kind": "editorial",
+      "title": "Rasmiy yechim tahlili (inglizcha)",
+      "url": "https://stats.egoi.org/media/task_solution/teamcoding-editorial.pdf",
+      "is_official": true,
+      "is_primary": false,
+      "order": 3
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha shart (PDF)",
+      "url": "https://raw.githubusercontent.com/zehnsechs/egoi-2024-testdata/47fefa0ff64124f7fd8421aa12b77ad689a0fb29/day1/teamcoding/attachments/statement_uz-UZ.pdf",
+      "content_type": "application/pdf",
+      "size_bytes": 173822,
+      "order": 0
+    }
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2023-2024/egoi-2024/day-1/teamcoding/statement.pdf",
+    "sha256": "4b25950f983ff3cb42bc712b09b2fd34f7315c27b62d0c99ca91c04c8078bdc5",
+    "size_bytes": 173822,
+    "page_count": 5,
+    "language": "uz",
+    "provenance": "official"
+  }
+}

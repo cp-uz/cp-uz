@@ -1,0 +1,16 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "EGOI 2024 — 2-kunning rasmiy masalalari.",
+  "date_label": "25-iyul, 2024",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "circlepassing",
+    "bikeparking",
+    "lightbulbs",
+    "makethemmeet"
+  ]
+}

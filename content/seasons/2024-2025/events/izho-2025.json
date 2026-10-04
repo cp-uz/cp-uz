@@ -1,0 +1,177 @@
+{
+  "code": "IZHO25",
+  "slug": "izho-2025",
+  "title": "XXI Xalqaro Jautikov olimpiadasi — IZhO 2025",
+  "short_title": "IZhO 2025",
+  "summary": "Matematika, fizika va informatika bo‘yicha maktab jamoalari xalqaro olimpiadasi.",
+  "description": "XXI IZhO 2025 13–17-yanvar kunlari Astanada o‘tkazildi; informatika turlari 14 va 15-yanvar kunlari bo‘ldi. Rasmiy informatika jadvalida O‘zbekistonlik besh ishtirokchi bor: to‘rt kumush va bir bronza medal.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2025-01-13",
+  "end_date": "2025-01-17",
+  "date_label": "13–17-yanvar, 2025; informatika 14–15-yanvar",
+  "timezone": "Asia/Almaty",
+  "location": "Astana, Qozog‘iston",
+  "venue": "Astana IT University",
+  "mode": "onsite",
+  "platform": "",
+  "organizer": "Respublika fizika-matematika maktabi va Daryn markazi",
+  "eligibility": "Tashkilotchilar taklif qilgan maktab jamoalari; informatika yo‘nalishi ishtirokchilari.",
+  "is_featured": true,
+  "order": 20,
+  "route_memberships": [
+    {
+      "route_code": "izho",
+      "order": 10,
+      "node_style": "final",
+      "label": "IZhO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "announcement",
+      "title": "IZhO 2025 rasmiy taklif va dasturi",
+      "url": "https://izho.kz/wp-content/uploads/2024/12/Invitation-IZhO-2025.docx.pdf",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "results",
+      "title": "IZhO 2025 informatika natijalari",
+      "url": "https://izho.kz/results-izho-2020/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "IZhO 2025 — 1-kun, tashkilotchilar e’lon qilgan masalalar",
+      "url": "https://codeforces.com/group/Uo1lq8ZyWf/contest/581905",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "IZhO 2025 — 2-kun, tashkilotchilar e’lon qilgan masalalar",
+      "url": "https://codeforces.com/group/Uo1lq8ZyWf/contest/581908",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "editorial",
+      "title": "IZhO 2025 — 1-kun rasmiy yechimlar PDF",
+      "url": "https://codeforces.com/group/Uo1lq8ZyWf/contest/581905/attachments/download/30253/day1%20editorial.pdf",
+      "is_official": true,
+      "order": 50
+    },
+    {
+      "type": "editorial",
+      "title": "IZhO 2025 — 2-kun rasmiy yechimlar PDF",
+      "url": "https://codeforces.com/group/Uo1lq8ZyWf/contest/581908/attachments/download/30254/day2%20editorial.pdf",
+      "is_official": true,
+      "order": 60
+    }
+  ],
+  "sources": [
+    {
+      "type": "official_announcement",
+      "title": "IZhO 2025 rasmiy taklif va dasturi",
+      "url": "https://izho.kz/wp-content/uploads/2024/12/Invitation-IZhO-2025.docx.pdf",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "13–17-yanvar tadbir oynasi hamda 14 va 15-yanvar musobaqa turlari."
+    },
+    {
+      "type": "official_announcement",
+      "title": "IZhO 2025 rasmiy press-relizi",
+      "url": "https://izho.kz/press-release/?lang=ru",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Informatika o‘tkazilgan Astana IT University manzili."
+    },
+    {
+      "type": "official_results",
+      "title": "IZhO 2025 rasmiy natijalari",
+      "url": "https://izho.kz/results-izho-2020/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Sahifaning eski URL slugi 2020 bo‘lsa ham sarlavhasi, jadvali va tashkilotchi havolasi IZhO 2025 ga tegishli. Besh O‘zbekiston ishtirokchisining o‘rni, ikki kunlik ballari va medallari."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "IZhO 2025 masalalari va yechimlari",
+      "url": "https://codeforces.com/blog/entry/138514",
+      "publisher": "IZhO ilmiy qo‘mitasi — fractal",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Masala muallifi ikki kun uchun Codeforces guruhidagi masalalar va yechimlarni bevosita e’lon qilgan."
+    }
+  ],
+  "results": [
+    {
+      "key": "IZHO25:participant:timur-kadirbergenov",
+      "participant": "timur-kadirbergenov",
+      "rank": 31,
+      "score": 281,
+      "medal": "silver",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/results-izho-2020/",
+      "notes": "1-kun: 158; 2-kun: 123. Rasmiy jadvaldagi ism: Timur Kadirbergenov.",
+      "order": 1
+    },
+    {
+      "key": "IZHO25:participant:jahonali-xaydaraliyev",
+      "participant": "jahonali-xaydaraliyev",
+      "rank": 32,
+      "score": 278,
+      "medal": "silver",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/results-izho-2020/",
+      "notes": "1-kun: 233; 2-kun: 45. Rasmiy jadvaldagi ism: Jahonali Haydaraliev.",
+      "order": 2
+    },
+    {
+      "key": "IZHO25:participant:ulugbek-raxmatullayev",
+      "participant": "ulugbek-raxmatullayev",
+      "rank": 35,
+      "score": 275,
+      "medal": "silver",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/results-izho-2020/",
+      "notes": "1-kun: 173; 2-kun: 102. Rasmiy jadvaldagi ism: Ulug'Bek Rakhmatullayev.",
+      "order": 3
+    },
+    {
+      "key": "IZHO25:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": 42,
+      "score": 268,
+      "medal": "silver",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/results-izho-2020/",
+      "notes": "1-kun: 147; 2-kun: 121. Rasmiy jadvaldagi ism: Asilbek Sunnatov.",
+      "order": 4
+    },
+    {
+      "key": "IZHO25:participant:sardor-salimov",
+      "participant": "sardor-salimov",
+      "rank": 75,
+      "score": 218,
+      "medal": "bronze",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/results-izho-2020/",
+      "notes": "1-kun: 173; 2-kun: 45. Rasmiy jadvaldagi ism: Sardor Salimov.",
+      "order": 5
+    }
+  ]
+}

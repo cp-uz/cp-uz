@@ -1,0 +1,73 @@
+{
+  "document_type": "problem",
+  "schema_version": 1,
+  "slug": "festival",
+  "code": "A",
+  "title": "Festival",
+  "original_title": "Festival",
+  "statement_file": "statement.uz.md",
+  "translation_status": "reviewed_translation",
+  "problem_type": "standard",
+  "max_score": 100,
+  "difficulty_label": "Xalqaro olimpiada",
+  "tags": [
+    "IOI 2025"
+  ],
+  "order": 1,
+  "publication_status": "published",
+  "last_verified_on": "2026-10-04",
+  "links": [
+    {
+      "kind": "original",
+      "title": "IOI rasmiy inglizcha sharti",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/day2/festival-ISC.pdf",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": true,
+      "order": 0
+    },
+    {
+      "kind": "practice",
+      "title": "OJ.uz’da ishlash",
+      "url": "https://oj.uz/problem/view/IOI25_festival",
+      "platform": "OJ.uz",
+      "is_official": false,
+      "is_primary": true,
+      "order": 1
+    },
+    {
+      "kind": "original",
+      "title": "Rasmiy task arxivi va CC BY litsenziyasi",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 2
+    },
+    {
+      "kind": "editorial",
+      "title": "IOI rasmiy yechimlari (ZIP)",
+      "url": "https://ioinformatics.org/files/ioi2025solutions.zip",
+      "platform": "IOI",
+      "is_official": true,
+      "is_primary": false,
+      "order": 3
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Rasmiy o‘zbekcha statementlar (ZIP)",
+      "url": "https://ioi.te.lv/locations/ioi25/contest/day2/festival_pdf.zip",
+      "content_type": "application/zip",
+      "order": 0
+    }
+  ],
+  "statement_pdf": {
+    "url": "https://raw.githubusercontent.com/cp-uz/problem-statements/main/2024-2025/ioi-2025/day-2/festival/statement.pdf",
+    "sha256": "815b516202953e1d7c0329f9e25df55309a6c56daabe1d34223a0e83b6718970",
+    "size_bytes": 145260,
+    "page_count": 3,
+    "language": "uz",
+    "provenance": "official"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "document_type": "event",
+  "schema_version": 1,
+  "season_slug": "2022-2023",
+  "event_slug": "ioi-2023",
+  "sets": [
+    "day-1",
+    "day-2"
+  ]
+}

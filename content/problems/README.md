@@ -65,6 +65,25 @@ ochiq mirrorlar ham practice manbasi sifatida ko‘rsatilgan. IOI 2025 natijalar
 vaqtinchalik live domenlari endi DNS’da mavjud bo‘lmagani sababli ular practice link
 sifatida kiritilmadi.
 
+IOI 2023–2025, APIO 2023–2024 va EGOI 2024–2025 finallaridan yana 40 ta rasmiy
+o‘zbekcha masala qo‘shilgan. Ularning PDF’lari rasmiy arxivlardan olinib,
+`cp-uz/problem-statements` repozitoriysida hash va sahifa soni bilan saqlanadi.
+IOI manbalari CC BY, APIO 2023–2024 CC0, EGOI 2024–2025 esa CC BY-SA shartlari
+bilan tarqatiladi; mualliflar va original manbalar har bir masalada ko‘rsatilgan.
+Markdown’dagi formula va sample’lar original shartga solishtirilgan; diagrammalar
+hamda originaldagi yozuvlar uchun PDF asosiy manba bo‘lib qoladi.
+
+Tarixiy finallarni qayta yig‘ish canonical katalogni to‘g‘ridan-to‘g‘ri o‘zgartirmaydi:
+
+```bash
+python scripts/sync_historical_ioi_archives.py
+python scripts/sync_historical_apio_egoi_archives.py
+```
+
+APIO 2025 arxivida qayta tarqatishga ruxsat beruvchi aniq litsenziya topilmadi.
+Shu sababli uning uchta rasmiy o‘zbekcha PDF’i season eventida original havolalar
+sifatida berilgan, nusxalari va to‘liq shartlari public katalogga ko‘chirilmagan.
+
 JSON hujjatlari [`schema/problem-content.schema.json`](schema/problem-content.schema.json)
 bilan tekshiriladi. Yangi masala qo‘shilganda avval `problem.json` va
 `statement.uz.md` yaratiladi, so‘ng uning papkasi tegishli `set.json` dagi `problems`

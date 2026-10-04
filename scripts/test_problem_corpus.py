@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import io
 import json
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,6 +14,33 @@ from scripts import build_problem_statement_corpus as corpus
 
 
 class CorpusRebuildTests(unittest.TestCase):
+    def test_ioi_2025_uzbek_pdf_is_extracted_without_modification(self):
+        url = next(iter(corpus.IOI_2025_PDF_ARCHIVES))
+        pdf = b"%PDF-1.7\nverified source bytes"
+        archive = io.BytesIO()
+        with zipfile.ZipFile(archive, "w") as output:
+            output.writestr("uz_UZ.pdf", pdf)
+            output.writestr("en.pdf", b"not the requested translation")
+            output.writestr("../outside.txt", b"must never be extracted")
+        with tempfile.TemporaryDirectory() as value:
+            target = Path(value) / "statement.pdf"
+            with patch.object(
+                corpus.urllib.request, "urlopen", return_value=io.BytesIO(archive.getvalue())
+            ):
+                corpus.download_pdf(url, target)
+            self.assertEqual(target.read_bytes(), pdf)
+            self.assertEqual(list(Path(value).iterdir()), [target])
+            self.assertEqual(
+                corpus.statement_pdf_attachment(
+                    {
+                        "attachments": [
+                            {"url": url, "content_type": "application/zip"},
+                        ]
+                    }
+                )["url"],
+                url,
+            )
+
     def test_official_mirror_can_be_rebuilt_twice_without_original_attachment(self):
         with tempfile.TemporaryDirectory() as value:
             root = Path(value)

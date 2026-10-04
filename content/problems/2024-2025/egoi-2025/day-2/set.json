@@ -1,0 +1,16 @@
+{
+  "document_type": "problem_set",
+  "schema_version": 1,
+  "slug": "day-2",
+  "title": "2-kun",
+  "description": "EGOI 2025 — 2-kunning rasmiy masalalari.",
+  "date_label": "18-iyul, 2025",
+  "order": 2,
+  "publication_status": "published",
+  "problems": [
+    "stringproblem",
+    "currents",
+    "imo",
+    "laserstrike"
+  ]
+}

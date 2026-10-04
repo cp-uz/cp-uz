@@ -1,0 +1,195 @@
+{
+  "code": "IZHO23",
+  "slug": "izho-2023",
+  "title": "XIX Xalqaro Jautikov olimpiadasi — IZhO 2023",
+  "short_title": "IZhO 2023",
+  "summary": "Matematika, fizika va informatika bo‘yicha maktab jamoalari xalqaro olimpiadasi.",
+  "description": "IZhO 2023 informatika turlari 2–3-fevralda onlayn o‘tkazildi. Rasmiy jadvalda O‘zbekistonlik to‘qqiz ishtirokchi bor: bir kumush va to‘rt bronza medal. Ko‘rsatilgan sanalar informatika musobaqa kunlari; ochilish va yopilish marosimlari oralig‘i bu sanalarga kiritilmagan.",
+  "type": "international",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2023-02-02",
+  "end_date": "2023-02-03",
+  "date_label": "2–3-fevral, 2023 (informatika turlari)",
+  "timezone": "Asia/Almaty",
+  "location": "Onlayn; tashkilotchi — Olmaota, Qozog‘iston",
+  "venue": "",
+  "mode": "online",
+  "platform": "",
+  "organizer": "Respublika fizika-matematika maktabi va Daryn markazi",
+  "eligibility": "Tashkilotchilar taklif qilgan maktab jamoalari; informatika yo‘nalishi ishtirokchilari.",
+  "is_featured": true,
+  "order": 20,
+  "route_memberships": [
+    {
+      "route_code": "izho",
+      "order": 10,
+      "node_style": "final",
+      "label": "IZhO"
+    }
+  ],
+  "resources": [
+    {
+      "type": "results",
+      "title": "IZhO 2023 informatika natijalari",
+      "url": "https://izho.kz/contest/results-izho-2023/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "tasks",
+      "title": "IZhO 2023 — 1 va 2-kun masalalari (qozoqcha, inglizcha, ruscha PDF)",
+      "url": "https://izho.kz/wp-content/uploads/2023/02/IZHO_CS_2023.pdf",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "editorial",
+      "title": "IZhO 2023 — rasmiy yechimlar PDF",
+      "url": "https://izho.kz/wp-content/uploads/2023/02/IZHO_CS_2023_sol.pdf",
+      "is_official": true,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "official_results",
+      "title": "IZhO 2023 rasmiy natijalari",
+      "url": "https://izho.kz/contest/results-izho-2023/",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "Computer science jadvalidagi 9 O‘zbekiston ishtirokchisining ballari va medallari. Jadvalda alohida o‘rin ustuni yo‘q; o‘rin taxmin qilinmagan."
+    },
+    {
+      "type": "organizer_archive",
+      "title": "IZhO 2023 rasmiy informatika masalalari",
+      "url": "https://izho.kz/wp-content/uploads/2023/02/IZHO_CS_2023.pdf",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "PDF sarlavhasida 2023-yil 2–3-fevral informatika musobaqa kunlari tasdiqlanadi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "IZhO 2024 press-relizi",
+      "url": "https://izho.kz/wp-content/uploads/2023/12/RUS_2.pdf",
+      "publisher": "IZhO",
+      "accessed_on": "2026-10-04",
+      "is_primary": true,
+      "notes": "2024-yilda uch yillik onlayn davrdan keyin yuzma-yuz formatga qaytilganini tasdiqlaydi."
+    }
+  ],
+  "results": [
+    {
+      "key": "IZHO23:participant:dilyorbek-valijonov",
+      "participant": "dilyorbek-valijonov",
+      "rank": null,
+      "score": 246,
+      "medal": "silver",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Dilyorbek Valijonov.",
+      "order": 1
+    },
+    {
+      "key": "IZHO23:participant:dilshodbek-xojayev",
+      "participant": "dilshodbek-xojayev",
+      "rank": null,
+      "score": 225,
+      "medal": "bronze",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Dilshodbek Khujaev.",
+      "order": 2
+    },
+    {
+      "key": "IZHO23:participant:husanboy-mansuraliyev",
+      "participant": "husanboy-mansuraliyev",
+      "rank": null,
+      "score": 186,
+      "medal": "bronze",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Husanboy Mansuraliyev.",
+      "order": 3
+    },
+    {
+      "key": "IZHO23:participant:asilbek-sunnatov",
+      "participant": "asilbek-sunnatov",
+      "rank": null,
+      "score": 185,
+      "medal": "bronze",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Asilbek Sunnatov.",
+      "order": 4
+    },
+    {
+      "key": "IZHO23:participant:otabek-jurabekov",
+      "participant": "otabek-jurabekov",
+      "rank": null,
+      "score": 173,
+      "medal": "bronze",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Otabek Jurabekov.",
+      "order": 5
+    },
+    {
+      "key": "IZHO23:participant:izzat-sotimqulov",
+      "participant": "izzat-sotimqulov",
+      "rank": null,
+      "score": 164,
+      "medal": "none",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Izzat Sotimqulov.",
+      "order": 6
+    },
+    {
+      "key": "IZHO23:participant:javohir-toshtemirov",
+      "participant": "javohir-toshtemirov",
+      "rank": null,
+      "score": 68,
+      "medal": "none",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Javohir Toshtemirov.",
+      "order": 7
+    },
+    {
+      "key": "IZHO23:participant:mirzosharif-habibov",
+      "participant": "mirzosharif-habibov",
+      "rank": null,
+      "score": 57,
+      "medal": "none",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Mirzosharif Habibov.",
+      "order": 8
+    },
+    {
+      "key": "IZHO23:participant:azizbek-saidmurodov",
+      "participant": "azizbek-saidmurodov",
+      "rank": null,
+      "score": 19,
+      "medal": "none",
+      "category": "Informatika",
+      "is_local": true,
+      "result_url": "https://izho.kz/contest/results-izho-2023/",
+      "notes": "Rasmiy jadvaldagi ism: Azizbek Saidmurodov.",
+      "order": 9
+    }
+  ]
+}
