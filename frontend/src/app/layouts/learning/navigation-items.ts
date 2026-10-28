@@ -1,14 +1,14 @@
 import { appRoutes } from 'shared/config';
 
 export const navItems = [
-  { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'solar:library-linear' },
+  { to: appRoutes.algorithms, label: 'Algoritmlar', icon: 'cp:miscellaneous' },
   {
     to: appRoutes.seasons,
     label: 'Olimpiada mavsumi',
     icon: 'solar:calendar-mark-linear',
   },
   { to: appRoutes.tasks, label: 'Masalalar', icon: 'solar:documents-minimalistic-linear' },
-  { to: appRoutes.roadmap, label: 'Yo‘l xaritasi', icon: 'solar:map-linear' },
+  { to: appRoutes.roadmap, label: 'Yo‘l xaritasi', icon: 'cp:roadmap' },
 ];
 
 const glossaryItem = {

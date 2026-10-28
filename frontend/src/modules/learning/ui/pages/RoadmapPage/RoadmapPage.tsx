@@ -7,6 +7,7 @@ import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 import { getAuthSession } from 'modules/auth/application';
 import { useLocalStorageList } from 'modules/engagement/application';
+import { AlgorithmIcon, AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -78,27 +79,30 @@ export default function RoadmapPage() {
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
-        <Box sx={{ maxWidth: 760 }}>
-          <Typography component="h1" variant="h3">
-            Poydevordan mahoratgacha
-          </Typography>
-          <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
-            Sport dasturlash mavzularini o‘zaro bog‘langan bosqichlar orqali o‘rganing. Har bir
-            bosqich oldingi bilim ustiga quriladi va keyingi qadamni aniq ko‘rsatadi.
-          </Typography>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 3.5 }}>
-            <Button
-              component="a"
-              href="#bosqichlar"
-              variant="contained"
-              endIcon={<UiIcon icon="solar:arrow-down-linear" width={18} />}
-            >
-              O‘rganishni boshlash
-            </Button>
-            <Button component={RouterLink} to={appRoutes.algorithms} color="inherit">
-              Mavzular kutubxonasi
-            </Button>
-          </Stack>
+        <Box sx={{ position: 'relative', isolation: 'isolate', py: 2 }}>
+          <AlgorithmBackdrop variant="section" topic="roadmap" />
+          <Box sx={{ maxWidth: 760 }}>
+            <Typography component="h1" variant="h3">
+              Poydevordan mahoratgacha
+            </Typography>
+            <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
+              Sport dasturlash mavzularini o‘zaro bog‘langan bosqichlar orqali o‘rganing. Har bir
+              bosqich oldingi bilim ustiga quriladi va keyingi qadamni aniq ko‘rsatadi.
+            </Typography>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 3.5 }}>
+              <Button
+                component="a"
+                href="#bosqichlar"
+                variant="contained"
+                endIcon={<UiIcon icon="solar:arrow-down-linear" width={18} />}
+              >
+                O‘rganishni boshlash
+              </Button>
+              <Button component={RouterLink} to={appRoutes.algorithms} color="inherit">
+                Mavzular kutubxonasi
+              </Button>
+            </Stack>
+          </Box>
         </Box>
 
         <Divider sx={{ my: { xs: 4, md: 5 } }} />
@@ -189,18 +193,22 @@ export default function RoadmapPage() {
                   component="article"
                   key={stage.id}
                   sx={{
+                    position: 'relative',
+                    isolation: 'isolate',
                     py: { xs: 4, md: 5 },
                     gap: { xs: 2, md: 4 },
                     display: 'grid',
                     gridTemplateColumns: { xs: '1fr', md: '64px minmax(0, 1fr)' },
                   }}
                 >
+                  <AlgorithmBackdrop variant="card" topic={stage.id} />
                   <Stack
-                    direction="row"
+                    direction={{ xs: 'row', md: 'column' }}
                     spacing={1}
                     alignItems="center"
-                    sx={{ alignSelf: 'start' }}
+                    sx={{ alignSelf: 'start', color: stageDone ? 'success.main' : 'primary.main' }}
                   >
+                    <AlgorithmIcon topic={stage.id} size={44} />
                     {stageDone ? (
                       <Box sx={{ color: 'success.main', display: 'flex' }}>
                         <UiIcon icon="solar:check-circle-linear" width={28} />

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 import { EngagementSyncStatus } from 'modules/engagement/sync-status';
 
 import { MainSection, LayoutSection } from './core';
@@ -32,7 +33,8 @@ export function LearningLayout({ children }: { children: React.ReactNode }) {
       footerSection={<LearningFooter />}
       sx={{ minHeight: '100vh' }}
     >
-      <MainSection id="main-content">
+      <MainSection id="main-content" sx={{ position: 'relative', isolation: 'isolate' }}>
+        <AlgorithmBackdrop />
         <EngagementSyncStatus />
         {children}
       </MainSection>

@@ -2,6 +2,7 @@ import type { LearningArticle } from '../../domain';
 
 import { UiIcon } from 'shared/ui/UiIcon';
 import { Link as RouterLink } from 'react-router';
+import { AlgorithmIcon, AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -23,26 +24,32 @@ type ArticleCardProps = {
 
 export function ArticleCard({ article, compact, bookmarked, onBookmark }: ArticleCardProps) {
   const editorialStatus = article.editorialStatus ?? 'draft';
-  const statusLabel = editorialStatus === 'published'
-    ? 'Nashr qilingan'
-    : editorialStatus === 'draft'
-      ? 'Tarjima qoralamasi'
-      : 'Tayyor · tekshiruvda';
-  const statusColor = editorialStatus === 'published'
-    ? 'success'
-    : editorialStatus === 'draft'
-      ? 'warning'
-      : 'primary';
-  const difficultyColor = article.difficulty === 'Boshlang‘ich'
-    ? 'info'
-    : article.difficulty === 'O‘rta'
-      ? 'warning'
-      : 'error';
+  const statusLabel =
+    editorialStatus === 'published'
+      ? 'Nashr qilingan'
+      : editorialStatus === 'draft'
+        ? 'Tarjima qoralamasi'
+        : 'Tayyor · tekshiruvda';
+  const statusColor =
+    editorialStatus === 'published'
+      ? 'success'
+      : editorialStatus === 'draft'
+        ? 'warning'
+        : 'primary';
+  const difficultyColor =
+    article.difficulty === 'Boshlang‘ich'
+      ? 'info'
+      : article.difficulty === 'O‘rta'
+        ? 'warning'
+        : 'error';
 
   return (
     <Box
       component="article"
+      className="cp-motion-card"
       sx={{
+        position: 'relative',
+        isolation: 'isolate',
         px: { xs: 0, sm: 2 },
         py: 2.75,
         gap: 2.5,
@@ -51,7 +58,7 @@ export function ArticleCard({ article, compact, bookmarked, onBookmark }: Articl
         borderBottom: 1,
         borderColor: 'divider',
         flexDirection: 'column',
-        transition: (theme) => theme.transitions.create('background-color'),
+        transition: (theme) => theme.transitions.create(['background-color', 'transform']),
         '&:hover': { bgcolor: 'background.neutral' },
         ...(compact && {
           display: 'grid',
@@ -60,17 +67,33 @@ export function ArticleCard({ article, compact, bookmarked, onBookmark }: Articl
         }),
       }}
     >
+      <AlgorithmBackdrop variant="card" topic={article.categoryId} />
       <Box sx={{ minWidth: 0, flexGrow: 1 }}>
         <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1.5, flexWrap: 'wrap' }}>
-          <Stack direction="row" spacing={0.625} alignItems="center" sx={{ color: 'text.secondary' }}>
-            <UiIcon icon="solar:folder-open-linear" width={16} />
-            <Typography variant="caption" sx={{ color: 'inherit', fontWeight: 'fontWeightSemiBold' }}>
+          <Stack
+            direction="row"
+            spacing={0.625}
+            alignItems="center"
+            sx={{ color: 'text.secondary' }}
+          >
+            <AlgorithmIcon topic={article.categoryId} size={20} />
+            <Typography
+              variant="caption"
+              sx={{ color: 'inherit', fontWeight: 'fontWeightSemiBold' }}
+            >
               {article.category}
             </Typography>
           </Stack>
-          <Stack direction="row" spacing={0.625} alignItems="center" sx={{ color: 'text.secondary' }}>
+          <Stack
+            direction="row"
+            spacing={0.625}
+            alignItems="center"
+            sx={{ color: 'text.secondary' }}
+          >
             <UiIcon icon="solar:clock-circle-linear" width={16} />
-            <Typography variant="caption" sx={{ color: 'inherit' }}>{article.readTime} daqiqa</Typography>
+            <Typography variant="caption" sx={{ color: 'inherit' }}>
+              {article.readTime} daqiqa
+            </Typography>
           </Stack>
         </Stack>
 
@@ -124,7 +147,10 @@ export function ArticleCard({ article, compact, bookmarked, onBookmark }: Articl
               aria-label={bookmarked ? 'Saqlanganlardan olib tashlash' : 'Keyinroq uchun saqlash'}
               onClick={() => onBookmark(article.sourceId ?? article.slug)}
             >
-              <UiIcon icon={bookmarked ? 'solar:bookmark-bold' : 'solar:bookmark-linear'} width={19} />
+              <UiIcon
+                icon={bookmarked ? 'solar:bookmark-bold' : 'solar:bookmark-linear'}
+                width={19}
+              />
             </IconButton>
           </Tooltip>
         )}

@@ -6,16 +6,16 @@ type CategoryPresentation = {
 };
 
 const ROOT_CATEGORY_PRESENTATION: Record<string, CategoryPresentation> = {
-  algebra: { title: 'Algebra', icon: 'solar:calculator-minimalistic-linear' },
-  combinatorics: { title: 'Kombinatorika', icon: 'solar:atom-linear' },
-  'data-structures': { title: 'Ma’lumotlar tuzilmalari', icon: 'solar:database-linear' },
-  'dynamic-programming': { title: 'Dinamik dasturlash', icon: 'solar:layers-minimalistic-linear' },
-  geometry: { title: 'Geometriya', icon: 'solar:ruler-cross-pen-linear' },
-  graphs: { title: 'Graflar', icon: 'solar:branching-paths-up-linear' },
-  'linear-algebra': { title: 'Chiziqli algebra', icon: 'solar:widget-4-linear' },
-  miscellaneous: { title: 'Boshqa mavzular', icon: 'solar:code-square-linear' },
-  'numerical-methods': { title: 'Sonli usullar', icon: 'solar:chart-square-linear' },
-  'string-processing': { title: 'Satrlar', icon: 'solar:text-square-linear' },
+  algebra: { title: 'Algebra', icon: 'cp:algebra' },
+  combinatorics: { title: 'Kombinatorika', icon: 'cp:combinatorics' },
+  'data-structures': { title: 'Ma’lumotlar tuzilmalari', icon: 'cp:data-structures' },
+  'dynamic-programming': { title: 'Dinamik dasturlash', icon: 'cp:dynamic-programming' },
+  geometry: { title: 'Geometriya', icon: 'cp:geometry' },
+  graphs: { title: 'Graflar', icon: 'cp:graphs' },
+  'linear-algebra': { title: 'Chiziqli algebra', icon: 'cp:linear-algebra' },
+  miscellaneous: { title: 'Boshqa mavzular', icon: 'cp:miscellaneous' },
+  'numerical-methods': { title: 'Sonli usullar', icon: 'cp:numerical-methods' },
+  'string-processing': { title: 'Satrlar', icon: 'cp:string-processing' },
 };
 
 const CATEGORY_ALIASES: Record<string, string> = {
@@ -50,7 +50,7 @@ export function presentRootCategory(category: LearningCategory): LearningCategor
   const id = canonicalCategoryId(category.id);
   const presentation = ROOT_CATEGORY_PRESENTATION[id] ?? {
     title: category.title,
-    icon: 'solar:code-square-linear',
+    icon: 'cp:miscellaneous',
   };
 
   return {

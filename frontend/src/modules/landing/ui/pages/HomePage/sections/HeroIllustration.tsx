@@ -1,9 +1,18 @@
 import Box from '@mui/material/Box';
 
+const graphPath = 'M 91 239 L 143 160 L 218 202 L 286 111';
+const nodes = [
+  [91, 239],
+  [143, 160],
+  [218, 202],
+  [286, 111],
+];
+
 export function HeroIllustration() {
   return (
     <Box
-      aria-hidden
+      aria-hidden="true"
+      className="cp-hero-graph"
       sx={{
         height: 360,
         display: { xs: 'none', md: 'block' },
@@ -32,6 +41,7 @@ export function HeroIllustration() {
         component="svg"
         viewBox="0 0 360 360"
         role="presentation"
+        focusable="false"
         sx={{ width: '100%', height: '100%', overflow: 'visible' }}
       >
         <g className="cp-grid-line" fill="none" strokeWidth="1">
@@ -50,9 +60,17 @@ export function HeroIllustration() {
         </g>
         <g fill="none" strokeLinecap="round" strokeLinejoin="round">
           <path
-            className="cp-graph-line"
-            d="M 91 239 L 143 160 L 218 202 L 286 111"
+            className="cp-graph-line cp-graph-trace"
+            d={graphPath}
             strokeWidth="1.8"
+            pathLength="1"
+          />
+          <path
+            className="cp-graph-line cp-graph-flow"
+            d={graphPath}
+            strokeWidth="3"
+            pathLength="100"
+            opacity=".45"
           />
           <path
             className="cp-grid-line"
@@ -66,11 +84,15 @@ export function HeroIllustration() {
             strokeDasharray="5 6"
           />
         </g>
+        <g className="cp-graph-line" fill="none" strokeWidth="1">
+          {nodes.map(([x, y]) => (
+            <circle key={x} className="cp-graph-halo" cx={x} cy={y} r="10" />
+          ))}
+        </g>
         <g strokeWidth="2">
-          <circle className="cp-graph-node" cx="91" cy="239" r="7" />
-          <circle className="cp-graph-node" cx="143" cy="160" r="7" />
-          <circle className="cp-graph-node" cx="218" cy="202" r="7" />
-          <circle className="cp-graph-node" cx="286" cy="111" r="7" />
+          {nodes.map(([x, y]) => (
+            <circle key={x} className="cp-graph-node" cx={x} cy={y} r="7" />
+          ))}
           <circle className="cp-graph-node-muted" cx="297" cy="257" r="6" />
         </g>
         <g className="cp-token">

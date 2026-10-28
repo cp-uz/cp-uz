@@ -124,6 +124,163 @@ kbd,
 }
 
 /** **************************************
+* Algorithm patterns and motion
+*************************************** */
+.cp-motion-card {
+  animation: cp-card-enter 500ms ease-out both;
+}
+
+.cp-motion-card:nth-child(3n + 2) {
+  animation-delay: 50ms;
+}
+
+.cp-motion-card:nth-child(3n) {
+  animation-delay: 100ms;
+}
+
+.cp-hero-graph {
+  animation: cp-graph-enter 800ms ease-out both;
+}
+
+.cp-pattern-layer--section .cp-backdrop-art {
+  animation: cp-backdrop-drift 16s ease-in-out infinite alternate;
+}
+
+.cp-graph-trace {
+  stroke-dasharray: 1;
+  animation: cp-graph-draw 1400ms ease-out both;
+}
+
+.cp-graph-flow {
+  stroke-dasharray: 4 96;
+  animation: cp-graph-flow 10s linear 1400ms infinite;
+}
+
+.cp-graph-halo {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cp-node-pulse 5s ease-out infinite;
+}
+
+.cp-graph-halo:nth-child(2) {
+  animation-delay: 1200ms;
+}
+
+.cp-graph-halo:nth-child(3) {
+  animation-delay: 2400ms;
+}
+
+.cp-graph-halo:nth-child(4) {
+  animation-delay: 3600ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cp-motion-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .cp-motion-card:hover > .cp-pattern-layer--card,
+  .cp-motion-card:focus-within > .cp-pattern-layer--card {
+    opacity: 0.24;
+    transform: translate(-3px, -2px);
+  }
+}
+
+@keyframes cp-card-enter {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes cp-graph-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cp-backdrop-drift {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes cp-graph-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cp-graph-flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes cp-node-pulse {
+  0%,
+  15% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  25% {
+    opacity: 0.35;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cp-motion-card,
+  .cp-hero-graph,
+  .cp-backdrop-art,
+  .cp-graph-trace,
+  .cp-graph-flow,
+  .cp-graph-halo {
+    animation: none !important;
+  }
+
+  .cp-motion-card,
+  .cp-motion-card:hover,
+  .cp-pattern-layer,
+  .cp-motion-card:hover > .cp-pattern-layer {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cp-graph-flow,
+  .cp-graph-halo {
+    display: none;
+  }
+}
+
+/** **************************************
 * Brand
 *************************************** */
 .brand {

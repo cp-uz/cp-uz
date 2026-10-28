@@ -5,6 +5,7 @@ import { appRoutes } from 'shared/config';
 import { useAsyncData } from 'shared/hooks';
 import { Link as RouterLink } from 'react-router';
 import { ArticleCard } from 'modules/learning/article-card';
+import { AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 import { learningQueries as learningApi } from 'modules/learning/application';
 
 import Box from '@mui/material/Box';
@@ -120,17 +121,18 @@ export default function BookmarksPage() {
             ))}
           </Box>
         ) : (
-          <Box sx={{ py: { xs: 7, md: 10 }, maxWidth: 540 }}>
-            <Box sx={{ color: 'primary.main', display: 'flex' }}>
-              <UiIcon
-                icon={
-                  hasBookmarks
-                    ? 'solar:document-add-linear'
-                    : 'solar:bookmark-square-minimalistic-linear'
-                }
-                width={38}
-              />
-            </Box>
+          <Box
+            sx={{
+              py: { xs: 7, md: 10 },
+              maxWidth: 540,
+              position: 'relative',
+              isolation: 'isolate',
+            }}
+          >
+            <AlgorithmBackdrop
+              variant="section"
+              topic={hasBookmarks ? 'search' : 'data-structures'}
+            />
             <Typography variant="h5" sx={{ mt: 2 }}>
               {hasBookmarks ? 'Qidiruv bo‘yicha maqola topilmadi' : 'Hozircha maqola saqlanmagan'}
             </Typography>

@@ -1,4 +1,5 @@
 import { UiIcon } from 'shared/ui/UiIcon';
+import { AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -18,7 +19,10 @@ export function ContributionBanner({ articleCount }: { articleCount: number }) {
     >
       <Container maxWidth="xl">
         <Box
+          className="cp-motion-card"
           sx={(theme) => ({
+            position: 'relative',
+            isolation: 'isolate',
             px: { xs: 2.5, md: 3 },
             py: 2.5,
             color: 'primary.darker',
@@ -30,6 +34,7 @@ export function ContributionBanner({ articleCount }: { articleCount: number }) {
             }),
           })}
         >
+          <AlgorithmBackdrop variant="card" topic="miscellaneous" />
           <Stack
             direction={{ xs: 'column', md: 'row' }}
             spacing={2}

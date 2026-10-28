@@ -3,6 +3,7 @@ import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useLocation } from 'react-router';
 import { useMemo, useState, useEffect } from 'react';
+import { AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
 
 import Box from '@mui/material/Box';
@@ -69,26 +70,29 @@ export default function GlossaryPage() {
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 5, md: 7 }, pb: { xs: 7, md: 10 } }}>
-        <Box sx={{ maxWidth: 760 }}>
-          <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
-            Atamalar to‘plami
-          </Typography>
-          <Typography component="h1" variant="h3" sx={{ mt: 1.5 }}>
-            Algoritmik atamalar lug‘ati
-          </Typography>
-          <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
-            Sport dasturlash tushunchalarining o‘zbekcha izohi, inglizcha muqobili va bog‘liq
-            mavzulari.
-          </Typography>
-          <Button
-            component="a"
-            href="#mini-test"
-            variant="soft"
-            startIcon={<UiIcon icon="solar:question-square-linear" width={19} />}
-            sx={{ mt: 2.5 }}
-          >
-            Mini testga o‘tish
-          </Button>
+        <Box sx={{ position: 'relative', isolation: 'isolate', py: 2 }}>
+          <AlgorithmBackdrop variant="section" topic="string-processing" />
+          <Box sx={{ maxWidth: 760 }}>
+            <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>
+              Atamalar to‘plami
+            </Typography>
+            <Typography component="h1" variant="h3" sx={{ mt: 1.5 }}>
+              Algoritmik atamalar lug‘ati
+            </Typography>
+            <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
+              Sport dasturlash tushunchalarining o‘zbekcha izohi, inglizcha muqobili va bog‘liq
+              mavzulari.
+            </Typography>
+            <Button
+              component="a"
+              href="#mini-test"
+              variant="soft"
+              startIcon={<UiIcon icon="solar:question-square-linear" width={19} />}
+              sx={{ mt: 2.5 }}
+            >
+              Mini testga o‘tish
+            </Button>
+          </Box>
         </Box>
 
         <TextField

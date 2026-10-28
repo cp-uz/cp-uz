@@ -3,6 +3,7 @@ import type { LearningArticle } from 'modules/learning/domain';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { Link as RouterLink } from 'react-router';
+import { AlgorithmIcon } from 'shared/ui/AlgorithmVisual';
 import { roadmapStages, getArticlePath } from 'modules/learning/domain';
 
 import Box from '@mui/material/Box';
@@ -44,6 +45,9 @@ export function HomeLearningPaths({ liveArticles }: { liveArticles: LearningArti
           <Stack divider={<Divider flexItem />} sx={{ mt: 3 }}>
             {roadmapStages.slice(0, 4).map((stage) => (
               <Stack key={stage.id} direction="row" spacing={2} sx={{ py: 2 }}>
+                <Box sx={{ color: 'primary.main', display: 'flex', flexShrink: 0 }}>
+                  <AlgorithmIcon topic={stage.id} size={34} />
+                </Box>
                 <Typography
                   component="span"
                   variant="subtitle2"
@@ -105,6 +109,9 @@ export function HomeLearningPaths({ liveArticles }: { liveArticles: LearningArti
                   '&:hover h3': { color: 'primary.main' },
                 }}
               >
+                <Box sx={{ color: 'primary.main', display: 'flex', flexShrink: 0, pt: 0.5 }}>
+                  <AlgorithmIcon topic={article.categoryId} size={32} />
+                </Box>
                 <Box sx={{ minWidth: 0, flexGrow: 1 }}>
                   <Typography component="h3" variant="subtitle1">
                     {article.title}

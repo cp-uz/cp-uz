@@ -2,6 +2,7 @@ import { Seo } from 'shared/ui/Seo';
 import { UiIcon } from 'shared/ui/UiIcon';
 import { appRoutes } from 'shared/config';
 import { useMemo, useState, useEffect } from 'react';
+import { AlgorithmBackdrop } from 'shared/ui/AlgorithmVisual';
 import { useAsyncData, useDebouncedValue } from 'shared/hooks';
 import { useLocalStorageList } from 'modules/engagement/application';
 import { useParams, useNavigate, useSearchParams, Link as RouterLink } from 'react-router';
@@ -98,16 +99,22 @@ export default function CatalogPage() {
       />
 
       <Container maxWidth="xl" sx={{ pt: { xs: 2, md: 4 }, pb: { xs: 4, md: 6 } }}>
-        <Box sx={{ maxWidth: 760 }}>
-          <Typography component="h1" variant="h3">
-            Algoritmlar va mavzular
-          </Typography>
-          <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
-            {articlesLoading
-              ? 'Maqolalarni mavzu, daraja yoki kalit so‘z orqali toping.'
-              : `${allArticles.length} ta maqolani mavzu, daraja yoki kalit so‘z orqali toping.`}{' '}
-            Har bir materialning tekshiruv holati alohida ko‘rsatiladi.
-          </Typography>
+        <Box sx={{ position: 'relative', isolation: 'isolate', py: 2 }}>
+          <AlgorithmBackdrop
+            variant="section"
+            topic={category === 'all' ? 'data-structures' : category}
+          />
+          <Box sx={{ maxWidth: 760 }}>
+            <Typography component="h1" variant="h3">
+              {categoryTitle ?? 'Algoritmlar va mavzular'}
+            </Typography>
+            <Typography sx={{ mt: 1.5, color: 'text.secondary' }}>
+              {articlesLoading
+                ? 'Maqolalarni mavzu, daraja yoki kalit so‘z orqali toping.'
+                : `${allArticles.length} ta maqolani mavzu, daraja yoki kalit so‘z orqali toping.`}{' '}
+              Har bir materialning tekshiruv holati alohida ko‘rsatiladi.
+            </Typography>
+          </Box>
         </Box>
 
         <TextField
@@ -154,7 +161,8 @@ export default function CatalogPage() {
             fullWidth
             size="small"
             label="Bo‘lim"
-            value={category}
+            value={categoriesLoading ? 'all' : category}
+            disabled={categoriesLoading}
             onChange={(event) => updateCategory(event.target.value)}
           >
             <MenuItem value="all">
@@ -403,8 +411,8 @@ export default function CatalogPage() {
                 ))}
               </Box>
             ) : !loading && !articleLoadError && !categoryLoadError ? (
-              <Box sx={{ py: 10, textAlign: 'center' }}>
-                <UiIcon icon="solar:document-add-linear" width={40} />
+              <Box sx={{ py: 10, textAlign: 'center', position: 'relative', isolation: 'isolate' }}>
+                <AlgorithmBackdrop variant="section" topic="search" />
                 <Typography variant="h5" sx={{ mt: 2 }}>
                   Hech narsa topilmadi
                 </Typography>
