@@ -21,6 +21,7 @@ export function AlgorithmBackdrop({
 }: AlgorithmBackdropProps) {
   const patternId = `cp-pattern-${useId().replace(/:/g, '')}`;
   const card = variant === 'card';
+  const page = variant === 'page';
 
   return (
     <Box
@@ -36,10 +37,10 @@ export function AlgorithmBackdrop({
           pointerEvents: 'none',
           borderRadius: 'inherit',
           color: 'primary.main',
-          opacity: card ? 0.14 : variant === 'section' ? 0.13 : 0.08,
+          opacity: card ? 0.07 : page ? 0.025 : 0.06,
           transition: 'opacity 300ms ease, transform 500ms ease',
           ...theme.applyStyles('dark', {
-            opacity: card ? 0.19 : variant === 'section' ? 0.19 : 0.13,
+            opacity: card ? 0.1 : page ? 0.04 : 0.09,
           }),
           '& > svg': { display: 'block', width: '100%', height: '100%' },
         }),
@@ -50,8 +51,8 @@ export function AlgorithmBackdrop({
         <defs>
           <pattern
             id={patternId}
-            width={card ? 300 : 600}
-            height={card ? 220 : 380}
+            width={card ? 360 : page ? 900 : 720}
+            height={card ? 260 : page ? 580 : 460}
             patternUnits="userSpaceOnUse"
           >
             {card ? (
@@ -120,6 +121,7 @@ export function AlgorithmBackdrop({
                   fill="currentColor"
                   fontFamily="JetBrains Mono Variable, monospace"
                   fontSize="12"
+                  display={page ? 'none' : undefined}
                 >
                   <text x="228" y="57">
                     O(log n)

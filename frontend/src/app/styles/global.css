@@ -182,7 +182,7 @@ kbd,
 
   .cp-motion-card:hover > .cp-pattern-layer--card,
   .cp-motion-card:focus-within > .cp-pattern-layer--card {
-    opacity: 0.24;
+    opacity: 0.12;
     transform: translate(-3px, -2px);
   }
 }

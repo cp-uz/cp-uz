@@ -501,7 +501,11 @@ function ArticleReader({
             )}
           </Box>
 
-          <Box component="article" id="reader-content" sx={{ minWidth: 0 }}>
+          <Box
+            component="article"
+            id="reader-content"
+            sx={{ minWidth: 0, bgcolor: 'background.default' }}
+          >
             <Accordion
               disableGutters
               elevation={0}
