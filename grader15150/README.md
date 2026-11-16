@@ -70,6 +70,8 @@ interrupted jobs as infrastructure errors. Docker startup failures and service
 interruptions do not consume attempts. Owners and staff can retry those records
 using **Retry grading**, without uploading the files again. Compilation and
 execution failures still count toward the limit.
+Compilation failures show bounded, escaped diagnostics with line numbers from
+the two uploaded files. Internal grader source diagnostics remain staff-only.
 
 Startup also maintains `grader15150-image-guard`, a restricted, networkless
 container running only `sleep`. Its live image reference prevents routine

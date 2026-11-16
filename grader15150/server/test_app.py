@@ -14,6 +14,7 @@ from accounts import provision, read_ids
 from app import (
     IMAGE_GUARD,
     IMAGE_GUARD_LABEL,
+    CompilationError,
     GraderInfrastructureError,
     create_app,
     grade,
@@ -202,6 +203,14 @@ class AppTests(unittest.TestCase):
         self.assertEqual(self.client.post("/logout").status_code, 400)
         self.assertEqual(self.client.get("/logout").status_code, 405)
 
+    def test_head_login_probes_do_not_count_as_failed_logins(self):
+        for _ in range(12):
+            response = self.client.head("/login")
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.data, b"")
+        self.assertEqual(self.app.extensions["grader"]["attempts"], {})
+        self.assertEqual(self.login("alice").status_code, 302)
+
     def test_failed_logins_are_rate_limited(self):
         self.client.get("/login")
         for _ in range(10):
@@ -336,6 +345,20 @@ class AppTests(unittest.TestCase):
         path = self.root / "submissions" / meta["id"] / "metadata.json"
         self.assertEqual(json.loads(path.read_text())["previous_submissions"], [])
 
+    def test_compilation_errors_show_escaped_diagnostics_from_own_source(self):
+        meta = self.meta()
+        self.app.extensions["grader"]["pending"].acquire()
+        output = b"handin/punt.sml:433.19-433.33 Error: unbound variable P.InvalidState <script>\n"
+        with patch("app.run_container", return_value=output):
+            grade(self.app, meta)
+        self.assertEqual(meta["error_kind"], "compilation")
+        self.assertNotIn("results", meta)
+        self.login("alice")
+        response = self.client.get(f"/s/{meta['id']}")
+        self.assertIn(b"punt.sml:433.19-433.33", response.data)
+        self.assertIn(b"P.InvalidState &lt;script&gt;", response.data)
+        self.assertNotIn(b"P.InvalidState <script>", response.data)
+
     def test_owner_can_retry_a_refunded_service_failure_only_once(self):
         meta = self.meta()
         meta.update(
@@ -444,6 +467,12 @@ class UploadAndProcessTests(unittest.TestCase):
                     b"CPUZ_GRADER_RESULTS:"
                     + base64.b64encode(f'{{"score":{score}}}'.encode())
                 )
+
+    def test_only_uploaded_source_compiler_errors_are_exposed(self):
+        output = b"grader/private.sml:1.1 Error: hidden information\n../handin/punt.sml:4.2 Error: missing x\n"
+        with self.assertRaises(CompilationError) as raised:
+            parse_results(output)
+        self.assertEqual(raised.exception.diagnostics, "punt.sml:4.2 Error: missing x")
 
     def test_docker_start_failure_is_infrastructure_error_and_keeps_output(self):
         with (

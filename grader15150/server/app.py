@@ -35,6 +35,29 @@ class GraderInfrastructureError(RuntimeError):
         self.output = output
 
 
+class CompilationError(ValueError):
+    def __init__(self, diagnostics):
+        super().__init__(
+            "Your submission did not compile. See the compiler diagnostics below."
+        )
+        self.diagnostics = diagnostics
+
+
+def compiler_diagnostics(output):
+    errors = []
+    pattern = re.compile(
+        r"^(?:(?:\.\./)*handin/)?(punt\.sml|boundedBreadthFirst\.sml):"
+        r"(\d+(?:\.\d+)?(?:-\d+(?:\.\d+)?)?)\s+Error:\s*(.*)$"
+    )
+    for line in output.decode("utf-8", errors="replace").splitlines():
+        match = pattern.match(line)
+        if match:
+            errors.append(f"{match[1]}:{match[2]} Error: {match[3]}")
+        if len(errors) >= 30:
+            break
+    return "\n".join(errors)[:12000]
+
+
 def image_available(app):
     try:
         result = subprocess.run(
@@ -207,6 +230,9 @@ def parse_results(output):
         None,
     )
     if encoded is None:
+        diagnostics = compiler_diagnostics(output)
+        if diagnostics:
+            raise CompilationError(diagnostics)
         raise ValueError(
             "The grader could not produce a result. Contact staff to inspect the grading log."
         )
@@ -232,6 +258,8 @@ def grade(app, meta):
             meta["status"] = "running"
             meta.pop("error", None)
             meta.pop("error_kind", None)
+            meta.pop("diagnostics", None)
+            meta.pop("results", None)
             save_meta(app, meta)
             previous = [
                 item
@@ -296,6 +324,13 @@ def grade(app, meta):
             )
             (directory / "log.txt").write_bytes(log)
             meta.update(status="done", results=parse_results(output))
+    except CompilationError as error:
+        meta.update(
+            status="error",
+            error_kind="compilation",
+            error=str(error),
+            diagnostics=error.diagnostics,
+        )
     except (GraderInfrastructureError, OSError) as error:
         app.logger.exception("Grader infrastructure failed for %s", meta["id"])
         if isinstance(error, GraderInfrastructureError):
@@ -446,7 +481,7 @@ def create_app(config=None):
 
     @app.route("/login", methods=["GET", "POST"])
     def login():
-        if request.method == "GET":
+        if request.method != "POST":
             return render_template("login.html")
         username = request.form.get("username", "").strip().lower()
         code = request.form.get("code", "").strip()
