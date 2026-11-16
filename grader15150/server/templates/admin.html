@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="eyebrow">Staff administration</div><h1>All submissions</h1>
+<p class="muted">{{ accounts|length }} accounts · {{ subs|length }} submissions in this view. Select a submission to review its results and source files.</p>
+<form class="filter" method="get" action="{{ url_for('admin') }}">
+  <div><label for="student">Username</label><select id="student" name="student"><option value="">All accounts</option>
+  {% for name, account in accounts|dictsort %}<option value="{{ name }}" {% if selected == name %}selected{% endif %}>{{ name }}{% if account.role == 'admin' %} (staff){% endif %}</option>{% endfor %}
+  </select></div><button>Filter</button>
+</form>
+<section class="card">{% include "submissions.html" %}</section>
+{% endblock %}

@@ -27,6 +27,8 @@ function isNetworkOnlyPath(pathname) {
     pathname.startsWith('/api/') ||
     pathname === '/admin' ||
     pathname.startsWith('/admin/') ||
+    pathname === '/grader15150' ||
+    pathname.startsWith('/grader15150/') ||
     pathname === '/media' ||
     pathname.startsWith('/media/') ||
     pathname === '/sitemap.xml' ||

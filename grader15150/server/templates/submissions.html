@@ -1,0 +1,7 @@
+<div class="table-wrap"><table>
+  <thead><tr><th>Submitted (UTC+5)</th><th>Username</th><th>Status</th><th>Score</th></tr></thead>
+  <tbody>{% for s in subs %}<tr>
+    <td><a href="{{ url_for('show', sid=s.id) }}">{{ s.time }}</a></td><td>{{ s.student }}</td>
+    <td>{{ s.status|capitalize }}</td><td>{% if s.status == 'done' %}{{ '%g'|format(s.results.score) }} / 60{% elif s.status == 'error' %}<span class="bad">Error</span>{% else %}—{% endif %}</td>
+  </tr>{% else %}<tr><td colspan="4" class="muted">No submissions yet.</td></tr>{% endfor %}</tbody>
+</table></div>

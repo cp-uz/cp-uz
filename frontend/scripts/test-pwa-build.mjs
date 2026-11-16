@@ -227,6 +227,17 @@ handlers.get('fetch')({
 });
 assert.equal(apiWasIntercepted, false, 'API so‘rovi xato ravishda keshlangan.');
 
+for (const pathname of ['/grader15150', '/grader15150/login', '/grader15150/s/private']) {
+  let intercepted = false;
+  handlers.get('fetch')({
+    request: { method: 'GET', mode: 'navigate', url: `https://cp.uz${pathname}` },
+    respondWith() {
+      intercepted = true;
+    },
+  });
+  assert.equal(intercepted, false, `${pathname} must bypass the public app-shell cache.`);
+}
+
 console.log(
   `${appShell.length} ta app-shell fayli, silent update, eski chunk va offline fallback tekshirildi.`
 );

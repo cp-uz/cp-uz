@@ -28,3 +28,5 @@ content/**/*.webp binary
 *.woff binary
 *.woff2 binary
 *.zip binary
+
+grader15150/run_autograder text eol=lf

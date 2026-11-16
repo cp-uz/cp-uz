@@ -54,6 +54,28 @@ jobs:
           python -m coverage run manage.py test --verbosity 2
           python -m coverage report --fail-under=80
 
+  grader15150:
+    name: Grader accounts and isolation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: grader15150/server/requirements.txt
+      - name: Install grader dependencies
+        run: python -m pip install -r grader15150/server/requirements.txt ruff
+      - name: Lint grader
+        run: python -m ruff check grader15150
+      - name: Lint grader shell scripts
+        run: shellcheck grader15150/deploy/*.sh grader15150/run_autograder
+      - name: Test roles, uploads, limits and container cleanup
+        run: python -m unittest discover -s grader15150/server -p 'test_*.py' -v
+
   frontend:
     name: Frontend checks
     runs-on: ubuntu-latest
@@ -126,7 +148,7 @@ jobs:
     name: Production container runtime smoke
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    needs: [backend, frontend, content-and-deploy-contracts]
+    needs: [backend, frontend, content-and-deploy-contracts, grader15150]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

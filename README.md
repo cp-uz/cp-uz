@@ -116,6 +116,10 @@ Remote tomonga faqat `deploy <40-hex-sha>` yuboriladi; server SSH kaliti forced-
 
 ## Production
 
+`/grader15150/` dagi 15-150 HW09 kurs graderi alohida servisda ishlaydi.
+Staff uchun shaxsiy admin kirishi, private roster, SML muhiti va servisni boshqarish
+tartibi [grader qo‘llanmasida](grader15150/README.md) berilgan.
+
 Production va CI smoke tekshiruvlari Docker ishlatadi; lokal Django/Vite ish jarayoni o‘zgarmaydi. Har release Git SHA bo‘yicha alohida katalog va image ID bilan saqlanadi. Kandidat alohida Compose project, SQLite/media volume’lari va navbatdagi `127.0.0.1:18181` yoki `18182` portida tekshiriladi. Redis hamda Gunicorn host portlariga ochilmaydi.
 
 Promote vaqtida cp.uz qisqa maintenance holatiga o‘tadi, eski web jarayonlari to‘xtatiladi va eng so‘nggi baza nusxasi kandidatda migration/importdan o‘tadi. HTTP/TLS tekshiruvlaridan keyin trafik ochiladi. Ungacha xato chiqsa oldingi containerlar va Nginx qaytariladi; eski SQLite sxemasiga tegilmaydi. Trafik ochilgandan keyingi ma’lumotlarni eski backup bilan avtomatik almashtirish taqiqlangan. Oldingi release kataloglari va volume’lari recovery uchun saqlanadi.

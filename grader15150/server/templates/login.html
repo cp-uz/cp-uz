@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card login">
+  <div class="eyebrow">15-150 · Homework 09</div>
+  <h1>Log in to the autograder</h1>
+  <p class="muted">Use your assigned username and access code. Staff use their own accounts to access the admin view.</p>
+  <form method="post" action="{{ url_for('login') }}">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" autocomplete="username" maxlength="32" required autofocus>
+    <label for="code">Access code</label>
+    <input id="code" type="password" name="code" autocomplete="current-password" maxlength="200" required>
+    <button type="submit">Log in</button>
+  </form>
+</section>
+{% endblock %}

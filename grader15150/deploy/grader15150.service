@@ -1,0 +1,26 @@
+[Unit]
+Description=cp.uz 15-150 HW09 autograder
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+User=grader15150
+Group=grader15150
+SupplementaryGroups=docker
+WorkingDirectory=/opt/grader15150/server
+EnvironmentFile=/opt/grader15150/grader.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStartPre=/opt/grader15150/venv/bin/python app.py recover
+ExecStart=/opt/grader15150/venv/bin/gunicorn -w 1 --threads 8 -b 127.0.0.1:8150 --timeout 60 --access-logfile - app:create_app()
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/grader15150/data
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

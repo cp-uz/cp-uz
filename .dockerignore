@@ -17,3 +17,6 @@ backend/staticfiles
 backend/media
 backend/*.sqlite3
 *.log
+grader15150
+output
+tmp

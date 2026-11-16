@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="eyebrow">Homework 09</div><h1>Upload your solution</h1>
+<p class="muted">Submit your SML files and view the test results here.</p>
+<section class="card">
+  <form method="post" action="{{ url_for('submit') }}" enctype="multipart/form-data">
+    <input type="hidden" name="csrf" value="{{ session.csrf }}">
+    <p>Required: <code>punt.sml</code> and <code>boundedBreadthFirst.sml</code>.</p>
+    <label for="files">Choose both SML files, or one ZIP containing them</label>
+    <input id="files" type="file" name="files" accept=".sml,.zip" multiple required>
+    <p class="muted">2 MiB upload limit · {{ subs|length }} / {{ max_subs }} submissions used · Grading may take a few minutes.</p>
+    {% if subs|length < max_subs %}<button type="submit">Upload and grade</button>{% else %}<p class="error">Maximum number of submissions reached. Contact staff.</p>{% endif %}
+  </form>
+</section>
+<h2>My submissions</h2>{% include "submissions.html" %}
+{% endblock %}

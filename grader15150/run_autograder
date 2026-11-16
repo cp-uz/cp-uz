@@ -1,0 +1,28 @@
+#!/bin/bash
+set -euo pipefail
+cd /work
+mkdir -p source results
+export HOME=/work
+N=$(grep -o 'submission_time' /autograder/submission_metadata.json | wc -l || true)
+MAX_SUBMISSIONS=${MAX_SUBMISSIONS:-5}
+if (( N >= MAX_SUBMISSIONS )); then
+  printf '%s\n' '{"score":0,"output":"Maximum number of submissions exceeded!"}' > results/results.json
+else
+  cd source
+  tar --exclude='.cm' -xf /opt/hw09/autograde.tar
+  mkdir -p handin
+  cp /autograder/submission/punt.sml /autograder/submission/boundedBreadthFirst.sml handin/
+  cd handin
+  for file in *.sml; do
+    bash ../structurify.sh struct "$file"
+  done
+  cd ..
+  cp -a grader/aux/. handout/
+  sml -Dsubmission_count="$N" -Dmax_submissions="$MAX_SUBMISSIONS" -m grader/grader.cm < /dev/null
+  test -s results.json
+  cp results.json ../results/results.json
+  cd ..
+fi
+printf '\nCPUZ_GRADER_RESULTS:'
+base64 -w 0 results/results.json
+printf '\n'

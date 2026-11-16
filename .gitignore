@@ -35,3 +35,9 @@ backups/
 .playwright-cli/
 tmp/
 *.log
+
+# Private 15-150 grader assets and account credentials
+/grader15150/autograde.tar
+/grader15150/data/
+/grader15150/grader.env
+/output/grader15150/

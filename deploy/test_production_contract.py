@@ -199,6 +199,13 @@ class ComposeContractTests(unittest.TestCase):
         self.assertIn("proxy_set_header X-Forwarded-For $remote_addr;", nginx)
         self.assertNotIn("$proxy_add_x_forwarded_for", nginx)
 
+    def test_course_grader_has_a_separate_prefix_and_loopback_service(self):
+        nginx = (ROOT / "deploy/nginx-host-cpuz.conf").read_text()
+        self.assertIn("location = /grader15150 { return 301 /grader15150/; }", nginx)
+        self.assertIn("location ^~ /grader15150/", nginx)
+        self.assertIn("proxy_pass http://127.0.0.1:8150/;", nginx)
+        self.assertIn("proxy_set_header X-Forwarded-Prefix /grader15150;", nginx)
+
     def test_candidate_preparation_runs_all_imports_and_reviewed_inventory(self):
         script = (ROOT / "deploy/prepare-content.sh").read_text()
         for command in (
