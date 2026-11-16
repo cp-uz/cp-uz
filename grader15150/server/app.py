@@ -25,6 +25,103 @@ REQUIRED_FILES = {"punt.sml", "boundedBreadthFirst.sml"}
 RESULT_MARKER = b"CPUZ_GRADER_RESULTS:"
 MAX_LOG_BYTES = 1024 * 1024
 SID_PATTERN = re.compile(r"\d{8}-\d{6}-[a-f0-9]{16}")
+IMAGE_GUARD = "grader15150-image-guard"
+IMAGE_GUARD_LABEL = "cpuz.grader15150.image-guard"
+
+
+class GraderInfrastructureError(RuntimeError):
+    def __init__(self, message, output=b""):
+        super().__init__(message)
+        self.output = output
+
+
+def image_available(app):
+    try:
+        result = subprocess.run(
+            ["docker", "image", "inspect", app.config["IMAGE"]],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=5,
+            check=False,
+        )
+        return result.returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+
+
+def protect_image(app):
+    """Keep a running reference so routine Docker pruning cannot remove the image."""
+    if not image_available(app):
+        raise GraderInfrastructureError("The configured grading image is unavailable.")
+    image = subprocess.run(
+        ["docker", "image", "inspect", "--format", "{{.Id}}", app.config["IMAGE"]],
+        capture_output=True,
+        text=True,
+        timeout=5,
+        check=True,
+    ).stdout.strip()
+    existing = subprocess.run(
+        ["docker", "inspect", IMAGE_GUARD],
+        capture_output=True,
+        text=True,
+        timeout=5,
+        check=False,
+    )
+    if existing.returncode == 0:
+        guard = json.loads(existing.stdout)[0]
+        if (guard["Config"].get("Labels") or {}).get(IMAGE_GUARD_LABEL) != "true":
+            raise GraderInfrastructureError(
+                "The image guard name is owned by another container."
+            )
+        if guard["Image"] == image:
+            if not guard["State"]["Running"]:
+                subprocess.run(
+                    ["docker", "start", IMAGE_GUARD],
+                    capture_output=True,
+                    timeout=10,
+                    check=True,
+                )
+            return
+        remove_container(IMAGE_GUARD)
+    subprocess.run(
+        [
+            "docker",
+            "run",
+            "-d",
+            "--name",
+            IMAGE_GUARD,
+            "--label",
+            f"{IMAGE_GUARD_LABEL}=true",
+            "--restart",
+            "unless-stopped",
+            "--network",
+            "none",
+            "--memory",
+            "16m",
+            "--memory-swap",
+            "16m",
+            "--cpus",
+            "0.05",
+            "--pids-limit",
+            "16",
+            "--cap-drop",
+            "ALL",
+            "--security-opt",
+            "no-new-privileges",
+            "--read-only",
+            "--user",
+            "65534:65534",
+            "--log-driver",
+            "none",
+            "--entrypoint",
+            "/bin/sleep",
+            image,
+            "infinity",
+        ],
+        capture_output=True,
+        timeout=20,
+        check=True,
+    )
 
 
 def submissions(app, username=None):
@@ -34,6 +131,14 @@ def submissions(app, username=None):
         if username is None or meta["student"] == username:
             result.append(meta)
     return sorted(result, key=lambda item: item["id"], reverse=True)
+
+
+def counted_submissions(app, username):
+    return [
+        item
+        for item in submissions(app, username)
+        if item.get("counts_toward_limit", True)
+    ]
 
 
 def save_meta(app, meta):
@@ -84,6 +189,11 @@ def run_container(command, name, timeout):
             process.wait(timeout=10)
             reader.join(timeout=10)
             process.stdout.close()
+    if process.returncode in {125, 126, 127}:
+        raise GraderInfrastructureError(
+            "The grading service is temporarily unavailable. No submission attempt was used.",
+            bytes(output),
+        )
     return bytes(output)
 
 
@@ -98,7 +208,7 @@ def parse_results(output):
     )
     if encoded is None:
         raise ValueError(
-            "The autograder produced no results. Check that your files compile."
+            "The grader could not produce a result. Contact staff to inspect the grading log."
         )
     results = json.loads(base64.b64decode(encoded, validate=True))
     score = float(results["score"])
@@ -120,7 +230,25 @@ def grade(app, meta):
     try:
         with state["slots"]:
             meta["status"] = "running"
+            meta.pop("error", None)
+            meta.pop("error_kind", None)
             save_meta(app, meta)
+            previous = [
+                item
+                for item in counted_submissions(app, meta["student"])
+                if item["id"] < meta["id"]
+            ]
+            (directory / "metadata.json").write_text(
+                json.dumps(
+                    {
+                        "previous_submissions": [
+                            {"submission_time": item["time"]} for item in previous
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (directory / "metadata.json").chmod(0o644)
             command = [
                 "docker",
                 "run",
@@ -168,6 +296,16 @@ def grade(app, meta):
             )
             (directory / "log.txt").write_bytes(log)
             meta.update(status="done", results=parse_results(output))
+    except (GraderInfrastructureError, OSError) as error:
+        app.logger.exception("Grader infrastructure failed for %s", meta["id"])
+        if isinstance(error, GraderInfrastructureError):
+            (directory / "log.txt").write_bytes(error.output)
+        meta.update(
+            status="error",
+            error_kind="infrastructure",
+            counts_toward_limit=False,
+            error="The grading service is temporarily unavailable. No submission attempt was used. Contact staff to retry this submission.",
+        )
     except Exception as error:
         app.logger.exception("Grading failed for %s", meta["id"])
         message = (
@@ -301,6 +439,9 @@ def create_app(config=None):
         return {
             "max_subs": app.config["MAX_SUBMISSIONS"],
             "required_files": sorted(REQUIRED_FILES),
+            "attempts_used": len(counted_submissions(app, g.account["username"]))
+            if g.account
+            else 0,
         }
 
     @app.route("/login", methods=["GET", "POST"])
@@ -382,12 +523,17 @@ def create_app(config=None):
                 "index.html", subs=submissions(app, username), error=message
             ), status
 
+        if not image_available(app):
+            return error(
+                "The grading service is temporarily unavailable. No submission attempt was used. Try again shortly.",
+                503,
+            )
         try:
             sources = read_uploads(request.files.getlist("files"))
         except ValueError as exception:
             return error(str(exception))
         with state["lock"]:
-            previous = submissions(app, username)
+            previous = counted_submissions(app, username)
             if len(previous) >= app.config["MAX_SUBMISSIONS"]:
                 return error(
                     "Maximum number of submissions reached. Contact staff.", 429
@@ -461,6 +607,41 @@ def create_app(config=None):
         )
         return render_template("result.html", m=meta, sources=sources, log=log)
 
+    @app.post("/s/<sid>/retry")
+    def retry(sid):
+        if not g.account or not SID_PATTERN.fullmatch(sid):
+            abort(404)
+        path = Path(app.config["DATA_DIR"]) / sid / "meta.json"
+        with state["lock"]:
+            if not path.exists():
+                abort(404)
+            meta = json.loads(path.read_text(encoding="utf-8"))
+            if (
+                g.account["role"] != "admin"
+                and meta["student"] != g.account["username"]
+            ):
+                abort(404)
+            if meta["status"] != "error" or meta.get("error_kind") != "infrastructure":
+                abort(
+                    409,
+                    "Only submissions interrupted by a service failure can be retried.",
+                )
+            if not image_available(app):
+                abort(
+                    503,
+                    "The grading service is temporarily unavailable. No attempt was used.",
+                )
+            if not state["pending"].acquire(blocking=False):
+                abort(503, "The grader queue is full. Try again shortly.")
+            try:
+                meta.update(status="queued", counts_toward_limit=False)
+                save_meta(app, meta)
+                threading.Thread(target=grade, args=(app, meta), daemon=True).start()
+            except Exception:
+                state["pending"].release()
+                raise
+        return redirect(url_for("show", sid=sid))
+
     @app.errorhandler(413)
     def too_large(_error):
         return render_template("error.html", message="The upload limit is 2 MiB."), 413
@@ -469,6 +650,8 @@ def create_app(config=None):
     def health():
         if not read_roster(app.config["ROSTER"]):
             return {"status": "not_ready"}, 503
+        if not image_available(app):
+            return {"status": "not_ready", "reason": "grading_image_unavailable"}, 503
         return {"status": "ok"}
 
     return app
@@ -488,6 +671,8 @@ def recover(app):
         if meta["status"] in {"queued", "running"}:
             meta.update(
                 status="error",
+                error_kind="infrastructure",
+                counts_toward_limit=False,
                 error="Grading was interrupted by a service restart. Contact staff.",
             )
             save_meta(app, meta)
@@ -501,6 +686,7 @@ if __name__ == "__main__":
     roster_command.add_argument("--roster", required=True)
     roster_command.add_argument("--credentials", required=True)
     commands.add_parser("recover")
+    commands.add_parser("protect-image")
     commands.add_parser("serve")
     args = parser.parse_args()
     if args.command == "make-roster":
@@ -511,6 +697,8 @@ if __name__ == "__main__":
         )
     elif args.command == "recover":
         recover(create_app())
+    elif args.command == "protect-image":
+        protect_image(create_app())
     else:
         create_app({"SESSION_COOKIE_SECURE": False, "SESSION_COOKIE_PATH": "/"}).run(
             host="127.0.0.1", port=8150, threaded=True

@@ -66,9 +66,18 @@ Only source files and submission metadata are mounted from the host, both
 read-only. Results return over stdout rather than a writable host mount.
 Timeout and overflow handling explicitly remove the named container. Service
 startup removes only containers labelled `app=cpuz-grader15150` and marks
-interrupted jobs as errors. Failed/interrupted submissions count toward the
-limit; staff can restore an allowance by archiving that submission directory
-outside `data/submissions` after reviewing it.
+interrupted jobs as infrastructure errors. Docker startup failures and service
+interruptions do not consume attempts. Owners and staff can retry those records
+using **Retry grading**, without uploading the files again. Compilation and
+execution failures still count toward the limit.
+
+Startup also maintains `grader15150-image-guard`, a restricted, networkless
+container running only `sleep`. Its live image reference prevents routine
+`docker image prune -a` / `docker system prune -a` from deleting the otherwise
+idle grader image between submissions. Do not remove this container during
+server cleanup. Its label is separate from grading jobs so recovery leaves it
+running. The health endpoint checks that the configured image actually exists,
+and uploads are rejected without spending an attempt if it is unavailable.
 
 The supplied Gradescope tester executes student SML and the evaluator in the
 same process/container. Host isolation does not make this evaluator resistant

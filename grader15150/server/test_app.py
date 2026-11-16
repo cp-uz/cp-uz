@@ -2,6 +2,7 @@ import base64
 import csv
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -10,7 +11,18 @@ from pathlib import Path
 from unittest.mock import patch
 
 from accounts import provision, read_ids
-from app import create_app, grade, parse_results, read_uploads, run_container, save_meta
+from app import (
+    IMAGE_GUARD,
+    IMAGE_GUARD_LABEL,
+    GraderInfrastructureError,
+    create_app,
+    grade,
+    parse_results,
+    protect_image,
+    read_uploads,
+    run_container,
+    save_meta,
+)
 from werkzeug.security import generate_password_hash
 
 
@@ -71,6 +83,9 @@ class AppTests(unittest.TestCase):
             }
         )
         self.client = self.app.test_client()
+        availability = patch("app.image_available", return_value=True)
+        availability.start()
+        self.addCleanup(availability.stop)
 
     def write_roster(self, staff_role="admin", code_hash=None):
         with self.roster.open("w", newline="", encoding="utf-8") as stream:
@@ -269,6 +284,98 @@ class AppTests(unittest.TestCase):
         self.assertEqual(meta["status"], "done")
         self.assertEqual(meta["results"]["score"], 60)
 
+    def test_missing_image_rejects_submission_without_spending_an_attempt(self):
+        self.login("alice")
+        with (
+            patch("app.image_available", return_value=False),
+            patch("app.threading.Thread") as worker,
+        ):
+            response = self.upload()
+            self.assertEqual(response.status_code, 503)
+            self.assertIn(b"No submission attempt was used", response.data)
+            worker.assert_not_called()
+        self.assertFalse(list((self.root / "submissions").glob("*/meta.json")))
+
+    def test_health_fails_when_grading_image_is_missing(self):
+        with patch("app.image_available", return_value=False):
+            response = self.client.get("/health")
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json["reason"], "grading_image_unavailable")
+
+    def test_worker_infrastructure_failure_preserves_log_and_refunds_attempt(self):
+        meta = self.meta()
+        self.app.extensions["grader"]["pending"].acquire()
+        error = GraderInfrastructureError(
+            "Docker unavailable", b"docker: No such image"
+        )
+        with (
+            patch("app.run_container", side_effect=error),
+            self.assertLogs(self.app.logger),
+        ):
+            grade(self.app, meta)
+        self.assertEqual(meta["status"], "error")
+        self.assertEqual(meta["error_kind"], "infrastructure")
+        self.assertFalse(meta["counts_toward_limit"])
+        self.assertNotIn("compile", meta["error"])
+        directory = self.root / "submissions" / meta["id"]
+        self.assertEqual((directory / "log.txt").read_bytes(), error.output)
+        self.login("alice")
+        self.assertIn(b"0 / 2 submissions used", self.client.get("/").data)
+        with patch("app.threading.Thread"):
+            self.assertEqual(self.upload().status_code, 302)
+
+    def test_regrading_excludes_refunded_errors_from_grader_metadata(self):
+        failed = self.meta(number=1)
+        failed.update(status="error", counts_toward_limit=False)
+        save_meta(self.app, failed)
+        meta = self.meta(number=2)
+        self.app.extensions["grader"]["pending"].acquire()
+        fixture = b"CPUZ_GRADER_RESULTS:" + base64.b64encode(b'{"score":60,"tests":[]}')
+        with patch("app.run_container", return_value=fixture):
+            grade(self.app, meta)
+        path = self.root / "submissions" / meta["id"] / "metadata.json"
+        self.assertEqual(json.loads(path.read_text())["previous_submissions"], [])
+
+    def test_owner_can_retry_a_refunded_service_failure_only_once(self):
+        meta = self.meta()
+        meta.update(
+            status="error", error_kind="infrastructure", counts_toward_limit=False
+        )
+        save_meta(self.app, meta)
+        self.login("alice")
+        route = f"/s/{meta['id']}/retry"
+        self.assertIn(b"Retry grading", self.client.get(f"/s/{meta['id']}").data)
+        with patch("app.threading.Thread") as worker:
+            self.assertEqual(
+                self.client.post(route, data={"csrf": self.token()}).status_code, 302
+            )
+            self.assertEqual(
+                self.client.post(route, data={"csrf": self.token()}).status_code, 409
+            )
+            worker.return_value.start.assert_called_once()
+        self.assertIn(b"0 / 2 submissions used", self.client.get("/").data)
+
+    def test_retry_denies_foreign_submissions_and_code_errors(self):
+        other = self.meta("bob", number=1)
+        own = self.meta("alice", number=2)
+        own.update(status="error", error_kind="execution")
+        save_meta(self.app, own)
+        self.login("alice")
+        with patch("app.threading.Thread") as worker:
+            self.assertEqual(
+                self.client.post(
+                    f"/s/{other['id']}/retry", data={"csrf": self.token()}
+                ).status_code,
+                404,
+            )
+            self.assertEqual(
+                self.client.post(
+                    f"/s/{own['id']}/retry", data={"csrf": self.token()}
+                ).status_code,
+                409,
+            )
+            worker.assert_not_called()
+
 
 class UploadAndProcessTests(unittest.TestCase):
     def zipped(self, entries):
@@ -337,6 +444,93 @@ class UploadAndProcessTests(unittest.TestCase):
                     b"CPUZ_GRADER_RESULTS:"
                     + base64.b64encode(f'{{"score":{score}}}'.encode())
                 )
+
+    def test_docker_start_failure_is_infrastructure_error_and_keeps_output(self):
+        with (
+            patch("app.remove_container"),
+            self.assertRaises(GraderInfrastructureError) as raised,
+        ):
+            run_container(
+                [
+                    sys.executable,
+                    "-c",
+                    "import sys; print('No such image'); sys.exit(125)",
+                ],
+                "grader-test",
+                5,
+            )
+        self.assertIn(b"No such image", raised.exception.output)
+
+
+class ImageGuardTests(unittest.TestCase):
+    def app_config(self):
+        from types import SimpleNamespace
+
+        return SimpleNamespace(config={"IMAGE": "sha256:expected"})
+
+    def test_creates_a_running_restricted_reference_for_image_pruning(self):
+        responses = [
+            subprocess.CompletedProcess([], 0, "sha256:expected\n"),
+            subprocess.CompletedProcess([], 1, ""),
+            subprocess.CompletedProcess([], 0, "guard-id"),
+        ]
+        with (
+            patch("app.image_available", return_value=True),
+            patch("app.subprocess.run", side_effect=responses) as run,
+        ):
+            protect_image(self.app_config())
+        command = run.call_args.args[0]
+        for expected in (
+            "-d",
+            "--read-only",
+            "none",
+            "16m",
+            "unless-stopped",
+            IMAGE_GUARD,
+        ):
+            self.assertIn(expected, command)
+        self.assertIn(f"{IMAGE_GUARD_LABEL}=true", command)
+        self.assertEqual(command[-2:], ["sha256:expected", "infinity"])
+
+    def test_reuses_matching_running_guard(self):
+        guard = {
+            "Image": "sha256:expected",
+            "Config": {"Labels": {IMAGE_GUARD_LABEL: "true"}},
+            "State": {"Running": True},
+        }
+        with (
+            patch("app.image_available", return_value=True),
+            patch(
+                "app.subprocess.run",
+                side_effect=[
+                    subprocess.CompletedProcess([], 0, "sha256:expected\n"),
+                    subprocess.CompletedProcess([], 0, json.dumps([guard])),
+                ],
+            ) as run,
+        ):
+            protect_image(self.app_config())
+        self.assertEqual(run.call_count, 2)
+
+    def test_does_not_remove_an_unrelated_container_with_the_same_name(self):
+        guard = {
+            "Image": "sha256:other",
+            "Config": {"Labels": None},
+            "State": {"Running": True},
+        }
+        with (
+            patch("app.image_available", return_value=True),
+            patch(
+                "app.subprocess.run",
+                side_effect=[
+                    subprocess.CompletedProcess([], 0, "sha256:expected\n"),
+                    subprocess.CompletedProcess([], 0, json.dumps([guard])),
+                ],
+            ),
+            patch("app.remove_container") as remove,
+            self.assertRaises(GraderInfrastructureError),
+        ):
+            protect_image(self.app_config())
+        remove.assert_not_called()
 
 
 if __name__ == "__main__":

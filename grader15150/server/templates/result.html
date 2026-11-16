@@ -5,9 +5,11 @@
 <h1>Submission results</h1>
 <section class="card">
   <p><b>{{ m.student }}</b> · {{ m.time }} (UTC+5)</p><p class="muted">{{ m.files|join(', ') }}</p>
+  {% if m.counts_toward_limit is sameas false %}<p class="muted">This submission does not count toward your submission limit.</p>{% endif %}
   {% if m.status == 'queued' %}<h2>Waiting in the queue</h2><p>This page refreshes automatically.</p>
   {% elif m.status == 'running' %}<h2>Grading your solution…</h2><p>This page refreshes automatically. Grading may take a few minutes.</p>
   {% elif m.status == 'error' %}<p class="error">{{ m.error }}</p>
+  {% if m.error_kind == 'infrastructure' %}<form method="post" action="{{ url_for('retry', sid=m.id) }}"><input type="hidden" name="csrf" value="{{ session.csrf }}"><button>Retry grading</button></form>{% endif %}
   {% else %}<div class="eyebrow">Total score</div><p class="score">{{ '%g'|format(m.results.score) }} <span class="muted">/ 60</span></p>
   {% if m.results.output %}<pre>{{ m.results.output }}</pre>{% endif %}
   {% for test in m.results.tests %}<h3 class="{{ 'good' if test.score|float == test.max_score|float else 'bad' }}">{{ test.name }}: {{ test.score }} / {{ test.max_score }}</h3>{% if test.output %}<pre>{{ test.output }}</pre>{% endif %}{% endfor %}
