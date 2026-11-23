@@ -4,13 +4,14 @@
   "title": "Asosiy olimpiada — respublika bosqichi",
   "short_title": "Respublika bosqichi",
   "summary": "11-sinf hududiy sovrindorlari uchun davlat finali.",
-  "description": "2026–2027 respublika bosqichi sanasi TBA. Ishtirok talabi amaldagi nizom bo‘yicha 11-sinf hududiy 1–3-o‘rin sohiblari.",
+  "description": "2026–2027 o‘quv yili reja-grafigida Asosiy olimpiadaning to‘rtinchi bosqichi 2027-yil mart oyiga qo‘yilgan. Informatika sinovining aniq kuni va mezbon hududi alohida jadvalda beriladi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2027-03-01",
+  "date_label": "Mart, 2027 (reja-grafik)",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston; mezbon hududlar TBA",
   "venue": "",
@@ -30,16 +31,24 @@
       "label": "8"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "2026–2027 mahalliy olimpiadalar reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
-      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "type": "organizer",
+      "title": "2026–2027 mahalliy olimpiadalar reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+      "notes": "Asosiy olimpiadaning 4-bosqichi mart ustunida ko‘rsatilgan. Ma’lumot oy aniqligida."
     }
   ],
   "results": []

@@ -1,0 +1,76 @@
+{
+  "code": "U3",
+  "slug": "revo-cup-2026",
+  "title": "REVO CUP 2026 — sport dasturlash musobaqasi",
+  "short_title": "REVO CUP",
+  "summary": "28–29-noyabrda onlayn saralash, 12-dekabrda Urganchda final.",
+  "description": "Musobaqa individual ACM (ICPC) formatida. Onlayn saralash turlari 28 va 29-noyabr kunlari 19:05–22:05 da o‘tkaziladi. Har bir turda 15 tadan masala beriladi. 120 nafar finalist 12-dekabr kuni Al-Xorazmiy universitetida 13:30–16:30 da 12 ta masalani yechadi. Barcha vaqtlar Toshkent vaqti bilan ko‘rsatilgan.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-12-12",
+  "date_label": "12-dekabr, 2026 · final 13:30–16:30",
+  "timezone": "Asia/Tashkent",
+  "location": "Urganch, O‘zbekiston",
+  "venue": "Al-Xorazmiy universiteti",
+  "mode": "hybrid",
+  "platform": "KEP.uz",
+  "organizer": "REVO Global / GDG Urgench DevFest 2026",
+  "eligibility": "Individual musobaqa. Final uchun 120 nafar ishtirokchi onlayn saralash orqali tanlanadi.",
+  "is_featured": false,
+  "order": 47,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 15,
+      "node_style": "default",
+      "label": "U3"
+    }
+  ],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "REVO CUP 2026 jadvali va final dasturi",
+      "url": "https://revolution.uz/uz/revo-cup-2026#jadval",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "rules",
+      "title": "REVO CUP 2026 musobaqa qoidalari",
+      "url": "https://revolution.uz/uz/revo-cup-2026/rules",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "registration",
+      "title": "REVO CUP 2026 ro‘yxatdan o‘tish sahifasi",
+      "url": "https://revolution.uz/uz/revo-cup-2026#registration",
+      "is_official": true,
+      "order": 30
+    }
+  ],
+  "sources": [
+    {
+      "type": "organizer",
+      "title": "REVO CUP 2026 rasmiy sahifasi",
+      "url": "https://revolution.uz/uz/revo-cup-2026",
+      "publisher": "REVO Global",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Ikki onlayn tur, 12-dekabrdagi oflayn final, vaqtlar va bosqichlardagi masalalar soni tasdiqlangan."
+    },
+    {
+      "type": "official_announcement",
+      "title": "REVO CUP 2026 finali va mezboni e’loni",
+      "url": "https://t.me/RevolutionGlobalLLC/145",
+      "publisher": "REVO Global",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Final Urganchdagi Al-Xorazmiy universitetida o‘tkazilishi va 120 finalchi saralanishi ko‘rsatilgan."
+    }
+  ],
+  "results": []
+}

@@ -1,0 +1,283 @@
+{
+  "code": "U1A",
+  "slug": "vkoshp-2026-internet-saralashi",
+  "title": "VKOSHP 2026 — internet saralashi",
+  "short_title": "VKOSHP saralashi",
+  "summary": "15-noyabrgi saralashda reytingga kirgan O‘zbekistonning 11 jamoasi.",
+  "description": "Saralash 15-noyabr kuni 14:00–19:00 da Toshkent vaqti bilan o‘tkazildi. Uch kishilik jamoalar besh soatda 12 ta masala ustida ishladi. Tashkilotchining dastlabki jadvalida O‘zbekistonning 11 jamoasi o‘rin olgan. Bitaro, JOI-kun and IOI-chan, Abyss va bitset jamoalari Almati finaliga taklif qilingan.",
+  "type": "unofficial",
+  "publication_status": "published",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-11-15",
+  "date_label": "15-noyabr, 2026 · 14:00–19:00 (Toshkent vaqti)",
+  "timezone": "Asia/Tashkent",
+  "location": "Onlayn",
+  "mode": "online",
+  "platform": "PCMS2 Web Client",
+  "organizer": "VKOSHP tashkiliy qo‘mitasi / NEERC",
+  "eligibility": "Akkreditatsiyadan o‘tgan o‘qituvchi nazoratidagi uch nafar maktab o‘quvchisidan iborat jamoalar.",
+  "is_featured": false,
+  "order": 25,
+  "route_memberships": [
+    {
+      "route_code": "unofficial",
+      "order": 5,
+      "node_style": "default",
+      "label": "Saralash"
+    }
+  ],
+  "resources": [
+    {
+      "type": "scoreboard",
+      "title": "Internet saralashining dastlabki reytingi",
+      "url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "tasks",
+      "title": "Saralashning 12 ta masalasi (PDF, ruscha)",
+      "url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-spb-2026-statements.pdf",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "editorial",
+      "title": "Saralash masalalarining tahlili (PDF, ruscha)",
+      "url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-spb-2026-tutorial.pdf",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "other",
+      "title": "Saralashning hakamlar arxivi (ZIP)",
+      "url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-spb-2026-archive.zip",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "rules",
+      "title": "Internet saralashi tartibi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/internet.html",
+      "is_official": true,
+      "order": 50
+    },
+    {
+      "type": "participants",
+      "title": "VKOSHP 2026 finaliga taklif qilingan jamoalar",
+      "url": "https://neerc.ifmo.ru/school/russia-team/listTeamsFinal.jsp",
+      "is_official": true,
+      "order": 60
+    }
+  ],
+  "sources": [
+    {
+      "type": "official_results",
+      "title": "VKOSHP 2026 internet saralashining dastlabki reytingi",
+      "url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "publisher": "NEERC",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "O‘rin va yechilgan masalalar soni umumiy jadvaldan olingan. Jarima vaqti har bir jamoa izohida saqlangan."
+    },
+    {
+      "type": "organizer",
+      "title": "Internet saralashiga ariza bergan jamoalar",
+      "url": "https://neerc.ifmo.ru/school/russia-team/listTeams.jsp",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Reytingdagi jamoalar O‘zbekiston deb ko‘rsatilgan arizalar bilan solishtirildi."
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP 2026 internet saralashi va materiallari",
+      "url": "https://neerc.ifmo.ru/school/russia-team/index.html",
+      "publisher": "NEERC",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "15-noyabrgi tur o‘tkazilgani va uning masalalari, tahlili, hakamlar arxivi hamda dastlabki reytingi e’lon qilingan."
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP 2026 finaliga taklif qilingan jamoalar ro‘yxati",
+      "url": "https://neerc.ifmo.ru/school/russia-team/listTeamsFinal.jsp",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Almati markazi takliflarida O‘zbekistonning 3-, 6- va 8-o‘rindagi jamoalari ko‘rsatilgan."
+    }
+  ],
+  "results": [
+    {
+      "key": "U1A:team:bitaro-joi-kun-ioi-chan",
+      "team": {
+        "name": "Bitaro, JOI-kun and IOI-chan",
+        "country_code": "UZB",
+        "school": "Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktab"
+      },
+      "rank": 3,
+      "score": "9",
+      "score_label": "9 ta masala",
+      "category": "Almati finaliga taklif qilingan",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 1143 daqiqa.",
+      "order": 3
+    },
+    {
+      "key": "U1A:team:abyss",
+      "team": {
+        "name": "Abyss",
+        "country_code": "UZB",
+        "school": "Muhammad al-Xorazmiy nomidagi ixtisoslashtirilgan maktab"
+      },
+      "rank": 6,
+      "score": "8",
+      "score_label": "8 ta masala",
+      "category": "Almati finaliga taklif qilingan",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 831 daqiqa.",
+      "order": 6
+    },
+    {
+      "key": "U1A:team:bitset",
+      "team": {
+        "name": "bitset",
+        "country_code": "UZB",
+        "school": "Muhammad al-Xorazmiy maktabi, Samarqand Prezident maktabi va Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 8,
+      "score": "8",
+      "score_label": "8 ta masala",
+      "category": "Almati finaliga taklif qilingan",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 988 daqiqa.",
+      "order": 8
+    },
+    {
+      "key": "U1A:team:i-hate-rain",
+      "team": {
+        "name": "i hate rain",
+        "country_code": "UZB",
+        "school": "Muhammad al-Xorazmiy maktabi va Nurafshon Prezident maktabi"
+      },
+      "rank": 137,
+      "score": "4",
+      "score_label": "4 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 114 daqiqa.",
+      "order": 137
+    },
+    {
+      "key": "U1A:team:namangan-team-1",
+      "team": {
+        "name": "Namangan Prezident maktabi — Team 1",
+        "country_code": "UZB",
+        "school": "Namangan Prezident maktabi"
+      },
+      "rank": 151,
+      "score": "4",
+      "score_label": "4 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 240 daqiqa.",
+      "order": 151
+    },
+    {
+      "key": "U1A:team:namps",
+      "team": {
+        "name": "NamPS",
+        "country_code": "UZB",
+        "school": "Namangan Prezident maktabi"
+      },
+      "rank": 174,
+      "score": "4",
+      "score_label": "4 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 443 daqiqa.",
+      "order": 174
+    },
+    {
+      "key": "U1A:team:tapochki-squad",
+      "team": {
+        "name": "Тапочки squad",
+        "country_code": "UZB",
+        "school": "Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 228,
+      "score": "3",
+      "score_label": "3 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 285 daqiqa.",
+      "order": 228
+    },
+    {
+      "key": "U1A:team:2-but-good",
+      "team": {
+        "name": "2 but good",
+        "country_code": "UZB",
+        "school": "Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 249,
+      "score": "3",
+      "score_label": "3 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 416 daqiqa.",
+      "order": 249
+    },
+    {
+      "key": "U1A:team:otim7a",
+      "team": {
+        "name": "OTIM7A",
+        "country_code": "UZB",
+        "school": "Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 272,
+      "score": "2",
+      "score_label": "2 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 52 daqiqa.",
+      "order": 272
+    },
+    {
+      "key": "U1A:team:sweetie-boys",
+      "team": {
+        "name": "Sweetie boys",
+        "country_code": "UZB",
+        "school": "Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 310,
+      "score": "2",
+      "score_label": "2 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Jarima vaqti 243 daqiqa.",
+      "order": 310
+    },
+    {
+      "key": "U1A:team:olmazor-unnamed",
+      "team": {
+        "name": "Olmazor maktabi jamoasi",
+        "country_code": "UZB",
+        "school": "Olmazor ixtisoslashtirilgan maktabi"
+      },
+      "rank": 330,
+      "score": "2",
+      "score_label": "2 ta masala",
+      "is_local": true,
+      "result_url": "https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html",
+      "notes": "Reytingda jamoa nomi «-» deb berilgan. Jarima vaqti 491 daqiqa.",
+      "order": 330
+    }
+  ]
+}

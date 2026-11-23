@@ -1,7 +1,7 @@
 {
   "slug": "2026-2027",
   "title": "2026–2027 sport dasturlash mavsumi",
-  "summary": "2026-yil kuzidan IOI 2027 finaligacha bo‘lgan dastlabki mavsum taqvimi. Faqat rasman tasdiqlangan mezbon va sanalar aniq ko‘rsatiladi; qolgan bosqichlar TBA.",
+  "summary": "O‘zbekistonning 2026–2027-yilgi Asosiy olimpiadasi, terma jamoa saralashlari, xalqaro finallar va muhim sport dasturlash musobaqalari taqvimi.",
   "start_date": "2026-09-01",
   "end_date": "2027-09-30",
   "publication_status": "published",
@@ -265,6 +265,15 @@
       "line_style": "dotted",
       "label": "Saralash oralig‘idagi yig‘inlar",
       "order": 210
+    },
+    {
+      "from_event_code": "U1A",
+      "to_event_code": "U1",
+      "route_code": "unofficial",
+      "type": "qualifies_to",
+      "line_style": "solid",
+      "label": "Finalga taklif qilingan jamoalar",
+      "order": 220
     }
   ]
 }

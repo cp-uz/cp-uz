@@ -3,21 +3,23 @@
   "slug": "izho-2027",
   "title": "XXIII Xalqaro Jautikov olimpiadasi — IZhO 2027",
   "short_title": "IZhO 2027",
-  "summary": "2027-yilgi IZhO xalqaro finali.",
-  "description": "IZhO odatda Qozog‘istonda matematika, fizika va informatika bo‘yicha o‘tkaziladi. 2027 nashrining aniq sanasi va shahri ko‘rilgan rasmiy manbalarda e’lon qilinmagan.",
+  "summary": "IZhO 2027 Almatida 10–15-yanvar kunlari o‘tkaziladi.",
+  "description": "Asosiy musobaqa turlari 11 va 12-yanvarda Respublika fizika-matematika maktabida bo‘lib o‘tadi. Xorijiy ishtirokchilar uchun informatika bo‘yicha alohida individual onlayn tur ham e’lon qilingan. Xorijiy jamoalar vakolatli ta’lim tashkiloti orqali 13-dekabrgacha ro‘yxatdan o‘tkaziladi.",
   "type": "international",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
-  "timezone": "Asia/Tashkent",
-  "location": "Qozog‘iston; shahar TBA",
-  "venue": "",
-  "mode": "tba",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2027-01-10",
+  "end_date": "2027-01-15",
+  "date_label": "10–15-yanvar, 2027 · asosiy turlar 11–12-yanvar",
+  "timezone": "Asia/Almaty",
+  "location": "Almati, Qozog‘iston",
+  "venue": "Respublika fizika-matematika maktabi",
+  "mode": "hybrid",
   "platform": "",
-  "organizer": "IZhO tashkiliy qo‘mitasi",
-  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "organizer": "Daryn markazi va Respublika fizika-matematika maktabi",
+  "eligibility": "Milliy saralashdan tavsiya etilgan o‘quvchilar. Asosiy jamoada informatika bo‘yicha ikki ishtirokchiga joy ajratilgan.",
   "is_featured": true,
   "order": 50,
   "route_memberships": [
@@ -35,6 +37,20 @@
       "url": "https://izho.kz/",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "schedule",
+      "title": "IZhO 2027 taklifnomasi va dasturi",
+      "url": "https://izho.kz/invitation-letter/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "announcement",
+      "title": "IZhO 2027 press-relizi va musobaqa manzili",
+      "url": "https://izho.kz/press-release-2026-3/",
+      "is_official": true,
+      "order": 30
     }
   ],
   "sources": [
@@ -43,9 +59,27 @@
       "title": "IZhO rasmiy sayti",
       "url": "https://izho.kz/",
       "publisher": "IZhO",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "2027 sana TBA."
+      "notes": "Almati mezbonligi, joyida o‘tkaziladigan asosiy olimpiada va xorijiy qatnashchilar uchun individual onlayn informatika turini tasdiqlaydi."
+    },
+    {
+      "type": "organizer",
+      "title": "IZhO 2027 rasmiy taklifnomasi",
+      "url": "https://izho.kz/invitation-letter/",
+      "publisher": "Daryn / IZhO tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Umumiy dastur 10–15-yanvar, ikki asosiy tur 11 va 12-yanvar. To‘liq jamoa ro‘yxati 13-dekabrgacha topshiriladi."
+    },
+    {
+      "type": "organizer",
+      "title": "IZhO 2027 musobaqa manzili",
+      "url": "https://izho.kz/press-release-2026-3/",
+      "publisher": "IZhO tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Informatika asosiy turlarini Almatidagi Respublika fizika-matematika maktabiga biriktiradi."
     }
   ],
   "results": []

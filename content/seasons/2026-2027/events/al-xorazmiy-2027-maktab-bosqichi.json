@@ -4,13 +4,14 @@
   "title": "Al-Xorazmiy olimpiadasi — maktab bosqichi",
   "short_title": "Al-Xorazmiy maktab bosqichi",
   "summary": "7–8-sinflar Al-Xorazmiy mahalliy yo‘lining boshlanishi.",
-  "description": "2026–2027 nashri uchun maktab bosqichi sanasi TBA.",
+  "description": "2026–2027 reja-grafigida 7–8-sinflar Al-Xorazmiy olimpiadasining maktab bosqichi dekabr oyiga belgilangan. Aniq fanlar yo‘nalishi matematika va informatikani qamrab oladi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2026-12-01",
+  "date_label": "Dekabr, 2026 (reja-grafik)",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston maktablari",
   "venue": "",
@@ -21,7 +22,7 @@
   "grade_min": 7,
   "grade_max": 8,
   "is_featured": false,
-  "order": 90,
+  "order": 48,
   "route_memberships": [
     {
       "route_code": "khimio",
@@ -30,16 +31,24 @@
       "label": "13"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "2026–2027 mahalliy olimpiadalar reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
-      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "type": "organizer",
+      "title": "2026–2027 Al-Xorazmiy olimpiadasining reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "Al-Xorazmiy 2026–2027 sanalari kutilmoqda."
+      "notes": "Al-Xorazmiy olimpiadasining 1-bosqichi dekabr ustunida. Ma’lumot oy aniqligida."
     }
   ],
   "results": []

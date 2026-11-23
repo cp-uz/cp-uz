@@ -2,9 +2,9 @@
   "code": "U1",
   "slug": "vkoshp-2026",
   "title": "Butunrossiya maktab jamoaviy dasturlash olimpiadasi — VKOSHP 2026",
-  "short_title": "VKOSHP",
-  "summary": "2026–2027 siklidagi VKOSHP jamoaviy musobaqasi.",
-  "description": "2026–2027 siklining internet saralashi 15-noyabr kuni soat 12:00 da Moskva vaqti bilan (14:00 Toshkent vaqti) boshlanadi va besh soat davom etadi. Uch nafar maktab o‘quvchisidan tuzilgan jamoa bir joyda, bitta kompyuter va akkreditatsiyadan o‘tgan o‘qituvchi nazorati ostida qatnashadi. Final 11–12-dekabr kunlari Sankt-Peterburg, Novosibirsk, Sirius va Almatida o‘tkaziladi.",
+  "short_title": "VKOSHP finali",
+  "summary": "VKOSHPning 27-finali 11–12-dekabr kunlari to‘rtta shaharda o‘tkaziladi.",
+  "description": "Finalga Sankt-Peterburg, Novosibirsk, Sirius va Almati mezbonlik qiladi. Sankt-Peterburg dasturida 11-dekabr sinov turi, 12-dekabr asosiy tur kuni. 15-noyabrdagi internet saralashidan O‘zbekistonning uchta jamoasi Almati markaziga taklif qilingan.",
   "type": "unofficial",
   "publication_status": "published",
   "event_status": "scheduled",
@@ -12,16 +12,16 @@
   "date_precision": "range",
   "start_date": "2026-12-11",
   "end_date": "2026-12-12",
-  "date_label": "Saralash 15-noyabr; final 11–12-dekabr, 2026",
+  "date_label": "11–12-dekabr, 2026",
   "timezone": "Europe/Moscow",
-  "location": "Onlayn saralash; Sankt-Peterburg, Novosibirsk, Sirius va Almati final markazlari",
+  "location": "Sankt-Peterburg, Novosibirsk, Sirius va Almati",
   "venue": "",
-  "mode": "hybrid",
+  "mode": "onsite",
   "platform": "PCMS2 Web Client",
   "organizer": "VKOSHP tashkiliy qo‘mitasi",
   "eligibility": "Uch nafar maktab o‘quvchisidan tuzilgan jamoalar; tashkilotchining hududiy yoki internet saralashi qoidalariga muvofiq.",
   "is_featured": false,
-  "order": 25,
+  "order": 46,
   "route_memberships": [
     {
       "route_code": "unofficial",
@@ -53,16 +53,16 @@
       "order": 30
     },
     {
-      "type": "rules",
-      "title": "Internet saralashi tartibi va boshlanish vaqti",
-      "url": "https://neerc.ifmo.ru/school/russia-team/internet.html",
+      "type": "schedule",
+      "title": "Final dasturi — Sankt-Peterburg markazi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/timetable.html",
       "is_official": true,
       "order": 40
     },
     {
-      "type": "registration",
-      "title": "VKOSHP 2026 internet saralashiga ro‘yxatdan o‘tish",
-      "url": "https://neerc.ifmo.ru/school/russia-team/registration.jsp",
+      "type": "participants",
+      "title": "Finalga taklif qilingan jamoalar",
+      "url": "https://neerc.ifmo.ru/school/russia-team/listTeamsFinal.jsp",
       "is_official": true,
       "order": 50
     }
@@ -96,13 +96,22 @@
       "notes": "Jamoa uch nafar maktab o‘quvchisidan iborat bo‘lishi va saralash tartibini tasdiqlaydi."
     },
     {
-      "type": "official_regulation",
-      "title": "VKOSHP 2026 internet saralashini o‘tkazish tartibi",
-      "url": "https://neerc.ifmo.ru/school/russia-team/internet.html",
+      "type": "organizer",
+      "title": "VKOSHP 2026 finalining Sankt-Peterburgdagi dasturi",
+      "url": "https://neerc.ifmo.ru/school/russia-team/timetable.html",
       "publisher": "VKOSHP tashkiliy qo‘mitasi",
-      "accessed_on": "2026-10-04",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "15-noyabr soat 12:00 Moskva vaqti, besh soatlik tur, bitta kompyuter va o‘qituvchi nazorati tasdiqlangan."
+      "notes": "11-dekabr tanishuv turi, 12-dekabr soat 10:00–15:00 (Moskva vaqti) asosiy tur."
+    },
+    {
+      "type": "organizer",
+      "title": "VKOSHP 2026 finaliga takliflar",
+      "url": "https://neerc.ifmo.ru/school/russia-team/listTeamsFinal.jsp",
+      "publisher": "VKOSHP tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Almati markaziga Bitaro, JOI-kun and IOI-chan, Abyss va bitset jamoalari taklif qilingan."
     }
   ],
   "results": []

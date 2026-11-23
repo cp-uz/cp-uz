@@ -4,13 +4,14 @@
   "title": "Al-Xorazmiy olimpiadasi — hududiy bosqich",
   "short_title": "Al-Xorazmiy hududiy bosqich",
   "summary": "7–8-sinflar Al-Xorazmiy olimpiadasining hududiy bosqichi.",
-  "description": "2026–2027 sanasi va platformasi TBA.",
+  "description": "2026–2027 reja-grafigida Al-Xorazmiy olimpiadasining hududiy bosqichi 2027-yil fevral oyiga belgilangan. Informatika sinovining kuni va platformasi alohida yo‘riqnomada beriladi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "month",
+  "start_date": "2027-02-01",
+  "date_label": "Fevral, 2027 (reja-grafik)",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston hududlari",
   "venue": "",
@@ -30,16 +31,24 @@
       "label": "13B"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "2026–2027 mahalliy olimpiadalar reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
-      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "type": "organizer",
+      "title": "2026–2027 Al-Xorazmiy olimpiadasining reja-grafigi",
+      "url": "https://milliyolimpiadareja.netlify.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "Al-Xorazmiy 2026–2027 hududiy bosqichi sanasi kutilmoqda."
+      "notes": "Al-Xorazmiy olimpiadasining 3-bosqichi fevral ustunida. Ma’lumot oy aniqligida."
     }
   ],
   "results": []

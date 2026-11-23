@@ -3,18 +3,20 @@
   "slug": "asosiy-olimpiada-hududiy-2026",
   "title": "Asosiy olimpiada — hududiy bosqich",
   "short_title": "Hududiy bosqich",
-  "summary": "Viloyat, Qoraqalpog‘iston Respublikasi va Toshkent shahar bosqichi.",
-  "description": "9–11-sinflar qatnashadigan hududiy bosqich; 11-sinf sovrindorlari respublika finaliga yo‘l oladi. 2026–2027 sanasi TBA.",
+  "summary": "Informatika sinovlari 24, 25 va 27-noyabr kunlari soat 10:00–14:00 da o‘tkaziladi.",
+  "description": "Yangilangan reja-grafik bo‘yicha 11-sinf (2-kurs) 24-noyabr, 10-sinf (1-kurs) 25-noyabr va 9-sinf 27-noyabr kuni qatnashadi. Har bir sinf uchun dasturlash sinovi 10:00–14:00 da (Toshkent vaqti) o‘tkaziladi. Hududlar bo‘yicha manzillar e’lon qilingan. 11-sinf hududiy sovrindorlari respublika bosqichiga yo‘l oladi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2026-11-24",
+  "end_date": "2026-11-27",
+  "date_label": "24-noyabr (11-sinf), 25-noyabr (10-sinf), 27-noyabr (9-sinf), 2026 · 10:00–14:00",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston hududlari",
-  "venue": "",
-  "mode": "hybrid",
+  "venue": "Hududlar bo‘yicha belgilangan markazlar",
+  "mode": "onsite",
   "platform": "",
   "organizer": "Fan olimpiadalari markazi",
   "eligibility": "Tuman/shahar sovrindorlari va nizomdagi bevosita nomzodlar.",
@@ -30,16 +32,63 @@
       "label": "3"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "Hududiy bosqichning yangilangan reja-grafigi",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "official_page",
+      "title": "Hududiy bosqich manzillari",
+      "url": "https://aomanzillar.netlify.app/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "platform",
+      "title": "Ishtirokchi kabineti va ruxsatnoma",
+      "url": "https://olimpiada.uzedu.uz/",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "Hududiy bosqichga tayyorgarlik — RoboContest mashq masalalari",
+      "url": "https://robocontest.uz/olympiads/4204",
+      "is_official": false,
+      "order": 40
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
-      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "type": "organizer",
+      "title": "Asosiy olimpiadaning 2026-yilgi hududiy reja-grafigi",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+      "notes": "Informatika satrlari: 24-noyabr 11-sinf, 25-noyabr 10-sinf, 27-noyabr 9-sinf. Uchala sinov ham 10:00–14:00 va dasturlash shaklida."
+    },
+    {
+      "type": "official_announcement",
+      "title": "Yangilangan hududiy jadval e’loni",
+      "url": "https://t.me/olympcenteruz/11604",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "19-noyabrda e’lon qilingan yangilanish jadvalning amaldagi tahririni ko‘rsatadi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "Asosiy olimpiada hududiy bosqichi manzillari e’loni",
+      "url": "https://t.me/olympcenteruz/11608",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "1-guruh fanlari 24–30-noyabr, 2-guruh fanlari 2–4-dekabr. Event sanasi faqat informatika sinovlarini qamrab oladi."
     }
   ],
   "results": []

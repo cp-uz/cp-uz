@@ -4,20 +4,22 @@
   "title": "Yevropa qizlar informatika olimpiadasi — EGOI 2027",
   "short_title": "EGOI 2027",
   "summary": "Varshava, Polshada o‘tkaziladigan EGOI 2027.",
-  "description": "EGOI statistik arxivida 2027 mezboni Polsha, shahar Varshava deb ko‘rsatilgan. Aniq sana hali TBA.",
+  "description": "EGOI 2027 Varshavada 5–11-iyul kunlari o‘tkaziladi. Tashkilotchi jadvalida birinchi musobaqa kuni 7-iyul, ikkinchisi 9-iyulga belgilangan. Har bir tur besh soat davom etadi va to‘rttadan masala beriladi.",
   "type": "international",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "range",
+  "start_date": "2027-07-05",
+  "end_date": "2027-07-11",
+  "date_label": "5–11-iyul, 2027 · musobaqa kunlari 7 va 9-iyul",
   "timezone": "Europe/Warsaw",
   "location": "Varshava, Polsha",
   "venue": "",
-  "mode": "tba",
+  "mode": "onsite",
   "platform": "",
   "organizer": "EGOI 2027 tashkiliy qo‘mitasi",
-  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "eligibility": "Milliy delegatsiyaga saralangan maktab o‘quvchi qizlari.",
   "is_featured": true,
   "order": 190,
   "route_memberships": [
@@ -31,21 +33,44 @@
   "resources": [
     {
       "type": "official_page",
-      "title": "EGOI 2027 statistik sahifasi",
-      "url": "https://stats.egoi.org/editions/2027/",
+      "title": "EGOI 2027 rasmiy sayti",
+      "url": "https://egoi2027.pl/",
       "is_official": true,
       "order": 10
+    },
+    {
+      "type": "schedule",
+      "title": "EGOI 2027 musobaqa dasturi",
+      "url": "https://egoi2027.pl/schedule/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "rules",
+      "title": "EGOI musobaqa formati",
+      "url": "https://egoi2027.pl/rules/",
+      "is_official": true,
+      "order": 30
     }
   ],
   "sources": [
     {
-      "type": "official",
-      "title": "EGOI 2027 nashri",
-      "url": "https://stats.egoi.org/editions/2027/",
-      "publisher": "EGOI Statistics",
-      "accessed_on": "2026-09-01",
+      "type": "organizer",
+      "title": "EGOI 2027 mezboni va sanalari",
+      "url": "https://egoi2027.pl/",
+      "publisher": "EGOI 2027 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "Varshava tasdiqlangan; sana TBA."
+      "notes": "Varshava, Polsha, 5–11-iyul 2027."
+    },
+    {
+      "type": "organizer",
+      "title": "EGOI 2027 musobaqa kunlari",
+      "url": "https://egoi2027.pl/schedule/",
+      "publisher": "EGOI 2027 tashkiliy qo‘mitasi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "5-iyul kelish, 7 va 9-iyul musobaqa, 11-iyul jo‘nab ketish."
     }
   ],
   "results": []

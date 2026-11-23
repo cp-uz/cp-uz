@@ -3,14 +3,15 @@
   "slug": "asosiy-olimpiada-tuman-shahar-2026",
   "title": "Asosiy olimpiada — tuman/shahar bosqichi",
   "short_title": "Tuman/shahar bosqichi",
-  "summary": "Maktab g‘oliblari uchun tuman/shahar bosqichi.",
-  "description": "O‘tgan mavsum sanasi avtomatik ko‘chirilmaydi. 2026–2027 informatika kuni rasmiy jadval e’lon qilinmaguncha TBA.",
+  "summary": "Informatika bo‘yicha tuman/shahar bosqichi 21-oktabrda uch smenada o‘tkazildi.",
+  "description": "2026-yil 21-oktabrda informatika va axborot texnologiyalari sinovi 9-sinf uchun 09:00–10:30, 10-sinf uchun 12:30–14:00, 11-sinf uchun 16:00–17:30 da o‘tkazildi. Har smenada 30 ta test uchun 90 daqiqa va jami 50 ball ajratildi. Har bir sinf va fan bo‘yicha eng yuqori natija ko‘rsatgan uch nafar o‘quvchi hududiy bosqichga yo‘l oldi.",
   "type": "stage",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "completed",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-10-21",
+  "date_label": "21-oktabr, 2026 · 9-sinf 09:00, 10-sinf 12:30, 11-sinf 16:00",
   "timezone": "Asia/Tashkent",
   "location": "O‘zbekiston",
   "venue": "",
@@ -30,16 +31,115 @@
       "label": "2"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "Tuman/shahar bosqichi jadvali va smenalari",
+      "url": "https://olimpiada-jadval.vercel.app/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "tasks",
+      "title": "Informatika testlari — 9-sinf",
+      "url": "https://sites.google.com/view/inform91/",
+      "is_official": true,
+      "order": 20
+    },
+    {
+      "type": "tasks",
+      "title": "Informatika testlari — 10-sinf",
+      "url": "https://sites.google.com/view/10inform2/",
+      "is_official": true,
+      "order": 30
+    },
+    {
+      "type": "tasks",
+      "title": "Informatika testlari — 11-sinf",
+      "url": "https://sites.google.com/view/11inform3/",
+      "is_official": true,
+      "order": 40
+    },
+    {
+      "type": "editorial",
+      "title": "Test savollarining video yechimlari — 9-sinf",
+      "url": "https://t.me/olympcenteruz/11074",
+      "is_official": true,
+      "order": 50
+    },
+    {
+      "type": "editorial",
+      "title": "Test savollarining video yechimlari — 10-sinf",
+      "url": "https://t.me/olympcenteruz/11083",
+      "is_official": true,
+      "order": 60
+    },
+    {
+      "type": "editorial",
+      "title": "Test savollarining video yechimlari — 11-sinf",
+      "url": "https://t.me/olympcenteruz/11094",
+      "is_official": true,
+      "order": 70
+    },
+    {
+      "type": "results",
+      "title": "Olimpiada platformasi — shaxsiy natijalar",
+      "url": "https://olimpiada.uzedu.uz/",
+      "is_official": true,
+      "order": 80
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Asosiy olimpiadaning amaldagi bosqichlari",
-      "url": "https://olympcenter.uz/uz/olympiads/local",
+      "type": "organizer",
+      "title": "Informatika bo‘yicha tuman/shahar bosqichi reja-grafigi",
+      "url": "https://olimpiada-jadval.vercel.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "2026–2027 nashrining alohida sanalari hali e’lon qilinmagan."
+      "notes": "Informatika bo‘yicha uch smena 21-oktabrda. Har bir smena 90 daqiqa, 30 savol va 50 ball."
+    },
+    {
+      "type": "official_announcement",
+      "title": "21-oktabrda informatika sinovlari o‘tkazilgani haqida",
+      "url": "https://t.me/olympcenteruz/11061",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "2026-yil 21-oktabrda barcha tuman va shaharlarda uch smenada informatika sinovi o‘tkazilganini tasdiqlaydi."
+    },
+    {
+      "type": "government_news",
+      "title": "Tuman/shahar bosqichining tartibi va yo‘llanmalari",
+      "url": "https://gov.uz/oz/edu/news/view/234608",
+      "publisher": "O‘zbekiston Respublikasi Hukumat portali",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "Barcha fanlar bo‘yicha 15–27-oktabr oralig‘i, informatika sinovi uchun 90 daqiqa va keyingi bosqichga uchta yo‘llanma."
+    },
+    {
+      "type": "official_announcement",
+      "title": "Informatika savollari e’loni — 9-sinf",
+      "url": "https://t.me/olympcenteruz/11073",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true
+    },
+    {
+      "type": "official_announcement",
+      "title": "Informatika savollari e’loni — 10-sinf",
+      "url": "https://t.me/olympcenteruz/11082",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true
+    },
+    {
+      "type": "official_announcement",
+      "title": "Informatika savollari e’loni — 11-sinf",
+      "url": "https://t.me/olympcenteruz/11093",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true
     }
   ],
   "results": []

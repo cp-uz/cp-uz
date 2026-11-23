@@ -1,7 +1,7 @@
 # Season seed: manba va aniqlik izohlari
 
-`content/seasons/` 2026-09-01 holatiga ko‘ra 2025–2026 hamda 2026–2027 sport
-dasturlash mavsumlarini alohida season, event va participant JSON fayllarida saqlaydi.
+`content/seasons/` sport dasturlash mavsumlarini alohida season, event va participant
+JSON fayllarida saqlaydi.
 Katalog `import_seasons` orqali idempotent import qilinadi. Mavsum biriktirilishi o‘quv/saralash
 sikliga qarab belgilanadi; shu sababli IOI 2027 sentabrda bo‘lsa ham 2026–2027 siklining
 yakuniy tuguni hisoblanadi.
@@ -95,15 +95,41 @@ tasdiqlangan.
   rasmiy paket ochilsa ular alohida event katalogi sifatida kiritiladi.
 - VKOSHP 2025–2026 jadvalida O‘zbekiston jamoasining ishonchli rasmiy natijasi
   aniqlanmagani uchun mahalliy natija kiritilmadi.
-- 2026–2027 maktab bosqichi sentabrda o‘tkazilib, 30-sentabrda yakunlangani
-  tashkilotchining [8-sentabr](https://t.me/s/olympcenteruz/10595) va
-  [29-sentabr](https://t.me/s/olympcenteruz/10667) e’lonlari bilan tasdiqlandi;
-  aniq boshlanish kuni ochiq manbada tasdiqlanmagani uchun oy aniqligi saqlandi.
-  VKOSHP 2026 finali [rasmiy jadval](https://neerc.ifmo.ru/school/russia-team/index.html)
-  bo‘yicha 11–12-dekabr; internet saralashi 15-noyabr. Qolgan milliy bosqichlar,
-  treninglar, IZhO/KhIMIO/InfO(1)Cup sanalari TBA.
-  Tasdiqlangan xalqaro ma’lumotlar: IOI 2027 — 12–19-sentabr, Potsdam;
-  EGOI 2027 — Varshava, sana TBA; APIO 2027 — Suzhou, sana TBA.
+
+## 2026–2027 mavsumi (23-noyabr holati)
+
+- Asosiy olimpiadaning maktab bosqichi sentabrda o‘tkazildi va 30-sentabrda
+  yakunlandi. Tuman/shahar bosqichi 21-oktabrda uch smenada o‘tdi. 9–11-sinflar
+  uchun vaqtlar, 30 tadan test va video yechimlar eventda ko‘rsatilgan.
+  [Maktab bosqichi](https://t.me/olympcenteruz/10667),
+  [tuman/shahar jadvali](https://olimpiada-jadval.vercel.app/),
+  [informatika sinovlari e’loni](https://t.me/olympcenteruz/11061).
+- Yangilangan hududiy jadval informatika sinovlarini 11-sinf uchun 24-noyabr,
+  10-sinf uchun 25-noyabr va 9-sinf uchun 27-noyabrga qo‘yadi. Uchala sinov
+  vaqti 10:00–14:00. EGOI I saralashi 28-noyabr 13:00–15:00, IOI I saralashi
+  1-dekabr 10:00–15:00. Vaqtlar Toshkent vaqti bilan berilgan.
+  [Yangilangan rasmiy jadval](https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/).
+- Asosiy olimpiadaning IV bosqichi martga, Al-Xorazmiyning dastlabki uch
+  bosqichi dekabr, yanvar va fevralga rejalashtirilgan. Bu eventlar oy
+  aniqligida saqlangan. Al-Xorazmiy qatoridagi mart bosqichini xalqaro
+  KhIMIO 2027 sanasiga bog‘lash uchun nashrga xos e’lon kutilmoqda.
+  [2026–2027 mahalliy reja-grafik](https://milliyolimpiadareja.netlify.app/),
+  [Fan olimpiadalari markazi](https://olympcenter.uz/uz/olympiads/local).
+- IZhO 2027 10–15-yanvarda Almatida (asosiy turlar 11–12-yanvar), EGOI 2027
+  5–11-iyulda Varshavada (asosiy turlar 7 va 9-iyul), IOI 2027 12–19-sentabrda
+  Potsdamda. APIO 2027 mezboni Suzhou shahri. APIO, KhIMIO va InfO(1)Cup uchun
+  nashrga xos rasmiy jadval kutilmoqda.
+  [IZhO dasturi](https://izho.kz/invitation-letter/),
+  [EGOI dasturi](https://egoi2027.pl/schedule/), [IOI mezboni](https://ioi2027.de/),
+  [APIO mezboni](https://www.noi.cn/xw/2025-05-19/842274.shtml).
+- VKOSHPning 15-noyabrdagi internet saralashi `U1A` eventida saqlangan. O‘zbekiston
+  deb ko‘rsatilgan 13 ta arizadan 11 tasi dastlabki reytingda o‘rin olgan. 3-, 6-
+  va 8-o‘rindagi jamoalar Almati finaliga taklif qilingan. Saralash masalalari,
+  tahlili va jadvali rasmiy manbaga bog‘langan. Final 11–12-dekabr.
+  [VKOSHP e’loni](https://neerc.ifmo.ru/school/russia-team/index.html),
+  [dastlabki reyting](https://neerc.ifmo.ru/school/archive/2026-2027/ru-olymp-team-internet-2026-standings.html).
+- REVO CUP 2026 ikki onlayn saralashni 28 va 29-noyabrda, finalni 12-dekabrda
+  Urganchda o‘tkazadi. [Tashkilotchining jadvali](https://revolution.uz/uz/revo-cup-2026#jadval).
 
 ## 2026-10-04 tarixiy arxiv kengaytmasi
 

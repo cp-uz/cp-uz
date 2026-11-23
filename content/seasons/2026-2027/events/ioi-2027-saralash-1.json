@@ -3,21 +3,24 @@
   "slug": "ioi-2027-saralash-1",
   "title": "IOI 2027 saralashi — I bosqich",
   "short_title": "IOI saralash I",
-  "summary": "IOI 2027 terma jamoasiga dastlabki milliy saralash.",
-  "description": "Bosqichning sanasi, formati va keyingi bosqich kvotasi Fan olimpiadalari markazi e’lonidan keyin kiritiladi.",
+  "summary": "IOI 2027 uchun birinchi saralash 1-dekabr kuni 10:00–15:00 da o‘tkaziladi.",
+  "description": "Xalqaro olimpiadalarga nomzodlarni saralashning informatika bo‘yicha birinchi bosqichi 2026-yil 1-dekabr kuni 10:00–15:00 da (Toshkent vaqti) o‘tkaziladi. Jadvalda 9–11-sinflar uchun besh soat ajratilgan.",
   "type": "selection",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-12-01",
+  "date_label": "1-dekabr, 2026 · 10:00–15:00",
   "timezone": "Asia/Tashkent",
-  "location": "TBA",
+  "location": "O‘zbekiston hududlari",
   "venue": "",
   "mode": "tba",
   "platform": "",
   "organizer": "Fan olimpiadalari markazi",
-  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "eligibility": "Saralash talablariga mos 9–11-sinf o‘quvchilari.",
+  "grade_min": 9,
+  "grade_max": 11,
   "is_featured": false,
   "order": 40,
   "route_memberships": [
@@ -28,16 +31,40 @@
       "label": "4"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "IOI I saralashi — rasmiy reja-grafik",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
+      "is_official": true,
+      "order": 10
+    },
+    {
+      "type": "announcement",
+      "title": "Xalqaro olimpiadalarga I saralash e’loni va video yo‘riqnoma",
+      "url": "https://t.me/olympcenteruz/11611",
+      "is_official": true,
+      "order": 20
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Fan olimpiadalari markazi rasmiy kanali",
-      "url": "https://t.me/s/Fan_olimpiadalari_M",
+      "type": "organizer",
+      "title": "Informatikadan xalqaro olimpiadaga I saralash jadvali",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "IOI 2027 saralash e’loni kutilmoqda."
+      "notes": "2026-yil 1-dekabrdagi informatika satri: 9–11-sinf, 10:00–15:00, xalqaro olimpiadalarga nomzodlar saralashi."
+    },
+    {
+      "type": "official_announcement",
+      "title": "2026–2027 xalqaro olimpiadalarga birinchi saralash e’loni",
+      "url": "https://t.me/olympcenteruz/11611",
+      "publisher": "Fan olimpiadalari markazi",
+      "accessed_on": "2026-11-23",
+      "is_primary": true,
+      "notes": "E’lon birinchi saralash bosqichini 2026–2027 o‘quv yilidagi terma jamoalar sikliga bog‘laydi."
     }
   ],
   "results": []

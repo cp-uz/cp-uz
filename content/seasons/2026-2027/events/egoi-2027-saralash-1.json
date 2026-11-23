@@ -3,23 +3,26 @@
   "slug": "egoi-2027-saralash-1",
   "title": "EGOI 2027 saralashi — I bosqich",
   "short_title": "EGOI saralash I",
-  "summary": "EGOI 2027 terma jamoasiga dastlabki milliy saralash.",
-  "description": "Fan olimpiadalari markazi sanasi va formatini e’lon qilgach yangilanadi.",
+  "summary": "EGOI 2027 uchun birinchi saralash 28-noyabr kuni 13:00–15:00 da o‘tkaziladi.",
+  "description": "EGOI 2027 terma jamoasiga nomzodlarni saralashning birinchi bosqichi 2026-yil 28-noyabr kuni 13:00–15:00 da (Toshkent vaqti) bo‘ladi. 9–11-sinf o‘quvchi qizlari ikki soatlik dasturlash sinovida qatnashadi.",
   "type": "selection",
   "publication_status": "published",
-  "event_status": "tba",
-  "verification_status": "pending",
-  "date_precision": "tba",
-  "date_label": "TBA — rasmiy sana e’lon qilinmagan",
+  "event_status": "scheduled",
+  "verification_status": "verified",
+  "date_precision": "day",
+  "start_date": "2026-11-28",
+  "date_label": "28-noyabr, 2026 · 13:00–15:00",
   "timezone": "Asia/Tashkent",
-  "location": "TBA",
+  "location": "O‘zbekiston hududlari",
   "venue": "",
   "mode": "tba",
   "platform": "",
   "organizer": "Fan olimpiadalari markazi",
-  "eligibility": "Rasmiy nizom va saralash natijalariga muvofiq.",
+  "eligibility": "Saralash talablariga mos 9–11-sinf o‘quvchi qizlari.",
+  "grade_min": 9,
+  "grade_max": 11,
   "is_featured": false,
-  "order": 45,
+  "order": 38,
   "route_memberships": [
     {
       "route_code": "egoi",
@@ -28,16 +31,24 @@
       "label": "11"
     }
   ],
-  "resources": [],
+  "resources": [
+    {
+      "type": "schedule",
+      "title": "EGOI I saralashi — rasmiy reja-grafik",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
+      "is_official": true,
+      "order": 10
+    }
+  ],
   "sources": [
     {
-      "type": "official",
-      "title": "Fan olimpiadalari markazi rasmiy kanali",
-      "url": "https://t.me/s/Fan_olimpiadalari_M",
+      "type": "organizer",
+      "title": "EGOI 2027 birinchi saralashining reja-grafigi",
+      "url": "https://asosiy-olimpiadaning-hududiy-bosqic.vercel.app/",
       "publisher": "Fan olimpiadalari markazi",
-      "accessed_on": "2026-09-01",
+      "accessed_on": "2026-11-23",
       "is_primary": true,
-      "notes": "EGOI 2027 saralash I e’loni kutilmoqda."
+      "notes": "Jadvalda EGOI terma jamoasiga birinchi saralash sifatida berilgan: 9–11-sinf, 28-noyabr 13:00–15:00, dasturlash."
     }
   ],
   "results": []
